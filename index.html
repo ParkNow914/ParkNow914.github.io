@@ -418,6 +418,25 @@
       .proj-links { flex-direction: row; align-items: center; }
     }
 
+    /* ---- mini projects grid ---- */
+    .more-title {
+      font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);
+      margin: 56px 0 22px; display: flex; align-items: center; gap: 14px;
+    }
+    .more-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .mini h4 { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
+    .mini p { font-size: 0.85rem; color: var(--text-muted); }
+    .mini .tags { margin-top: 14px; }
+    .mini-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; }
+    .mini-links a {
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .mini-links a:hover { color: var(--accent); }
+    @media (max-width: 900px) { .mini-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .mini-grid { grid-template-columns: 1fr; } }
+
     /* ============ STACK MARQUEE ============ */
     .stack-band {
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -601,8 +620,8 @@
         <div class="hero-stats">
           <div class="stat"><span class="num">5.0<span class="star">★</span></span><span class="lbl">avaliação média (99freelas)</span></div>
           <div class="stat"><span class="num" data-count="100">0</span><span class="lbl">% de recomendação</span></div>
-          <div class="stat"><span class="num" data-count="30" data-suffix="+">0</span><span class="lbl">projetos no GitHub</span></div>
-          <div class="stat"><span class="num" data-count="3" data-suffix="+">0</span><span class="lbl">SaaS em produção real</span></div>
+          <div class="stat"><span class="num" data-count="33">0</span><span class="lbl">repositórios no GitHub</span></div>
+          <div class="stat"><span class="num" data-count="5">0</span><span class="lbl">SaaS próprios construídos</span></div>
         </div>
       </div>
 
@@ -642,9 +661,9 @@
       <div class="services-grid">
         <div class="card reveal">
           <div class="svc-icon">🤖</div>
-          <h3>Bots de WhatsApp com IA</h3>
-          <p>Atendimento em linguagem natural (texto e áudio), pedidos com carrinho, agendamento, pagamento PIX e transferência para humano. Seu comercial funcionando 24/7.</p>
-          <div class="tags"><span class="chip">n8n</span><span class="chip">Evolution API</span><span class="chip">GPT · Claude · Gemini</span></div>
+          <h3>Bots de WhatsApp &amp; Telegram com IA</h3>
+          <p>Atendimento em linguagem natural (texto e áudio), pedidos com carrinho, agendamento, pagamento PIX e transferência para humano — no WhatsApp, Telegram ou loja web, com o mesmo cérebro.</p>
+          <div class="tags"><span class="chip">n8n</span><span class="chip">Evolution API</span><span class="chip">Meta Cloud API</span><span class="chip">GPT · Claude · Gemini</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🚀</div>
@@ -683,8 +702,8 @@
   <!-- ============ STACK BAND ============ -->
   <div class="stack-band" aria-hidden="true">
     <div class="marquee">
-      <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node.js</span><span>PostgreSQL</span><span>Supabase</span><span>Prisma</span><span>n8n</span><span>Evolution API</span><span>Python</span><span>WordPress</span><span>Stripe</span><span>Mercado Pago</span><span>GA4 + GTM</span><span>Docker</span><span>Git</span>
-      <span>React</span><span>Next.js</span><span>TypeScript</span><span>Node.js</span><span>PostgreSQL</span><span>Supabase</span><span>Prisma</span><span>n8n</span><span>Evolution API</span><span>Python</span><span>WordPress</span><span>Stripe</span><span>Mercado Pago</span><span>GA4 + GTM</span><span>Docker</span><span>Git</span>
+      <span>React</span><span>Next.js</span><span>React Native · Expo</span><span>TypeScript</span><span>Node.js</span><span>Fastify</span><span>PostgreSQL</span><span>Supabase</span><span>Prisma</span><span>Redis · BullMQ</span><span>n8n</span><span>Evolution API</span><span>Meta Cloud API</span><span>Gemini · GPT · Claude</span><span>Python</span><span>Docker</span><span>GitHub Actions</span><span>Playwright</span><span>Fly.io</span><span>Vercel</span><span>WordPress</span><span>Stripe · Mercado Pago</span>
+      <span>React</span><span>Next.js</span><span>React Native · Expo</span><span>TypeScript</span><span>Node.js</span><span>Fastify</span><span>PostgreSQL</span><span>Supabase</span><span>Prisma</span><span>Redis · BullMQ</span><span>n8n</span><span>Evolution API</span><span>Meta Cloud API</span><span>Gemini · GPT · Claude</span><span>Python</span><span>Docker</span><span>GitHub Actions</span><span>Playwright</span><span>Fly.io</span><span>Vercel</span><span>WordPress</span><span>Stripe · Mercado Pago</span>
     </div>
   </div>
 
@@ -705,12 +724,13 @@
           </div>
           <div class="proj-body">
             <h3>AgendaZap</h3>
-            <p>Plataforma de agendamento com IA no WhatsApp para salões e clínicas. O bot entende linguagem natural (texto e áudio), consulta horários, agenda, cobra via PIX e envia lembretes — sem intervenção humana.</p>
-            <div class="result">SaaS multi-empresa no ar com demonstração aberta, assinatura recorrente e painel administrativo completo.</div>
-            <div class="tags"><span class="chip">Next.js</span><span class="chip">Supabase</span><span class="chip">n8n</span><span class="chip">Evolution API</span><span class="chip">IA</span></div>
+            <p>SaaS de agenda inteligente para salões, barbearias e estética: o cliente agenda sozinho pelo link público ou conversando com a atendente de IA no WhatsApp, que consulta horários, agenda e cancela sem intervenção humana. Lembretes automáticos 24h e 2h antes derrubam o no-show; recuperação de inativos, mensagem de aniversário, NPS pós-atendimento e campanhas seguram o cliente na base.</p>
+            <div class="result">Multi-tenant com RLS no Supabase, assinatura recorrente (Mercado Pago) com trial de 14 dias, PWA instalável, LGPD e monitoramento com Sentry — rodando em produção com demo aberta.</div>
+            <div class="tags"><span class="chip">Next.js 16 · React 19</span><span class="chip">Supabase + RLS</span><span class="chip">Gemini</span><span class="chip">Evolution API</span><span class="chip">Mercado Pago</span></div>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/ParkNow914/agendazap" target="_blank" rel="noopener">↗ GitHub</a>
+            <a href="https://agendazap-three.vercel.app" target="_blank" rel="noopener">▶ Demo ao vivo</a>
+            <a href="https://agendazap-three.vercel.app/b/demo" target="_blank" rel="noopener">↗ Testar agendamento</a>
           </div>
         </article>
 
@@ -721,60 +741,60 @@
           </div>
           <div class="proj-body">
             <h3>CRM de WhatsApp — API Oficial da Meta</h3>
-            <p>Plataforma de atendimento e CRM focada em WhatsApp Business com a API oficial da Meta: campanhas, auditoria completa e segurança de nível corporativo.</p>
-            <div class="result">Roda diariamente em uma operação financeira real, com campanhas ativas e trilha de auditoria.</div>
-            <div class="tags"><span class="chip">Next.js</span><span class="chip">PostgreSQL</span><span class="chip">Meta Cloud API</span><span class="chip">LGPD</span></div>
+            <p>Inbox omnichannel e CRM para WhatsApp Business rodando em operação financeira real: campanhas com governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automatizada. Hospedado no Fly.io em São Paulo com 2 máquinas always-on e ~28ms de latência até o banco — zero cold start.</p>
+            <div class="result">12 workflows de automação no GitHub Actions: CI, testes E2E com Playwright, CodeQL, scan de vulnerabilidades (Trivy + SBOM), backup diário do banco e deploy automático a cada push.</div>
+            <div class="tags"><span class="chip">Fastify</span><span class="chip">React</span><span class="chip">Prisma</span><span class="chip">Postgres 17</span><span class="chip">BullMQ + Redis</span><span class="chip">Fly.io</span></div>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/ParkNow914/realcred-whatsapp-crm" target="_blank" rel="noopener">↗ GitHub</a>
+            <a href="https://realcred-whatsapp-crm.fly.dev" target="_blank" rel="noopener">▶ App em produção</a>
           </div>
         </article>
 
         <article class="proj reveal">
           <div class="proj-meta">
-            <span class="type">IA Jurídica · RAG</span><br />
-            <span class="status"><span class="dot"></span>No ar</span>
+            <span class="type">IA Jurídica · SaaS B2B</span><br />
+            <span class="status"><span class="dot"></span>Produto próprio</span>
           </div>
           <div class="proj-body">
-            <h3>LicitaAI / JurisIA</h3>
-            <p>Assistente jurídico com IA: análise de documentos e licitações com RAG — as respostas vêm com a fonte citada, eliminando "achismo" da IA.</p>
-            <div class="result">IA aplicada a um problema real e caro: horas de leitura de editais reduzidas a minutos, com rastreabilidade.</div>
-            <div class="tags"><span class="chip">Python</span><span class="chip">RAG</span><span class="chip">Agentes de IA</span><span class="chip">NLP</span></div>
+            <h3>JurisIA — Suíte Jurídica com IA</h3>
+            <p>Plataforma SaaS de automação para advogados e escritórios, com 4 produtos: <strong>JurisBot</strong> (atendimento 24h e triagem de leads no WhatsApp), <strong>JurisDoc</strong> (geração de peças jurídicas com IA em streaming), <strong>JurisData</strong> (jurimetria com dados do TJSP) e <strong>JurisGrow</strong> (gestão de leads). Análise de documentos com RAG e fonte citada — sem "achismo" de IA.</p>
+            <div class="result">Arquitetura moderna de ponta a ponta: filas com BullMQ + Redis, cobrança recorrente via Stripe e planos de R$297 a R$1.200/mês.</div>
+            <div class="tags"><span class="chip">Next.js</span><span class="chip">Hono + Bun</span><span class="chip">Drizzle</span><span class="chip">BullMQ</span><span class="chip">Stripe</span><span class="chip">RAG</span></div>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/ParkNow914/JurisIA" target="_blank" rel="noopener">↗ GitHub</a>
+            <a href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20do%20JurisIA." target="_blank" rel="noopener">💬 Demo no chat</a>
           </div>
         </article>
 
         <article class="proj reveal">
           <div class="proj-meta">
-            <span class="type">Sistema Full-Stack</span><br />
-            <span class="status"><span class="dot"></span>Uso em ambiente financeiro</span>
+            <span class="type">SaaS B2B2C · Mobile + Web</span><br />
+            <span class="status"><span class="dot"></span>Produto próprio</span>
           </div>
           <div class="proj-body">
-            <h3>Sistema de Gestão de Crédito</h3>
-            <p>Gestão de carteira de clientes e propostas de crédito com autenticação JWT, controle de perfis de acesso e relatórios — construído sob medida para a operação.</p>
-            <div class="result">Em uso diário em ambiente financeiro real, centralizando toda a esteira de propostas.</div>
-            <div class="tags"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">PostgreSQL</span></div>
+            <h3>ParkNow — Smart Parking</h3>
+            <p>SaaS de estacionamento inteligente em monorepo (Turborepo + pnpm): painel B2B em Next.js, app B2C em React Native/Expo offline-first, Supabase com PostGIS para geolocalização, rate limiting com Upstash Redis e precificação dinâmica compartilhada entre os apps. O backend público tem mapa em tempo real (Socket.IO), reservas com expiração automática e pagamento PIX com BR Code gerado localmente — sem gateway pago.</p>
+            <div class="result">Segurança de nível profissional: JWT + refresh token httpOnly, senhas com Argon2id, rate limiting, CI/CD com CodeQL — e stack 100% em serviços always-free.</div>
+            <div class="tags"><span class="chip">Turborepo</span><span class="chip">Next.js</span><span class="chip">React Native · Expo</span><span class="chip">Supabase + PostGIS</span><span class="chip">Socket.IO</span><span class="chip">PIX</span></div>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/ParkNow914/CreditManagement" target="_blank" rel="noopener">↗ GitHub</a>
+            <a href="https://github.com/ParkNow914/ParkNow" target="_blank" rel="noopener">↗ GitHub</a>
           </div>
         </article>
 
         <article class="proj reveal">
           <div class="proj-meta">
-            <span class="type">Landing + Conversão</span><br />
-            <span class="status"><span class="dot"></span>Entregue · nota 5.0</span>
+            <span class="type">Delivery Multicanal · IA</span><br />
+            <span class="status"><span class="dot"></span>Entregue · cliente real</span>
           </div>
           <div class="proj-body">
-            <h3>RealCred — Landing + Simulador de Crédito</h3>
-            <p>Landing page de alta conversão para corretora de empréstimos: simulador interativo, integração com WhatsApp e rastreamento completo para tráfego pago.</p>
-            <div class="result">Funil completo rastreado com GTM, GA4, Meta Pixel e Conversions API — cada real de anúncio mensurado.</div>
-            <div class="tags"><span class="chip">JavaScript</span><span class="chip">GTM + GA4</span><span class="chip">Meta CAPI</span><span class="chip">SEO</span></div>
+            <h3>Bia — Assistente de Delivery de Supermercado</h3>
+            <p>Sistema completo de delivery para supermercado de bairro: catálogo de <strong>6.438 produtos</strong> importado do ERP, carrinho com taxas dinâmicas, checkout, cupom impresso direto na Epson do balcão (ESC/POS) e acompanhamento do pedido. Arquitetura canal-agnóstica: loja web PWA, Telegram e WhatsApp desaguam no mesmo cérebro — quando o canal de WhatsApp do cliente se tornou inviável no meio do projeto, os outros canais entraram <strong>sem reescrever uma regra de negócio</strong>.</p>
+            <div class="result">487 testes automatizados, todos verdes, em Node.js puro com zero dependência de runtime. Preço e taxa sempre recalculados no servidor — testado contra payload forjado.</div>
+            <div class="tags"><span class="chip">Node.js</span><span class="chip">PWA</span><span class="chip">Telegram API</span><span class="chip">Meta Cloud API</span><span class="chip">ESC/POS</span><span class="chip">487 testes</span></div>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/ParkNow914/realcredmais" target="_blank" rel="noopener">↗ GitHub</a>
+            <a href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20da%20Bia%20(delivery)." target="_blank" rel="noopener">💬 Demo no chat</a>
           </div>
         </article>
 
@@ -785,9 +805,9 @@
           </div>
           <div class="proj-body">
             <h3>FlowHub — CRM SaaS</h3>
-            <p>CRM SaaS para pequenos negócios: gestão de leads, pipeline de vendas em kanban, dashboards e relatórios — arquitetura multi-tenant pronta para escalar.</p>
-            <div class="result">Full-stack de ponta a ponta: produto, autenticação, assinaturas e painel — tudo desenvolvido por mim.</div>
-            <div class="tags"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">SaaS</span></div>
+            <p>CRM SaaS completo para pequenos negócios: leads com score e importação CSV, pipeline kanban com drag-and-drop, tarefas, dashboard com gráficos, command palette (⌘K), notificações in-app, dark mode e RBAC com 4 papéis (Owner, Admin, Member, Viewer). Toda mutação registrada em audit log com before/after.</p>
+            <div class="result">Código aberto no GitHub com seed realista para demonstração — arquitetura multi-workspace pronta para escalar.</div>
+            <div class="tags"><span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">shadcn/ui</span></div>
           </div>
           <div class="proj-links">
             <a href="https://github.com/ParkNow914/flowhub" target="_blank" rel="noopener">↗ GitHub</a>
@@ -795,8 +815,48 @@
         </article>
       </div>
 
+      <h3 class="more-title reveal">// mais projetos do GitHub</h3>
+      <div class="mini-grid">
+        <div class="card mini reveal">
+          <h4>ConectaFecho</h4>
+          <p>SaaS WhatsApp-first para quem vende por conversa: inbox estilo WhatsApp, orçamentos, funil kanban drag-and-drop e automações.</p>
+          <div class="tags"><span class="chip">Next.js 16</span><span class="chip">Tailwind v4</span><span class="chip">Framer Motion</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/parceria-SaaS" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+        <div class="card mini reveal">
+          <h4>Football Manager 2026</h4>
+          <p>Jogo cross-platform de gestão de futebol: 90+ funcionalidades em 14 telas, engine de partidas, mercado de transferências e base de jovens.</p>
+          <div class="tags"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TypeScript</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/twincluster" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+        <div class="card mini reveal">
+          <h4>Riqueza</h4>
+          <p>Site de calculadoras financeiras gratuitas em português, otimizado para SEO e pensado como ativo digital de renda semi-passiva.</p>
+          <div class="tags"><span class="chip">SEO</span><span class="chip">Estático</span><span class="chip">Vercel</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/riqueza" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+        <div class="card mini reveal">
+          <h4>RealCred+ — Landing + Simulador</h4>
+          <p>Landing de alta conversão para corretora de crédito: simulador de consignado, calculadora de portabilidade e rastreamento completo para tráfego pago.</p>
+          <div class="tags"><span class="chip">JavaScript</span><span class="chip">GTM + GA4</span><span class="chip">Meta CAPI</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/realcredmais" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+        <div class="card mini reveal">
+          <h4>Gestão de Crédito</h4>
+          <p>Sistema de carteira de clientes e propostas de crédito, em uso diário em ambiente financeiro real.</p>
+          <div class="tags"><span class="chip">Next.js</span><span class="chip">TypeScript</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/CreditManagement" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+        <div class="card mini reveal">
+          <h4>KeepSchool</h4>
+          <p>Predição e redução de evasão escolar com machine learning — IA aplicada a um problema social real.</p>
+          <div class="tags"><span class="chip">Python</span><span class="chip">Machine Learning</span></div>
+          <div class="mini-links"><a href="https://github.com/ParkNow914/keepschool" target="_blank" rel="noopener">↗ GitHub</a></div>
+        </div>
+      </div>
+
       <div class="reveal" style="margin-top: 40px; text-align: center;">
-        <a class="btn btn-ghost" href="https://github.com/ParkNow914?tab=repositories" target="_blank" rel="noopener">Ver todos os 30+ repositórios no GitHub ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/ParkNow914?tab=repositories" target="_blank" rel="noopener">Ver todos os 33 repositórios no GitHub ↗</a>
       </div>
     </div>
   </section>
@@ -883,7 +943,7 @@
         </div>
         <div class="about-text reveal">
           <p>A maioria dos desenvolvedores escreve código. Eu construo <strong>sistemas que geram resultado</strong> — e essa diferença vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
-          <p>Foi assim que nasceram meus produtos próprios: o <strong>AgendaZap</strong> (agendamento com IA no WhatsApp), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, e o <strong>LicitaAI</strong> (assistente jurídico com IA). Não são projetos de portfólio — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
+          <p>Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
           <div class="highlight-box">
             Trabalho com comunicação clara, prazos cumpridos e entregas testadas e documentadas. Você acompanha o progresso do início ao fim — sem surpresa no final.
           </div>
