@@ -429,25 +429,6 @@
       .proj-links { flex-direction: row; align-items: center; }
     }
 
-    /* ---- mini projects grid ---- */
-    .more-title {
-      font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);
-      margin: 56px 0 22px; display: flex; align-items: center; gap: 14px;
-    }
-    .more-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
-    .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .mini h4 { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
-    .mini p { font-size: 0.85rem; color: var(--text-muted); }
-    .mini .tags { margin-top: 14px; }
-    .mini-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; }
-    .mini-links a {
-      font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
-      transition: color 0.2s;
-    }
-    .mini-links a:hover { color: var(--accent); }
-    @media (max-width: 900px) { .mini-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 620px) { .mini-grid { grid-template-columns: 1fr; } }
-
     /* ============ STACK MARQUEE ============ */
     .stack-band {
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -456,7 +437,7 @@
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     }
-    .marquee { display: flex; gap: 48px; width: max-content; animation: scroll 36s linear infinite; }
+    .marquee { display: flex; gap: 48px; width: max-content; animation: scroll 60s linear infinite; }
     .stack-band:hover .marquee { animation-play-state: paused; }
     @keyframes scroll { to { transform: translateX(-50%); } }
     .marquee span {
@@ -827,49 +808,6 @@
         </article>
       </div>
 
-      <h3 class="more-title reveal">// mais projetos do GitHub</h3>
-      <div class="mini-grid">
-        <div class="card mini reveal">
-          <h4>ConectaFecho</h4>
-          <p>SaaS WhatsApp-first para quem vende por conversa: inbox estilo WhatsApp, orçamentos, funil kanban drag-and-drop e automações.</p>
-          <div class="tags"><span class="chip">Next.js 16</span><span class="chip">Tailwind v4</span><span class="chip">Framer Motion</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/parceria-SaaS" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-        <div class="card mini reveal">
-          <h4>Football Manager 2026</h4>
-          <p>Jogo cross-platform de gestão de futebol: 90+ funcionalidades em 14 telas, engine de partidas, mercado de transferências e base de jovens.</p>
-          <div class="tags"><span class="chip">React Native</span><span class="chip">Expo</span><span class="chip">TypeScript</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/twincluster" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-        <div class="card mini reveal">
-          <h4>Riqueza</h4>
-          <p>Site de calculadoras financeiras gratuitas em português, otimizado para SEO e pensado como ativo digital de renda semi-passiva.</p>
-          <div class="tags"><span class="chip">SEO</span><span class="chip">Estático</span><span class="chip">Vercel</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/riqueza" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-        <div class="card mini reveal">
-          <h4>RealCred+ — Landing + Simulador</h4>
-          <p>Landing de alta conversão para corretora de crédito: simulador de consignado, calculadora de portabilidade e rastreamento completo para tráfego pago.</p>
-          <div class="tags"><span class="chip">JavaScript</span><span class="chip">GTM + GA4</span><span class="chip">Meta CAPI</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/realcredmais" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-        <div class="card mini reveal">
-          <h4>Gestão de Crédito</h4>
-          <p>Sistema de carteira de clientes e propostas de crédito, em uso diário em ambiente financeiro real.</p>
-          <div class="tags"><span class="chip">Next.js</span><span class="chip">TypeScript</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/CreditManagement" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-        <div class="card mini reveal">
-          <h4>KeepSchool</h4>
-          <p>Predição e redução de evasão escolar com machine learning — IA aplicada a um problema social real.</p>
-          <div class="tags"><span class="chip">Python</span><span class="chip">Machine Learning</span></div>
-          <div class="mini-links"><a href="https://github.com/ParkNow914/keepschool" target="_blank" rel="noopener">↗ GitHub</a></div>
-        </div>
-      </div>
-
-      <div class="reveal" style="margin-top: 40px; text-align: center;">
-        <a class="btn btn-ghost" href="https://github.com/ParkNow914?tab=repositories" target="_blank" rel="noopener">Ver todos os 33 repositórios no GitHub ↗</a>
-      </div>
     </div>
   </section>
 
@@ -1064,11 +1002,14 @@
     if (reduced) {
       msgs.forEach(m => m.classList.add("show"));
     } else {
+      // tempo de leitura confortável, proporcional ao tamanho da mensagem (~200 wpm)
+      const readTime = (m) => Math.min(4600, Math.max(2100, m.textContent.trim().length * 58));
+      const thinkTime = (m) => Math.min(1900, Math.max(1000, m.textContent.trim().length * 22));
       const runChat = () => {
         msgs.forEach(m => m.classList.remove("show"));
         let i = 0;
         const next = () => {
-          if (i >= msgs.length) { setTimeout(runChat, 6000); return; }
+          if (i >= msgs.length) { setTimeout(runChat, 9000); return; } // segura tudo visível antes de repetir
           const m = msgs[i];
           const isBot = m.classList.contains("out");
           if (isBot) {
@@ -1077,14 +1018,14 @@
             setTimeout(() => {
               typing.classList.remove("show");
               m.classList.add("show");
-              i++; setTimeout(next, 1100);
-            }, 1200);
+              i++; setTimeout(next, readTime(m));
+            }, thinkTime(m));
           } else {
             m.classList.add("show");
-            i++; setTimeout(next, 1000);
+            i++; setTimeout(next, readTime(m));
           }
         };
-        setTimeout(next, 800);
+        setTimeout(next, 1000);
       };
       const ioChat = new IntersectionObserver(e => {
         if (e[0].isIntersecting) { runChat(); ioChat.disconnect(); }
