@@ -81,7 +81,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23050810'/><text x='50' y='68' font-size='52' font-family='monospace' font-weight='bold' text-anchor='middle' fill='%2334d399'>AS</text></svg>" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
 
@@ -182,6 +183,7 @@
       display: flex; align-items: center; gap: 10px;
     }
     .logo .bracket { color: var(--accent); }
+    .logo .logo-mark-img { height: 26px; width: auto; display: block; }
     .logo .logo-by { font-size: 0.62rem; color: var(--text-dim); font-weight: 500; margin-left: 2px; align-self: flex-end; padding-bottom: 2px; }
     @media (max-width: 420px) { .logo .logo-by { display: none; } }
     .nav-links { display: flex; align-items: center; gap: 6px; }
@@ -770,7 +772,7 @@
   <!-- ============ NAV ============ -->
   <nav class="nav" id="nav" aria-label="Navegação principal">
     <div class="nav-inner">
-      <a href="#" class="logo" aria-label="Autark — início"><span class="bracket">◆</span>Autark<span class="logo-by">por Alisson</span></a>
+      <a href="#" class="logo" aria-label="Autark — início"><img src="assets/logo-mark.png" class="logo-mark-img" alt="" width="30" height="29" />Autark<span class="logo-by">por Alisson</span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
