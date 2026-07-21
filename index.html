@@ -62,6 +62,20 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Quanto custa um projeto?", "acceptedAnswer": { "@type": "Answer", "text": "Depende do escopo, mas sempre fechamos valor e prazo por escrito antes de começar. Automações simples e landing pages têm ticket menor; SaaS completos são projetos maiores. Chame no WhatsApp com a sua ideia para uma estimativa rápida e honesta." } },
+      { "@type": "Question", "name": "Em quanto tempo fica pronto?", "acceptedAnswer": { "@type": "Answer", "text": "Uma landing page ou automação costuma sair em dias; um SaaS completo, em semanas. No diagnóstico você já recebe um cronograma realista com entregas visíveis ao longo do caminho." } },
+      { "@type": "Question", "name": "Você usa APIs oficiais e métodos seguros?", "acceptedAnswer": { "@type": "Answer", "text": "Sempre. No WhatsApp trabalho com a API oficial da Meta (Cloud API) e com a Evolution API, conforme o caso, com consentimento, opt-out e conformidade com a LGPD. Sem listas compradas, spam ou técnicas que arriscam bloqueio do número." } },
+      { "@type": "Question", "name": "O sistema fica caro para manter?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Priorizo arquiteturas em serviços com camada gratuita (always free) sempre que possível — Supabase, Cloudflare, Oracle Cloud, Fly.io — então na maioria dos casos você começa pagando pouco ou nada de infraestrutura." } },
+      { "@type": "Question", "name": "E depois de entregue, fico na mão?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Todo projeto sai testado e documentado, e eu acompanho a estabilização depois do lançamento. Também ofereço manutenção contínua para quem quer evoluir o sistema com o tempo." } },
+      { "@type": "Question", "name": "Você trabalha remoto? De onde?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, 100% remoto, atendendo o Brasil inteiro. Toda a comunicação acontece pelo WhatsApp e por chamadas quando necessário, com respostas no mesmo dia." } }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -696,6 +710,23 @@
     .lang-toggle button.active { background: var(--accent-soft); color: var(--accent); }
     @media (max-width: 880px) { .lang-toggle { margin: 8px 0 0; } }
 
+    /* ============ MECHANISM ============ */
+    .mech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .mech .mech-n {
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 11px; margin-bottom: 18px;
+      background: var(--accent-soft); border: 1px solid rgba(52,211,153,0.2); font-weight: 600;
+    }
+    .mech h3 { font-family: var(--font-display); font-size: 1.16rem; font-weight: 600; margin-bottom: 11px; }
+    .mech p { font-size: 0.9rem; color: var(--text-muted); }
+    .mech p strong { color: var(--text); font-weight: 600; }
+    .mech .proofline {
+      margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); display: flex; gap: 7px; align-items: baseline;
+    }
+    @media (max-width: 900px) { .mech-grid { grid-template-columns: 1fr; } }
+
     /* ============ WHATSAPP PULSE ============ */
     .btn-wa { position: relative; }
     .btn-wa::after {
@@ -884,6 +915,37 @@
     </div>
   </section>
 
+  <!-- ============ MECHANISM ============ -->
+  <section id="mecanismo">
+    <div class="container">
+      <div class="reveal">
+        <span class="sec-tag" data-i18n="mech.tag">// o mecanismo</span>
+        <h2 class="sec-title" data-i18n="mech.title">Por que os sistemas da Autark rodam sozinhos — e os outros travam</h2>
+        <p class="sec-sub" data-i18n="mech.sub">"Bot" qualquer um vende. O que faz o sistema aguentar o mundo real e não te dar dor de cabeça são três decisões de arquitetura que eu levo pra todo projeto — o que eu chamo de <strong>Cérebro Autark</strong>.</p>
+      </div>
+      <div class="mech-grid">
+        <div class="card mech reveal">
+          <span class="mech-n">01</span>
+          <h3 data-i18n="mech.1t">Um cérebro, canais infinitos</h3>
+          <p data-i18n-html="mech.1d">A lógica do seu negócio — preços, regras, agenda — mora num <strong>único cérebro</strong>. WhatsApp, Telegram e site são só "bocas" plugadas nele. Somar ou trocar de canal não reescreve nada.</p>
+          <div class="proofline" data-i18n="mech.1p">→ a Bia sobreviveu quando o WhatsApp do cliente caiu no meio do projeto</div>
+        </div>
+        <div class="card mech reveal">
+          <span class="mech-n">02</span>
+          <h3 data-i18n="mech.2t">Testado antes de você depender dele</h3>
+          <p data-i18n-html="mech.2d">Cada regra do sistema vira <strong>teste automatizado</strong>. Ele não "aprende no cliente": entra no ar já sabendo o que fazer, e continua funcionando depois de cada mudança.</p>
+          <div class="proofline" data-i18n="mech.2p">→ 487 testes verdes só no sistema de delivery</div>
+        </div>
+        <div class="card mech reveal">
+          <span class="mech-n">03</span>
+          <h3 data-i18n="mech.3t">Plugado nos seus sistemas de verdade</h3>
+          <p data-i18n-html="mech.3d">Não é chatbot de resposta pronta. O fluxo <strong>conversa com seu banco, seu pagamento e sua agenda</strong> — então ele resolve o pedido sozinho, em vez de empurrar tudo pro humano.</p>
+          <div class="proofline" data-i18n="mech.3p">→ PIX, Stripe e Mercado Pago rodando em operação real</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ STACK BAND ============ -->
   <div class="stack-band" aria-hidden="true">
     <div class="marquee">
@@ -1013,7 +1075,7 @@
   <section id="processo">
     <div class="container">
       <div class="reveal">
-        <span class="sec-tag">03. processo</span>
+        <span class="sec-tag">03. o ciclo autark</span>
         <h2 class="sec-title" data-i18n="proc.title">Você sabe o que vem, quando vem e quanto custa</h2>
         <p class="sec-sub" data-i18n="proc.sub">O medo de contratar dev é pagar, ver o cara sumir e voltar com desculpa. Aqui é o contrário: escopo e prazo por escrito, entregas visíveis toda semana e a visão de negócio da minha formação em Gestão de TI guiando cada decisão.</p>
       </div>
@@ -1439,7 +1501,19 @@
         "contact.title": 'Your next system starts<br />with a <span class="grad-text">message</span>.',
         "contact.sub": "Tell me what you need to automate or build. I reply the same day — and I'll already show you similar projects working live.",
         "contact.cta": "Message on WhatsApp",
-        "footer.tag": "handcrafted, no template.", "footer.email": "Email", "footer.top": "Back to top ↑"
+        "footer.tag": "handcrafted, no template.", "footer.email": "Email", "footer.top": "Back to top ↑",
+        "mech.tag": "// the mechanism",
+        "mech.title": "Why Autark's systems run themselves — and others break",
+        "mech.sub": "Anyone can build a \"bot\" that sells. What makes a system survive the real world without giving you headaches are three architecture decisions I bring to every project — what I call the <strong>Autark Brain</strong>.",
+        "mech.1t": "One brain, infinite channels",
+        "mech.1d": "Your business logic — prices, rules, schedule — lives in a <strong>single brain</strong>. WhatsApp, Telegram and web are just \"mouths\" plugged into it. Adding or swapping a channel rewrites nothing.",
+        "mech.1p": "→ Bia survived when the client's WhatsApp went down mid-project",
+        "mech.2t": "Tested before you rely on it",
+        "mech.2d": "Every rule in the system becomes an <strong>automated test</strong>. It doesn't \"learn on your customers\": it goes live already knowing what to do, and keeps working after every change.",
+        "mech.2p": "→ 487 green tests in the delivery system alone",
+        "mech.3t": "Actually wired into your systems",
+        "mech.3d": "Not a canned-answer chatbot. The flow <strong>talks to your database, your payments and your calendar</strong> — so it resolves the order by itself instead of pushing everything to a human.",
+        "mech.3p": "→ PIX, Stripe and Mercado Pago running in real operations"
       };
       const els = [...document.querySelectorAll("[data-i18n],[data-i18n-html]")];
       const pt = {};
