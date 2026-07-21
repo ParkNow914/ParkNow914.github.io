@@ -14,7 +14,8 @@
   <meta property="og:title" content="Alisson Santos — Automação com IA e SaaS Full-Stack" />
   <meta property="og:description" content="Bots de WhatsApp que vendem sozinhos, SaaS completos e sistemas com IA em produção real. Nota 5.0 — 100% de recomendação." />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:image" content="https://parknow914.github.io/og.png" />
+  <meta property="og:image" content="https://parknow914.github.io/assets/og.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Alisson Santos — Sistemas que trabalham sozinhos. Automação com IA, bots de WhatsApp e SaaS full-stack." />
@@ -23,7 +24,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Alisson Santos — Automação com IA e SaaS Full-Stack" />
   <meta name="twitter:description" content="Bots de WhatsApp que vendem sozinhos, SaaS completos e IA em produção real. Nota 5.0 — 100% de recomendação." />
-  <meta name="twitter:image" content="https://parknow914.github.io/og.png" />
+  <meta name="twitter:image" content="https://parknow914.github.io/assets/og.jpg" />
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -36,6 +37,26 @@
     "url": "https://parknow914.github.io/",
     "sameAs": ["https://github.com/ParkNow914"],
     "knowsAbout": ["Automação com IA", "Bots de WhatsApp", "n8n", "Evolution API", "React", "Next.js", "Node.js", "PostgreSQL", "SaaS", "WordPress", "Landing Pages"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Alisson Santos — Desenvolvimento & Automação com IA",
+    "description": "Automação com IA, bots de WhatsApp, SaaS full-stack, landing pages e integrações.",
+    "url": "https://parknow914.github.io/",
+    "image": "https://parknow914.github.io/assets/og.jpg",
+    "areaServed": "BR",
+    "availableLanguage": ["pt-BR", "en"],
+    "priceRange": "$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "bestRating": "5",
+      "ratingCount": "2",
+      "reviewCount": "2"
+    }
   }
   </script>
 
@@ -378,55 +399,71 @@
     @media (max-width: 620px) { .services-grid { grid-template-columns: 1fr; } }
 
     /* ============ PROJECTS ============ */
-    .proj-list { display: flex; flex-direction: column; gap: 22px; }
+    .proj-list { display: flex; flex-direction: column; gap: 30px; }
     .proj {
-      display: grid; grid-template-columns: 190px 1fr auto; gap: 28px;
-      align-items: start;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px;
+      align-items: center;
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px;
+      border-radius: 20px; padding: 26px;
       position: relative; overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
     }
     .proj::before {
       content: ""; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(650px circle at var(--mx, 50%) var(--my, 50%), rgba(52, 211, 153, 0.07), transparent 45%);
+      background: radial-gradient(650px circle at var(--mx, 50%) var(--my, 50%), rgba(52, 211, 153, 0.06), transparent 45%);
       opacity: 0; transition: opacity 0.35s; pointer-events: none;
     }
     .proj:hover::before { opacity: 1; }
-    .proj:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-    .proj-meta .type {
+    .proj:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .proj:nth-child(even) .proj-thumb { order: 2; }
+    .proj-thumb {
+      position: relative; border-radius: 13px; overflow: hidden;
+      border: 1px solid var(--border); background: #0b1120;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      transition: transform 0.4s ease;
+    }
+    .proj-thumb img { width: 100%; height: auto; display: block; }
+    .proj:hover .proj-thumb { transform: scale(1.015); }
+    .proj-content { min-width: 0; }
+    .proj-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+    .proj-top .type {
       font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
       text-transform: uppercase; letter-spacing: 0.08em;
     }
-    .proj-meta .status {
-      margin-top: 10px; display: inline-flex; align-items: center; gap: 7px;
-      font-size: 0.75rem; color: var(--text-muted);
+    .proj-top .status {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.72rem; color: var(--text-muted);
       background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      padding: 5px 11px; border-radius: 100px;
+      padding: 4px 10px; border-radius: 100px;
     }
-    .proj-meta .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-strong); }
-    .proj-body h3 {
-      font-family: var(--font-display); font-size: 1.35rem; font-weight: 600;
-      margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    .proj-top .status .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent-strong);
+      box-shadow: 0 0 0 0 rgba(37,211,102,0.5); animation: statusPulse 2.4s ease-out infinite;
     }
-    .proj-body p { color: var(--text-muted); font-size: 0.93rem; max-width: 640px; }
-    .proj-body .result {
+    @keyframes statusPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.45); } 70%, 100% { box-shadow: 0 0 0 7px rgba(37,211,102,0); } }
+    .proj-content h3 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+      margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .proj-content p { color: var(--text-muted); font-size: 0.93rem; }
+    .proj-content .result {
       margin-top: 14px; font-size: 0.88rem; color: var(--text);
       display: flex; gap: 9px; align-items: flex-start;
     }
-    .proj-body .result::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
-    .proj-body .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 7px; }
-    .proj-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .proj-content .result::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .proj-content .tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 7px; }
+    .proj-links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
     .proj-links a {
       font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);
       display: inline-flex; align-items: center; gap: 7px;
-      padding: 8px 14px; border: 1px solid var(--border); border-radius: 10px;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      padding: 9px 15px; border: 1px solid var(--border); border-radius: 10px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
     }
-    .proj-links a:hover { color: var(--accent); border-color: var(--border-hover); background: var(--accent-soft); }
-    @media (max-width: 900px) {
-      .proj { grid-template-columns: 1fr; gap: 18px; }
-      .proj-links { flex-direction: row; align-items: center; }
+    .proj-links a:hover { color: var(--accent); border-color: var(--border-hover); background: var(--accent-soft); transform: translateY(-2px); }
+    .proj-links a.primary { color: var(--accent); border-color: rgba(52,211,153,0.3); background: var(--accent-soft); }
+    @media (max-width: 860px) {
+      .proj { grid-template-columns: 1fr; gap: 22px; padding: 18px; }
+      .proj:nth-child(even) .proj-thumb { order: 0; }
     }
 
     /* ============ STACK MARQUEE ============ */
@@ -501,6 +538,11 @@
       font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; color: #04120c;
       box-shadow: var(--shadow-glow);
     }
+    .avatar-photo {
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%;
+      border-radius: 18px; margin: 0 auto 20px; display: block;
+      border: 1px solid var(--border); box-shadow: var(--shadow-glow);
+    }
     .about-visual .role { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); margin-top: 4px; }
     .about-visual .divider { height: 1px; background: var(--border); margin: 22px 0; }
     .about-visual .fact { display: flex; justify-content: space-between; font-size: 0.84rem; padding: 7px 0; }
@@ -560,6 +602,106 @@
     footer a:hover { color: var(--accent); }
     .footer-links { display: flex; gap: 20px; }
 
+    /* ============ TRUST BAR ============ */
+    .trust {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.015);
+    }
+    .trust-inner {
+      max-width: var(--container); margin: 0 auto; padding: 30px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    }
+    .trust .lead-txt { font-size: 0.9rem; color: var(--text-dim); font-family: var(--font-mono); }
+    .trust .items { display: flex; gap: 40px; flex-wrap: wrap; }
+    .trust .ti { display: flex; align-items: center; gap: 12px; }
+    .trust .ti .big { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--text); }
+    .trust .ti .big .star { color: #fbbf24; font-size: 1.1rem; }
+    .trust .ti .cap { font-size: 0.78rem; color: var(--text-muted); line-height: 1.3; }
+    @media (max-width: 720px) { .trust .items { gap: 26px; } .trust .ti .big { font-size: 1.3rem; } }
+
+    /* ============ ROI CALCULATOR ============ */
+    .roi-wrap {
+      background: linear-gradient(160deg, rgba(52,211,153,0.05), rgba(34,211,238,0.03)), var(--bg-card);
+      border: 1px solid var(--border); border-radius: 22px;
+      padding: clamp(28px, 4vw, 48px);
+      display: grid; grid-template-columns: 1fr 0.9fr; gap: 44px; align-items: center;
+    }
+    .roi-controls .field { margin-bottom: 26px; }
+    .roi-controls label { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
+    .roi-controls label .val { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--accent); }
+    .roi-controls input[type="range"] {
+      -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent) var(--fill, 40%), rgba(255,255,255,0.1) var(--fill, 40%));
+      outline: none; cursor: pointer;
+    }
+    .roi-controls input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--accent); border: 3px solid #04120c; cursor: pointer; box-shadow: 0 2px 10px rgba(37,211,102,0.4);
+    }
+    .roi-controls input[type="range"]::-moz-range-thumb {
+      width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 3px solid #04120c; cursor: pointer;
+    }
+    .roi-result {
+      background: rgba(5,8,16,0.5); border: 1px solid var(--border-hover); border-radius: 18px;
+      padding: 34px; text-align: center;
+    }
+    .roi-result .rk { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .roi-result .rbig {
+      font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 6vw, 3.4rem);
+      line-height: 1.05; margin: 10px 0 4px;
+      background: linear-gradient(100deg, var(--accent), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .roi-result .rsub { font-size: 0.86rem; color: var(--text-muted); }
+    .roi-result .rrow { display: flex; justify-content: space-around; margin: 24px 0; padding: 18px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .roi-result .rrow .rv { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: var(--text); }
+    .roi-result .rrow .rc { font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; }
+    .roi-result .disc { font-size: 0.72rem; color: var(--text-dim); margin-top: 16px; }
+    @media (max-width: 820px) { .roi-wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+    /* ============ FAQ ============ */
+    .faq-list { max-width: 820px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+      color: var(--text); font-family: var(--font-display); font-size: 1.08rem; font-weight: 500;
+      padding: 24px 44px 24px 0; position: relative; display: block;
+    }
+    .faq-q::after {
+      content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      font-size: 1.6rem; color: var(--accent); font-weight: 400; transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-a p { color: var(--text-muted); font-size: 0.95rem; padding: 0 44px 26px 0; }
+    .faq-q:hover { color: var(--accent); }
+
+    /* ============ LANG TOGGLE ============ */
+    .lang-toggle {
+      display: inline-flex; border: 1px solid var(--border); border-radius: 100px; overflow: hidden;
+      font-family: var(--font-mono); font-size: 0.72rem; margin-left: 10px;
+    }
+    .lang-toggle button {
+      background: none; border: none; color: var(--text-muted); cursor: pointer;
+      padding: 7px 12px; transition: background 0.2s, color 0.2s;
+    }
+    .lang-toggle button.active { background: var(--accent-soft); color: var(--accent); }
+    @media (max-width: 880px) { .lang-toggle { margin: 8px 0 0; } }
+
+    /* ============ WHATSAPP PULSE ============ */
+    .btn-wa { position: relative; }
+    .btn-wa::after {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); animation: waPulse 2.6s ease-out infinite;
+    }
+    @keyframes waPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); } 70%, 100% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } }
+
+    /* ============ FOCUS (a11y) ============ */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+    }
+
     /* ============ MISC ============ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -567,6 +709,20 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
+
+  <!--
+    ============ ANALYTICS (opcional, always free) ============
+    Para saber quantas pessoas visitam o site (útil para o tráfego pago), escolha UMA opção
+    grátis abaixo, crie a conta e cole o snippet aqui. Nenhuma delas cobra para uso pessoal:
+
+    1) Cloudflare Web Analytics — https://dash.cloudflare.com/ → Analytics → Web Analytics
+       (sem cookies, privacidade por padrão). Cole o <script defer ...> que eles fornecem.
+
+    2) GoatCounter — https://www.goatcounter.com/ (open source, grátis para uso não-comercial).
+       <script data-goatcounter="https://SEUCODIGO.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    Deixei comentado de propósito porque depende da SUA conta. É só descomentar e colar.
+  -->
 </head>
 <body>
   <a class="skip-link" href="#servicos">Pular para o conteúdo</a>
@@ -581,12 +737,16 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#servicos"><span class="n">01.</span>Serviços</a>
-        <a href="#projetos"><span class="n">02.</span>Projetos</a>
-        <a href="#processo"><span class="n">03.</span>Processo</a>
-        <a href="#depoimentos"><span class="n">04.</span>Depoimentos</a>
-        <a href="#sobre"><span class="n">05.</span>Sobre</a>
-        <a href="#contato" class="nav-cta">Iniciar projeto</a>
+        <a href="#servicos"><span class="n">01.</span><span data-i18n="nav.services">Serviços</span></a>
+        <a href="#projetos"><span class="n">02.</span><span data-i18n="nav.projects">Projetos</span></a>
+        <a href="#calculadora"><span class="n">03.</span><span data-i18n="nav.calc">Calculadora</span></a>
+        <a href="#sobre"><span class="n">04.</span><span data-i18n="nav.about">Sobre</span></a>
+        <a href="#faq"><span class="n">05.</span><span data-i18n="nav.faq">FAQ</span></a>
+        <a href="#contato" class="nav-cta" data-i18n="nav.cta">Iniciar projeto</a>
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt" class="active" aria-pressed="true">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -595,26 +755,26 @@
   <header class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow"><span class="pulse-dot"></span>Disponível para novos projetos</span>
-        <h1>Sistemas que<br /><span class="grad-text">trabalham sozinhos</span><br />enquanto você cresce.</h1>
-        <p class="lead">
+        <span class="eyebrow"><span class="pulse-dot"></span><span data-i18n="hero.badge">Disponível para novos projetos</span></span>
+        <h1 data-i18n-html="hero.h1">Sistemas que<br /><span class="grad-text">trabalham sozinhos</span><br />enquanto você cresce.</h1>
+        <p class="lead" data-i18n-html="hero.lead">
           Sou <strong>Alisson Santos</strong>, desenvolvedor full-stack especializado em
           <strong>automação com IA</strong>: bots de WhatsApp que vendem, atendem e agendam 24/7,
           SaaS completos e integrações que eliminam trabalho manual — com
           <strong>produtos reais em produção</strong> que posso te mostrar funcionando agora.
         </p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
+          <a class="btn btn-primary btn-wa" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Iniciar projeto no WhatsApp
+            <span data-i18n="hero.cta1">Iniciar projeto no WhatsApp</span>
           </a>
-          <a class="btn btn-ghost" href="#projetos">Ver projetos em produção ↓</a>
+          <a class="btn btn-ghost" href="#projetos" data-i18n="hero.cta2">Ver projetos em produção ↓</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><span class="num">5.0<span class="star">★</span></span><span class="lbl">avaliação média (99freelas)</span></div>
-          <div class="stat"><span class="num" data-count="100">0</span><span class="lbl">% de recomendação</span></div>
-          <div class="stat"><span class="num" data-count="33">0</span><span class="lbl">repositórios no GitHub</span></div>
-          <div class="stat"><span class="num" data-count="5">0</span><span class="lbl">SaaS próprios construídos</span></div>
+          <div class="stat"><span class="num">5.0<span class="star">★</span></span><span class="lbl" data-i18n="hero.stat1">avaliação média (99freelas)</span></div>
+          <div class="stat"><span class="num" data-count="100">0</span><span class="lbl" data-i18n="hero.stat2">% de recomendação</span></div>
+          <div class="stat"><span class="num" data-count="33">0</span><span class="lbl" data-i18n="hero.stat3">repositórios no GitHub</span></div>
+          <div class="stat"><span class="num" data-count="5">0</span><span class="lbl" data-i18n="hero.stat4">SaaS próprios construídos</span></div>
         </div>
       </div>
 
@@ -627,7 +787,7 @@
               <div class="status">online agora</div>
             </div>
           </div>
-          <div class="chat" id="chat" aria-live="polite">
+          <div class="chat" id="chat" aria-hidden="true">
             <div class="msg in" data-step="1">Oi! Queria agendar um corte pra sábado 😊<span class="time">14:02</span></div>
             <div class="msg out" data-step="2">Claro! 💈 Sábado tenho <b>10:30</b> e <b>15:00</b> disponíveis com o Rafael. Qual prefere?<span class="time">14:02</span></div>
             <div class="msg in" data-step="3">Pode ser 15h!<span class="time">14:03</span></div>
@@ -643,49 +803,74 @@
     </div>
   </header>
 
+  <!-- ============ TRUST BAR ============ -->
+  <div class="trust">
+    <div class="trust-inner">
+      <span class="lead-txt" data-i18n="trust.lead">// prova, não promessa</span>
+      <div class="items">
+        <div class="ti">
+          <span class="big">5.0<span class="star">★</span></span>
+          <span class="cap" data-i18n="trust.rating">nota média<br />no 99freelas</span>
+        </div>
+        <div class="ti">
+          <span class="big">100%</span>
+          <span class="cap" data-i18n="trust.recom">clientes que<br />recomendam</span>
+        </div>
+        <div class="ti">
+          <span class="big">5</span>
+          <span class="cap" data-i18n="trust.saas">SaaS próprios<br />construídos</span>
+        </div>
+        <div class="ti">
+          <span class="big">2</span>
+          <span class="cap" data-i18n="trust.prod">sistemas em<br />produção real</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ SERVICES ============ -->
   <section id="servicos">
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">01. serviços</span>
-        <h2 class="sec-title">Soluções completas, do planejamento à produção</h2>
-        <p class="sec-sub">Não entrego apenas código: entrego sistemas funcionando, testados e documentados, pensados para gerar resultado real no seu negócio.</p>
+        <h2 class="sec-title" data-i18n="svc.title">Soluções completas, do planejamento à produção</h2>
+        <p class="sec-sub" data-i18n="svc.sub">Não entrego apenas código: entrego sistemas funcionando, testados e documentados, pensados para gerar resultado real no seu negócio.</p>
       </div>
       <div class="services-grid">
         <div class="card reveal">
           <div class="svc-icon">🤖</div>
-          <h3>Bots de WhatsApp &amp; Telegram com IA</h3>
-          <p>Atendimento em linguagem natural (texto e áudio), pedidos com carrinho, agendamento, pagamento PIX e transferência para humano — no WhatsApp, Telegram ou loja web, com o mesmo cérebro.</p>
+          <h3 data-i18n="svc.1t">Bots de WhatsApp &amp; Telegram com IA</h3>
+          <p data-i18n="svc.1d">Atendimento em linguagem natural (texto e áudio), pedidos com carrinho, agendamento, pagamento PIX e transferência para humano — no WhatsApp, Telegram ou loja web, com o mesmo cérebro.</p>
           <div class="tags"><span class="chip">n8n</span><span class="chip">Evolution API</span><span class="chip">Meta Cloud API</span><span class="chip">GPT · Claude · Gemini</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🚀</div>
-          <h3>SaaS &amp; Sistemas Completos</h3>
-          <p>Plataformas multi-empresa com login, assinatura recorrente, painel administrativo, relatórios e conformidade com a LGPD — prontas para escalar.</p>
+          <h3 data-i18n="svc.2t">SaaS &amp; Sistemas Completos</h3>
+          <p data-i18n="svc.2d">Plataformas multi-empresa com login, assinatura recorrente, painel administrativo, relatórios e conformidade com a LGPD — prontas para escalar.</p>
           <div class="tags"><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Stripe · Mercado Pago</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🧠</div>
-          <h3>Aplicações com IA</h3>
-          <p>Análise de documentos, RAG com fonte citada e agentes de IA aplicados a problemas reais — como o LicitaAI, assistente jurídico que está no ar.</p>
+          <h3 data-i18n="svc.3t">Aplicações com IA</h3>
+          <p data-i18n="svc.3d">Análise de documentos, RAG com fonte citada e agentes de IA aplicados a problemas reais — como o LicitaAI, assistente jurídico que está no ar.</p>
           <div class="tags"><span class="chip">RAG</span><span class="chip">Agentes</span><span class="chip">APIs de IA</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🎯</div>
-          <h3>Landing Pages + Tráfego</h3>
-          <p>Páginas otimizadas para conversão e SEO com rastreamento completo — GTM, GA4, Meta Pixel e Conversions API — para suas campanhas renderem mais.</p>
+          <h3 data-i18n="svc.4t">Landing Pages + Tráfego</h3>
+          <p data-i18n="svc.4d">Páginas otimizadas para conversão e SEO com rastreamento completo — GTM, GA4, Meta Pixel e Conversions API — para suas campanhas renderem mais.</p>
           <div class="tags"><span class="chip">React / WordPress</span><span class="chip">GA4 + GTM</span><span class="chip">Meta CAPI</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🔗</div>
-          <h3>Automações &amp; Integrações</h3>
-          <p>Fluxos que conectam seus sistemas e eliminam trabalho manual: CRM, planilhas, e-mail, pagamentos e notificações conversando entre si.</p>
+          <h3 data-i18n="svc.5t">Automações &amp; Integrações</h3>
+          <p data-i18n="svc.5d">Fluxos que conectam seus sistemas e eliminam trabalho manual: CRM, planilhas, e-mail, pagamentos e notificações conversando entre si.</p>
           <div class="tags"><span class="chip">n8n</span><span class="chip">Webhooks</span><span class="chip">APIs REST</span></div>
         </div>
         <div class="card reveal">
           <div class="svc-icon">🛡️</div>
-          <h3>Manutenção &amp; Performance</h3>
-          <p>Correção de sites, limpeza de malware, hardening de segurança e otimização de velocidade (Core Web Vitals) em projetos novos ou existentes.</p>
+          <h3 data-i18n="svc.6t">Manutenção &amp; Performance</h3>
+          <p data-i18n="svc.6d">Correção de sites, limpeza de malware, hardening de segurança e otimização de velocidade (Core Web Vitals) em projetos novos ou existentes.</p>
           <div class="tags"><span class="chip">WordPress</span><span class="chip">Segurança</span><span class="chip">Core Web Vitals</span></div>
         </div>
       </div>
@@ -705,105 +890,111 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">02. projetos</span>
-        <h2 class="sec-title">Produtos reais, em produção, gerando resultado</h2>
-        <p class="sec-sub">Nada de projeto de tutorial. Estes sistemas estão no ar, sendo usados por empresas e clientes reais — me chame no WhatsApp e eu mostro qualquer um deles funcionando ao vivo.</p>
+        <h2 class="sec-title" data-i18n="proj.title">Produtos reais, em produção, gerando resultado</h2>
+        <p class="sec-sub" data-i18n="proj.sub">Nada de projeto de tutorial. Estes sistemas estão no ar, sendo usados por empresas e clientes reais — me chame no WhatsApp e eu mostro qualquer um deles funcionando ao vivo.</p>
       </div>
 
       <div class="proj-list">
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">SaaS · IA · WhatsApp</span><br />
-            <span class="status"><span class="dot"></span>Em produção</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/agendazap.png" width="1600" height="992" loading="lazy" decoding="async" alt="Página de agendamento do AgendaZap: cliente escolhe o serviço (barba, corte, manicure) com preços" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">SaaS · IA · WhatsApp</span>
+              <span class="status"><span class="dot"></span>Em produção</span>
+            </div>
             <h3>AgendaZap</h3>
-            <p>SaaS de agenda inteligente para salões, barbearias e estética: o cliente agenda sozinho pelo link público ou conversando com a atendente de IA no WhatsApp, que consulta horários, agenda e cancela sem intervenção humana. Lembretes automáticos 24h e 2h antes derrubam o no-show; recuperação de inativos, mensagem de aniversário, NPS pós-atendimento e campanhas seguram o cliente na base.</p>
+            <p>SaaS de agenda inteligente para salões, barbearias e estética: o cliente agenda sozinho pelo link público ou conversando com a atendente de IA no WhatsApp, que consulta horários, agenda e cancela sem intervenção humana. Lembretes automáticos 24h e 2h antes derrubam o no-show; recuperação de inativos, aniversário, NPS e campanhas seguram o cliente na base.</p>
             <div class="result">Multi-tenant com RLS no Supabase, assinatura recorrente (Mercado Pago) com trial de 14 dias, PWA instalável, LGPD e monitoramento com Sentry — rodando em produção com demo aberta.</div>
             <div class="tags"><span class="chip">Next.js 16 · React 19</span><span class="chip">Supabase + RLS</span><span class="chip">Gemini</span><span class="chip">Evolution API</span><span class="chip">Mercado Pago</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://agendazap-three.vercel.app" target="_blank" rel="noopener">▶ Demo ao vivo</a>
-            <a href="https://agendazap-three.vercel.app/b/demo" target="_blank" rel="noopener">↗ Testar agendamento</a>
+            <div class="proj-links">
+              <a class="primary" href="https://agendazap-three.vercel.app" target="_blank" rel="noopener">▶ Demo ao vivo</a>
+              <a href="https://agendazap-three.vercel.app/b/demo" target="_blank" rel="noopener">↗ Testar agendamento</a>
+            </div>
           </div>
         </article>
 
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">CRM · API Oficial Meta</span><br />
-            <span class="status"><span class="dot"></span>Operação financeira real</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/crm.png" width="1600" height="992" loading="lazy" decoding="async" alt="Landing do CRM RealCred+ com painel de fila do WhatsApp, atendimento oficial e guardrails de compliance" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">CRM · API Oficial Meta</span>
+              <span class="status"><span class="dot"></span>Operação financeira real</span>
+            </div>
             <h3>CRM de WhatsApp — API Oficial da Meta</h3>
             <p>Inbox omnichannel e CRM para WhatsApp Business rodando em operação financeira real: campanhas com governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automatizada. Hospedado no Fly.io em São Paulo com 2 máquinas always-on e ~28ms de latência até o banco — zero cold start.</p>
             <div class="result">12 workflows de automação no GitHub Actions: CI, testes E2E com Playwright, CodeQL, scan de vulnerabilidades (Trivy + SBOM), backup diário do banco e deploy automático a cada push.</div>
             <div class="tags"><span class="chip">Fastify</span><span class="chip">React</span><span class="chip">Prisma</span><span class="chip">Postgres 17</span><span class="chip">BullMQ + Redis</span><span class="chip">Fly.io</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://realcred-whatsapp-crm.fly.dev" target="_blank" rel="noopener">▶ App em produção</a>
+            <div class="proj-links">
+              <a class="primary" href="https://realcred-whatsapp-crm.fly.dev" target="_blank" rel="noopener">▶ App em produção</a>
+            </div>
           </div>
         </article>
 
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">IA Jurídica · SaaS B2B</span><br />
-            <span class="status"><span class="dot"></span>Produto próprio</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/jurisia.png" width="1600" height="992" loading="lazy" decoding="async" alt="Capa do JurisIA: suíte jurídica com IA, 4 produtos, stack Next.js, Hono, BullMQ, Stripe e RAG" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">IA Jurídica · SaaS B2B</span>
+              <span class="status"><span class="dot"></span>Produto próprio</span>
+            </div>
             <h3>JurisIA — Suíte Jurídica com IA</h3>
             <p>Plataforma SaaS de automação para advogados e escritórios, com 4 produtos: <strong>JurisBot</strong> (atendimento 24h e triagem de leads no WhatsApp), <strong>JurisDoc</strong> (geração de peças jurídicas com IA em streaming), <strong>JurisData</strong> (jurimetria com dados do TJSP) e <strong>JurisGrow</strong> (gestão de leads). Análise de documentos com RAG e fonte citada — sem "achismo" de IA.</p>
             <div class="result">Arquitetura moderna de ponta a ponta: filas com BullMQ + Redis, cobrança recorrente via Stripe e planos de R$297 a R$1.200/mês.</div>
             <div class="tags"><span class="chip">Next.js</span><span class="chip">Hono + Bun</span><span class="chip">Drizzle</span><span class="chip">BullMQ</span><span class="chip">Stripe</span><span class="chip">RAG</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20do%20JurisIA." target="_blank" rel="noopener">💬 Demo no chat</a>
+            <div class="proj-links">
+              <a class="primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20do%20JurisIA." target="_blank" rel="noopener">💬 Demo no chat</a>
+            </div>
           </div>
         </article>
 
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">SaaS B2B2C · Mobile + Web</span><br />
-            <span class="status"><span class="dot"></span>Produto próprio</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/parknow.png" width="1600" height="992" loading="lazy" decoding="async" alt="Capa do ParkNow: SaaS de estacionamento B2B2C, monorepo com web e mobile, Supabase PostGIS e PIX" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">SaaS B2B2C · Mobile + Web</span>
+              <span class="status"><span class="dot"></span>Produto próprio</span>
+            </div>
             <h3>ParkNow — Smart Parking</h3>
-            <p>SaaS de estacionamento inteligente em monorepo (Turborepo + pnpm): painel B2B em Next.js, app B2C em React Native/Expo offline-first, Supabase com PostGIS para geolocalização, rate limiting com Upstash Redis e precificação dinâmica compartilhada entre os apps. O backend público tem mapa em tempo real (Socket.IO), reservas com expiração automática e pagamento PIX com BR Code gerado localmente — sem gateway pago.</p>
+            <p>SaaS de estacionamento inteligente em monorepo (Turborepo + pnpm): painel B2B em Next.js, app B2C em React Native/Expo offline-first, Supabase com PostGIS para geolocalização, rate limiting com Upstash Redis e precificação dinâmica compartilhada entre os apps. O backend tem mapa em tempo real (Socket.IO), reservas com expiração automática e pagamento PIX com BR Code gerado localmente — sem gateway pago.</p>
             <div class="result">Segurança de nível profissional: JWT + refresh token httpOnly, senhas com Argon2id, rate limiting, CI/CD com CodeQL — e stack 100% em serviços always-free.</div>
             <div class="tags"><span class="chip">Turborepo</span><span class="chip">Next.js</span><span class="chip">React Native · Expo</span><span class="chip">Supabase + PostGIS</span><span class="chip">Socket.IO</span><span class="chip">PIX</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/ParkNow914/ParkNow" target="_blank" rel="noopener">↗ GitHub</a>
+            <div class="proj-links">
+              <a href="https://github.com/ParkNow914/ParkNow" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
           </div>
         </article>
 
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">Delivery Multicanal · IA</span><br />
-            <span class="status"><span class="dot"></span>Entregue · cliente real</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/bia.png" width="1600" height="992" loading="lazy" decoding="async" alt="Capa da Bia: assistente de delivery multicanal, 6.438 produtos, 487 testes, Node.js puro e PWA" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">Delivery Multicanal · IA</span>
+              <span class="status"><span class="dot"></span>Entregue · cliente real</span>
+            </div>
             <h3>Bia — Assistente de Delivery de Supermercado</h3>
-            <p>Sistema completo de delivery para supermercado de bairro: catálogo de <strong>6.438 produtos</strong> importado do ERP, carrinho com taxas dinâmicas, checkout, cupom impresso direto na Epson do balcão (ESC/POS) e acompanhamento do pedido. Arquitetura canal-agnóstica: loja web PWA, Telegram e WhatsApp desaguam no mesmo cérebro — quando o canal de WhatsApp do cliente se tornou inviável no meio do projeto, os outros canais entraram <strong>sem reescrever uma regra de negócio</strong>.</p>
+            <p>Sistema completo de delivery para supermercado de bairro: catálogo de <strong>6.438 produtos</strong> importado do ERP, carrinho com taxas dinâmicas, checkout, cupom impresso direto na Epson do balcão (ESC/POS) e acompanhamento do pedido. Arquitetura canal-agnóstica: loja web PWA, Telegram e WhatsApp desaguam no mesmo cérebro — quando o WhatsApp do cliente se tornou inviável no meio do projeto, os outros canais entraram <strong>sem reescrever uma regra de negócio</strong>.</p>
             <div class="result">487 testes automatizados, todos verdes, em Node.js puro com zero dependência de runtime. Preço e taxa sempre recalculados no servidor — testado contra payload forjado.</div>
             <div class="tags"><span class="chip">Node.js</span><span class="chip">PWA</span><span class="chip">Telegram API</span><span class="chip">Meta Cloud API</span><span class="chip">ESC/POS</span><span class="chip">487 testes</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20da%20Bia%20(delivery)." target="_blank" rel="noopener">💬 Demo no chat</a>
+            <div class="proj-links">
+              <a class="primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20a%20demo%20da%20Bia%20(delivery)." target="_blank" rel="noopener">💬 Demo no chat</a>
+            </div>
           </div>
         </article>
 
         <article class="proj reveal">
-          <div class="proj-meta">
-            <span class="type">SaaS · CRM</span><br />
-            <span class="status"><span class="dot"></span>Produto próprio</span>
-          </div>
-          <div class="proj-body">
+          <div class="proj-thumb"><img src="assets/flowhub.png" width="1600" height="992" loading="lazy" decoding="async" alt="Capa do FlowHub: CRM SaaS full-stack com pipeline kanban, command palette e RBAC" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type">SaaS · CRM</span>
+              <span class="status"><span class="dot"></span>Produto próprio</span>
+            </div>
             <h3>FlowHub — CRM SaaS</h3>
             <p>CRM SaaS completo para pequenos negócios: leads com score e importação CSV, pipeline kanban com drag-and-drop, tarefas, dashboard com gráficos, command palette (⌘K), notificações in-app, dark mode e RBAC com 4 papéis (Owner, Admin, Member, Viewer). Toda mutação registrada em audit log com before/after.</p>
             <div class="result">Código aberto no GitHub com seed realista para demonstração — arquitetura multi-workspace pronta para escalar.</div>
             <div class="tags"><span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">shadcn/ui</span></div>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/ParkNow914/flowhub" target="_blank" rel="noopener">↗ GitHub</a>
+            <div class="proj-links">
+              <a href="https://github.com/ParkNow914/flowhub" target="_blank" rel="noopener">↗ GitHub</a>
+            </div>
           </div>
         </article>
       </div>
@@ -816,29 +1007,68 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">03. processo</span>
-        <h2 class="sec-title">Como trabalho: claro, previsível e sem surpresas</h2>
-        <p class="sec-sub">Minha formação em Gestão de TI me dá o que poucos desenvolvedores têm: visão de negócio. Eu entendo o objetivo por trás do projeto — e o processo reflete isso.</p>
+        <h2 class="sec-title" data-i18n="proc.title">Como trabalho: claro, previsível e sem surpresas</h2>
+        <p class="sec-sub" data-i18n="proc.sub">Minha formação em Gestão de TI me dá o que poucos desenvolvedores têm: visão de negócio. Eu entendo o objetivo por trás do projeto — e o processo reflete isso.</p>
       </div>
       <div class="steps">
         <div class="step reveal">
           <span class="n">01</span>
-          <h3>Diagnóstico</h3>
-          <p>Conversa direta no WhatsApp para entender seu objetivo de negócio — não só o que você quer construir, mas o resultado que precisa gerar.</p>
+          <h3 data-i18n="proc.1t">Diagnóstico</h3>
+          <p data-i18n="proc.1d">Conversa direta no WhatsApp para entender seu objetivo de negócio — não só o que você quer construir, mas o resultado que precisa gerar.</p>
         </div>
         <div class="step reveal">
           <span class="n">02</span>
-          <h3>Proposta clara</h3>
-          <p>Escopo, prazo e valor fechados por escrito. Você sabe exatamente o que vai receber e quando, antes de qualquer pagamento.</p>
+          <h3 data-i18n="proc.2t">Proposta clara</h3>
+          <p data-i18n="proc.2d">Escopo, prazo e valor fechados por escrito. Você sabe exatamente o que vai receber e quando, antes de qualquer pagamento.</p>
         </div>
         <div class="step reveal">
           <span class="n">03</span>
-          <h3>Entregas visíveis</h3>
-          <p>Desenvolvimento com atualizações constantes e versões que você acompanha funcionando — nada de sumir por semanas.</p>
+          <h3 data-i18n="proc.3t">Entregas visíveis</h3>
+          <p data-i18n="proc.3d">Desenvolvimento com atualizações constantes e versões que você acompanha funcionando — nada de sumir por semanas.</p>
         </div>
         <div class="step reveal">
           <span class="n">04</span>
-          <h3>Entrega + suporte</h3>
-          <p>Projeto publicado, testado e documentado. E depois do lançamento você não fica na mão: acompanho a estabilização.</p>
+          <h3 data-i18n="proc.4t">Entrega + suporte</h3>
+          <p data-i18n="proc.4d">Projeto publicado, testado e documentado. E depois do lançamento você não fica na mão: acompanho a estabilização.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROI CALCULATOR ============ -->
+  <section id="calculadora">
+    <div class="container">
+      <div class="reveal">
+        <span class="sec-tag" data-i18n="roi.tag">04. calculadora</span>
+        <h2 class="sec-title" data-i18n="roi.title">Quanto o trabalho manual está te custando?</h2>
+        <p class="sec-sub" data-i18n="roi.sub">Ajuste os valores abaixo e veja, em tempo real, quanto a sua equipe gasta por ano com atendimento e tarefas repetitivas — e quanto uma automação pode devolver pra você.</p>
+      </div>
+      <div class="roi-wrap reveal">
+        <div class="roi-controls">
+          <div class="field">
+            <label><span data-i18n="roi.hours">Horas/dia em atendimento e tarefas repetitivas</span><span class="val"><span id="roiHoursV">4</span> h</span></label>
+            <input type="range" id="roiHours" min="1" max="12" value="4" step="1" aria-label="Horas por dia em tarefas repetitivas" />
+          </div>
+          <div class="field">
+            <label><span data-i18n="roi.people">Pessoas fazendo esse trabalho</span><span class="val" id="roiPeopleV">2</span></label>
+            <input type="range" id="roiPeople" min="1" max="15" value="2" step="1" aria-label="Número de pessoas" />
+          </div>
+          <div class="field">
+            <label><span data-i18n="roi.wage">Custo por hora dessa pessoa (R$)</span><span class="val">R$ <span id="roiWageV">25</span></span></label>
+            <input type="range" id="roiWage" min="10" max="120" value="25" step="5" aria-label="Custo por hora" />
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-dim);" data-i18n="roi.note">Estimativa considerando 22 dias úteis/mês e automação de ~70% dessas tarefas.</p>
+        </div>
+        <div class="roi-result">
+          <div class="rk" data-i18n="roi.rk">economia estimada por ano</div>
+          <div class="rbig" id="roiYear">R$ 0</div>
+          <div class="rsub" data-i18n="roi.rsub">com ~70% das tarefas automatizadas</div>
+          <div class="rrow">
+            <div><div class="rv" id="roiMonth">R$ 0</div><div class="rc" data-i18n="roi.month">por mês</div></div>
+            <div><div class="rv" id="roiHoursYear">0 h</div><div class="rc" data-i18n="roi.hoursback">horas devolvidas/ano</div></div>
+          </div>
+          <a class="btn btn-primary" style="width:100%; justify-content:center;" id="roiCta" href="https://wa.me/5512991743827" target="_blank" rel="noopener" data-i18n="roi.cta">Quero automatizar isso →</a>
+          <div class="disc" data-i18n="roi.disc">Estimativa educativa, não é proposta comercial. O número real depende do seu processo.</div>
         </div>
       </div>
     </div>
@@ -848,9 +1078,9 @@
   <section id="depoimentos">
     <div class="container">
       <div class="reveal">
-        <span class="sec-tag">04. depoimentos</span>
-        <h2 class="sec-title">O que dizem os clientes</h2>
-        <p class="sec-sub">Avaliações reais e verificáveis de projetos concluídos na plataforma 99freelas.</p>
+        <span class="sec-tag">05. depoimentos</span>
+        <h2 class="sec-title" data-i18n="testi.title">O que dizem os clientes</h2>
+        <p class="sec-sub" data-i18n="testi.sub">Avaliações reais e verificáveis de projetos concluídos na plataforma 99freelas.</p>
       </div>
       <div class="testi-grid">
         <div class="testi reveal">
@@ -877,27 +1107,63 @@
   <section id="sobre">
     <div class="container">
       <div class="reveal">
-        <span class="sec-tag">05. sobre</span>
-        <h2 class="sec-title">Mais que um executor: um parceiro técnico</h2>
+        <span class="sec-tag">06. sobre</span>
+        <h2 class="sec-title" data-i18n="about.title">Mais que um executor: um parceiro técnico</h2>
       </div>
       <div class="about-grid">
         <div class="about-visual reveal">
-          <div class="avatar">AS</div>
+          <img class="avatar-photo" src="assets/foto-square.jpg" width="760" height="760" loading="lazy" decoding="async" alt="Alisson Santos, desenvolvedor full-stack, trabalhando em sua mesa" />
           <div style="font-family: var(--font-display); font-weight: 600; font-size: 1.2rem;">Alisson Santos</div>
           <div class="role">full-stack · automação · IA</div>
           <div class="divider"></div>
-          <div class="fact"><span class="k">Formação</span><span class="v">Gestão da T.I.</span></div>
-          <div class="fact"><span class="k">Avaliação</span><span class="v">5.0 ★ (100% recom.)</span></div>
-          <div class="fact"><span class="k">Base</span><span class="v">Brasil 🇧🇷 · remoto</span></div>
-          <div class="fact"><span class="k">Resposta</span><span class="v">no mesmo dia</span></div>
+          <div class="fact"><span class="k" data-i18n="about.f1k">Formação</span><span class="v">Gestão da T.I.</span></div>
+          <div class="fact"><span class="k" data-i18n="about.f2k">Avaliação</span><span class="v" data-i18n="about.f2v">5.0 ★ (100% recom.)</span></div>
+          <div class="fact"><span class="k" data-i18n="about.f3k">Base</span><span class="v" data-i18n="about.f3v">Brasil 🇧🇷 · remoto</span></div>
+          <div class="fact"><span class="k" data-i18n="about.f4k">Resposta</span><span class="v" data-i18n="about.f4v">no mesmo dia</span></div>
         </div>
         <div class="about-text reveal">
-          <p>A maioria dos desenvolvedores escreve código. Eu construo <strong>sistemas que geram resultado</strong> — e essa diferença vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
-          <p>Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
-          <div class="highlight-box">
+          <p data-i18n-html="about.p1">A maioria dos desenvolvedores escreve código. Eu construo <strong>sistemas que geram resultado</strong> — e essa diferença vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
+          <p data-i18n-html="about.p2">Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
+          <div class="highlight-box" data-i18n="about.hl">
             Trabalho com comunicação clara, prazos cumpridos e entregas testadas e documentadas. Você acompanha o progresso do início ao fim — sem surpresa no final.
           </div>
-          <p>No dia a dia, vivo entre <strong>React/Next.js, Node.js, TypeScript e PostgreSQL</strong> no full-stack, <strong>n8n + Evolution API + modelos de IA</strong> (GPT, Claude, Gemini) nas automações, e <strong>WordPress + tráfego pago</strong> quando o objetivo é captar clientes rápido. Essa combinação me deixa cobrir o projeto inteiro — da ideia ao anúncio rodando.</p>
+          <p data-i18n-html="about.p3">No dia a dia, vivo entre <strong>React/Next.js, Node.js, TypeScript e PostgreSQL</strong> no full-stack, <strong>n8n + Evolution API + modelos de IA</strong> (GPT, Claude, Gemini) nas automações, e <strong>WordPress + tráfego pago</strong> quando o objetivo é captar clientes rápido. Essa combinação me deixa cobrir o projeto inteiro — da ideia ao anúncio rodando.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="container">
+      <div class="reveal">
+        <span class="sec-tag" data-i18n="faq.tag">07. dúvidas frequentes</span>
+        <h2 class="sec-title" data-i18n="faq.title">Perguntas que todo cliente faz antes de começar</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q1">Quanto custa um projeto?</button>
+          <div class="faq-a"><p data-i18n="faq.a1">Depende do escopo, mas sempre fechamos valor e prazo por escrito antes de começar — você nunca é pego de surpresa. Automações simples e landing pages têm ticket menor; SaaS completos são projetos maiores. Me chame no WhatsApp com a sua ideia que eu te passo uma estimativa rápida e honesta.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q2">Em quanto tempo fica pronto?</button>
+          <div class="faq-a"><p data-i18n="faq.a2">Uma landing page ou automação costuma sair em dias; um SaaS completo, em semanas. No diagnóstico eu já te dou um cronograma realista com entregas visíveis ao longo do caminho — nada de sumir por semanas e reaparecer no fim.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q3">Você usa APIs oficiais e métodos seguros?</button>
+          <div class="faq-a"><p data-i18n="faq.a3">Sempre. No WhatsApp trabalho tanto com a API oficial da Meta (Cloud API) quanto com a Evolution API, conforme o caso, com consentimento, opt-out e conformidade com a LGPD. Nada de listas compradas, spam ou técnicas que colocam seu número em risco de bloqueio.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q4">O sistema fica caro para manter?</button>
+          <div class="faq-a"><p data-i18n="faq.a4">Não. Priorizo arquiteturas em serviços com camada gratuita (always free) sempre que possível — Supabase, Cloudflare, Oracle Cloud, Fly.io — então na maioria dos casos você começa pagando pouco ou nada de infraestrutura e só escala o custo quando o projeto cresce.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q5">E depois de entregue, fico na mão?</button>
+          <div class="faq-a"><p data-i18n="faq.a5">Não. Todo projeto sai testado e documentado, e eu acompanho a estabilização depois do lançamento. Também ofereço manutenção contínua para quem quer evoluir o sistema com o tempo.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" data-i18n="faq.q6">Você trabalha remoto? De onde?</button>
+          <div class="faq-a"><p data-i18n="faq.a6">Sim, 100% remoto, atendendo o Brasil inteiro. Toda a comunicação acontece pelo WhatsApp e por chamadas quando necessário, com respostas no mesmo dia.</p></div>
         </div>
       </div>
     </div>
@@ -907,13 +1173,13 @@
   <section id="contato">
     <div class="container">
       <div class="contact-box reveal">
-        <span class="eyebrow" style="margin-bottom: 22px;"><span class="pulse-dot"></span>Vamos conversar?</span>
-        <h2>Seu próximo sistema começa<br />com uma <span class="grad-text">mensagem</span>.</h2>
-        <p>Me conte o que você precisa automatizar ou construir. Respondo no mesmo dia — e já te mostro projetos parecidos funcionando ao vivo.</p>
+        <span class="eyebrow" style="margin-bottom: 22px;"><span class="pulse-dot"></span><span data-i18n="contact.badge">Vamos conversar?</span></span>
+        <h2 data-i18n-html="contact.title">Seu próximo sistema começa<br />com uma <span class="grad-text">mensagem</span>.</h2>
+        <p data-i18n="contact.sub">Me conte o que você precisa automatizar ou construir. Respondo no mesmo dia — e já te mostro projetos parecidos funcionando ao vivo.</p>
         <div class="btn-row" style="justify-content: center;">
-          <a class="btn btn-primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
+          <a class="btn btn-primary btn-wa" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Chamar no WhatsApp
+            <span data-i18n="contact.cta">Chamar no WhatsApp</span>
           </a>
         </div>
         <div class="contact-channels">
@@ -928,11 +1194,11 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-inner">
-      <span>© <span id="year">2026</span> Alisson Santos — construído à mão, sem template.</span>
+      <span>© <span id="year">2026</span> Alisson Santos — <span data-i18n="footer.tag">construído à mão, sem template.</span></span>
       <div class="footer-links">
         <a href="https://github.com/ParkNow914" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:alimiguel1098@gmail.com">E-mail</a>
-        <a href="#servicos">Voltar ao topo ↑</a>
+        <a href="mailto:alimiguel1098@gmail.com" data-i18n="footer.email">E-mail</a>
+        <a href="#servicos" data-i18n="footer.top">Voltar ao topo ↑</a>
       </div>
     </div>
   </footer>
@@ -1009,6 +1275,7 @@
         msgs.forEach(m => m.classList.remove("show"));
         let i = 0;
         const next = () => {
+          if (document.hidden) { setTimeout(next, 1000); return; } // pausa quando a aba está oculta
           if (i >= msgs.length) { setTimeout(runChat, 9000); return; } // segura tudo visível antes de repetir
           const m = msgs[i];
           const isBot = m.classList.contains("out");
@@ -1043,6 +1310,159 @@
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(s => ioNav.observe(s));
+
+    // ===== Stagger reveal =====
+    document.querySelectorAll(".services-grid, .steps, .proj-list, .testi-grid").forEach(group => {
+      [...group.children].forEach((child, i) => {
+        if (child.classList.contains("reveal")) {
+          child.style.transitionDelay = (i * 70) + "ms";
+          child.addEventListener("transitionend", () => { child.style.transitionDelay = "0ms"; }, { once: true });
+        }
+      });
+    });
+
+    // ===== FAQ accordion =====
+    document.querySelectorAll(".faq-q").forEach(q => {
+      q.addEventListener("click", () => {
+        const item = q.parentElement;
+        const ans = q.nextElementSibling;
+        const isOpen = item.classList.toggle("open");
+        q.setAttribute("aria-expanded", isOpen);
+        ans.style.maxHeight = isOpen ? ans.scrollHeight + "px" : "0px";
+      });
+    });
+
+    // ===== ROI calculator =====
+    (() => {
+      const el = id => document.getElementById(id);
+      const hours = el("roiHours"), people = el("roiPeople"), wage = el("roiWage");
+      if (!hours) return;
+      const brl = n => "R$ " + Math.round(n).toLocaleString("pt-BR");
+      const setFill = inp => {
+        const pct = ((inp.value - inp.min) / (inp.max - inp.min)) * 100;
+        inp.style.setProperty("--fill", pct + "%");
+      };
+      const calc = () => {
+        const h = +hours.value, p = +people.value, w = +wage.value;
+        const monthlyHours = h * p * 22;             // horas/mês em tarefas repetitivas
+        const monthlyCost = monthlyHours * w;
+        const auto = 0.7;                            // ~70% automatizável
+        const monthlySave = monthlyCost * auto;
+        el("roiHoursV").textContent = h;
+        el("roiPeopleV").textContent = p;
+        el("roiWageV").textContent = w;
+        el("roiYear").textContent = brl(monthlySave * 12);
+        el("roiMonth").textContent = brl(monthlySave);
+        el("roiHoursYear").textContent = Math.round(monthlyHours * 12 * auto).toLocaleString("pt-BR") + " h";
+        const msg = "Olá Alisson! Usei a calculadora do seu site e vi que posso economizar cerca de " +
+          brl(monthlySave * 12) + "/ano automatizando. Quero conversar sobre isso.";
+        el("roiCta").href = "https://wa.me/5512991743827?text=" + encodeURIComponent(msg);
+        [hours, people, wage].forEach(setFill);
+      };
+      [hours, people, wage].forEach(i => i.addEventListener("input", calc));
+      calc();
+    })();
+
+    // ===== i18n (PT / EN) =====
+    (() => {
+      const en = {
+        "nav.services": "Services", "nav.projects": "Projects", "nav.calc": "Calculator",
+        "nav.about": "About", "nav.faq": "FAQ", "nav.cta": "Start a project",
+        "hero.badge": "Available for new projects",
+        "hero.h1": 'Systems that<br /><span class="grad-text">run themselves</span><br />while you grow.',
+        "hero.lead": "I'm <strong>Alisson Santos</strong>, a full-stack developer specialized in <strong>AI automation</strong>: WhatsApp bots that sell, support and book 24/7, complete SaaS products and integrations that kill manual work — with <strong>real products in production</strong> I can show you running right now.",
+        "hero.cta1": "Start a project on WhatsApp", "hero.cta2": "See projects in production ↓",
+        "hero.stat1": "average rating (99freelas)", "hero.stat2": "% who recommend",
+        "hero.stat3": "GitHub repositories", "hero.stat4": "own SaaS products built",
+        "trust.lead": "// proof, not promises",
+        "trust.rating": "average rating<br />on 99freelas", "trust.recom": "clients who<br />recommend",
+        "trust.saas": "own SaaS<br />products built", "trust.prod": "systems in<br />real production",
+        "svc.title": "Complete solutions, from planning to production",
+        "svc.sub": "I don't just ship code: I deliver working systems, tested and documented, built to drive real results for your business.",
+        "svc.1t": "WhatsApp &amp; Telegram bots with AI",
+        "svc.1d": "Natural-language support (text and audio), cart orders, scheduling, PIX payments and human handoff — on WhatsApp, Telegram or a web store, all sharing the same brain.",
+        "svc.2t": "SaaS &amp; Complete Systems",
+        "svc.2d": "Multi-company platforms with login, recurring subscriptions, admin panel, reports and LGPD compliance — ready to scale.",
+        "svc.3t": "AI Applications",
+        "svc.3d": "Document analysis, RAG with cited sources and AI agents applied to real problems — like LicitaAI, a legal assistant that's live.",
+        "svc.4t": "Landing Pages + Ads",
+        "svc.4d": "Pages optimized for conversion and SEO with full tracking — GTM, GA4, Meta Pixel and Conversions API — so your campaigns perform better.",
+        "svc.5t": "Automations &amp; Integrations",
+        "svc.5d": "Flows that connect your systems and kill manual work: CRM, spreadsheets, email, payments and notifications all talking to each other.",
+        "svc.6t": "Maintenance &amp; Performance",
+        "svc.6d": "Site fixes, malware cleanup, security hardening and speed optimization (Core Web Vitals) on new or existing projects.",
+        "proj.title": "Real products, in production, driving results",
+        "proj.sub": "No tutorial projects. These systems are live, used by real companies and clients — message me on WhatsApp and I'll show any of them working live.",
+        "proc.title": "How I work: clear, predictable, no surprises",
+        "proc.sub": "My background in IT Management gives me what few developers have: business vision. I understand the goal behind the project — and my process reflects that.",
+        "proc.1t": "Diagnosis", "proc.1d": "A direct chat on WhatsApp to understand your business goal — not just what you want to build, but the result you need to generate.",
+        "proc.2t": "Clear proposal", "proc.2d": "Scope, deadline and price agreed in writing. You know exactly what you'll get and when, before any payment.",
+        "proc.3t": "Visible progress", "proc.3d": "Development with constant updates and versions you follow working — no disappearing for weeks.",
+        "proc.4t": "Delivery + support", "proc.4d": "Project published, tested and documented. And after launch you're not left alone: I follow through on stabilization.",
+        "roi.tag": "04. calculator", "roi.title": "How much is manual work costing you?",
+        "roi.sub": "Adjust the values below and see, in real time, how much your team spends per year on support and repetitive tasks — and how much automation can give back to you.",
+        "roi.hours": "Hours/day on support and repetitive tasks", "roi.people": "People doing this work",
+        "roi.wage": "Hourly cost of that person (R$)",
+        "roi.note": "Estimate based on 22 working days/month and automating ~70% of these tasks.",
+        "roi.rk": "estimated yearly savings", "roi.rsub": "with ~70% of tasks automated",
+        "roi.month": "per month", "roi.hoursback": "hours returned/year",
+        "roi.cta": "I want to automate this →", "roi.disc": "Educational estimate, not a commercial quote. The real number depends on your process.",
+        "testi.title": "What clients say", "testi.sub": "Real, verifiable reviews from projects completed on the 99freelas platform.",
+        "about.title": "More than a coder: a technical partner",
+        "about.f1k": "Education", "about.f2k": "Rating", "about.f2v": "5.0 ★ (100% recom.)",
+        "about.f3k": "Based in", "about.f3v": "Brazil 🇧🇷 · remote", "about.f4k": "Reply", "about.f4v": "same day",
+        "about.p1": "Most developers write code. I build <strong>systems that generate results</strong> — and that difference comes from my background in <strong>Information Technology Management</strong>: before opening the editor, I understand the business goal behind the project.",
+        "about.p2": "That's how my products were born: <strong>AgendaZap</strong> (AI scheduling on WhatsApp, with an open demo), a <strong>WhatsApp CRM on Meta's official API</strong> running in a real financial operation, <strong>Bia</strong> (a multichannel delivery assistant with 487 automated tests, delivered to a real supermarket), <strong>ParkNow</strong> (a smart parking SaaS) and the <strong>JurisIA</strong> legal suite. Not tutorial projects — real systems in production, with real users, that I can show you working over chat.",
+        "about.hl": "I work with clear communication, deadlines met and tested, documented deliveries. You follow the progress from start to finish — no surprise at the end.",
+        "about.p3": "Day to day, I live between <strong>React/Next.js, Node.js, TypeScript and PostgreSQL</strong> on full-stack, <strong>n8n + Evolution API + AI models</strong> (GPT, Claude, Gemini) on automations, and <strong>WordPress + paid ads</strong> when the goal is to capture clients fast. That combination lets me cover the whole project — from idea to the ad running.",
+        "faq.tag": "07. frequently asked", "faq.title": "Questions every client asks before starting",
+        "faq.q1": "How much does a project cost?",
+        "faq.a1": "It depends on scope, but we always agree on price and deadline in writing before starting — you're never caught by surprise. Simple automations and landing pages have a smaller ticket; complete SaaS are bigger projects. Message me on WhatsApp with your idea and I'll give you a quick, honest estimate.",
+        "faq.q2": "How long does it take?",
+        "faq.a2": "A landing page or automation usually ships in days; a complete SaaS, in weeks. In the diagnosis I already give you a realistic timeline with visible deliveries along the way — no disappearing for weeks and reappearing at the end.",
+        "faq.q3": "Do you use official APIs and safe methods?",
+        "faq.a3": "Always. On WhatsApp I work with both Meta's official API (Cloud API) and the Evolution API, depending on the case, with consent, opt-out and LGPD compliance. No purchased lists, spam or techniques that put your number at risk of being blocked.",
+        "faq.q4": "Is the system expensive to maintain?",
+        "faq.a4": "No. I prioritize architectures on services with a free tier (always free) whenever possible — Supabase, Cloudflare, Oracle Cloud, Fly.io — so in most cases you start paying little or nothing for infrastructure and only scale cost as the project grows.",
+        "faq.q5": "And after delivery, am I on my own?",
+        "faq.a5": "No. Every project ships tested and documented, and I follow through on stabilization after launch. I also offer ongoing maintenance for those who want to evolve the system over time.",
+        "faq.q6": "Do you work remotely? From where?",
+        "faq.a6": "Yes, 100% remote, serving all of Brazil. All communication happens over WhatsApp and calls when needed, with same-day replies.",
+        "contact.badge": "Let's talk?",
+        "contact.title": 'Your next system starts<br />with a <span class="grad-text">message</span>.',
+        "contact.sub": "Tell me what you need to automate or build. I reply the same day — and I'll already show you similar projects working live.",
+        "contact.cta": "Message on WhatsApp",
+        "footer.tag": "handcrafted, no template.", "footer.email": "Email", "footer.top": "Back to top ↑"
+      };
+      const els = [...document.querySelectorAll("[data-i18n],[data-i18n-html]")];
+      const pt = {};
+      els.forEach(el => {
+        const html = el.hasAttribute("data-i18n-html");
+        const key = html ? el.getAttribute("data-i18n-html") : el.getAttribute("data-i18n");
+        pt[key] = html ? el.innerHTML : el.textContent;
+      });
+      const setLang = lang => {
+        const map = lang === "en" ? en : pt;
+        els.forEach(el => {
+          const html = el.hasAttribute("data-i18n-html");
+          const key = html ? el.getAttribute("data-i18n-html") : el.getAttribute("data-i18n");
+          const val = map[key] != null ? map[key] : pt[key];
+          if (val == null) return;
+          if (html) el.innerHTML = val; else el.textContent = val;
+        });
+        document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+        try { localStorage.setItem("lang", lang); } catch (e) {}
+        document.querySelectorAll(".lang-toggle button").forEach(b => {
+          const on = b.dataset.lang === lang;
+          b.classList.toggle("active", on); b.setAttribute("aria-pressed", on);
+        });
+      };
+      document.querySelectorAll(".lang-toggle button").forEach(b =>
+        b.addEventListener("click", () => setLang(b.dataset.lang)));
+      let saved = "pt";
+      try { saved = localStorage.getItem("lang") || "pt"; } catch (e) {}
+      if (saved === "en") setLang("en");
+    })();
 
     // ===== Year =====
     document.getElementById("year").textContent = new Date().getFullYear();
