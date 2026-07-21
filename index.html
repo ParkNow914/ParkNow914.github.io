@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alisson Santos — Automação com IA, Bots de WhatsApp e SaaS Full-Stack</title>
-  <meta name="description" content="Desenvolvedor full-stack especializado em automação com IA: bots de WhatsApp que vendem e agendam sozinhos, SaaS completos com React/Next.js e Node, landing pages de alta conversão. Produtos reais em produção." />
+  <title>Autark — Automação com IA que roda o seu negócio no piloto automático</title>
+  <meta name="description" content="A Autark instala fluxos de WhatsApp + IA que atendem, vendem e agendam sozinhos, SaaS completos e integrações que eliminam trabalho manual. Sistemas reais em produção. Por Alisson Santos." />
   <meta name="author" content="Alisson Santos" />
+  <meta name="application-name" content="Autark" />
   <meta name="theme-color" content="#050810" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://parknow914.github.io/" />
-  <meta property="og:title" content="Alisson Santos — Automação com IA e SaaS Full-Stack" />
-  <meta property="og:description" content="Bots de WhatsApp que vendem sozinhos, SaaS completos e sistemas com IA em produção real. Nota 5.0 — 100% de recomendação." />
+  <meta property="og:title" content="Autark — Sistemas que trabalham sozinhos enquanto você cresce" />
+  <meta property="og:description" content="Fluxos de WhatsApp + IA que atendem, vendem e agendam sozinhos, SaaS completos e sistemas em produção real. Nota 5.0 — 100% de recomendação. Por Alisson Santos." />
+  <meta property="og:site_name" content="Autark" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:image" content="https://parknow914.github.io/assets/og.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -22,8 +24,8 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Alisson Santos — Automação com IA e SaaS Full-Stack" />
-  <meta name="twitter:description" content="Bots de WhatsApp que vendem sozinhos, SaaS completos e IA em produção real. Nota 5.0 — 100% de recomendação." />
+  <meta name="twitter:title" content="Autark — Sistemas que trabalham sozinhos enquanto você cresce" />
+  <meta name="twitter:description" content="Fluxos de WhatsApp + IA que atendem, vendem e agendam sozinhos, SaaS completos e IA em produção real. Por Alisson Santos." />
   <meta name="twitter:image" content="https://parknow914.github.io/assets/og.jpg" />
 
   <!-- JSON-LD -->
@@ -43,8 +45,9 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Alisson Santos — Desenvolvimento & Automação com IA",
-    "description": "Automação com IA, bots de WhatsApp, SaaS full-stack, landing pages e integrações.",
+    "name": "Autark",
+    "description": "Estúdio de automação com IA: fluxos de WhatsApp, bots com IA, SaaS full-stack, landing pages e integrações. Por Alisson Santos.",
+    "founder": { "@type": "Person", "name": "Alisson Santos" },
     "url": "https://parknow914.github.io/",
     "image": "https://parknow914.github.io/assets/og.jpg",
     "areaServed": "BR",
@@ -165,6 +168,8 @@
       display: flex; align-items: center; gap: 10px;
     }
     .logo .bracket { color: var(--accent); }
+    .logo .logo-by { font-size: 0.62rem; color: var(--text-dim); font-weight: 500; margin-left: 2px; align-self: flex-end; padding-bottom: 2px; }
+    @media (max-width: 420px) { .logo .logo-by { display: none; } }
     .nav-links { display: flex; align-items: center; gap: 6px; }
     .nav-links a {
       font-size: 0.88rem; font-weight: 500; color: var(--text-muted);
@@ -734,7 +739,7 @@
   <!-- ============ NAV ============ -->
   <nav class="nav" id="nav" aria-label="Navegação principal">
     <div class="nav-inner">
-      <a href="#" class="logo"><span class="bracket">&lt;</span>alisson.dev<span class="bracket">/&gt;</span></a>
+      <a href="#" class="logo" aria-label="Autark — início"><span class="bracket">◆</span>Autark<span class="logo-by">por Alisson</span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -760,10 +765,10 @@
         <span class="eyebrow"><span class="pulse-dot"></span><span data-i18n="hero.badge">Disponível para novos projetos</span></span>
         <h1 data-i18n-html="hero.h1">Sistemas que<br /><span class="grad-text">trabalham sozinhos</span><br />enquanto você cresce.</h1>
         <p class="lead" data-i18n-html="hero.lead">
-          Sou <strong>Alisson Santos</strong>, desenvolvedor full-stack especializado em
-          <strong>automação com IA</strong>: bots de WhatsApp que vendem, atendem e agendam 24/7,
-          SaaS completos e integrações que eliminam trabalho manual — com
-          <strong>produtos reais em produção</strong> que posso te mostrar funcionando agora.
+          Todo atendimento no manual é venda que escapa fora do horário — e tempo que você não recupera.
+          A <strong>Autark</strong> instala um fluxo de <strong>WhatsApp + IA conectado aos seus sistemas</strong>
+          que atende, vende e agenda no seu lugar: 24/7 e testado antes de ir ao ar.
+          Você troca o operacional por um <strong>painel com tudo rodando</strong>.
         </p>
         <div class="btn-row">
           <a class="btn btn-primary btn-wa" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
@@ -835,8 +840,8 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">01. serviços</span>
-        <h2 class="sec-title" data-i18n="svc.title">Soluções completas, do planejamento à produção</h2>
-        <p class="sec-sub" data-i18n="svc.sub">Não entrego apenas código: entrego sistemas funcionando, testados e documentados, pensados para gerar resultado real no seu negócio.</p>
+        <h2 class="sec-title" data-i18n="svc.title">Cada gargalo do seu negócio tem um sistema que resolve</h2>
+        <p class="sec-sub" data-i18n="svc.sub">Você não precisa de "mais um site". Precisa parar de perder venda, tempo e cliente. A Autark cobre do primeiro "oi" no WhatsApp ao anúncio rodando — cada entrega testada, documentada e feita para se pagar.</p>
       </div>
       <div class="services-grid">
         <div class="card reveal">
@@ -892,8 +897,8 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">02. projetos</span>
-        <h2 class="sec-title" data-i18n="proj.title">Produtos reais, em produção, gerando resultado</h2>
-        <p class="sec-sub" data-i18n="proj.sub">Nada de projeto de tutorial. Estes sistemas estão no ar, sendo usados por empresas e clientes reais — me chame no WhatsApp e eu mostro qualquer um deles funcionando ao vivo.</p>
+        <h2 class="sec-title" data-i18n="proj.title">Produtos reais, no ar, com gente usando agora</h2>
+        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Estes sistemas estão em produção com usuários reais. Me chame no WhatsApp e eu abro qualquer um ao vivo, na sua frente.</p>
       </div>
 
       <div class="proj-list">
@@ -1009,8 +1014,8 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">03. processo</span>
-        <h2 class="sec-title" data-i18n="proc.title">Como trabalho: claro, previsível e sem surpresas</h2>
-        <p class="sec-sub" data-i18n="proc.sub">Minha formação em Gestão de TI me dá o que poucos desenvolvedores têm: visão de negócio. Eu entendo o objetivo por trás do projeto — e o processo reflete isso.</p>
+        <h2 class="sec-title" data-i18n="proc.title">Você sabe o que vem, quando vem e quanto custa</h2>
+        <p class="sec-sub" data-i18n="proc.sub">O medo de contratar dev é pagar, ver o cara sumir e voltar com desculpa. Aqui é o contrário: escopo e prazo por escrito, entregas visíveis toda semana e a visão de negócio da minha formação em Gestão de TI guiando cada decisão.</p>
       </div>
       <div class="steps">
         <div class="step reveal">
@@ -1110,7 +1115,7 @@
     <div class="container">
       <div class="reveal">
         <span class="sec-tag">06. sobre</span>
-        <h2 class="sec-title" data-i18n="about.title">Mais que um executor: um parceiro técnico</h2>
+        <h2 class="sec-title" data-i18n="about.title">A Autark é uma pessoa só — e é por isso que funciona</h2>
       </div>
       <div class="about-grid">
         <div class="about-visual reveal">
@@ -1124,7 +1129,7 @@
           <div class="fact"><span class="k" data-i18n="about.f4k">Resposta</span><span class="v" data-i18n="about.f4v">no mesmo dia</span></div>
         </div>
         <div class="about-text reveal">
-          <p data-i18n-html="about.p1">A maioria dos desenvolvedores escreve código. Eu construo <strong>sistemas que geram resultado</strong> — e essa diferença vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
+          <p data-i18n-html="about.p1">A <strong>Autark</strong> não é uma agência com cinco camadas entre você e quem faz. Sou eu, <strong>Alisson Santos</strong>, que atendo, construo e entrego. A maioria dos desenvolvedores escreve código; eu construo <strong>sistemas que geram resultado</strong> — diferença que vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
           <p data-i18n-html="about.p2">Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
           <div class="highlight-box" data-i18n="about.hl">
             Trabalho com comunicação clara, prazos cumpridos e entregas testadas e documentadas. Você acompanha o progresso do início ao fim — sem surpresa no final.
@@ -1196,7 +1201,7 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-inner">
-      <span>© <span id="year">2026</span> Alisson Santos — <span data-i18n="footer.tag">construído à mão, sem template.</span></span>
+      <span>© <span id="year">2026</span> <strong style="color:var(--text-muted);font-weight:600">Autark</strong> · por Alisson Santos — <span data-i18n="footer.tag">construído à mão, sem template.</span></span>
       <div class="footer-links">
         <a href="https://github.com/ParkNow914" target="_blank" rel="noopener">GitHub</a>
         <a href="mailto:alimiguel1098@gmail.com" data-i18n="footer.email">E-mail</a>
@@ -1372,15 +1377,15 @@
         "nav.about": "About", "nav.faq": "FAQ", "nav.cta": "Start a project",
         "hero.badge": "Available for new projects",
         "hero.h1": 'Systems that<br /><span class="grad-text">run themselves</span><br />while you grow.',
-        "hero.lead": "I'm <strong>Alisson Santos</strong>, a full-stack developer specialized in <strong>AI automation</strong>: WhatsApp bots that sell, support and book 24/7, complete SaaS products and integrations that kill manual work — with <strong>real products in production</strong> I can show you running right now.",
+        "hero.lead": "Every conversation handled by hand is a sale that slips away after hours — and time you never get back. <strong>Autark</strong> installs a flow of <strong>WhatsApp + AI wired into your systems</strong> that answers, sells and books for you: 24/7 and tested before it goes live. You trade the busywork for a <strong>dashboard with everything running</strong>.",
         "hero.cta1": "Start a project on WhatsApp", "hero.cta2": "See projects in production ↓",
         "hero.stat1": "average rating (99freelas)", "hero.stat2": "% who recommend",
         "hero.stat3": "GitHub repositories", "hero.stat4": "own SaaS products built",
         "trust.lead": "// proof, not promises",
         "trust.rating": "average rating<br />on 99freelas", "trust.recom": "clients who<br />recommend",
         "trust.saas": "own SaaS<br />products built", "trust.prod": "systems in<br />real production",
-        "svc.title": "Complete solutions, from planning to production",
-        "svc.sub": "I don't just ship code: I deliver working systems, tested and documented, built to drive real results for your business.",
+        "svc.title": "Every bottleneck in your business has a system that fixes it",
+        "svc.sub": "You don't need \"another website.\" You need to stop losing sales, time and customers. Autark covers everything from the first \"hi\" on WhatsApp to the ad running — each delivery tested, documented and built to pay for itself.",
         "svc.1t": "WhatsApp &amp; Telegram bots with AI",
         "svc.1d": "Natural-language support (text and audio), cart orders, scheduling, PIX payments and human handoff — on WhatsApp, Telegram or a web store, all sharing the same brain.",
         "svc.2t": "SaaS &amp; Complete Systems",
@@ -1393,10 +1398,10 @@
         "svc.5d": "Flows that connect your systems and kill manual work: CRM, spreadsheets, email, payments and notifications all talking to each other.",
         "svc.6t": "Maintenance &amp; Performance",
         "svc.6d": "Site fixes, malware cleanup, security hardening and speed optimization (Core Web Vitals) on new or existing projects.",
-        "proj.title": "Real products, in production, driving results",
-        "proj.sub": "No tutorial projects. These systems are live, used by real companies and clients — message me on WhatsApp and I'll show any of them working live.",
-        "proc.title": "How I work: clear, predictable, no surprises",
-        "proc.sub": "My background in IT Management gives me what few developers have: business vision. I understand the goal behind the project — and my process reflects that.",
+        "proj.title": "Real products, live, with people using them right now",
+        "proj.sub": "You don't want promises — you want to see it working. These systems are in production with real users. Message me on WhatsApp and I'll open any of them live, right in front of you.",
+        "proc.title": "You know what's coming, when, and what it costs",
+        "proc.sub": "The fear of hiring a dev is paying, watching them vanish and coming back with an excuse. Here it's the opposite: scope and deadline in writing, visible deliveries every week, and the business vision from my IT Management background guiding every decision.",
         "proc.1t": "Diagnosis", "proc.1d": "A direct chat on WhatsApp to understand your business goal — not just what you want to build, but the result you need to generate.",
         "proc.2t": "Clear proposal", "proc.2d": "Scope, deadline and price agreed in writing. You know exactly what you'll get and when, before any payment.",
         "proc.3t": "Visible progress", "proc.3d": "Development with constant updates and versions you follow working — no disappearing for weeks.",
@@ -1410,10 +1415,10 @@
         "roi.month": "per month", "roi.hoursback": "hours returned/year",
         "roi.cta": "I want to automate this →", "roi.disc": "Educational estimate, not a commercial quote. The real number depends on your process.",
         "testi.title": "What clients say", "testi.sub": "Real, verifiable reviews from projects completed on the 99freelas platform.",
-        "about.title": "More than a coder: a technical partner",
+        "about.title": "Autark is one person — and that's exactly why it works",
         "about.f1k": "Education", "about.f2k": "Rating", "about.f2v": "5.0 ★ (100% recom.)",
         "about.f3k": "Based in", "about.f3v": "Brazil 🇧🇷 · remote", "about.f4k": "Reply", "about.f4v": "same day",
-        "about.p1": "Most developers write code. I build <strong>systems that generate results</strong> — and that difference comes from my background in <strong>Information Technology Management</strong>: before opening the editor, I understand the business goal behind the project.",
+        "about.p1": "<strong>Autark</strong> isn't an agency with five layers between you and whoever does the work. It's me, <strong>Alisson Santos</strong> — I handle it, build it and ship it. Most developers write code; I build <strong>systems that generate results</strong> — a difference that comes from my background in <strong>Information Technology Management</strong>: before opening the editor, I understand the business goal behind the project.",
         "about.p2": "That's how my products were born: <strong>AgendaZap</strong> (AI scheduling on WhatsApp, with an open demo), a <strong>WhatsApp CRM on Meta's official API</strong> running in a real financial operation, <strong>Bia</strong> (a multichannel delivery assistant with 487 automated tests, delivered to a real supermarket), <strong>ParkNow</strong> (a smart parking SaaS) and the <strong>JurisIA</strong> legal suite. Not tutorial projects — real systems in production, with real users, that I can show you working over chat.",
         "about.hl": "I work with clear communication, deadlines met and tested, documented deliveries. You follow the progress from start to finish — no surprise at the end.",
         "about.p3": "Day to day, I live between <strong>React/Next.js, Node.js, TypeScript and PostgreSQL</strong> on full-stack, <strong>n8n + Evolution API + AI models</strong> (GPT, Claude, Gemini) on automations, and <strong>WordPress + paid ads</strong> when the goal is to capture clients fast. That combination lets me cover the whole project — from idea to the ad running.",

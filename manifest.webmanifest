@@ -1,7 +1,7 @@
 {
-  "name": "Alisson Santos — Automação com IA & SaaS Full-Stack",
-  "short_name": "Alisson Santos",
-  "description": "Bots de WhatsApp que vendem sozinhos, SaaS completos e IA em produção real.",
+  "name": "Autark — Automação com IA & SaaS Full-Stack",
+  "short_name": "Autark",
+  "description": "Fluxos de WhatsApp + IA que atendem, vendem e agendam sozinhos. SaaS completos e IA em produção real. Por Alisson Santos.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
