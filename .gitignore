@@ -1,0 +1,13 @@
+# Ferramentas de verificação são instaladas sob demanda (npx/npm --no-save),
+# nada disso pertence ao repositório de um site estático sem build.
+node_modules/
+package-lock.json
+package.json
+
+# Saída do Lighthouse CI
+.lighthouseci/
+
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+*.swp
