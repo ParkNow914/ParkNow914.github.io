@@ -1,0 +1,80 @@
+name: Qualidade
+
+# O site é estático e sem build, então a CI aqui não compila nada: ela só impede
+# que uma regressão silenciosa chegue à produção — link morto, imagem faltando,
+# HTML inválido ou queda de performance/acessibilidade.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Links externos apodrecem sozinhos (demo fora do ar, repo renomeado).
+    # Segunda-feira, 09:00 UTC.
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html:
+    name: HTML + referências locais
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validar HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          blacklist: assets
+          css: true
+
+      - name: Conferir que todo arquivo referenciado existe
+        run: python3 tools/check-assets.py
+
+  links:
+    name: Links externos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # wa.me e o 99freelas bloqueiam requisições automatizadas e dariam
+          # falso positivo; o resto (demos, GitHub, OG) é checado de verdade.
+          args: >-
+            --no-progress
+            --max-retries 3
+            --timeout 25
+            --accept 200,206,301,302,308,403,429
+            --exclude "^https://wa\.me"
+            --exclude "^https://www\.99freelas\.com\.br"
+            --exclude-path assets
+            index.html 404.html README.md
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Rodar Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
