@@ -93,6 +93,11 @@ uma página que vende conformidade com a LGPD. Só o subset `latin` é baixado
 - **lychee** — links externos vivos (as demos apodrecem sozinhas quando um deploy cai)
 - **Lighthouse CI** — mínimos de 90 em performance/boas práticas e 95 em a11y/SEO
 
+O limiar de SEO vale só para o `index.html`. O `404.html` é `noindex` de propósito,
+o que derruba a categoria de SEO para ~0.58 — cobrar 95 dele seria exigir que a
+página de erro fosse indexável. Ele continua sendo checado em performance,
+acessibilidade e boas práticas (ver `assertMatrix` no `lighthouserc.json`).
+
 Rodar a checagem local:
 
 ```bash
