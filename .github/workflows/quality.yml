@@ -47,10 +47,15 @@ jobs:
       - name: Verificar links
         uses: lycheeverse/lychee-action@v2
         with:
+          # --root-dir: sem ele o lychee não resolve os links root-relative
+          # ("/assets/...") em arquivos locais e reporta cada um como erro.
+          # As referências locais já são validadas por tools/check-assets.py;
+          # aqui o que interessa são os links externos.
           # wa.me e o 99freelas bloqueiam requisições automatizadas e dariam
           # falso positivo; o resto (demos, GitHub, OG) é checado de verdade.
           args: >-
             --no-progress
+            --root-dir ${{ github.workspace }}
             --max-retries 3
             --timeout 25
             --accept 200,206,301,302,308,403,429
