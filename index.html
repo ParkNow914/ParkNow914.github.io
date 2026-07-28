@@ -120,7 +120,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Automação com IA e desenvolvimento de software",
-    "provider": { "@type": "Organization", "name": "Autark", "url": "https://parknow914.github.io/" },
+    "provider": { "@id": "https://parknow914.github.io/#autark" },
     "areaServed": "BR",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -279,7 +279,10 @@
       font-size: 16px;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      /* clip, não hidden: `overflow: hidden` cria um contexto de rolagem que
+         quebra `position: sticky` nos descendentes (o card do "Sobre" rolava
+         junto em vez de grudar). `clip` corta igual, sem criar o contexto. */
+      overflow-x: clip;
     }
 
     ::selection { background: rgba(52, 211, 153, 0.3); color: #fff; }
@@ -427,8 +430,11 @@
       font-family: var(--font-display); font-weight: 600; font-size: 0.98rem;
       padding: 15px 28px; border-radius: 14px; cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s;
-      border: none; will-change: transform;
+      border: none;
     }
+    /* will-change só na intenção de interagir: deixá-lo fixo mantém uma camada de
+       composição na GPU para todo botão da página, o tempo todo. */
+    .btn:hover, .btn:focus-visible { will-change: transform; }
     .btn-primary {
       background: linear-gradient(120deg, var(--accent-strong), var(--accent));
       color: #03140b;
@@ -719,7 +725,10 @@
       border-radius: var(--radius); padding: 34px; text-align: center;
     }
     .avatar-photo {
-      width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 30%;
+      /* `height: auto` é obrigatório: o atributo height="760" do <img> entra como
+         height:760px e anula o aspect-ratio — a foto esticava para 335x760. */
+      width: 100%; max-width: 250px; height: auto; aspect-ratio: 1 / 1;
+      object-fit: cover; object-position: center 30%;
       border-radius: 18px; margin: 0 auto 20px; display: block;
       border: 1px solid var(--border); box-shadow: var(--shadow-glow);
     }
@@ -809,14 +818,25 @@
     .roi-controls .field { margin-bottom: 26px; }
     .roi-controls label { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
     .roi-controls label .val { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--accent); }
+    /* A área de toque tem 44px de altura (WCAG 2.5.5); o trilho visível de 6px é
+       desenhado por background-image centralizado. Antes o alvo real tinha 6px e
+       era quase impossível de acertar com o dedo. */
     .roi-controls input[type="range"] {
-      -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 100px;
+      -webkit-appearance: none; appearance: none; width: 100%; height: 44px;
+      background: transparent; outline: none; cursor: pointer; display: block;
+    }
+    .roi-controls input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px; border-radius: 100px;
       background: linear-gradient(90deg, var(--accent) var(--fill, 40%), rgba(255,255,255,0.1) var(--fill, 40%));
-      outline: none; cursor: pointer;
+    }
+    .roi-controls input[type="range"]::-moz-range-track {
+      height: 6px; border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent) var(--fill, 40%), rgba(255,255,255,0.1) var(--fill, 40%));
     }
     .roi-controls input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%;
       background: var(--accent); border: 3px solid #04120c; cursor: pointer; box-shadow: 0 2px 10px rgba(37,211,102,0.4);
+      margin-top: -8px; /* centraliza o thumb de 22px no trilho de 6px */
     }
     .roi-controls input[type="range"]::-moz-range-thumb {
       width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 3px solid #04120c; cursor: pointer;
@@ -935,6 +955,17 @@
     .wa-or { margin-top: 20px; font-size: 0.83rem; color: var(--text-muted); }
     .wa-or a { color: var(--accent); text-decoration: underline; }
     @media (max-width: 520px) { .wa-form .row { flex-direction: column; } }
+
+    /* ============ ALVOS DE TOQUE (WCAG 2.5.5) ============ */
+    /* Só em dispositivos de toque: no mouse, 22px de link é confortável; no dedo,
+       não. Cresce a área clicável sem mudar o desenho — o texto continua no lugar. */
+    @media (pointer: coarse) {
+      .footer-links a, .wa-or a, .proj-links a, .channel, .lang-toggle button {
+        min-height: 44px; display: inline-flex; align-items: center;
+      }
+      .menu-btn { min-width: 44px; min-height: 44px; }
+      .faq-q { padding-top: 26px; padding-bottom: 26px; }
+    }
 
     /* ============ FOCUS (a11y) ============ */
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
@@ -1106,37 +1137,37 @@
       </div>
       <div class="services-grid">
         <div class="card reveal">
-          <div class="svc-icon">🤖</div>
+          <div class="svc-icon" aria-hidden="true">🤖</div>
           <h3 data-i18n-html="svc.1t">Bots de WhatsApp &amp; Telegram com IA</h3>
           <p data-i18n="svc.1d">Atendimento em linguagem natural (texto e áudio), pedidos com carrinho, agendamento, pagamento PIX e transferência para humano — no WhatsApp, Telegram ou loja web, com o mesmo cérebro.</p>
           <div class="tags"><span class="chip">n8n</span><span class="chip">Evolution API</span><span class="chip">Meta Cloud API</span><span class="chip">GPT · Claude · Gemini</span></div>
         </div>
         <div class="card reveal">
-          <div class="svc-icon">🚀</div>
+          <div class="svc-icon" aria-hidden="true">🚀</div>
           <h3 data-i18n-html="svc.2t">SaaS &amp; Sistemas Completos</h3>
           <p data-i18n="svc.2d">Plataformas multi-empresa com login, assinatura recorrente, painel administrativo, relatórios e conformidade com a LGPD — prontas para escalar.</p>
           <div class="tags"><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Stripe · Mercado Pago</span></div>
         </div>
         <div class="card reveal">
-          <div class="svc-icon">🧠</div>
+          <div class="svc-icon" aria-hidden="true">🧠</div>
           <h3 data-i18n="svc.3t">Aplicações com IA</h3>
           <p data-i18n="svc.3d">Análise de documentos, RAG com fonte citada e agentes de IA aplicados a problemas reais — como o JurisIA, suíte jurídica com IA que está no ar.</p>
           <div class="tags"><span class="chip">RAG</span><span class="chip">Agentes</span><span class="chip">APIs de IA</span></div>
         </div>
         <div class="card reveal">
-          <div class="svc-icon">🎯</div>
+          <div class="svc-icon" aria-hidden="true">🎯</div>
           <h3 data-i18n="svc.4t">Landing Pages + Tráfego</h3>
           <p data-i18n="svc.4d">Páginas otimizadas para conversão e SEO com rastreamento completo — GTM, GA4, Meta Pixel e Conversions API — para suas campanhas renderem mais.</p>
           <div class="tags"><span class="chip">React / WordPress</span><span class="chip">GA4 + GTM</span><span class="chip">Meta CAPI</span></div>
         </div>
         <div class="card reveal">
-          <div class="svc-icon">🔗</div>
+          <div class="svc-icon" aria-hidden="true">🔗</div>
           <h3 data-i18n-html="svc.5t">Automações &amp; Integrações</h3>
           <p data-i18n="svc.5d">Fluxos que conectam seus sistemas e eliminam trabalho manual: CRM, planilhas, e-mail, pagamentos e notificações conversando entre si.</p>
           <div class="tags"><span class="chip">n8n</span><span class="chip">Webhooks</span><span class="chip">APIs REST</span></div>
         </div>
         <div class="card reveal">
-          <div class="svc-icon">🛡️</div>
+          <div class="svc-icon" aria-hidden="true">🛡️</div>
           <h3 data-i18n-html="svc.6t">Manutenção &amp; Performance</h3>
           <p data-i18n="svc.6d">Correção de sites, limpeza de malware, hardening de segurança e otimização de velocidade (Core Web Vitals) em projetos novos ou existentes.</p>
           <div class="tags"><span class="chip">WordPress</span><span class="chip">Segurança</span><span class="chip">Core Web Vitals</span></div>

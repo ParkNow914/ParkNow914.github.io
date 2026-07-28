@@ -21,6 +21,7 @@ const PRECACHE = [
   "/assets/fonts/inter-400-latin.woff2",
   "/assets/fonts/inter-500-latin.woff2",
   "/assets/fonts/inter-600-latin.woff2",
+  "/assets/fonts/space-grotesk-400-latin.woff2",
   "/assets/fonts/space-grotesk-500-latin.woff2",
   "/assets/fonts/space-grotesk-600-latin.woff2",
   "/assets/fonts/space-grotesk-700-latin.woff2",
