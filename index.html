@@ -115,6 +115,27 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Automação com IA e desenvolvimento de software",
+    "provider": { "@type": "Organization", "name": "Autark", "url": "https://parknow914.github.io/" },
+    "areaServed": "BR",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Serviços Autark",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bots de WhatsApp e Telegram com IA", "description": "Atendimento, vendas, pedidos, agendamento e pagamento automatizados com IA." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SaaS e sistemas completos", "description": "Plataformas multi-empresa com login, assinatura recorrente, painel e LGPD." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aplicações com IA", "description": "Análise de documentos, RAG com fonte citada e agentes de IA." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing pages e tráfego pago", "description": "Páginas de alta conversão com rastreamento GTM, GA4 e Meta CAPI." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automações e integrações", "description": "Fluxos que conectam CRM, planilhas, e-mail, pagamentos e notificações." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manutenção e performance", "description": "Correção, limpeza de malware, hardening de segurança e Core Web Vitals." } }
+      ]
+    }
+  }
+  </script>
 
   <!--
     Fontes servidas do próprio domínio (SIL OFL 1.1). Nenhum request ao Google:
@@ -595,6 +616,13 @@
       background: rgba(255,255,255,0.04); border: 1px solid var(--border);
       padding: 4px 10px; border-radius: 100px;
     }
+    .proj-top .proj-kpi {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+      color: var(--accent); background: var(--accent-soft);
+      border: 1px solid rgba(52,211,153,0.28); padding: 4px 11px; border-radius: 100px;
+      margin-left: auto;
+    }
+    @media (max-width: 860px) { .proj-top .proj-kpi { margin-left: 0; } }
     .proj-top .status .dot {
       width: 7px; height: 7px; border-radius: 50%; background: var(--accent-strong);
       box-shadow: 0 0 0 0 rgba(37,211,102,0.5); animation: statusPulse 2.4s ease-out infinite;
@@ -867,8 +895,49 @@
     }
     @keyframes waPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); } 70%, 100% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } }
 
+    /* ============ WHATSAPP FAB ============ */
+    .wa-fab {
+      position: fixed; right: 20px; bottom: 20px; z-index: 95;
+      display: inline-flex; align-items: center; gap: 10px;
+      height: 56px; padding: 0 20px 0 18px; border-radius: 100px;
+      background: linear-gradient(135deg, #25d366, #14a44d); color: #fff;
+      font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.42);
+      transition: transform 0.25s ease, opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .wa-fab:hover { transform: translateY(-3px) scale(1.03); }
+    .wa-fab svg { width: 26px; height: 26px; flex-shrink: 0; }
+    .wa-fab.hide { opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.85); }
+    @media (max-width: 600px) {
+      .wa-fab { padding: 0; width: 58px; height: 58px; justify-content: center; right: 16px; bottom: 16px; }
+      .wa-fab .wa-txt { display: none; }
+      .wa-fab svg { width: 30px; height: 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .wa-fab { transition: opacity 0.3s ease, visibility 0.3s ease; } .wa-fab:hover { transform: none; } }
+
+    /* ============ CONTACT FORM ============ */
+    .contact-formats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 4px 0 6px; }
+    .contact-formats .fmt {
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 100px; padding: 7px 14px;
+    }
+    .contact-formats .fmt b { color: var(--accent); font-weight: 600; }
+    .wa-form { max-width: 480px; margin: 26px auto 0; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .wa-form .row { display: flex; gap: 12px; }
+    .wa-form .row > * { flex: 1; min-width: 0; }
+    .wa-form input, .wa-form textarea {
+      width: 100%; background: rgba(5,8,16,0.55); border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 16px; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; resize: vertical;
+    }
+    .wa-form input::placeholder, .wa-form textarea::placeholder { color: var(--text-dim); }
+    .wa-form input:focus, .wa-form textarea:focus { border-color: var(--border-hover); outline: none; background: rgba(5,8,16,0.8); }
+    .wa-form button { justify-content: center; margin-top: 4px; width: 100%; }
+    .wa-or { margin-top: 20px; font-size: 0.83rem; color: var(--text-muted); }
+    .wa-or a { color: var(--accent); text-decoration: underline; }
+    @media (max-width: 520px) { .wa-form .row { flex-direction: column; } }
+
     /* ============ FOCUS (a11y) ============ */
-    a:focus-visible, button:focus-visible, input:focus-visible {
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
       outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
     }
 
@@ -919,6 +988,10 @@
     Para trocar: find/replace de "5512991743827" aqui e em README.md.
   -->
   <a class="skip-link" href="#hero" data-i18n="skip">Pular para o conteúdo</a>
+  <a class="wa-fab" id="waFab" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20o%20site%20da%20Autark%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" data-i18n-aria="aria.fab" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="wa-txt" data-i18n="fab.txt">Falar no WhatsApp</span>
+  </a>
   <div class="bg-fx" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
@@ -1072,6 +1145,49 @@
     </div>
   </section>
 
+  <!-- ============ PARA QUEM É ============ -->
+  <section id="para-quem">
+    <div class="container">
+      <div class="reveal">
+        <span class="sec-tag" data-i18n="tag.who">// pra quem é</span>
+        <h2 class="sec-title" data-i18n="who.title">Se você vive uma dessas, a Autark é pra você</h2>
+        <p class="sec-sub" data-i18n="who.sub">Já construí sistema para cada um destes cenários — não é teoria, é o que roda em produção hoje.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">💈</div>
+          <h3 data-i18n="who.1t">Salões, barbearias e clínicas</h3>
+          <p data-i18n="who.1d">Você vive respondendo "tem horário?" no WhatsApp e ainda leva bolo. A IA agenda, confirma e lembra sozinha — a agenda enche sem você parar o atendimento.</p>
+        </div>
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">💰</div>
+          <h3 data-i18n="who.2t">Corretoras e financeiras</h3>
+          <p data-i18n="who.2d">Lead que chega e não é atendido na hora é lead perdido. CRM no WhatsApp oficial da Meta atende, qualifica e registra tudo com auditoria e LGPD.</p>
+        </div>
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">🛒</div>
+          <h3 data-i18n="who.3t">Delivery e comércio local</h3>
+          <p data-i18n="who.3d">Atendente preso no balcão anotando pedido no papel. O bot recebe o pedido, calcula a taxa, cobra e manda pra cozinha — em qualquer canal.</p>
+        </div>
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">⚖️</div>
+          <h3 data-i18n="who.4t">Escritórios e profissionais</h3>
+          <p data-i18n="who.4d">Tempo demais em triagem e leitura de documento. A IA faz a primeira triagem 24h e resume documentos com a fonte citada — você foca no que importa.</p>
+        </div>
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">📈</div>
+          <h3 data-i18n="who.5t">Quem investe em tráfego pago</h3>
+          <p data-i18n="who.5d">Paga anúncio e o lead cai num formulário sem resposta. Landing de alta conversão + WhatsApp + rastreamento completo pra cada real de anúncio render mais.</p>
+        </div>
+        <div class="card reveal">
+          <div class="svc-icon" aria-hidden="true">⚙️</div>
+          <h3 data-i18n="who.6t">Qualquer negócio com trabalho manual</h3>
+          <p data-i18n="who.6d">Tem uma tarefa repetitiva comendo horas da sua equipe? Se dá pra descrever a regra, dá pra automatizar — sob medida, conectado aos seus sistemas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ MECHANISM ============ -->
   <section id="mecanismo">
     <div class="container">
@@ -1127,6 +1243,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p1.type">SaaS · IA · WhatsApp</span>
               <span class="status"><span class="dot"></span><span data-i18n="p1.status">Em produção</span></span>
+              <span class="proj-kpi" data-i18n="p1.kpi">14 dias grátis</span>
             </div>
             <h3>AgendaZap</h3>
             <p data-i18n-html="p1.desc">SaaS de agenda inteligente para salões, barbearias e estética: o cliente agenda sozinho pelo link público ou conversando com a atendente de IA no WhatsApp, que consulta horários, agenda e cancela sem intervenção humana. Lembretes automáticos 24h e 2h antes derrubam o no-show; recuperação de inativos, aniversário, NPS e campanhas seguram o cliente na base.</p>
@@ -1145,6 +1262,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p2.type">CRM · API Oficial Meta</span>
               <span class="status"><span class="dot"></span><span data-i18n="p2.status">Operação financeira real</span></span>
+              <span class="proj-kpi" data-i18n="p2.kpi">~28ms latência BR</span>
             </div>
             <h3 data-i18n="p2.title">CRM de WhatsApp — API Oficial da Meta</h3>
             <p data-i18n-html="p2.desc">Inbox omnichannel e CRM para WhatsApp Business rodando em operação financeira real: campanhas com governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automatizada. Hospedado no Fly.io em São Paulo com 2 máquinas always-on e ~28ms de latência até o banco — zero cold start.</p>
@@ -1162,6 +1280,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p3.type">IA Jurídica · SaaS B2B</span>
               <span class="status"><span class="dot"></span><span data-i18n="p3.status">Produto próprio</span></span>
+              <span class="proj-kpi" data-i18n="p3.kpi">4 produtos em 1</span>
             </div>
             <h3 data-i18n="p3.title">JurisIA — Suíte Jurídica com IA</h3>
             <p data-i18n-html="p3.desc">Plataforma SaaS de automação para advogados e escritórios, com 4 produtos: <strong>JurisBot</strong> (atendimento 24h e triagem de leads no WhatsApp), <strong>JurisDoc</strong> (geração de peças jurídicas com IA em streaming), <strong>JurisData</strong> (jurimetria com dados do TJSP) e <strong>JurisGrow</strong> (gestão de leads). Análise de documentos com RAG e fonte citada — sem "achismo" de IA.</p>
@@ -1179,6 +1298,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p4.type">SaaS B2B2C · Mobile + Web</span>
               <span class="status"><span class="dot"></span><span data-i18n="p4.status">Produto próprio</span></span>
+              <span class="proj-kpi" data-i18n="p4.kpi">web + mobile</span>
             </div>
             <h3>ParkNow — Smart Parking</h3>
             <p data-i18n-html="p4.desc">SaaS de estacionamento inteligente em monorepo (Turborepo + pnpm): painel B2B em Next.js, app B2C em React Native/Expo offline-first, Supabase com PostGIS para geolocalização, rate limiting com Upstash Redis e precificação dinâmica compartilhada entre os apps. O backend tem mapa em tempo real (Socket.IO), reservas com expiração automática e pagamento PIX com BR Code gerado localmente — sem gateway pago.</p>
@@ -1196,6 +1316,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p5.type">Delivery Multicanal · IA</span>
               <span class="status"><span class="dot"></span><span data-i18n="p5.status">Entregue · cliente real</span></span>
+              <span class="proj-kpi" data-i18n="p5.kpi">487 testes verdes</span>
             </div>
             <h3 data-i18n="p5.title">Bia — Assistente de Delivery de Supermercado</h3>
             <p data-i18n-html="p5.desc">Sistema completo de delivery para supermercado de bairro: catálogo de <strong>6.438 produtos</strong> importado do ERP, carrinho com taxas dinâmicas, checkout, cupom impresso direto na Epson do balcão (ESC/POS) e acompanhamento do pedido. Arquitetura canal-agnóstica: loja web PWA, Telegram e WhatsApp desaguam no mesmo cérebro — quando o WhatsApp do cliente se tornou inviável no meio do projeto, os outros canais entraram <strong>sem reescrever uma regra de negócio</strong>.</p>
@@ -1213,6 +1334,7 @@
             <div class="proj-top">
               <span class="type" data-i18n="p6.type">SaaS · CRM</span>
               <span class="status"><span class="dot"></span><span data-i18n="p6.status">Produto próprio</span></span>
+              <span class="proj-kpi" data-i18n="p6.kpi">command palette ⌘K</span>
             </div>
             <h3>FlowHub — CRM SaaS</h3>
             <p data-i18n-html="p6.desc">CRM SaaS completo para pequenos negócios: leads com score e importação CSV, pipeline kanban com drag-and-drop, tarefas, dashboard com gráficos, command palette (⌘K), notificações in-app, dark mode e RBAC com 4 papéis (Owner, Admin, Member, Viewer). Toda mutação registrada em audit log com before/after.</p>
@@ -1405,12 +1527,27 @@
         <span class="eyebrow" style="margin-bottom: 22px;"><span class="pulse-dot"></span><span data-i18n="contact.badge">Vamos conversar?</span></span>
         <h2 data-i18n-html="contact.title">Seu próximo sistema começa<br />com uma <span class="grad-text">mensagem</span>.</h2>
         <p data-i18n="contact.sub">Me conte o que você precisa automatizar ou construir. Respondo no mesmo dia — e já te mostro projetos parecidos funcionando ao vivo.</p>
-        <div class="btn-row" style="justify-content: center;">
-          <a class="btn btn-primary btn-wa" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span data-i18n="contact.cta">Chamar no WhatsApp</span>
-          </a>
+        <div class="contact-formats">
+          <span class="fmt" data-i18n-html="contact.f1">✍️ escopo e prazo <b>por escrito</b></span>
+          <span class="fmt" data-i18n-html="contact.f2">⚡ resposta <b>no mesmo dia</b></span>
+          <span class="fmt" data-i18n-html="contact.f3">🆓 stack <b>always-free</b> quando dá</span>
         </div>
+        <!--
+          Sem <form>: a CSP declara form-action 'none'. O botão monta a mensagem e
+          abre o WhatsApp via JS. Sem JS, o link direto logo abaixo continua funcionando.
+        -->
+        <div class="wa-form">
+          <div class="row">
+            <input id="fNome" type="text" placeholder="Seu nome" data-i18n-ph="ph.nome" data-i18n-aria="aria.nome" aria-label="Seu nome" />
+            <input id="fNegocio" type="text" placeholder="Seu negócio (ex.: salão, corretora)" data-i18n-ph="ph.negocio" data-i18n-aria="aria.negocio" aria-label="Seu negócio" />
+          </div>
+          <textarea id="fPrecisa" rows="3" placeholder="O que você quer automatizar ou construir?" data-i18n-ph="ph.precisa" data-i18n-aria="aria.precisa" aria-label="O que você quer automatizar ou construir"></textarea>
+          <button type="button" id="waSend" class="btn btn-primary btn-wa">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="contact.formcta">Enviar no WhatsApp</span>
+          </button>
+        </div>
+        <p class="wa-or" data-i18n-html="contact.or">Prefere direto? <a href="https://wa.me/5512991743827" target="_blank" rel="noopener">Abrir o WhatsApp</a> · <a href="mailto:alimiguel1098@gmail.com">mandar e-mail</a></p>
         <div class="contact-channels">
           <a class="channel" href="mailto:alimiguel1098@gmail.com">✉ alimiguel1098@gmail.com</a>
           <a class="channel" href="https://github.com/ParkNow914" target="_blank" rel="noopener">⌥ github.com/ParkNow914</a>
@@ -1692,6 +1829,41 @@
         calc();
       });
 
+      // ===== FAB do WhatsApp: some ao chegar no contato (o CTA já está lá) =====
+      safe("wa-fab", function () {
+        var fab = document.getElementById("waFab");
+        var alvo = document.getElementById("contato");
+        if (!fab || !alvo || !HAS_IO) return;
+        new IntersectionObserver(function (entries) {
+          fab.classList.toggle("hide", entries[0].isIntersecting);
+        }, { threshold: 0.15 }).observe(alvo);
+      });
+
+      // ===== Formulário -> WhatsApp (monta a mensagem; sem backend, sem <form>) =====
+      safe("wa-form", function () {
+        var btn = document.getElementById("waSend");
+        if (!btn) return;
+        var val = function (id) {
+          var node = document.getElementById(id);
+          return node ? (node.value || "").trim() : "";
+        };
+        btn.addEventListener("click", function () {
+          var nome = val("fNome"), neg = val("fNegocio"), precisa = val("fPrecisa");
+          var isEN = document.documentElement.lang.indexOf("en") === 0;
+          var msg;
+          if (isEN) {
+            msg = "Hi Alisson! I'm " + (nome || "(no name)");
+            if (neg) msg += ", from " + neg;
+            msg += ".\n\nWhat I need: " + (precisa || "(to describe)") + "\n\n(via the Autark site)";
+          } else {
+            msg = "Olá Alisson! Sou " + (nome || "(sem nome)");
+            if (neg) msg += ", do " + neg;
+            msg += ".\n\nO que eu preciso: " + (precisa || "(descrever)") + "\n\n(vim pelo site da Autark)";
+          }
+          window.open("https://wa.me/5512991743827?text=" + encodeURIComponent(msg), "_blank", "noopener");
+        });
+      });
+
       // ===== i18n (PT / EN) =====
       safe("i18n", function () {
         var en = {
@@ -1826,7 +1998,34 @@
           "contact.badge": "Let's talk?",
           "contact.title": 'Your next system starts<br />with a <span class="grad-text">message</span>.',
           "contact.sub": "Tell me what you need to automate or build. I reply the same day — and I'll already show you similar projects working live.",
-          "contact.cta": "Message on WhatsApp", "contact.ch3": "★ 99freelas · rated 5.0",
+          "contact.ch3": "★ 99freelas · rated 5.0",
+          "contact.f1": "✍️ scope &amp; deadline <b>in writing</b>",
+          "contact.f2": "⚡ reply <b>the same day</b>",
+          "contact.f3": "🆓 <b>always-free</b> stack when possible",
+          "contact.formcta": "Send on WhatsApp",
+          "contact.or": 'Prefer direct? <a href="https://wa.me/5512991743827" target="_blank" rel="noopener">Open WhatsApp</a> · <a href="mailto:alimiguel1098@gmail.com">send an email</a>',
+          "ph.nome": "Your name", "ph.negocio": "Your business (e.g. salon, brokerage)",
+          "ph.precisa": "What do you want to automate or build?",
+          "aria.nome": "Your name", "aria.negocio": "Your business",
+          "aria.precisa": "What do you want to automate or build",
+          "aria.fab": "Chat on WhatsApp", "fab.txt": "Chat on WhatsApp",
+          "tag.who": "// who it's for",
+          "who.title": "If you live one of these, Autark is for you",
+          "who.sub": "I've already built a system for each of these scenarios — not theory, it's what runs in production today.",
+          "who.1t": "Salons, barbershops & clinics",
+          "who.1d": "You keep answering \"any openings?\" on WhatsApp and still get no-shows. The AI books, confirms and reminds on its own — your calendar fills without you stopping to reply.",
+          "who.2t": "Brokers & finance",
+          "who.2d": "A lead not answered on the spot is a lost lead. A CRM on Meta's official WhatsApp API answers, qualifies and logs everything with an audit trail and LGPD compliance.",
+          "who.3t": "Delivery & local commerce",
+          "who.3d": "An attendant stuck at the counter writing orders on paper. The bot takes the order, calculates the fee, charges and sends it to the kitchen — on any channel.",
+          "who.4t": "Firms & professionals",
+          "who.4d": "Too much time on triage and reading documents. The AI does the first triage 24/7 and summarizes documents with the source cited — you focus on what matters.",
+          "who.5t": "If you run paid ads",
+          "who.5d": "You pay for ads and the lead lands on a form with no reply. High-converting landing + WhatsApp + full tracking so every ad dollar pays off more.",
+          "who.6t": "Any business with manual work",
+          "who.6d": "Got a repetitive task eating your team's hours? If you can describe the rule, it can be automated — custom-built, wired into your systems.",
+          "p1.kpi": "14-day free trial", "p2.kpi": "~28ms latency in BR", "p3.kpi": "4 products in 1",
+          "p4.kpi": "web + mobile", "p5.kpi": "487 green tests", "p6.kpi": "command palette ⌘K",
           "footer.tag": "handcrafted, no template.", "footer.email": "Email", "footer.top": "Back to top ↑"
         };
 
@@ -1848,17 +2047,18 @@
           }
         };
 
-        // 4 modos de tradução: texto, HTML, aria-label e alt.
+        // 5 modos de tradução: texto, HTML, aria-label, alt e placeholder.
         var MODES = [
           ["data-i18n",      function (el, v) { el.textContent = v; },                  function (el) { return el.textContent; }],
           ["data-i18n-html", function (el, v) { el.innerHTML = v; },                    function (el) { return el.innerHTML; }],
           ["data-i18n-aria", function (el, v) { el.setAttribute("aria-label", v); },    function (el) { return el.getAttribute("aria-label"); }],
-          ["data-i18n-alt",  function (el, v) { el.setAttribute("alt", v); },           function (el) { return el.getAttribute("alt"); }]
+          ["data-i18n-alt",  function (el, v) { el.setAttribute("alt", v); },           function (el) { return el.getAttribute("alt"); }],
+          ["data-i18n-ph",   function (el, v) { el.setAttribute("placeholder", v); },   function (el) { return el.getAttribute("placeholder"); }]
         ];
 
         var bindings = [];
         var pt = {};
-        document.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-aria],[data-i18n-alt]")
+        document.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-aria],[data-i18n-alt],[data-i18n-ph]")
           .forEach(function (el) {
             MODES.forEach(function (mode) {
               var attr = mode[0];

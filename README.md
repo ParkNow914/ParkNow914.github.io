@@ -51,7 +51,7 @@ JavaScript falhar. Para trocar, faça find/replace em `index.html` e neste READM
 
 ### Traduções (PT/EN)
 
-O site é bilíngue via JavaScript, sem duplicar arquivos. Quatro atributos:
+O site é bilíngue via JavaScript, sem duplicar arquivos. Cinco atributos:
 
 | Atributo | O que substitui | Use quando |
 |---|---|---|
@@ -59,6 +59,7 @@ O site é bilíngue via JavaScript, sem duplicar arquivos. Quatro atributos:
 | `data-i18n-html` | `innerHTML` | o texto tem `<strong>`, `<br>` ou entidades |
 | `data-i18n-aria` | `aria-label` | rótulo de leitor de tela |
 | `data-i18n-alt` | `alt` | descrição de imagem |
+| `data-i18n-ph` | `placeholder` | campo do formulário de contato |
 
 > ⚠️ Se o valor em inglês contiver **qualquer** tag ou entidade HTML, o elemento
 > **precisa** usar `data-i18n-html`. Com `data-i18n` o markup aparece como texto
