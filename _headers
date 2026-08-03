@@ -1,0 +1,27 @@
+# Cabeçalhos HTTP reais.
+#
+# O GitHub Pages ignora este arquivo — ele existe para o dia em que o site for
+# servido pelo Cloudflare Pages (ou Netlify), onde `_headers` é lido de verdade.
+# Enquanto isso, a CSP continua no <meta> do index.html, com uma limitação:
+# `frame-ancestors` só funciona em cabeçalho, então a proteção contra
+# clickjacking depende desta migração.
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Assets com hash de conteúdo estável podem ser cacheados agressivamente.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# O HTML precisa revalidar sempre, senão uma atualização demora a chegar.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate

@@ -64,16 +64,21 @@ self.addEventListener("fetch", (event) => {
     req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
 
   if (isHTML) {
+    // Network-first com teto de 3s: "offline" é fácil de detectar, mas rede ruim
+    // (metrô, 3G no interior) trava esperando pelo servidor. Passou de 3s e
+    // existe cópia em cache, servimos o cache e seguimos a vida.
+    const rede = fetch(req).then((res) => {
+      const copy = res.clone();
+      caches.open(CACHE_VERSION).then((c) => c.put(req, copy));
+      return res;
+    });
+
     event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_VERSION).then((c) => c.put(req, copy));
-          return res;
-        })
-        .catch(() =>
-          caches.match(req).then((hit) => hit || caches.match("/index.html"))
-        )
+      caches.match(req).then((hit) => {
+        if (!hit) return rede.catch(() => caches.match("/index.html"));
+        const teto = new Promise((resolve) => setTimeout(() => resolve(hit), 3000));
+        return Promise.race([rede.catch(() => hit), teto]);
+      })
     );
     return;
   }

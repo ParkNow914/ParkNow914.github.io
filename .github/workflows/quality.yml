@@ -68,8 +68,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lighthouse:
-    name: Lighthouse
+    name: Lighthouse (${{ matrix.perfil }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - perfil: desktop
+            config: lighthouserc.json
+          - perfil: mobile
+            config: lighthouserc.mobile.json
     steps:
       - uses: actions/checkout@v4
 
@@ -80,6 +88,25 @@ jobs:
       - name: Rodar Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.14.x
-          lhci autorun
+          lhci autorun --config=${{ matrix.config }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  e2e:
+    name: Fluxos críticos (E2E)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Instalar Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-save playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Rodar testes
+        run: node tools/e2e.mjs

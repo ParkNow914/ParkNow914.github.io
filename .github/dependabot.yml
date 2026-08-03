@@ -1,0 +1,13 @@
+# O site não tem dependências em runtime — o que envelhece aqui são as actions
+# do CI. Uma action desatualizada é risco de segurança (supply chain) e de quebra
+# silenciosa quando o GitHub aposenta uma versão do runner.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependências"
