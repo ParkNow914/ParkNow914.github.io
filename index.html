@@ -262,6 +262,28 @@
     }
     /* FONTS:END */
 
+    /* ============ FALLBACKS COM MÉTRICAS CASADAS ============ */
+    /* Enquanto o woff2 não chega, o texto é desenhado na fonte do sistema. Se ela
+       ocupar largura diferente, o parágrafo quebra em outro número de linhas e a
+       página "pula" quando a fonte real entra — era 0.15 de CLS só no hero.
+       Os size-adjust abaixo foram medidos comparando a largura real de cada fonte
+       com Arial (100px): Space Grotesk 100.33%, Inter 105.6%, JetBrains 120.56%. */
+    @font-face {
+      font-family: "Space Grotesk Fallback";
+      src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+      size-adjust: 100.33%; ascent-override: 95%; descent-override: 24%; line-gap-override: 0%;
+    }
+    @font-face {
+      font-family: "Inter Fallback";
+      src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+      size-adjust: 105.6%; ascent-override: 90%; descent-override: 22%; line-gap-override: 0%;
+    }
+    @font-face {
+      font-family: "JetBrains Mono Fallback";
+      src: local("Courier New"), local("Liberation Mono");
+      size-adjust: 96%; ascent-override: 92%; descent-override: 24%; line-gap-override: 0%;
+    }
+
     /* ============ RESET & TOKENS ============ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -280,9 +302,9 @@
       --accent-strong: #25d366;
       --accent-soft: rgba(52, 211, 153, 0.12);
       --cyan: #22d3ee;
-      --font-display: "Space Grotesk", sans-serif;
-      --font-body: "Inter", sans-serif;
-      --font-mono: "JetBrains Mono", monospace;
+      --font-display: "Space Grotesk", "Space Grotesk Fallback", sans-serif;
+      --font-body: "Inter", "Inter Fallback", sans-serif;
+      --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", monospace;
       --radius: 16px;
       --container: 1140px;
       --shadow-glow: 0 0 60px rgba(52, 211, 153, 0.15);
@@ -578,11 +600,13 @@
       background: rgba(255,255,255,0.08); border-radius: 8px; padding: 5px 10px;
       font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);
     }
+    /* display:none -> flex mudava a altura do chat e gerava CLS de 0.148 no hero.
+       Com visibility o espaco fica reservado desde o inicio: layout estavel. */
     .typing {
       align-self: flex-start; background: #1f2c34; border-radius: 12px; border-top-left-radius: 4px;
-      padding: 12px 16px; display: none; gap: 5px;
+      padding: 12px 16px; display: flex; gap: 5px; visibility: hidden;
     }
-    .typing.show { display: flex; }
+    .typing.show { visibility: visible; }
     .typing span {
       width: 7px; height: 7px; border-radius: 50%; background: #8696a0;
       animation: blink 1.2s infinite;
@@ -893,7 +917,7 @@
     }
     .roi-controls .field { margin-bottom: 26px; }
     .roi-controls label { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
-    .roi-controls label .val { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--accent); }
+    .roi-controls label .val { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--accent); white-space: nowrap; flex-shrink: 0; padding-left: 10px; }
     /* A área de toque tem 44px de altura (WCAG 2.5.5); o trilho visível de 6px é
        desenhado por background-image centralizado. Antes o alvo real tinha 6px e
        era quase impossível de acertar com o dedo. */
@@ -1725,7 +1749,7 @@
         <div class="contact-formats">
           <span class="fmt" data-i18n-html="contact.f1">✍️ escopo e prazo <b>por escrito</b></span>
           <span class="fmt" data-i18n-html="contact.f2">⚡ resposta <b>no mesmo dia</b></span>
-          <span class="fmt" data-i18n-html="contact.f3">🆓 stack <b>always-free</b> quando dá</span>
+          <span class="fmt" data-i18n-html="contact.f3">💸 stack <b>always-free</b> quando dá</span>
         </div>
         <!--
           Sem <form>: a CSP declara form-action 'none'. O botão monta a mensagem e
@@ -1734,7 +1758,7 @@
         <div class="wa-form">
           <div class="row">
             <input id="fNome" type="text" placeholder="Seu nome" data-i18n-ph="ph.nome" data-i18n-aria="aria.nome" aria-label="Seu nome" />
-            <input id="fNegocio" type="text" placeholder="Seu negócio (ex.: salão, corretora)" data-i18n-ph="ph.negocio" data-i18n-aria="aria.negocio" aria-label="Seu negócio" />
+            <input id="fNegocio" type="text" placeholder="Seu negócio (ex.: salão)" data-i18n-ph="ph.negocio" data-i18n-aria="aria.negocio" aria-label="Seu negócio" />
           </div>
           <textarea id="fPrecisa" rows="3" placeholder="O que você quer automatizar ou construir?" data-i18n-ph="ph.precisa" data-i18n-aria="aria.precisa" aria-label="O que você quer automatizar ou construir"></textarea>
           <button type="button" id="waSend" class="btn btn-primary btn-wa">
@@ -2345,10 +2369,10 @@
           "contact.ch3": "★ 99freelas · rated 5.0",
           "contact.f1": "✍️ scope &amp; deadline <b>in writing</b>",
           "contact.f2": "⚡ reply <b>the same day</b>",
-          "contact.f3": "🆓 <b>always-free</b> stack when possible",
+          "contact.f3": "💸 <b>always-free</b> stack when possible",
           "contact.formcta": "Send on WhatsApp",
           "contact.or": 'Prefer direct? <a href="https://wa.me/5512991743827" target="_blank" rel="noopener">Open WhatsApp</a> · <a href="mailto:alimiguel1098@gmail.com">send an email</a>',
-          "ph.nome": "Your name", "ph.negocio": "Your business (e.g. salon, brokerage)",
+          "ph.nome": "Your name", "ph.negocio": "Your business (e.g. salon)",
           "ph.precisa": "What do you want to automate or build?",
           "aria.nome": "Your name", "aria.negocio": "Your business",
           "aria.precisa": "What do you want to automate or build",
