@@ -22,7 +22,13 @@ SOURCES = ["index.html", "404.html", "sw.js", "manifest.webmanifest", "assets/fo
 
 # Assets que existem para o mundo externo (crawlers, sistema operacional) e por
 # isso não aparecem citados no HTML.
-ALLOWED_ORPHANS = {"assets/og.jpg", "assets/apple-touch-icon.png"}
+ALLOWED_ORPHANS = {
+    "assets/og.jpg",
+    "assets/apple-touch-icon.png",
+    # Banner da marca: consumido pelo README de github.com/ParkNow914/ParkNow914,
+    # que aponta para a versão publicada aqui. Não é referenciado pelo site.
+    "assets/banner.svg",
+}
 
 REF = re.compile(r'(?:src|href)\s*=\s*["\']([^"\']+)["\']|url\(\s*["\']?([^"\')]+)["\']?\s*\)')
 
