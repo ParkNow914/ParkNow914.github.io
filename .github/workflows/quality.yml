@@ -26,7 +26,7 @@ jobs:
     name: HTML + referências locais
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Validar HTML
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
@@ -42,7 +42,7 @@ jobs:
     name: Links externos
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Verificar links
         uses: lycheeverse/lychee-action@v2
@@ -79,7 +79,7 @@ jobs:
           - perfil: mobile
             config: lighthouserc.mobile.json
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v4
         with:
@@ -96,7 +96,7 @@ jobs:
     name: Fluxos críticos (E2E)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v4
         with:
