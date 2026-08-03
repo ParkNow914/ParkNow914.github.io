@@ -76,12 +76,14 @@ await page.waitForTimeout(600);
 console.log("\nEstrutura");
 const base = await page.evaluate(() => ({
   projetos: document.querySelectorAll(".proj").length,
-  imagensQuebradas: [...document.querySelectorAll("img")].filter((i) => !i.complete || i.naturalWidth === 0).length,
+  quebradas: [...document.querySelectorAll("img")]
+    .filter((i) => !i.complete || i.naturalWidth === 0)
+    .map((i) => (i.currentSrc || i.src || i.getAttribute("src") || "?").split("/").pop()),
   overflowX: document.documentElement.scrollWidth - window.innerWidth,
   h1: document.querySelectorAll("h1").length,
   jsonld: document.querySelectorAll('script[type="application/ld+json"]').length
 }));
-check("nenhuma imagem quebrada", base.imagensQuebradas === 0, `${base.imagensQuebradas} quebradas`);
+check("nenhuma imagem quebrada", base.quebradas.length === 0, base.quebradas.join(", "));
 check("sem rolagem horizontal", base.overflowX <= 0, `${base.overflowX}px`);
 check("exatamente um h1", base.h1 === 1, `${base.h1} encontrados`);
 check("todos os JSON-LD presentes", base.jsonld >= 5, `${base.jsonld}`);

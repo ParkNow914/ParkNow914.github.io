@@ -559,7 +559,13 @@
     .stat .lbl { font-size: 0.82rem; color: var(--text-dim); margin-top: 2px; }
 
     /* ---- Phone mockup ---- */
-    .phone-wrap { display: flex; justify-content: center; perspective: 1200px; }
+    /* O aparelho tem tela escura nos dois temas: se os tokens seguissem o tema
+       claro, o verde (#047857) cairia para 3.35:1 sobre o fundo do mockup. */
+    .phone-wrap {
+      display: flex; justify-content: center; perspective: 1200px;
+      --accent: #34d399; --accent-strong: #25d366;
+      --text: #e7ecf3; --text-muted: #a7b3c5; --border: rgba(255,255,255,0.12);
+    }
     .phone {
       width: 330px; max-width: 100%;
       background: #0b141a;
@@ -1101,14 +1107,6 @@
     @keyframes shimmer { to { background-position: -200% 0; } }
     .proj-thumb img { opacity: 0; transition: opacity 0.4s ease; }
     .proj-thumb.loaded img { opacity: 1; }
-
-    /* ============ VIEW TRANSITIONS ============ */
-    /* Suavizam a troca PT/EN em quem suporta; quem não suporta simplesmente troca. */
-    @media (prefers-reduced-motion: no-preference) {
-      ::view-transition-old(root) { animation: vtFade 0.18s ease both reverse; }
-      ::view-transition-new(root) { animation: vtFade 0.22s ease both; }
-      @keyframes vtFade { from { opacity: 0; } to { opacity: 1; } }
-    }
 
     /* ============ MISC ============ */
     @media (prefers-reduced-motion: reduce) {
