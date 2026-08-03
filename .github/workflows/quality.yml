@@ -34,6 +34,10 @@ jobs:
           root: .
           blacklist: assets
           css: true
+          # O validador do W3C ainda nao conhece size-adjust (fallback de fonte,
+          # CSS Fonts 5) nem ::view-transition (View Transitions API). Sao validos
+          # nos navegadores; ignoramos so essas duas mensagens.
+          extra: --ignore-re "size-adjust|view-transition" 
 
       - name: Conferir que todo arquivo referenciado existe
         run: python3 tools/check-assets.py

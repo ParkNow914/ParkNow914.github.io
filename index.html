@@ -618,11 +618,12 @@
     .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes blink { 0%, 70%, 100% { opacity: 0.25; } 35% { opacity: 1; } }
 
+    /* O badge flutua sobre o mockup e sobre o fundo, entao o contraste variava
+       conforme o ponto — no mobile reprovava. Fundo opaco + texto claro fixam. */
     .phone-badge {
       position: absolute; font-family: var(--font-mono); font-size: 0.72rem;
-      background: rgba(10, 15, 30, 0.9); border: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-      padding: 8px 14px; border-radius: 100px; color: var(--text-muted);
+      background: #0d1424; border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 14px; border-radius: 100px; color: #cfd8e6;
       display: flex; align-items: center; gap: 8px;
       animation: float 5s ease-in-out infinite;
     }

@@ -63,7 +63,15 @@ await page.evaluate(async () => {
   for (let y = 0; y < h; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); }
   window.scrollTo(0, 0);
 });
-await page.waitForTimeout(900);
+// As imagens são loading="lazy": rolar só dispara o download, não espera por ele.
+// Em máquina rápida elas chegam antes do próximo passo; num runner de CI, não.
+await page
+  .waitForFunction(
+    () => [...document.querySelectorAll("img")].every((i) => i.complete && i.naturalWidth > 0),
+    { timeout: 15000 }
+  )
+  .catch(() => {});
+await page.waitForTimeout(600);
 
 console.log("\nEstrutura");
 const base = await page.evaluate(() => ({
