@@ -53,9 +53,14 @@ markup das seções → `<script>`.
 
 ### Trocar o número de WhatsApp
 
-O número `5512991743827` aparece **6 vezes**, sempre dentro de `href`. Ficou
-hardcoded de propósito: assim os CTAs continuam funcionando mesmo se o
-JavaScript falhar. Para trocar, faça find/replace em `index.html` e neste README.
+O número `5512991743827` aparece **11 vezes** no `index.html`: 9 dentro de
+`href` e **2 montadas em JavaScript** — o CTA da calculadora de ROI e o botão do
+formulário de contato, que injetam o texto da mensagem antes de abrir o WhatsApp.
+
+Os `href` ficaram hardcoded de propósito: assim os CTAs continuam funcionando
+mesmo se o JavaScript falhar. Para trocar, faça find/replace em `index.html` e
+neste README — e confira que pegou também as duas ocorrências dentro do
+`<script>`, que um find/replace limitado a `href=` deixaria para trás.
 
 ### Traduções (PT/EN)
 

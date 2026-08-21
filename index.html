@@ -1196,9 +1196,12 @@
 </head>
 <body>
   <!--
-    WhatsApp: o número 5512991743827 aparece 6x neste arquivo, sempre em href de <a>.
-    Ficou hardcoded de propósito — assim os CTAs funcionam mesmo se o JS falhar.
-    Para trocar: find/replace de "5512991743827" aqui e em README.md.
+    WhatsApp: o número 5512991743827 aparece 11x neste arquivo — 9 em href de <a>
+    e 2 montadas em JavaScript (o CTA da calculadora de ROI e o botão do
+    formulário de contato, que injetam o texto da mensagem).
+    Os href ficaram hardcoded de propósito: assim os CTAs funcionam mesmo se o JS
+    falhar. Para trocar: find/replace de "5512991743827" aqui e em README.md —
+    e confira que pegou também as duas ocorrências dentro do <script>.
   -->
   <a class="skip-link" href="#hero" data-i18n="skip">Pular para o conteúdo</a>
   <a class="wa-fab" id="waFab" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Vi%20o%20site%20da%20Autark%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" data-i18n-aria="aria.fab" aria-label="Falar no WhatsApp">
@@ -1611,8 +1614,16 @@
             <p data-i18n-html="p9.desc">Diagnóstico de gestão para consultoria do agronegócio familiar: 38 perguntas viram nota por pilar, estágio de maturidade e de uma a três prioridades de ação. O motor <strong>transforma respostas em sinais, agrupa sinais em problemas</strong> e escolhe o que o consultor deve atacar primeiro — com regra de coexistência para não recomendar dois temas que dividem a mesma evidência.</p>
             <div class="result" data-i18n-html="p9.res">Nenhum texto é escrito por IA: as 190 alternativas e os 18 textos de pilar são <strong>gerados a partir dos documentos do cliente</strong>, então mudança de redação entra no documento e o código é regerado. O mesmo relatório sai em três formatos — tela, PDF e e-mail. RLS forçado nas 6 tabelas, consentimento LGPD com data, hora e IP.</div>
             <div class="tags"><span class="chip">Next.js</span><span class="chip">Supabase + RLS</span><span class="chip">@react-pdf</span><span class="chip">Resend</span><span class="chip">RD Station</span><span class="chip">85 testes</span></div>
+            <!--
+              Sem link ao vivo de proposito. O sistema esta no ar, mas e o funil de
+              captacao do cliente: cada diagnostico concluido cria uma conversao no
+              RD Station dele, dispara e-mail para a equipe e entra na medicao de
+              abandono que o consultor usa para decidir quem ligar. Trafego de
+              portfolio ali vira lead falso na base de um cliente pagante e suja a
+              metrica. Mesmo padrao do JurisIA e da Bia: demonstracao pelo chat.
+            -->
             <div class="proj-links">
-              <a class="primary" href="https://tratto-five.vercel.app" target="_blank" rel="noopener noreferrer" data-i18n="p9.l1">▶ Responder o diagnóstico</a>
+              <a class="primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20ver%20o%20%C3%8Dndice%20de%20Gest%C3%A3o%20funcionando." target="_blank" rel="noopener noreferrer" data-i18n="p9.l1">💬 Ver funcionando no chat</a>
             </div>
           </div>
         </article>
@@ -2471,7 +2482,7 @@
           "p9.title": "Management Index for Agribusiness",
           "p9.desc": "Management diagnostics for an agribusiness consultancy: 38 questions turn into a score per pillar, a maturity stage and one to three action priorities. The engine <strong>turns answers into signals, groups signals into business problems</strong> and picks what the consultant should tackle first — with a coexistence rule so it never recommends two themes that share the same piece of evidence.",
           "p9.res": "No text is written by AI: the 190 answer options and 18 pillar texts are <strong>generated from the client's own documents</strong>, so a wording change goes into the document and the code is regenerated. The same report ships in three formats — screen, PDF and email. RLS forced on all 6 tables, LGPD consent stored with date, time and IP.",
-          "p9.l1": "▶ Take the assessment",
+          "p9.l1": "💬 See it working over chat",
           "p10.type": "SaaS · Payroll-Deductible Credit", "p10.status": "Own product · open demo", "p10.kpi": "222 tests",
           "p10.desc": "SaaS for credit brokers and banking correspondents. A broker's problem isn't <em>calculating</em> commission — it's <strong>proving</strong> it, and the whole system is built around that: an engine using integer arithmetic, versioned rate tables, splits, five kinds of chargeback and monthly closing with a balance that rolls over.",
           "p10.res": "222 green tests (209 unit and integration, 13 end-to-end). Multi-tenant with RLS, TOTP 2FA, RBAC, hash-chained audit trail, bank-return reconciliation that detects encoding and columns on its own, and an LGPD module with data dossier, anonymisation and portability. Runs on always-free infrastructure.",
