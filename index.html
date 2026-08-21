@@ -773,6 +773,42 @@
       .proj:nth-child(even) .proj-thumb { order: 0; }
     }
 
+    /* ============ DEMONSTRACOES TECNICAS ============ */
+    .demo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .card.demo { display: flex; flex-direction: column; color: inherit; }
+    .card.demo h3 { font-size: 1.06rem; line-height: 1.35; }
+    .card.demo .tags { margin-top: auto; padding-top: 16px; }
+    .demo-cta {
+      margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent);
+      display: block; transition: transform 0.2s ease;
+    }
+    .card.demo:hover .demo-cta { transform: translateX(4px); }
+    @media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; } }
+
+    /* ============ OUTROS TRABALHOS ============ */
+    .outros {
+      margin-top: 42px; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 30px 34px;
+    }
+    .outros h3 {
+      font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);
+      text-transform: lowercase; letter-spacing: 0.06em; font-weight: 500; margin-bottom: 8px;
+    }
+    .outros-list li {
+      display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr) auto;
+      gap: 20px; align-items: baseline;
+      padding: 15px 0; border-top: 1px solid var(--border);
+    }
+    .outros-list .oq { font-weight: 600; font-size: 0.94rem; color: var(--text); }
+    .outros-list .od { font-size: 0.88rem; color: var(--text-muted); }
+    .outros-list .ot { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); white-space: nowrap; }
+    @media (max-width: 760px) {
+      .outros { padding: 24px 22px; }
+      .outros-list li { grid-template-columns: 1fr; gap: 5px; }
+      .outros-list .ot { order: -1; }
+    }
+
     /* ============ STACK MARQUEE ============ */
     .stack-band {
       border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -1222,7 +1258,7 @@
         <div class="hero-stats">
           <div class="stat"><span class="num">5.0<span class="star">★</span></span><span class="lbl" data-i18n="hero.stat1">avaliação média (99freelas)</span></div>
           <div class="stat"><span class="num" data-count="100">0</span><span class="lbl" data-i18n="hero.stat2">% de recomendação</span></div>
-          <div class="stat"><span class="num" data-count="8">0</span><span class="lbl" data-i18n="hero.stat3">sistemas no portfólio</span></div>
+          <div class="stat"><span class="num" data-count="10">0</span><span class="lbl" data-i18n="hero.stat3">sistemas no portfólio</span></div>
           <div class="stat"><span class="num" data-count="5">0</span><span class="lbl" data-i18n="hero.stat4">SaaS próprios construídos</span></div>
         </div>
       </div>
@@ -1266,11 +1302,11 @@
           <span class="cap" data-i18n-html="trust.recom">clientes que<br />recomendam</span>
         </div>
         <div class="ti">
-          <span class="big">5</span>
+          <span class="big">6</span>
           <span class="cap" data-i18n-html="trust.saas">SaaS próprios<br />construídos</span>
         </div>
         <div class="ti">
-          <span class="big">3</span>
+          <span class="big">4</span>
           <span class="cap" data-i18n-html="trust.prod">sistemas em<br />produção real</span>
         </div>
       </div>
@@ -1414,7 +1450,7 @@
       <div class="reveal">
         <span class="sec-tag" data-i18n="tag.proj">02. projetos</span>
         <h2 class="sec-title" data-i18n="proj.title">Produtos reais que eu posso te mostrar funcionando</h2>
-        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Três destes rodam hoje em operação real com clientes; os outros são produtos próprios ou entregas concluídas, com código aberto ou demo ao vivo pelo chat. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
+        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Quatro destes rodam hoje em operação real com clientes; os outros são produtos próprios ou entregas concluídas, com código aberto ou demo ao vivo. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
       </div>
 
       <div class="proj-list">
@@ -1562,6 +1598,89 @@
             </div>
           </div>
         </article>
+
+        <article class="proj reveal">
+          <div class="proj-thumb"><img src="assets/tratto.webp" width="1200" height="744" loading="lazy" decoding="async" data-i18n-alt="alt.p9" alt="Capa do Índice de Gestão: diagnóstico para o agronegócio, 38 perguntas, 85 testes, Next.js e Supabase" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type" data-i18n="p9.type">Diagnóstico · Agronegócio</span>
+              <span class="status"><span class="dot"></span><span data-i18n="p9.status">Em produção</span></span>
+              <span class="proj-kpi" data-i18n="p9.kpi">85 testes</span>
+            </div>
+            <h3 data-i18n="p9.title">Índice de Gestão para o Agronegócio</h3>
+            <p data-i18n-html="p9.desc">Diagnóstico de gestão para consultoria do agronegócio familiar: 38 perguntas viram nota por pilar, estágio de maturidade e de uma a três prioridades de ação. O motor <strong>transforma respostas em sinais, agrupa sinais em problemas</strong> e escolhe o que o consultor deve atacar primeiro — com regra de coexistência para não recomendar dois temas que dividem a mesma evidência.</p>
+            <div class="result" data-i18n-html="p9.res">Nenhum texto é escrito por IA: as 190 alternativas e os 18 textos de pilar são <strong>gerados a partir dos documentos do cliente</strong>, então mudança de redação entra no documento e o código é regerado. O mesmo relatório sai em três formatos — tela, PDF e e-mail. RLS forçado nas 6 tabelas, consentimento LGPD com data, hora e IP.</div>
+            <div class="tags"><span class="chip">Next.js</span><span class="chip">Supabase + RLS</span><span class="chip">@react-pdf</span><span class="chip">Resend</span><span class="chip">RD Station</span><span class="chip">85 testes</span></div>
+            <div class="proj-links">
+              <a class="primary" href="https://tratto-five.vercel.app" target="_blank" rel="noopener noreferrer" data-i18n="p9.l1">▶ Responder o diagnóstico</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj reveal">
+          <div class="proj-thumb"><img src="assets/acerto.webp" width="1200" height="744" loading="lazy" decoding="async" data-i18n-alt="alt.p10" alt="Capa do Acerto: SaaS de gestão de comissão para crédito consignado, 222 testes, RLS multi-tenant e 2FA" /></div>
+          <div class="proj-content">
+            <div class="proj-top">
+              <span class="type" data-i18n="p10.type">SaaS · Crédito Consignado</span>
+              <span class="status"><span class="dot"></span><span data-i18n="p10.status">Produto próprio · demo aberta</span></span>
+              <span class="proj-kpi" data-i18n="p10.kpi">222 testes</span>
+            </div>
+            <h3>Acerto — Gestão de Comissão</h3>
+            <p data-i18n-html="p10.desc">SaaS para promotoras de crédito consignado e correspondentes bancários. O problema de uma promotora não é <em>calcular</em> comissão — é <strong>provar</strong> a comissão, e o sistema inteiro é construído em torno disso: motor com aritmética inteira, tabelas versionadas, splits, cinco tipos de estorno e fechamento mensal com saldo que rola.</p>
+            <div class="result" data-i18n-html="p10.res">222 testes verdes (209 de unidade e integração, 13 de ponta a ponta). Multi-tenant com RLS, 2FA por TOTP, RBAC, auditoria hash-encadeada, conciliação de retorno bancário que detecta encoding e colunas sozinha, e módulo LGPD com dossiê, anonimização e portabilidade. Roda em infra always-free.</div>
+            <div class="tags"><span class="chip">Next.js</span><span class="chip">Drizzle</span><span class="chip">PostgreSQL</span><span class="chip">RLS multi-tenant</span><span class="chip">2FA TOTP</span><span class="chip">222 testes</span></div>
+            <div class="proj-links">
+              <a class="primary" href="https://acerto-comissao.netlify.app" target="_blank" rel="noopener noreferrer" data-i18n="p10.l1">▶ Demo ao vivo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!--
+        Demonstracoes tecnicas: codigo publico escrito para sustentar um argumento,
+        nao entrega de cliente. Rotulado como tal de proposito — misturar demo com
+        projeto entregue e o tipo de exagero que um cliente atento percebe.
+      -->
+      <div class="reveal" style="margin-top:76px">
+        <span class="sec-tag" data-i18n="tag.demo">// demonstrações técnicas</span>
+        <h2 class="sec-title" data-i18n="demo.title">Provas de conceito que eu escrevi para explicar uma decisão</h2>
+        <p class="sec-sub" data-i18n="demo.sub">Não são entregas de cliente — é código público que eu escrevi para sustentar um argumento numa conversa técnica. Estão aqui porque mostram como eu penso antes de construir.</p>
+      </div>
+      <div class="demo-grid">
+        <a class="card demo reveal" href="https://parknow914.github.io/pdv-lio-demo/" target="_blank" rel="noopener noreferrer">
+          <div class="svc-icon" aria-hidden="true">💳</div>
+          <h3 data-i18n="d1.t">PDV em maquineta: o que fazer quando a rede cai</h3>
+          <p data-i18n-html="d1.d">O que derruba PDV em produção não é chamar o SDK — é o timeout que faz o operador passar o cartão duas vezes. Três regras de defesa: gravar a intenção antes de chamar a maquineta, chave de idempotência gerada pelo app e, na dúvida, <strong>consultar em vez de reenviar</strong>.</p>
+          <div class="tags"><span class="chip">Kotlin</span><span class="chip">SDK Cielo Lio</span><span class="chip">Idempotência</span></div>
+          <span class="demo-cta" data-i18n="d1.c">▶ Simulador clicável →</span>
+        </a>
+        <a class="card demo reveal" href="https://github.com/ParkNow914/make-atendimento-camadas" target="_blank" rel="noopener noreferrer">
+          <div class="svc-icon" aria-hidden="true">🪜</div>
+          <h3 data-i18n="d2.t">Atendimento em camadas, montado por API</h3>
+          <p data-i18n-html="d2.d">Entrada → Automação → Chatbot → IA → Humano. Cada solicitação é resolvida <strong>no nível mais simples e mais barato possível</strong> e só sobe de camada quando precisa — o oposto de mandar tudo para a IA e pagar token por pergunta de horário de funcionamento.</p>
+          <div class="tags"><span class="chip">Make.com</span><span class="chip">Blueprint por API</span><span class="chip">PowerShell</span></div>
+          <span class="demo-cta" data-i18n="d2.c">↗ Arquitetura e blueprint →</span>
+        </a>
+        <a class="card demo reveal" href="https://parknow914.github.io/configurador-camadas/" target="_blank" rel="noopener noreferrer">
+          <div class="svc-icon" aria-hidden="true">👕</div>
+          <h3 data-i18n="d3.t">Configurador visual em camadas</h3>
+          <p data-i18n-html="d3.d">Personalização de uniforme em tempo real: base fixa, cor dinâmica e camadas que se recombinam sem gerar uma imagem por variação. <strong>Um arquivo, sem dependência</strong> — abre instantâneo até em conexão ruim.</p>
+          <div class="tags"><span class="chip">HTML + SVG</span><span class="chip">Zero dependências</span></div>
+          <span class="demo-cta" data-i18n="d3.c">▶ Abrir o configurador →</span>
+        </a>
+      </div>
+
+      <!--
+        Trabalhos sem vitrine visual, mas que provam dois servicos que ate aqui
+        nao tinham nenhum projeto sustentando: automacoes/integracoes e manutencao.
+      -->
+      <div class="outros reveal">
+        <h3 data-i18n="outros.t">Outros trabalhos entregues</h3>
+        <ul class="outros-list">
+          <li><span class="oq" data-i18n="o1.t">Importação de XML para banco SQL</span><span class="od" data-i18n="o1.d">Mapeamento campo a campo de múltiplos arquivos XML para um schema existente, sem retrabalho manual.</span><span class="ot">ago/2026</span></li>
+          <li><span class="oq" data-i18n="o2.t">Site institucional jurídico: GA4, blog e conversão</span><span class="od" data-i18n="o2.d">Segunda etapa de melhorias em site de escritório de advocacia já publicado: analytics, estrutura de blog e ajustes de conversão.</span><span class="ot">ago/2026</span></li>
+          <li><span class="oq" data-i18n="o3.t">Publicação de página e responsividade</span><span class="od" data-i18n="o3.d">Página nova publicada no domínio existente, testada no ambiente real e com o botão de conversão ligado ao WhatsApp.</span><span class="ot">ago/2026</span></li>
+        </ul>
       </div>
 
     </div>
@@ -1645,7 +1764,7 @@
       <div class="reveal">
         <span class="sec-tag" data-i18n="tag.testi">// depoimentos</span>
         <h2 class="sec-title" data-i18n="testi.title">O que dizem os clientes</h2>
-        <p class="sec-sub" data-i18n="testi.sub">Avaliações reais e verificáveis de projetos concluídos na plataforma 99freelas.</p>
+        <p class="sec-sub" data-i18n="testi.sub">São 7 avaliações no 99freelas, todas 5.0, com 100% de recomendação. Estas são cinco delas — todas verificáveis no perfil público.</p>
         <!-- Nota: no modo EN estes depoimentos aparecem traduzidos, e a legenda da seção
              informa isso ao leitor ("translated from Portuguese"). -->
 
@@ -1672,6 +1791,22 @@
           <blockquote data-i18n="t3.quote">Recomendo a todos, um ótimo profissional e de muito conhecimento, sempre atendendo com rapidez todas as demandas solicitadas.</blockquote>
           <div class="who">
             <span class="src" data-i18n="t3.src">Cliente · Fluxo para delivery de supermercado · jul. 2026</span>
+            <span class="stars" role="img" data-i18n-aria="stars.label" aria-label="5 de 5 estrelas">★★★★★</span>
+          </div>
+        </div>
+        <div class="testi reveal">
+          <span class="quote-mark">"</span>
+          <blockquote data-i18n="t4.quote">Excelente profissional! Desde o início, demonstrou muita organização, agilidade e compromisso com o projeto. A comunicação foi clara durante todo o processo, cumpriu os prazos combinados e entregou um trabalho de altíssima qualidade. Além de ser muito rápido, é extremamente competente, atencioso e sempre disposto a realizar os ajustes necessários para que o resultado fique exatamente como esperado. Superou minhas expectativas e mostrou que realmente entende do que faz.</blockquote>
+          <div class="who">
+            <span class="src" data-i18n="t4.src">Cliente · Landing page em Next.js (Marvet) · ago. 2026</span>
+            <span class="stars" role="img" data-i18n-aria="stars.label" aria-label="5 de 5 estrelas">★★★★★</span>
+          </div>
+        </div>
+        <div class="testi reveal">
+          <span class="quote-mark">"</span>
+          <blockquote data-i18n="t5.quote">Conclusão rapida e eficiente, com experincia incrivel.</blockquote>
+          <div class="who">
+            <span class="src" data-i18n="t5.src">Cliente · Importação de XML para banco SQL · ago. 2026</span>
             <span class="stars" role="img" data-i18n-aria="stars.label" aria-label="5 de 5 estrelas">★★★★★</span>
           </div>
         </div>
@@ -2304,7 +2439,7 @@
           "mech.3d": "Not a canned-answer chatbot. The flow <strong>talks to your database, your payments and your calendar</strong> — so it resolves the order by itself instead of pushing everything to a human.",
           "mech.3p": "→ PIX, Stripe and Mercado Pago running in real operations",
           "proj.title": "Real products I can show you working",
-          "proj.sub": "You don't want promises — you want to see it working. Three of these run today in real operations with clients; the rest are my own products or completed deliveries, open source or demoed live over chat. Message me on WhatsApp and I'll open any of them in front of you.",
+          "proj.sub": "You don't want promises — you want to see it working. Four of these run today in real operations with clients; the rest are my own products or completed deliveries, open source or with a live demo. Message me on WhatsApp and I'll open any of them in front of you.",
           "p1.type": "SaaS · AI · WhatsApp", "p1.status": "In production",
           "p1.desc": "Smart scheduling SaaS for salons, barbershops and beauty studios: the client books alone through the public link or by chatting with the AI assistant on WhatsApp, which checks availability, books and cancels with no human involved. Automatic reminders 24h and 2h ahead kill no-shows; win-back campaigns, birthdays, NPS and broadcasts keep customers in the base.",
           "p1.res": "Multi-tenant with RLS on Supabase, recurring subscription (Mercado Pago) with a 14-day trial, installable PWA, LGPD compliance and Sentry monitoring — running in production with an open demo.",
@@ -2332,6 +2467,36 @@
           "p6.desc": "Complete CRM SaaS for small businesses: leads with scoring and CSV import, kanban pipeline with drag-and-drop, tasks, dashboard with charts, command palette (⌘K), in-app notifications, dark mode and RBAC with 4 roles (Owner, Admin, Member, Viewer). Every mutation recorded in an audit log with before/after.",
           "p6.res": "Open source on GitHub with a realistic seed for demos — multi-workspace architecture ready to scale.",
           "p6.l1": "↗ GitHub",
+          "p9.type": "Diagnostics · Agribusiness", "p9.status": "In production", "p9.kpi": "85 tests",
+          "p9.title": "Management Index for Agribusiness",
+          "p9.desc": "Management diagnostics for an agribusiness consultancy: 38 questions turn into a score per pillar, a maturity stage and one to three action priorities. The engine <strong>turns answers into signals, groups signals into business problems</strong> and picks what the consultant should tackle first — with a coexistence rule so it never recommends two themes that share the same piece of evidence.",
+          "p9.res": "No text is written by AI: the 190 answer options and 18 pillar texts are <strong>generated from the client's own documents</strong>, so a wording change goes into the document and the code is regenerated. The same report ships in three formats — screen, PDF and email. RLS forced on all 6 tables, LGPD consent stored with date, time and IP.",
+          "p9.l1": "▶ Take the assessment",
+          "p10.type": "SaaS · Payroll-Deductible Credit", "p10.status": "Own product · open demo", "p10.kpi": "222 tests",
+          "p10.desc": "SaaS for credit brokers and banking correspondents. A broker's problem isn't <em>calculating</em> commission — it's <strong>proving</strong> it, and the whole system is built around that: an engine using integer arithmetic, versioned rate tables, splits, five kinds of chargeback and monthly closing with a balance that rolls over.",
+          "p10.res": "222 green tests (209 unit and integration, 13 end-to-end). Multi-tenant with RLS, TOTP 2FA, RBAC, hash-chained audit trail, bank-return reconciliation that detects encoding and columns on its own, and an LGPD module with data dossier, anonymisation and portability. Runs on always-free infrastructure.",
+          "p10.l1": "▶ Live demo",
+          "alt.p9": "Management Index cover: agribusiness diagnostics, 38 questions, 85 tests, Next.js and Supabase",
+          "alt.p10": "Acerto cover: commission management SaaS for payroll-deductible credit, 222 tests, multi-tenant RLS and 2FA",
+          "tag.demo": "// technical demos",
+          "demo.title": "Proofs of concept I wrote to explain a decision",
+          "demo.sub": "These aren't client deliveries — it's public code I wrote to back an argument in a technical conversation. They're here because they show how I think before building.",
+          "d1.t": "Card machine POS: what to do when the network drops",
+          "d1.d": "What breaks a POS in production isn't calling the SDK — it's the timeout that makes the operator swipe the card twice. Three defensive rules: record the intent before calling the terminal, generate the idempotency key in the app and, when in doubt, <strong>query instead of resending</strong>.",
+          "d1.c": "▶ Clickable simulator →",
+          "d2.t": "Layered support, built through the API",
+          "d2.d": "Intake → Automation → Chatbot → AI → Human. Every request is resolved <strong>at the simplest and cheapest level possible</strong> and only escalates when it has to — the opposite of routing everything to AI and paying tokens for opening-hours questions.",
+          "d2.c": "↗ Architecture and blueprint →",
+          "d3.t": "Layer-based visual configurator",
+          "d3.d": "Real-time uniform customisation: fixed base, dynamic colour and layers that recombine without generating one image per variation. <strong>One file, no dependencies</strong> — instant even on a poor connection.",
+          "d3.c": "▶ Open the configurator →",
+          "outros.t": "Other completed work",
+          "o1.t": "XML import into a SQL database",
+          "o1.d": "Field-by-field mapping of multiple XML files into an existing schema, with no manual rework.",
+          "o2.t": "Law firm website: GA4, blog and conversion",
+          "o2.d": "Second round of improvements on a published law firm site: analytics, blog structure and conversion tweaks.",
+          "o3.t": "Page publishing and responsiveness",
+          "o3.d": "New page published on the existing domain, tested in the real environment and with the conversion button wired to WhatsApp.",
           "alt.p1": "AgendaZap booking page: the client picks a service (beard, haircut, manicure) with prices",
           "alt.p2": "RealCred+ CRM landing page with WhatsApp queue panel, official messaging and compliance guardrails",
           "alt.p3": "JurisIA cover: AI legal suite, 4 products, Next.js, Hono, BullMQ, Stripe and RAG stack",
@@ -2353,13 +2518,17 @@
           "roi.rk": "estimated yearly savings", "roi.rsub": "with ~70% of tasks automated",
           "roi.month": "per month", "roi.hoursback": "hours returned/year",
           "roi.cta": "I want to automate this →", "roi.disc": "Educational estimate, not a commercial quote. The real number depends on your process.",
-          "testi.title": "What clients say", "testi.sub": "Real, verifiable reviews from projects completed on the 99freelas platform, translated from Portuguese.",
+          "testi.title": "What clients say", "testi.sub": "7 reviews on 99freelas, all rated 5.0, with 100% recommendation. These are five of them — all verifiable on the public profile. Translated from Portuguese.",
           "t1.quote": "Very helpful and professional. If I need it again I'll definitely hire his services, highly recommend!!!",
           "t1.src": "Client · Landing page for a low-ticket product · Jun 2026",
           "t2.quote": "Punctual, organised and very professional! Excellent work!",
           "t3.quote": "I recommend him to everyone — a great professional with deep knowledge, always handling every request quickly.",
           "t3.src": "Client · Supermarket delivery flow · Jul 2026",
           "t2.src": "Client · SEM image analysis with Python · May 2026",
+          "t4.quote": "Outstanding professional! From the start he showed real organisation, speed and commitment to the project. Communication was clear throughout, he met every agreed deadline and delivered work of the highest quality. On top of being very fast, he is extremely competent, attentive and always willing to make whatever adjustments were needed for the result to come out exactly as expected. He exceeded my expectations and showed he genuinely knows what he is doing.",
+          "t4.src": "Client · Next.js landing page (Marvet) · Aug 2026",
+          "t5.quote": "Fast and efficient delivery, an incredible experience.",
+          "t5.src": "Client · XML import into a SQL database · Aug 2026",
           "stars.label": "5 out of 5 stars",
           "about.title": "Autark is one person — and that's exactly why it works",
           "about.f1k": "Education", "about.f2k": "Rating", "about.f2v": "5.0 ★ (100% recom.)",

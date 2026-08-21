@@ -20,6 +20,8 @@ lighthouserc.mobile.json  idem no perfil mobile (limiares menores: throttling)
 _headers                cabeçalhos HTTP reais — só valem fora do GitHub Pages
 assets/
   *.webp                screenshots dos projetos e foto
+                        (tratto e acerto sao capas ilustradas: o print real
+                         mostraria a marca do cliente)
   og.jpg                preview social 1200x630
   icon-*.png            ícones do PWA
   logo-mark.svg         logo vetorial (favicon e navbar)
