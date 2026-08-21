@@ -111,7 +111,7 @@ check("todas as imagens foram baixadas", respostasImagem.length >= 9, `${respost
 if (base.quebradas.length) {
   console.log(`  (aviso) ${base.quebradas.length} imagem(ns) não decodificaram neste navegador: ${base.quebradas.join(", ")}`);
 }
-check("sem rolagem horizontal", base.overflowX <= 0, `${base.overflowX}px`);
+check("sem rolagem horizontal (1440px)", base.overflowX <= 0, `${base.overflowX}px`);
 check("exatamente um h1", base.h1 === 1, `${base.h1} encontrados`);
 check("todos os JSON-LD presentes", base.jsonld >= 5, `${base.jsonld}`);
 check("todos os projetos renderizam", base.projetos >= 8, `${base.projetos}`);
@@ -187,6 +187,21 @@ const tema = await page.evaluate(() => {
   return document.documentElement.getAttribute("data-theme");
 });
 check("toggle de tema responde", tema === "light" || tema === null);
+
+// Larguras reais de celular. O teste acima roda so em 1440px e por isso nunca
+// pegou o hero escapando 18px num Android de 360px — que e a largura mais comum
+// do publico que chega pelo Instagram.
+console.log("\nLarguras de tela");
+const larguras = [320, 360, 375, 390, 412, 768, 1024];
+for (const w of larguras) {
+  const p = await browser.newPage({ viewport: { width: w, height: 800 } });
+  await p.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle" });
+  const excesso = await p.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+  );
+  check(`sem rolagem horizontal (${w}px)`, excesso <= 0, `${excesso}px`);
+  await p.close();
+}
 
 console.log("\nErros de runtime");
 check("nenhum erro no console", erros.length === 0, erros.slice(0, 2).join(" | "));

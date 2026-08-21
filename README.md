@@ -15,17 +15,23 @@ index.html              página inteira (HTML + CSS + JS inline)
 sw.js                   service worker (offline + cache)
 manifest.webmanifest    PWA instalável
 robots.txt / sitemap.xml
-lighthouserc.json       metas de performance/a11y/SEO da CI
+lighthouserc.json       metas da CI no perfil desktop
+lighthouserc.mobile.json  idem no perfil mobile (limiares menores: throttling)
+_headers                cabeçalhos HTTP reais — só valem fora do GitHub Pages
 assets/
   *.webp                screenshots dos projetos e foto
   og.jpg                preview social 1200x630
   icon-*.png            ícones do PWA
   logo-mark.svg         logo vetorial (favicon e navbar)
+  banner.svg            banner animado do README do perfil (não usado no site)
   fonts/                Space Grotesk, Inter, JetBrains Mono (self-hosted)
 tools/
   fetch-fonts.py        regenera assets/fonts/
   check-assets.py       valida referências locais e assets órfãos
+  e2e.mjs               testes de ponta a ponta dos fluxos da página
+  trocar-dominio.py     migra o domínio em todos os 28 pontos de uma vez
 .github/workflows/      CI de qualidade
+.github/dependabot.yml  atualização mensal das actions
 ```
 
 ## Rodar localmente
@@ -87,23 +93,45 @@ uma página que vende conformidade com a LGPD. Só o subset `latin` é baixado
 
 ## Qualidade (CI)
 
-`.github/workflows/quality.yml` roda a cada push, PR e toda segunda-feira:
+`.github/workflows/quality.yml` roda a cada push, PR e toda segunda-feira, em
+6 jobs:
 
-- **HTML + CSS** válidos (html5validator)
-- **`tools/check-assets.py`** — nenhuma referência local quebrada, nenhum asset órfão
-- **lychee** — links externos vivos (as demos apodrecem sozinhas quando um deploy cai)
-- **Lighthouse CI** — mínimos de 90 em performance/boas práticas e 95 em a11y/SEO
+| Job | O que garante |
+|---|---|
+| HTML + referências locais | HTML/CSS válidos e nenhum arquivo referenciado faltando |
+| Links externos | as demos continuam no ar (elas caem sozinhas com o tempo) |
+| Lighthouse (desktop) | performance/boas práticas ≥ 90, a11y/SEO ≥ 95 |
+| Lighthouse (mobile) | mesmos mínimos, performance ≥ 80 (throttling é agressivo) |
+| Fluxos críticos (E2E) | 26 testes de comportamento — ver abaixo |
 
 O limiar de SEO vale só para o `index.html`. O `404.html` é `noindex` de propósito,
 o que derruba a categoria de SEO para ~0.58 — cobrar 95 dele seria exigir que a
 página de erro fosse indexável. Ele continua sendo checado em performance,
 acessibilidade e boas práticas (ver `assertMatrix` no `lighthouserc.json`).
 
-Rodar a checagem local:
+**A rodada semanal não é enfeite.** Ela roda no mesmo commit que já passou no push
+e mesmo assim pega coisa nova: link externo que morreu, e falhas que dependem de
+tempo — a asserção `color-contrast`, por exemplo, só enxerga as mensagens do chat
+depois que elas animam, então um contraste ruim pode passar num push e reprovar
+no agendamento. CI vermelha no agendado é sinal real, não flake para ignorar.
+
+Rodar localmente:
 
 ```bash
-python3 tools/check-assets.py
+python3 tools/check-assets.py    # referências e assets órfãos
+node tools/e2e.mjs               # precisa de: npm install playwright
 ```
+
+### O que o E2E cobre
+
+O resto da CI valida estrutura; nenhuma dessas checagens pega uma regressão de
+comportamento. `tools/e2e.mjs` cobre o formulário montando a mensagem, a troca de
+idioma sem sobra de português, o FAQ abrindo, a calculadora, o tema e erros de
+runtime no console.
+
+Cobre também **rolagem horizontal em 7 larguras** (320 a 1024px). Por muito tempo
+o teste rodava só em 1440px e por isso não pegou o hero escapando 18px num Android
+de 360px — a largura mais comum de quem chega pelo Instagram.
 
 ## Decisões técnicas
 
@@ -121,9 +149,20 @@ python3 tools/check-assets.py
   visíveis na página, mas não são declaradas em JSON-LD: nota da própria empresa
   sobre si mesma viola a política de reviews do Google e rende aviso de spam de
   dados estruturados.
-- **Acessibilidade:** contraste AA em todo texto, `prefers-reduced-motion`,
-  skip-link, FAQ com `aria-controls` e headings, menu mobile com `Esc`,
-  clique-fora e retorno de foco.
+- **Acessibilidade:** contraste AA em todo texto **nos dois temas**,
+  `prefers-reduced-motion` (inclusive nas View Transitions), skip-link, FAQ com
+  `aria-controls` e headings, menu mobile com `Esc`, clique-fora e retorno de foco.
+- **Formulário sem `<form>`.** A CSP declara `form-action 'none'`; o botão monta a
+  mensagem e abre o WhatsApp por JS, e o link direto logo abaixo cobre o caso sem
+  JavaScript.
+- **Grid com `minmax(0, …)`.** Colunas de grid têm `min-width: auto` e não encolhem
+  abaixo do conteúdo — com o mockup do celular em 330px fixos, isso empurrava a
+  página inteira para o lado em telas pequenas, e o `max-width: 100%` dele não
+  segurava nada porque resolvia contra a própria largura travada.
+- **`CACHE_VERSION` no `sw.js` precisa subir** sempre que um arquivo em `assets/`
+  mudar de conteúdo mantendo o nome. Os assets são servidos
+  *stale-while-revalidate*: sem o bump, quem já visitou o site continua vendo a
+  versão antiga na primeira visita depois da atualização.
 
 ## Publicar
 
@@ -136,7 +175,21 @@ git push origin main
 
 Alternativa com banda ilimitada e cabeçalhos HTTP customizáveis:
 [Cloudflare Pages](https://dash.cloudflare.com) → Workers & Pages → Create →
-Pages → conectar o repositório (sem comando de build, output `/`).
+Pages → conectar o repositório (sem comando de build, output `/`). O arquivo
+`_headers` já está pronto para esse dia: leva a CSP completa (com o
+`frame-ancestors` que o `<meta>` não consegue entregar), `Permissions-Policy`,
+HSTS e as regras de cache.
+
+### Trocar de domínio
+
+```bash
+python3 tools/trocar-dominio.py --conferir meudominio.com   # simula
+python3 tools/trocar-dominio.py meudominio.com              # grava
+```
+
+A URL aparece em 28 pontos (canonical, hreflang, OG, Twitter, 5 blocos de JSON-LD,
+sitemap, robots e README). Trocar à mão deixa algum para trás, e uma `canonical`
+ou `og:image` errada quebra SEO e preview sem dar erro visível.
 
 ## Analytics (opcional)
 

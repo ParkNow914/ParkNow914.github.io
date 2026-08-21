@@ -493,7 +493,7 @@
       position: relative;
     }
     .hero-grid {
-      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 56px; align-items: center;
     }
     .eyebrow {
@@ -603,7 +603,11 @@
     .msg.show { opacity: 1; transform: none; }
     .msg.in { background: #1f2c34; border-top-left-radius: 4px; align-self: flex-start; }
     .msg.out { background: #005c4b; border-top-right-radius: 4px; align-self: flex-end; }
-    .msg .time { display: block; font-size: 0.6rem; color: rgba(255,255,255,0.45); text-align: right; margin-top: 3px; }
+    /* 0.45 dava 4.14:1 sobre o balao cinza e 2.88:1 sobre o verde — os dois abaixo
+       do AA. 0.70 sobe para 7.80:1 e 4.77:1. Era o que reprovava a assercao
+       color-contrast do Lighthouse de forma intermitente (so quando o axe
+       capturava as mensagens ja animadas). */
+    .msg .time { display: block; font-size: 0.6rem; color: rgba(255,255,255,0.70); text-align: right; margin-top: 3px; }
     .msg .pix {
       display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
       background: rgba(255,255,255,0.08); border-radius: 8px; padding: 5px 10px;
@@ -637,7 +641,7 @@
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
     @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
       .phone-wrap { order: 2; }
       .hero { padding-top: 110px; }
     }
@@ -1410,7 +1414,7 @@
       <div class="reveal">
         <span class="sec-tag" data-i18n="tag.proj">02. projetos</span>
         <h2 class="sec-title" data-i18n="proj.title">Produtos reais que eu posso te mostrar funcionando</h2>
-        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Dois destes rodam hoje em operação real com clientes; os outros são produtos próprios, com código aberto ou demo ao vivo pelo chat. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
+        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Três destes rodam hoje em operação real com clientes; os outros são produtos próprios ou entregas concluídas, com código aberto ou demo ao vivo pelo chat. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
       </div>
 
       <div class="proj-list">
@@ -2300,7 +2304,7 @@
           "mech.3d": "Not a canned-answer chatbot. The flow <strong>talks to your database, your payments and your calendar</strong> — so it resolves the order by itself instead of pushing everything to a human.",
           "mech.3p": "→ PIX, Stripe and Mercado Pago running in real operations",
           "proj.title": "Real products I can show you working",
-          "proj.sub": "You don't want promises — you want to see it working. Two of these run today in real operations with clients; the rest are my own products, open source or demoed live over chat. Message me on WhatsApp and I'll open any of them in front of you.",
+          "proj.sub": "You don't want promises — you want to see it working. Three of these run today in real operations with clients; the rest are my own products or completed deliveries, open source or demoed live over chat. Message me on WhatsApp and I'll open any of them in front of you.",
           "p1.type": "SaaS · AI · WhatsApp", "p1.status": "In production",
           "p1.desc": "Smart scheduling SaaS for salons, barbershops and beauty studios: the client books alone through the public link or by chatting with the AI assistant on WhatsApp, which checks availability, books and cancels with no human involved. Automatic reminders 24h and 2h ahead kill no-shows; win-back campaigns, birthdays, NPS and broadcasts keep customers in the base.",
           "p1.res": "Multi-tenant with RLS on Supabase, recurring subscription (Mercado Pago) with a 14-day trial, installable PWA, LGPD compliance and Sentry monitoring — running in production with an open demo.",
