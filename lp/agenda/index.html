@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agenda que atende sozinha no WhatsApp | Autark</title>
+  <meta name="description" content="Sua cliente marca sozinha pelo WhatsApp, o sistema confirma e lembra 24h e 2h antes. Menos bolo, menos celular na mão durante o atendimento." />
+  <link rel="canonical" href="https://parknow914.github.io/lp/agenda/" />
+
+  <!--
+    CSP propria desta pagina, e diferente da do site.
+
+    O portfolio roda com tudo travado em 'self': nenhum request sai para
+    terceiro, e isso e deliberado — a pagina promete LGPD e a coerencia comeca
+    por nao entregar o IP de todo visitante para fora.
+
+    Uma pagina de anuncio precisa do Pixel para o algoritmo aprender. Em vez de
+    afrouxar a CSP do site inteiro, o rastreamento fica confinado aqui, e mesmo
+    aqui so depois de consentimento explicito.
+
+    Sem frame-ancestors: o navegador ignora essa diretiva quando ela vem
+    por <meta> e ainda avisa no console. Ela so vale como cabecalho HTTP,
+    e e por isso que ela vive no _headers e nao aqui.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https://www.facebook.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; connect-src 'self' https://www.facebook.com; form-action 'none'; upgrade-insecure-requests" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/logo-mark.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+
+  <style>
+    :root {
+      --bg: #050810;
+      --text: #e7ecf3;
+      --muted: #8b96a9;
+      --dim: #7b8699;
+      --accent: #34d399;
+      --accent-strong: #25d366;
+      --cyan: #22d3ee;
+      --borda: rgba(255, 255, 255, 0.08);
+      --superficie: rgba(255, 255, 255, 0.04);
+      --display: "Space Grotesk", sans-serif;
+      --corpo: "Inter", sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text); font-family: var(--corpo);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .fx {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 40% at 15% 0%, rgba(52, 211, 153, 0.10), transparent 62%),
+        radial-gradient(ellipse 50% 36% at 88% 12%, rgba(34, 211, 238, 0.07), transparent 64%);
+    }
+    /* minmax(0) porque coluna de grid nao encolhe abaixo do conteudo por
+       padrao, e um elemento largo empurra a pagina inteira no celular */
+    .container { width: 100%; max-width: 940px; margin: 0 auto; padding: 0 20px; }
+
+    header { padding-block: 28px; border-bottom: 1px solid var(--borda); }
+    .marca { display: flex; align-items: center; gap: 12px;
+      color: var(--text); text-decoration: none; width: max-content; }
+    .marca svg { width: 32px; height: 32px; display: block; }
+    .marca span {
+      font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    .hero { padding-block: 64px 56px; }
+    .tag {
+      font-family: var(--mono); font-size: 0.82rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent);
+      display: block; margin-bottom: 18px;
+    }
+    h1 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.1;
+      letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 22px;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+    .sub {
+      font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted);
+      max-width: 640px; text-wrap: pretty; margin-bottom: 34px;
+    }
+    .sub strong { color: var(--text); font-weight: 600; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent-strong); color: #04120b;
+      font-weight: 700; font-size: 1.06rem;
+      padding: 16px 30px; border-radius: 12px; text-decoration: none;
+      border: 0; cursor: pointer; font-family: var(--corpo);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .cta:hover, .cta:focus-visible { filter: brightness(1.08); transform: translateY(-1px); }
+    .cta-nota { font-size: 0.9rem; color: var(--dim); margin-top: 14px; }
+
+    section { padding-block: 52px; border-top: 1px solid var(--borda); }
+    h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2;
+      letter-spacing: -0.015em; margin-bottom: 12px; text-wrap: balance;
+    }
+    .secao-sub { color: var(--muted); margin-bottom: 30px; max-width: 620px; }
+
+    .grade { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+    .cartao {
+      background: var(--superficie); border: 1px solid var(--borda);
+      border-radius: 14px; padding: 24px; min-width: 0;
+    }
+    .cartao .n {
+      font-family: var(--mono); font-weight: 500; font-size: 0.8rem;
+      color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 10px;
+    }
+    .cartao h3 { font-family: var(--display); font-size: 1.12rem; font-weight: 700; margin-bottom: 8px; }
+    .cartao p { color: var(--muted); font-size: 0.98rem; }
+
+    ul.lista { list-style: none; display: grid; gap: 13px; }
+    ul.lista li { padding-left: 30px; position: relative; color: var(--muted); }
+    ul.lista li::before {
+      content: ""; position: absolute; left: 4px; top: 0.62em;
+      width: 9px; height: 9px; border-radius: 3px; background: var(--accent);
+    }
+    ul.lista li strong { color: var(--text); font-weight: 600; }
+
+    details {
+      border: 1px solid var(--borda); border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 12px; background: var(--superficie);
+    }
+    summary { cursor: pointer; font-weight: 600; color: var(--text); }
+    details p { color: var(--muted); margin-top: 12px; }
+
+    .quem { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+    .quem img { border-radius: 14px; border: 1px solid var(--borda); }
+    .quem div { flex: 1 1 300px; min-width: 0; }
+
+    footer { padding-block: 40px 56px; border-top: 1px solid var(--borda);
+      color: var(--dim); font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    /* Banner de consentimento. Fica fixo, mas nao cobre o CTA principal em
+       telas pequenas porque o body ganha padding enquanto ele existe. */
+    #consentimento {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+      background: #0a101f; border-top: 1px solid var(--borda);
+      padding: 16px 20px; display: none;
+    }
+    #consentimento.visivel { display: block; }
+    .consent-caixa {
+      max-width: 940px; margin: 0 auto; display: flex; gap: 16px;
+      align-items: center; flex-wrap: wrap;
+    }
+    .consent-caixa p { color: var(--muted); font-size: 0.9rem; flex: 1 1 320px; min-width: 0; }
+    .consent-botoes { display: flex; gap: 10px; }
+    .btn-menor {
+      font-family: var(--corpo); font-size: 0.92rem; font-weight: 600;
+      padding: 10px 18px; border-radius: 9px; cursor: pointer; border: 1px solid var(--borda);
+      background: transparent; color: var(--text);
+    }
+    .btn-menor.sim { background: var(--accent-strong); color: #04120b; border-color: transparent; }
+    .btn-menor:hover, .btn-menor:focus-visible { filter: brightness(1.1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cta { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fx" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <a class="marca" href="/" aria-label="Autark — página inicial">
+        <svg viewBox="0 0 359 350" width="32" height="32" aria-hidden="true" focusable="false"><defs><linearGradient id="g" x1="10%" x2="82%" y1="8%" y2="92%"><stop offset="0" stop-color="#34d399"/><stop offset=".6" stop-color="#2bdcb5"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><path fill="url(#g)" fill-rule="evenodd" d="M171 25.3a39 39 0 0 0-25.6 20.9c-1.5 2.9-16.7 30.3-33.8 60.8l-42.1 75-25.1 44.5c-24.3 42.8-25.3 60-4.6 81.7 28.1 29.5 74 21.3 96.3-17.2l13.4-23c22.9-39.7 42.9-73.6 43.9-74.8 1-1 2.7-.3 8.4 3.4 13 8.3 14.1 6 9.6-19.6l-3.4-20.7c-.1-5.2-39.4.3-46.2 6.4-3.9 3.5 3.3 12.5 12.6 15.6 1 .3-1.2 4.2-23.4 42.2l-31.9 54.9c-16.3 28.6-45.9 36.5-63.2 16.9-12.3-14.1-10.9-21.5 10.9-59.9L97 179l40.5-72L166 56.4c3.1-5.7 8.7-8.8 14.7-8.1 8.5.9 1.7-10 91.7 148 42.3 74.2 41 71.7 40.4 80.6-1.4 19.5-9.5 24.1-42.3 24.1-32.1 0-29.6 1.4-46.4-27.5-14.8-25.6-15.4-26.2-23.7-24.1-11.5 2.9-11 9.2 2.7 32.9 18.3 31.4 19.4 32.8 30.9 38.5l5.5 2.7h61l6.8-3.2c35.9-17 37.1-43.6 4.4-100.8l-58.2-102-41.8-73.4A38 38 0 0 0 171 25.3"/></svg>
+        <span>Autark</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero container">
+      <span class="tag">para salão, barbearia e estética</span>
+      <h1>Quantas vezes você parou o atendimento hoje para responder <em>“tem horário?”</em></h1>
+      <p class="sub">
+        Uma agenda que conversa sozinha no WhatsApp responde na hora, marca, e
+        lembra a cliente <strong>24h e 2h antes</strong> — que é exatamente onde
+        o bolo morre.
+      </p>
+      <a class="cta" id="cta-topo" href="https://wa.me/5512991743827" target="_blank" rel="noopener noreferrer">
+        Quero ver funcionando
+      </a>
+      <p class="cta-nota">Sem formulário. Abre direto no WhatsApp, com a mensagem já escrita.</p>
+    </div>
+
+    <section class="container">
+      <h2>O que muda no seu dia</h2>
+      <p class="secao-sub">Três coisas, e nenhuma delas exige você aprender sistema novo.</p>
+      <div class="grade">
+        <div class="cartao">
+          <span class="n">01</span>
+          <h3>A cliente marca sozinha</h3>
+          <p>Pelo link público ou conversando no WhatsApp com a atendente de IA, que consulta a agenda, marca e cancela sem ninguém do salão tocar no celular.</p>
+        </div>
+        <div class="cartao">
+          <span class="n">02</span>
+          <h3>O lembrete derruba o bolo</h3>
+          <p>Um aviso 24h antes e outro 2h antes. Entre marcar e vir passam duas semanas e uma vida inteira — sem lembrete, a chance de sumir é alta.</p>
+        </div>
+        <div class="cartao">
+          <span class="n">03</span>
+          <h3>A base não esfria</h3>
+          <p>Recupera cliente que sumiu, manda aniversário, pergunta como foi o atendimento e dispara campanha. Sozinho, no horário que você definir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>Por que isso não é “mais um bot”</h2>
+      <p class="secao-sub">
+        Bot é uma árvore de respostas prontas que mora dentro do WhatsApp. Aqui as
+        regras do seu negócio moram num lugar só, e o WhatsApp é apenas uma das
+        portas de entrada.
+      </p>
+      <ul class="lista">
+        <li>Cada salão enxerga <strong>só os próprios dados</strong>, com isolamento no banco</li>
+        <li>Assinatura recorrente, com <strong>14 dias grátis</strong> antes de qualquer cobrança</li>
+        <li>Instalável no celular como aplicativo, sem passar por loja</li>
+        <li>LGPD e monitoramento de erro desde o primeiro dia</li>
+        <li>Está <strong>em produção</strong>, com demo aberta — não é protótipo</li>
+      </ul>
+    </section>
+
+    <section class="container">
+      <h2>Quem faz</h2>
+      <div class="quem">
+        <img src="/assets/foto-square.webp" width="120" height="120" loading="lazy" decoding="async" alt="Alisson Santos, desenvolvedor full-stack" />
+        <div>
+          <p class="secao-sub" style="margin-bottom:12px">
+            Sou <strong style="color:var(--text)">Alisson Santos</strong>. A Autark
+            não é agência: sou eu que atendo, construo e entrego. Você fala com
+            quem escreve o código, do orçamento ao suporte.
+          </p>
+          <p style="color:var(--muted)">
+            Se eu achar que o seu caso não compensa, eu falo. Já falei antes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>As perguntas que todo mundo faz</h2>
+      <details>
+        <summary>Preciso trocar meu número de WhatsApp?</summary>
+        <p>Não. O sistema trabalha com o número que o seu salão já usa e que as clientes já conhecem.</p>
+      </details>
+      <details>
+        <summary>E se a cliente quiser falar com uma pessoa?</summary>
+        <p>Ela fala. A IA resolve o que é repetitivo — horário, preço, marcar, cancelar — e passa para você o que exige gente. Você não perde o controle da conversa.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo para estar rodando?</summary>
+        <p>Depende do tamanho do seu catálogo de serviços e da sua agenda atual. Eu te digo o prazo por escrito antes de qualquer pagamento — junto com escopo e valor.</p>
+      </details>
+      <details>
+        <summary>E se eu não gostar?</summary>
+        <p>São 14 dias grátis antes de qualquer cobrança. Dá para usar de verdade, com clientes reais, antes de decidir.</p>
+      </details>
+    </section>
+
+    <section class="container">
+      <h2>Quer ver funcionando antes de decidir?</h2>
+      <p class="secao-sub">
+        Me chame no WhatsApp. Eu abro o sistema na sua frente e você mesmo marca
+        um horário de teste, na hora. Sem apresentação, sem proposta antes de você ver.
+      </p>
+      <a class="cta" id="cta-fim" href="https://wa.me/5512991743827" target="_blank" rel="noopener noreferrer">
+        Falar com o Alisson agora
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Autark — automação e sistemas com IA. <a href="/">Ver todos os projetos</a></p>
+    </div>
+  </footer>
+
+  <div id="consentimento" role="region" aria-label="Aviso de cookies">
+    <div class="consent-caixa">
+      <p>
+        Usamos uma medição da Meta para saber quais anúncios trazem clientes.
+        Nada é carregado antes de você aceitar, e recusar não muda nada nesta página.
+      </p>
+      <div class="consent-botoes">
+        <button type="button" class="btn-menor" id="recusar">Recusar</button>
+        <button type="button" class="btn-menor sim" id="aceitar">Aceitar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // Vazio de proposito ate a conta de anuncios existir. Enquanto estiver
+      // assim, nenhum script de terceiro e carregado e o banner nem aparece —
+      // a pagina funciona igual, so nao mede.
+      var PIXEL_ID = "";
+
+      var CHAVE = "autark-consentimento";
+      var ZAP = "5512991743827";
+
+      // ---------- de qual anuncio a pessoa veio ----------
+      // Sem isto, todo lead chega identico no WhatsApp e nao da pra saber qual
+      // criativo pagou por ele. Com isto, a origem vem escrita na mensagem.
+      function origem() {
+        try {
+          var q = new URLSearchParams(location.search);
+          var partes = ["utm_source", "utm_campaign", "utm_content"]
+            .map(function (k) { return q.get(k); })
+            .filter(Boolean);
+          return partes.length ? " [" + partes.join("/") + "]" : "";
+        } catch (e) { return ""; }
+      }
+
+      var texto = "Ola Alisson! Vim pela pagina da agenda no WhatsApp e quero ver funcionando." + origem();
+      var href = "https://wa.me/" + ZAP + "?text=" + encodeURIComponent(texto);
+      ["cta-topo", "cta-fim"].forEach(function (id) {
+        var a = document.getElementById(id);
+        if (a) a.href = href;
+      });
+
+      // ---------- consentimento ----------
+      function carregarPixel() {
+        if (!PIXEL_ID) return;
+        /* eslint-disable */
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        /* eslint-enable */
+        window.fbq("init", PIXEL_ID);
+        window.fbq("track", "PageView");
+
+        ["cta-topo", "cta-fim"].forEach(function (id) {
+          var a = document.getElementById(id);
+          if (a) a.addEventListener("click", function () { window.fbq("track", "Contact"); });
+        });
+      }
+
+      var banner = document.getElementById("consentimento");
+      var escolha = null;
+      try { escolha = localStorage.getItem(CHAVE); } catch (e) { escolha = null; }
+
+      if (!PIXEL_ID) {
+        // nada a consentir: sem medicao, sem banner
+      } else if (escolha === "sim") {
+        carregarPixel();
+      } else if (escolha !== "nao") {
+        banner.classList.add("visivel");
+      }
+
+      function responder(valor) {
+        try { localStorage.setItem(CHAVE, valor); } catch (e) { /* modo privado */ }
+        banner.classList.remove("visivel");
+        if (valor === "sim") carregarPixel();
+      }
+      var sim = document.getElementById("aceitar");
+      var nao = document.getElementById("recusar");
+      if (sim) sim.addEventListener("click", function () { responder("sim"); });
+      if (nao) nao.addEventListener("click", function () { responder("nao"); });
+    })();
+  </script>
+</body>
+</html>

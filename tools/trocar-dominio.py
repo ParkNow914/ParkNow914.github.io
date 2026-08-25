@@ -29,7 +29,17 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ATUAL = "parknow914.github.io"
 
-ARQUIVOS = ["index.html", "404.html", "sitemap.xml", "robots.txt", "README.md", "manifest.webmanifest"]
+ARQUIVOS = [
+    "index.html",
+    "404.html",
+    "sitemap.xml",
+    "robots.txt",
+    "README.md",
+    "manifest.webmanifest",
+    # A landing tem canonical proprio. Fora desta lista, ela apontaria para
+    # o dominio antigo depois da migracao — e canonical errado nao da erro.
+    "lp/agenda/index.html",
+]
 
 
 def main() -> int:
