@@ -10,7 +10,7 @@
    descartado e os caches órfãos são apagados no activate.
    ============================================================ */
 
-const CACHE_VERSION = "autark-v2";
+const CACHE_VERSION = "autark-v3";
 const PRECACHE = [
   "/",
   "/index.html",
