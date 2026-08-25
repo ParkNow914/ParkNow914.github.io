@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Autark — Automação com IA que roda o seu negócio no piloto automático</title>
   <meta name="description" content="A Autark instala fluxos de WhatsApp + IA que atendem, vendem e agendam sozinhos, SaaS completos e integrações que eliminam trabalho manual. Sistemas reais em produção. Por Alisson Santos." />
@@ -1961,6 +1962,44 @@
   </footer>
 
   <script>
+    /* Origem da conversa.
+     *
+     * O calendario do Instagram define a metrica que vale: conversas no
+     * WhatsApp que citam o Instagram. So que os 12 pontos de wa.me deste site
+     * mandam a mesma mensagem, entao toda conversa chega identica e nao da
+     * pra saber se veio do perfil, de um anuncio ou de busca organica.
+     *
+     * Aqui a UTM da URL de entrada e carimbada na mensagem. O link da bio
+     * passa a ser ?utm_source=instagram&utm_medium=bio e a conversa chega
+     * marcada. Sem UTM na URL nada muda — quem chegou direto continua igual.
+     */
+    (function () {
+      "use strict";
+      function origem() {
+        try {
+          var q = new URLSearchParams(location.search);
+          var p = ["utm_source", "utm_medium", "utm_campaign"]
+            .map(function (k) { return q.get(k); })
+            .filter(Boolean);
+          return p.length ? "\n\n[" + p.join("/") + "]" : "";
+        } catch (e) { return ""; }
+      }
+      window.__autarkOrigem = origem;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var marca = origem();
+        if (!marca) return;
+        document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
+          try {
+            var u = new URL(a.href);
+            u.searchParams.set("text", (u.searchParams.get("text") || "") + marca);
+            a.href = u.toString();
+          } catch (e) { /* href fora do padrao: deixa como esta */ }
+        });
+      });
+    })();
+  </script>
+  <script>
     /* ============================================================
        Autark — JS da página (vanilla, sem dependências).
        Cada módulo roda dentro de safe(): uma exceção em um deles não
@@ -2246,7 +2285,7 @@
               brl(monthlySave * 12) + "/year by automating. I'd like to talk about it."
             : "Olá Alisson! Usei a calculadora do seu site e vi que posso economizar cerca de " +
               brl(monthlySave * 12) + "/ano automatizando. Quero conversar sobre isso.";
-          el("roiCta").href = "https://wa.me/5512991743827?text=" + encodeURIComponent(msg);
+          el("roiCta").href = "https://wa.me/5512991743827?text=" + encodeURIComponent(msg + window.__autarkOrigem());
           [hours, people, wage].forEach(setFill);
         };
         [hours, people, wage].forEach(function (i) { i.addEventListener("input", calc); });
@@ -2395,7 +2434,7 @@
             if (neg) msg += ", do " + neg;
             msg += ".\n\nO que eu preciso: " + (precisa || "(descrever)") + "\n\n(vim pelo site da Autark)";
           }
-          window.open("https://wa.me/5512991743827?text=" + encodeURIComponent(msg), "_blank", "noopener");
+          window.open("https://wa.me/5512991743827?text=" + encodeURIComponent(msg + window.__autarkOrigem()), "_blank", "noopener");
         });
       });
 

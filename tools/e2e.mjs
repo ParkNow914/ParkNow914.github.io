@@ -203,6 +203,36 @@ for (const w of larguras) {
   await p.close();
 }
 
+// Origem da conversa. Sem isto, toda conversa no WhatsApp chega idêntica e a
+// métrica que o calendário do Instagram define — "conversas que citam o
+// Instagram" — não tem como ser medida.
+console.log("\nOrigem da conversa");
+{
+  const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  await p.goto(`http://localhost:${PORT}/?utm_source=instagram&utm_medium=bio`, { waitUntil: "networkidle" });
+  const marcados = await p.evaluate(() =>
+    [...document.querySelectorAll('a[href*="wa.me"]')]
+      .map((a) => decodeURIComponent(a.href))
+      .filter((h) => h.includes("[instagram/bio]")).length);
+  const total = await p.evaluate(() => document.querySelectorAll('a[href*="wa.me"]').length);
+  check("todo link de WhatsApp carrega a origem", marcados === total && total > 0, `${marcados}/${total}`);
+
+  // A calculadora monta a URL no clique, então não passa pela reescrita de href.
+  const roiComOrigem = await p.evaluate(() => {
+    const set = (id, v) => { const el = document.getElementById(id); el.value = v; el.dispatchEvent(new Event("input")); };
+    set("roiHours", 5); set("roiPeople", 2); set("roiWage", 30);
+    return decodeURIComponent(document.getElementById("roiCta").href);
+  });
+  check("calculadora também carrega a origem", roiComOrigem.includes("[instagram/bio]"));
+
+  // Sem UTM nada muda: quem chega direto não recebe marcação nenhuma.
+  await p.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle" });
+  const semMarca = await p.evaluate(() =>
+    [...document.querySelectorAll('a[href*="wa.me"]')].every((a) => !decodeURIComponent(a.href).includes("[")));
+  check("sem UTM, a mensagem fica intacta", semMarca);
+  await p.close();
+}
+
 // A landing de anúncio é onde o tráfego pago cai. Se ela quebrar, o dinheiro do
 // anúncio continua saindo e ninguém percebe — por isso ela entra no mesmo gate.
 console.log("\nLanding de anúncio (/lp/agenda/)");
