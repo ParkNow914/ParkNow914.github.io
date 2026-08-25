@@ -18,7 +18,16 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Arquivos onde procuramos referências.
-SOURCES = ["index.html", "404.html", "sw.js", "manifest.webmanifest", "assets/fonts/fonts.css"]
+SOURCES = [
+    "index.html",
+    "404.html",
+    "sw.js",
+    "manifest.webmanifest",
+    "assets/fonts/fonts.css",
+    # Landing de anúncio: mora fora do index e tem CSP própria, mas quebra
+    # do mesmo jeito se um asset sumir. Sem esta linha ela nasceria sem rede.
+    "lp/agenda/index.html",
+]
 
 # Assets que existem para o mundo externo (crawlers, sistema operacional) e por
 # isso não aparecem citados no HTML.
