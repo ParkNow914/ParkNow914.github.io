@@ -3,7 +3,7 @@
 Site de uma página da **Autark**, estúdio de automação com IA de **Alisson Santos**.
 Estático de verdade: sem framework, sem build, sem dependência em runtime.
 
-**No ar:** <https://parknow914.github.io/>
+**No ar:** <https://autarktech.com.br/>
 
 ---
 

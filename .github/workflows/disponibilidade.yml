@@ -30,7 +30,7 @@ jobs:
         id: teste
         run: |
           set -u
-          alvo="https://parknow914.github.io/"
+          alvo="https://autarktech.com.br/"
           falhas=""
 
           codigo=$(curl -s -o corpo.html -w "%{http_code}" -L --max-time 25 "$alvo" || echo "000")
@@ -55,8 +55,8 @@ jobs:
           done
 
           # Certificado prestes a vencer e a falha que da aviso antes de doer.
-          fim=$(echo | openssl s_client -servername parknow914.github.io \
-                -connect parknow914.github.io:443 2>/dev/null \
+          fim=$(echo | openssl s_client -servername autarktech.com.br \
+                -connect autarktech.com.br:443 2>/dev/null \
                 | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2 || true)
           if [ -n "$fim" ]; then
             dias=$(( ( $(date -d "$fim" +%s) - $(date +%s) ) / 86400 ))

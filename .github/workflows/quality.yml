@@ -74,8 +74,8 @@ jobs:
             --timeout 25
             --accept 200,206,301,302,308,403,429
             --exclude "^https://wa\.me"
-            --exclude "^https://parknow914.github.io/(\?.*)?$"
-            --exclude "^https://parknow914.github.io/lp/"
+            --exclude "^https://autarktech.com.br/(\?.*)?$"
+            --exclude "^https://autarktech.com.br/lp/"
             --exclude "^https://www\.99freelas\.com\.br"
             --exclude-path assets
             index.html 404.html README.md lp/agenda/index.html lp/atendimento/index.html lp/juridico/index.html lp/delivery/index.html
