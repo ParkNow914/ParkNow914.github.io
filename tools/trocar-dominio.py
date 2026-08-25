@@ -36,9 +36,19 @@ ARQUIVOS = [
     "robots.txt",
     "README.md",
     "manifest.webmanifest",
-    # A landing tem canonical proprio. Fora desta lista, ela apontaria para
-    # o dominio antigo depois da migracao — e canonical errado nao da erro.
+    # Cada landing tem canonical e Open Graph proprios. Fora desta lista,
+    # apontariam para o dominio antigo depois da migracao — e canonical errado
+    # nao da erro nenhum, so some do indice do Google semanas depois.
     "lp/agenda/index.html",
+    "lp/atendimento/index.html",
+    "lp/juridico/index.html",
+    "lp/delivery/index.html",
+    # O monitor bate no dominio de producao. Fora desta lista, continuaria
+    # vigiando o endereco antigo e diria "no ar" com o site novo fora.
+    ".github/workflows/disponibilidade.yml",
+    # O lychee exclui as auto-referencias pelo dominio. Fora desta lista,
+    # passaria a checar as proprias paginas contra o endereco antigo.
+    ".github/workflows/quality.yml",
 ]
 
 

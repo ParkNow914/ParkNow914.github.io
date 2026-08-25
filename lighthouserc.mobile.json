@@ -6,7 +6,10 @@
       "url": [
         "http://localhost/index.html",
         "http://localhost/404.html",
-        "http://localhost/lp/agenda/index.html"
+        "http://localhost/lp/agenda/index.html",
+        "http://localhost/lp/atendimento/index.html",
+        "http://localhost/lp/juridico/index.html",
+        "http://localhost/lp/delivery/index.html"
       ],
       "numberOfRuns": 3,
       "settings": {
@@ -79,7 +82,7 @@
           }
         },
         {
-          "matchingUrlPattern": ".*/lp/agenda/index\\.html$",
+          "matchingUrlPattern": ".*/lp/[a-z]+/index\\.html$",
           "assertions": {
             "categories:performance": [
               "error",
