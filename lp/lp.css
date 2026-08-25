@@ -1,0 +1,173 @@
+/* Estilo comum das landings de anuncio.
+   Arquivo separado, e nao inline como no index: aqui sao quatro paginas
+   irmas, e inline significaria manter o mesmo CSS em quatro lugares. Mesma
+   origem, entao a CSP nao muda. */
+
+:root {
+  --bg: #050810;
+  --text: #e7ecf3;
+  --muted: #8b96a9;
+  --dim: #7b8699;
+  --accent: #34d399;
+  --accent-strong: #25d366;
+  --cyan: #22d3ee;
+  --borda: rgba(255, 255, 255, 0.08);
+  --superficie: rgba(255, 255, 255, 0.04);
+  --display: "Space Grotesk", sans-serif;
+  --corpo: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--corpo);
+  line-height: 1.6; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+.fx {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(52, 211, 153, 0.10), transparent 62%),
+    radial-gradient(ellipse 50% 36% at 88% 12%, rgba(34, 211, 238, 0.07), transparent 64%);
+}
+/* minmax(0) porque coluna de grid nao encolhe abaixo do conteudo por
+   padrao, e um elemento largo empurra a pagina inteira no celular */
+.container { width: 100%; max-width: 940px; margin: 0 auto; padding: 0 20px; }
+
+header { padding-block: 28px; border-bottom: 1px solid var(--borda); }
+.marca { display: flex; align-items: center; gap: 12px;
+  color: var(--text); text-decoration: none; width: max-content; }
+.marca svg { width: 32px; height: 32px; display: block; }
+.marca span {
+  font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+
+.hero { padding-block: 64px 56px; }
+.tag {
+  font-family: var(--mono); font-size: 0.82rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent);
+  display: block; margin-bottom: 18px;
+}
+h1 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.1;
+  letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 22px;
+}
+h1 em { font-style: normal; color: var(--accent); }
+.sub {
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--muted);
+  max-width: 640px; text-wrap: pretty; margin-bottom: 34px;
+}
+.sub strong { color: var(--text); font-weight: 600; }
+
+.cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent-strong); color: #04120b;
+  font-weight: 700; font-size: 1.06rem;
+  padding: 16px 30px; border-radius: 12px; text-decoration: none;
+  border: 0; cursor: pointer; font-family: var(--corpo);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.cta:hover, .cta:focus-visible { filter: brightness(1.08); transform: translateY(-1px); }
+.cta-nota { font-size: 0.9rem; color: var(--dim); margin-top: 14px; }
+
+section { padding-block: 52px; border-top: 1px solid var(--borda); }
+h2 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.2;
+  letter-spacing: -0.015em; margin-bottom: 12px; text-wrap: balance;
+}
+.secao-sub { color: var(--muted); margin-bottom: 30px; max-width: 620px; }
+
+.grade { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+.cartao {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: 14px; padding: 24px; min-width: 0;
+}
+.cartao .n {
+  font-family: var(--mono); font-weight: 500; font-size: 0.8rem;
+  color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 10px;
+}
+.cartao h3 { font-family: var(--display); font-size: 1.12rem; font-weight: 700; margin-bottom: 8px; }
+.cartao p { color: var(--muted); font-size: 0.98rem; }
+
+ul.lista { list-style: none; display: grid; gap: 13px; }
+ul.lista li { padding-left: 30px; position: relative; color: var(--muted); }
+ul.lista li::before {
+  content: ""; position: absolute; left: 4px; top: 0.62em;
+  width: 9px; height: 9px; border-radius: 3px; background: var(--accent);
+}
+ul.lista li strong { color: var(--text); font-weight: 600; }
+
+details {
+  border: 1px solid var(--borda); border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 12px; background: var(--superficie);
+}
+summary { cursor: pointer; font-weight: 600; color: var(--text); }
+details p { color: var(--muted); margin-top: 12px; }
+
+.quem { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+.quem img { border-radius: 14px; border: 1px solid var(--borda); }
+.quem div { flex: 1 1 300px; min-width: 0; }
+
+footer { padding-block: 40px 56px; border-top: 1px solid var(--borda);
+  color: var(--dim); font-size: 0.9rem; }
+footer a { color: var(--accent); }
+
+/* Banner de consentimento. Fica fixo, mas nao cobre o CTA principal em
+   telas pequenas porque o body ganha padding enquanto ele existe. */
+#consentimento {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  background: #0a101f; border-top: 1px solid var(--borda);
+  padding: 16px 20px; display: none;
+}
+#consentimento.visivel { display: block; }
+.consent-caixa {
+  max-width: 940px; margin: 0 auto; display: flex; gap: 16px;
+  align-items: center; flex-wrap: wrap;
+}
+.consent-caixa p { color: var(--muted); font-size: 0.9rem; flex: 1 1 320px; min-width: 0; }
+.consent-botoes { display: flex; gap: 10px; }
+.btn-menor {
+  font-family: var(--corpo); font-size: 0.92rem; font-weight: 600;
+  padding: 10px 18px; border-radius: 9px; cursor: pointer; border: 1px solid var(--borda);
+  background: transparent; color: var(--text);
+}
+.btn-menor.sim { background: var(--accent-strong); color: #04120b; border-color: transparent; }
+.btn-menor:hover, .btn-menor:focus-visible { filter: brightness(1.1); }
+
+
+/* Tema claro. Os tokens sao os mesmos do site (index.html, bloco
+   :root[data-theme="light"]) para as duas paginas nao parecerem produtos
+   diferentes. A escolha vem do localStorage do site; sem escolha, segue a
+   preferencia do sistema. */
+:root[data-theme="light"] {
+  --bg: #f6f8fb;
+  --text: #0b1526;
+  --muted: #45526b;
+  --dim: #5b6a85;
+  --accent: #047857;
+  --accent-strong: #0f9d58;
+  --cyan: #0e7490;
+  --borda: rgba(6, 20, 40, 0.12);
+  --superficie: rgba(6, 20, 40, 0.04);
+  color-scheme: light;
+}
+:root[data-theme="light"] .fx {
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(5, 150, 105, 0.09), transparent 62%),
+    radial-gradient(ellipse 50% 36% at 88% 12%, rgba(14, 116, 144, 0.06), transparent 64%);
+}
+:root[data-theme="light"] #consentimento { background: #ffffff; }
+/* Branco sobre o verde vivo (#0f9d58) da 3,51:1 e reprova no AA — o
+   Lighthouse pegou. O verde escuro com branco da 5,48:1. */
+:root[data-theme="light"] .cta,
+:root[data-theme="light"] .btn-menor.sim {
+  background: var(--accent); color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cta { transition: none; }
+}

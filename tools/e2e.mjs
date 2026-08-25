@@ -235,36 +235,44 @@ console.log("\nOrigem da conversa");
 
 // A landing de anúncio é onde o tráfego pago cai. Se ela quebrar, o dinheiro do
 // anúncio continua saindo e ninguém percebe — por isso ela entra no mesmo gate.
-console.log("\nLanding de anúncio (/lp/agenda/)");
-{
+console.log("\nLandings de anuncio");
+for (const slug of ["agenda", "atendimento", "juridico", "delivery"]) {
   const errosLp = [];
   const p = await browser.newPage({ viewport: { width: 390, height: 844 } });
   p.on("pageerror", (e) => errosLp.push(e.message));
   p.on("console", (m) => { if (m.type() === "error") errosLp.push("console: " + m.text()); });
-  await p.goto(`http://localhost:${PORT}/lp/agenda/?utm_source=meta&utm_campaign=salao`, { waitUntil: "networkidle" });
+  await p.goto(`http://localhost:${PORT}/lp/${slug}/?utm_source=meta&utm_campaign=teste`, { waitUntil: "networkidle" });
 
   const href = await p.getAttribute("#cta-topo", "href");
-  check("CTA aponta para o WhatsApp certo", (href || "").startsWith("https://wa.me/5512991743827"), href || "sem href");
+  check(`${slug}: CTA aponta para o WhatsApp certo`,
+    (href || "").startsWith("https://wa.me/5512991743827"), href || "sem href");
 
-  // Sem isto não há como saber qual criativo pagou pelo lead: toda conversa
-  // chega idêntica e a otimização do anúncio vira chute.
-  check("CTA carrega a origem do anúncio na mensagem",
-    decodeURIComponent(href || "").includes("[meta/salao]"), href || "");
+  // Sem isto nao ha como saber qual criativo pagou pelo lead.
+  check(`${slug}: CTA carrega a origem do anuncio`,
+    decodeURIComponent(href || "").includes("[meta/teste]"), href || "");
 
-  // O Pixel não pode carregar sem consentimento, e hoje nem com — o ID está
-  // vazio até a conta de anúncios existir.
+  // Cada landing precisa da propria mensagem: quatro publicos diferentes
+  // chegando com o mesmo texto seria pior que nao marcar nada.
+  const msg = await p.evaluate(() => document.body.dataset.msg);
+  check(`${slug}: tem mensagem propria`,
+    !!msg && decodeURIComponent(href || "").includes(msg), msg || "");
+
+  // O Pixel nao pode carregar sem consentimento, e hoje nem com — o ID esta
+  // vazio ate a conta de anuncios existir.
   const terceiros = await p.evaluate(() =>
-    [...document.querySelectorAll("script[src]")].map((s) => s.src).filter((s) => !s.startsWith(location.origin)));
-  check("nenhum script de terceiro antes do consentimento", terceiros.length === 0, terceiros.join(" | "));
+    [...document.querySelectorAll("script[src]")]
+      .map((s) => s.src).filter((s) => !s.startsWith(location.origin)));
+  check(`${slug}: nenhum script de terceiro antes do consentimento`,
+    terceiros.length === 0, terceiros.join(" | "));
 
   for (const w of [320, 360, 390, 768]) {
     await p.setViewportSize({ width: w, height: 800 });
     const excesso = await p.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    check(`landing sem rolagem horizontal (${w}px)`, excesso <= 0, `${excesso}px`);
+    check(`${slug}: sem rolagem horizontal (${w}px)`, excesso <= 0, `${excesso}px`);
   }
 
-  check("landing sem erro no console", errosLp.length === 0, errosLp.slice(0, 2).join(" | "));
+  check(`${slug}: sem erro no console`, errosLp.length === 0, errosLp.slice(0, 2).join(" | "));
   await p.close();
 }
 

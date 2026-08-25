@@ -24,9 +24,13 @@ SOURCES = [
     "sw.js",
     "manifest.webmanifest",
     "assets/fonts/fonts.css",
-    # Landing de anúncio: mora fora do index e tem CSP própria, mas quebra
-    # do mesmo jeito se um asset sumir. Sem esta linha ela nasceria sem rede.
+    # Landings de anúncio: moram fora do index e têm CSP própria, mas quebram
+    # do mesmo jeito se um asset sumir. Sem estas linhas nasceriam sem rede.
+    "lp/lp.css",
     "lp/agenda/index.html",
+    "lp/atendimento/index.html",
+    "lp/juridico/index.html",
+    "lp/delivery/index.html",
 ]
 
 # Assets que existem para o mundo externo (crawlers, sistema operacional) e por
