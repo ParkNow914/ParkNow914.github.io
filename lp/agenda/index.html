@@ -211,8 +211,12 @@
         radial-gradient(ellipse 50% 36% at 88% 12%, rgba(14, 116, 144, 0.06), transparent 64%);
     }
     :root[data-theme="light"] #consentimento { background: #ffffff; }
-    :root[data-theme="light"] .cta { color: #ffffff; }
-    :root[data-theme="light"] .btn-menor.sim { color: #ffffff; }
+    /* Branco sobre o verde vivo (#0f9d58) da 3,51:1 e reprova no AA — o
+       Lighthouse pegou. O verde escuro com branco da 5,48:1. */
+    :root[data-theme="light"] .cta,
+    :root[data-theme="light"] .btn-menor.sim {
+      background: var(--accent); color: #ffffff;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
