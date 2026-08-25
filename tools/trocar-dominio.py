@@ -46,6 +46,9 @@ ARQUIVOS = [
     # O monitor bate no dominio de producao. Fora desta lista, continuaria
     # vigiando o endereco antigo e diria "no ar" com o site novo fora.
     ".github/workflows/disponibilidade.yml",
+    # O lychee exclui as auto-referencias pelo dominio. Fora desta lista,
+    # passaria a checar as proprias paginas contra o endereco antigo.
+    ".github/workflows/quality.yml",
 ]
 
 

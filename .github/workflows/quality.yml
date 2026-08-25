@@ -64,6 +64,18 @@ jobs:
             --timeout 25
             --accept 200,206,301,302,308,403,429
             --exclude "^https://wa\.me"
+            # Auto-referencia: canonical, hreflang e og:url apontam para a
+            # propria pagina, que so passa a existir depois do merge. Checar
+            # isso aqui trava qualquer pagina nova num impasse. As referencias
+            # locais ja sao validadas por tools/check-assets.py, e a producao
+            # pelo workflow de disponibilidade.
+            # As demos em /pdv-lio-demo/ e /configurador-camadas/ continuam
+            # checadas: sao outros repositorios e podem quebrar de verdade.
+            # Ponto sem escape de proposito: tools/trocar-dominio.py procura
+            # a string literal do dominio, e nao acharia parknow914\.github\.io.
+            # Em regex o ponto casa qualquer caractere, o que aqui e inofensivo.
+            --exclude "^https://parknow914.github.io/(\?.*)?$"
+            --exclude "^https://parknow914.github.io/lp/"
             --exclude "^https://www\.99freelas\.com\.br"
             --exclude-path assets
             index.html 404.html README.md lp/agenda/index.html lp/atendimento/index.html lp/juridico/index.html lp/delivery/index.html
