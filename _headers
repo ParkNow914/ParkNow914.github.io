@@ -1,3 +1,19 @@
+# ATENCAO: o GitHub Pages IGNORA este arquivo.
+#
+# Ele e convencao de Netlify e Cloudflare Pages. Conferido em 25/08/2026 na
+# resposta real do site: das diretivas abaixo, a unica que chega e o
+# Strict-Transport-Security — e esse vem do proprio GitHub, nao daqui.
+#
+# O que de fato protege hoje:
+#   CSP            -> <meta http-equiv> em cada pagina
+#   Referrer-Policy -> <meta name="referrer"> em cada pagina
+#
+# O que NAO existe em producao, porque so vale como cabecalho HTTP:
+#   X-Content-Type-Options, X-Frame-Options, frame-ancestors, Permissions-Policy
+#
+# O arquivo fica porque continua correto e passa a valer no dia em que o site
+# sair do GitHub Pages. Mas nao confie nele enquanto estiver aqui.
+
 # Cabeçalhos HTTP reais.
 #
 # O GitHub Pages ignora este arquivo — ele existe para o dia em que o site for
