@@ -747,6 +747,8 @@
       width: 7px; height: 7px; border-radius: 50%; background: var(--accent-strong);
       box-shadow: 0 0 0 0 rgba(37,211,102,0.5); animation: statusPulse 2.4s ease-out infinite;
     }
+    /* Projeto encerrado nao pode piscar verde como se estivesse no ar. */
+    .status.encerrado .dot { background: var(--text-dim); box-shadow: none; animation: none; }
     @keyframes statusPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.45); } 70%, 100% { box-shadow: 0 0 0 7px rgba(37,211,102,0); } }
     .proj-content h3 {
       font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
@@ -1309,7 +1311,7 @@
           <span class="cap" data-i18n-html="trust.saas">SaaS próprios<br />construídos</span>
         </div>
         <div class="ti">
-          <span class="big">4</span>
+          <span class="big">3</span>
           <span class="cap" data-i18n-html="trust.prod">sistemas em<br />produção real</span>
         </div>
       </div>
@@ -1453,7 +1455,7 @@
       <div class="reveal">
         <span class="sec-tag" data-i18n="tag.proj">02. projetos</span>
         <h2 class="sec-title" data-i18n="proj.title">Produtos reais que eu posso te mostrar funcionando</h2>
-        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Quatro destes rodam hoje em operação real com clientes; os outros são produtos próprios ou entregas concluídas, com código aberto ou demo ao vivo. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
+        <p class="sec-sub" data-i18n="proj.sub">Você não quer promessa — quer ver funcionando. Três destes rodam hoje em operação real com clientes; os outros são produtos próprios ou entregas concluídas, com código aberto ou demo ao vivo. Me chame no WhatsApp e eu abro qualquer um na sua frente.</p>
       </div>
 
       <div class="proj-list">
@@ -1481,15 +1483,19 @@
           <div class="proj-content">
             <div class="proj-top">
               <span class="type" data-i18n="p2.type">CRM · API Oficial Meta</span>
-              <span class="status"><span class="dot"></span><span data-i18n="p2.status">Operação financeira real</span></span>
-              <span class="proj-kpi" data-i18n="p2.kpi">~28ms latência BR</span>
+              <span class="status encerrado"><span class="dot"></span><span data-i18n="p2.status">Entregue · encerrado pelo cliente</span></span>
+              <span class="proj-kpi" data-i18n="p2.kpi">12 workflows de CI</span>
             </div>
             <h3 data-i18n="p2.title">CRM de WhatsApp — API Oficial da Meta</h3>
-            <p data-i18n-html="p2.desc">Inbox omnichannel e CRM para WhatsApp Business rodando em operação financeira real: campanhas com governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automatizada. Hospedado no Fly.io em São Paulo com 2 máquinas always-on e ~28ms de latência até o banco — zero cold start.</p>
+            <p data-i18n-html="p2.desc">Inbox omnichannel e CRM para WhatsApp Business que <strong>rodou em operação financeira real</strong>: campanhas com governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automatizada. Ficou no Fly.io em São Paulo com 2 máquinas always-on e ~28ms de latência até o banco — zero cold start. O cliente encerrou a operação por decisão de custo de infraestrutura; o sistema seguia estável até o desligamento.</p>
             <div class="result" data-i18n-html="p2.res">12 workflows de automação no GitHub Actions: CI, testes E2E com Playwright, CodeQL, scan de vulnerabilidades (Trivy + SBOM), backup diário do banco e deploy automático a cada push.</div>
             <div class="tags"><span class="chip">Fastify</span><span class="chip">React</span><span class="chip">Prisma</span><span class="chip">Postgres 17</span><span class="chip">BullMQ + Redis</span><span class="chip">Fly.io</span></div>
+            <!--
+              Sem link ao vivo: o cliente encerrou a operacao e desligou a infra.
+              O link do Fly.io reprovaria no job de links externos da CI.
+            -->
             <div class="proj-links">
-              <a class="primary" href="https://realcred-whatsapp-crm.fly.dev" target="_blank" rel="noopener noreferrer" data-i18n="p2.l1">▶ App em produção</a>
+              <a class="primary" href="https://wa.me/5512991743827?text=Ol%C3%A1%20Alisson!%20Quero%20saber%20mais%20sobre%20o%20CRM%20de%20WhatsApp%20com%20a%20API%20oficial%20da%20Meta." target="_blank" rel="noopener noreferrer" data-i18n="p2.l1">💬 Conversar sobre este projeto</a>
             </div>
           </div>
         </article>
@@ -1845,7 +1851,7 @@
         </div>
         <div class="about-text reveal">
           <p data-i18n-html="about.p1">A <strong>Autark</strong> não é uma agência com cinco camadas entre você e quem faz. Sou eu, <strong>Alisson Santos</strong>, que atendo, construo e entrego. A maioria dos desenvolvedores escreve código; eu construo <strong>sistemas que geram resultado</strong> — diferença que vem da minha formação em <strong>Gestão da Tecnologia da Informação</strong>: antes de abrir o editor, eu entendo o objetivo de negócio por trás do projeto.</p>
-          <p data-i18n-html="about.p2">Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> rodando em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
+          <p data-i18n-html="about.p2">Foi assim que nasceram meus produtos: o <strong>AgendaZap</strong> (agenda com IA no WhatsApp, com demo aberta), um <strong>CRM de WhatsApp com a API oficial da Meta</strong> que rodou em operação financeira real, a <strong>Bia</strong> (assistente de delivery multicanal com 487 testes automatizados, entregue para um supermercado real), o <strong>ParkNow</strong> (SaaS de estacionamento inteligente) e a suíte jurídica <strong>JurisIA</strong>. Não são projetos de tutorial — são sistemas em produção, com usuários reais, que posso te mostrar funcionando pelo chat.</p>
           <div class="highlight-box" data-i18n="about.hl">
             Trabalho com comunicação clara, prazos cumpridos e entregas testadas e documentadas. Você acompanha o progresso do início ao fim — sem surpresa no final.
           </div>
@@ -2450,16 +2456,16 @@
           "mech.3d": "Not a canned-answer chatbot. The flow <strong>talks to your database, your payments and your calendar</strong> — so it resolves the order by itself instead of pushing everything to a human.",
           "mech.3p": "→ PIX, Stripe and Mercado Pago running in real operations",
           "proj.title": "Real products I can show you working",
-          "proj.sub": "You don't want promises — you want to see it working. Four of these run today in real operations with clients; the rest are my own products or completed deliveries, open source or with a live demo. Message me on WhatsApp and I'll open any of them in front of you.",
+          "proj.sub": "You don't want promises — you want to see it working. Three of these run today in real operations with clients; the rest are my own products or completed deliveries, open source or with a live demo. Message me on WhatsApp and I'll open any of them in front of you.",
           "p1.type": "SaaS · AI · WhatsApp", "p1.status": "In production",
           "p1.desc": "Smart scheduling SaaS for salons, barbershops and beauty studios: the client books alone through the public link or by chatting with the AI assistant on WhatsApp, which checks availability, books and cancels with no human involved. Automatic reminders 24h and 2h ahead kill no-shows; win-back campaigns, birthdays, NPS and broadcasts keep customers in the base.",
           "p1.res": "Multi-tenant with RLS on Supabase, recurring subscription (Mercado Pago) with a 14-day trial, installable PWA, LGPD compliance and Sentry monitoring — running in production with an open demo.",
           "p1.l1": "▶ Live demo", "p1.l2": "↗ Try the booking flow",
-          "p2.type": "CRM · Official Meta API", "p2.status": "Real financial operation",
+          "p2.type": "CRM · Official Meta API", "p2.status": "Delivered · shut down by the client",
           "p2.title": "WhatsApp CRM — Official Meta API",
-          "p2.desc": "Omnichannel inbox and CRM for WhatsApp Business running in a real financial operation: campaigns with template governance, an eligibility engine, opt-out, full audit trail and automated LGPD retention. Hosted on Fly.io in São Paulo with 2 always-on machines and ~28ms latency to the database — zero cold start.",
+          "p2.desc": "Omnichannel inbox and CRM for WhatsApp Business that <strong>ran in a real financial operation</strong>: campaigns with template governance, an eligibility engine, opt-out, full audit trail and automated LGPD retention. It lived on Fly.io in São Paulo with 2 always-on machines and ~28ms latency to the database — zero cold start. The client wound the operation down over infrastructure cost; the system was stable right up to shutdown.",
           "p2.res": "12 automation workflows on GitHub Actions: CI, E2E tests with Playwright, CodeQL, vulnerability scanning (Trivy + SBOM), daily database backup and automatic deploy on every push.",
-          "p2.l1": "▶ Live app",
+          "p2.l1": "💬 Talk about this project",
           "p3.type": "Legal AI · B2B SaaS", "p3.status": "Own product",
           "p3.title": "JurisIA — AI Legal Suite",
           "p3.desc": "SaaS automation platform for lawyers and law firms, with 4 products: <strong>JurisBot</strong> (24/7 support and lead triage on WhatsApp), <strong>JurisDoc</strong> (AI-generated legal documents with streaming), <strong>JurisData</strong> (legal analytics on TJSP data) and <strong>JurisGrow</strong> (lead management). Document analysis with RAG and cited sources — no AI guesswork.",
@@ -2545,7 +2551,7 @@
           "about.f1k": "Education", "about.f2k": "Rating", "about.f2v": "5.0 ★ (100% recom.)",
           "about.f3k": "Based in", "about.f3v": "Brazil 🇧🇷 · remote", "about.f4k": "Reply", "about.f4v": "same day",
           "about.p1": "<strong>Autark</strong> isn't an agency with five layers between you and whoever does the work. It's me, <strong>Alisson Santos</strong> — I handle it, build it and ship it. Most developers write code; I build <strong>systems that generate results</strong> — a difference that comes from my background in <strong>Information Technology Management</strong>: before opening the editor, I understand the business goal behind the project.",
-          "about.p2": "That's how my products were born: <strong>AgendaZap</strong> (AI scheduling on WhatsApp, with an open demo), a <strong>WhatsApp CRM on Meta's official API</strong> running in a real financial operation, <strong>Bia</strong> (a multichannel delivery assistant with 487 automated tests, delivered to a real supermarket), <strong>ParkNow</strong> (a smart parking SaaS) and the <strong>JurisIA</strong> legal suite. Not tutorial projects — real systems in production, with real users, that I can show you working over chat.",
+          "about.p2": "That's how my products were born: <strong>AgendaZap</strong> (AI scheduling on WhatsApp, with an open demo), a <strong>WhatsApp CRM on Meta's official API</strong> that ran in a real financial operation, <strong>Bia</strong> (a multichannel delivery assistant with 487 automated tests, delivered to a real supermarket), <strong>ParkNow</strong> (a smart parking SaaS) and the <strong>JurisIA</strong> legal suite. Not tutorial projects — real systems in production, with real users, that I can show you working over chat.",
           "about.hl": "I work with clear communication, deadlines met and tested, documented deliveries. You follow the progress from start to finish — no surprise at the end.",
           "about.p3": "Day to day, I live between <strong>React/Next.js, Node.js, TypeScript and PostgreSQL</strong> on full-stack, <strong>n8n + Evolution API + AI models</strong> (GPT, Claude, Gemini) on automations, and <strong>WordPress + paid ads</strong> when the goal is to capture clients fast. That combination lets me cover the whole project — from idea to the ad running.",
           "faq.tag": "05. frequently asked", "faq.title": "Questions every client asks before starting",
@@ -2608,7 +2614,7 @@
           "p8.res": "Full tracking — GTM, GA4, Meta Pixel and Conversions API — so every real spent on ads is measured all the way to the WhatsApp conversation.",
           "p8.l1": "↗ GitHub",
           "alt.realcredmais": "Live RealCred+ landing: agility, security and convenience for payroll loans",
-          "p1.kpi": "14-day free trial", "p2.kpi": "~28ms latency in BR", "p3.kpi": "4 products in 1",
+          "p1.kpi": "14-day free trial", "p2.kpi": "12 CI workflows", "p3.kpi": "4 products in 1",
           "p4.kpi": "web + mobile", "p5.kpi": "487 green tests", "p6.kpi": "command palette ⌘K",
           "footer.tag": "handcrafted, no template.", "footer.email": "Email", "footer.top": "Back to top ↑"
         };
