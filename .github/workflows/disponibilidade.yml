@@ -54,6 +54,16 @@ jobs:
             fi
           done
 
+          # As duas demos sao outros repositorios servidos sob o mesmo dominio.
+          # Elas sairam do checador de links no PR (dominio proprio nao da pra
+          # validar antes do merge), entao a vigilancia delas vive aqui.
+          for demo in pdv-lio-demo configurador-camadas; do
+            c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}${demo}/" || echo "000")
+            if [ "$c" != "200" ]; then
+              falhas="${falhas}- A demo /${demo}/ respondeu HTTP ${c}\n"
+            fi
+          done
+
           # Certificado prestes a vencer e a falha que da aviso antes de doer.
           fim=$(echo | openssl s_client -servername autarktech.com.br \
                 -connect autarktech.com.br:443 2>/dev/null \
