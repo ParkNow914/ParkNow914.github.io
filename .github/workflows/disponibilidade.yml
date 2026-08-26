@@ -33,7 +33,7 @@ jobs:
           alvo="https://autarktech.com.br/"
           falhas=""
 
-          codigo=$(curl -s -o corpo.html -w "%{http_code}" -L --max-time 25 "$alvo" || echo "000")
+          codigo=$(curl -s -o corpo.html -w "%{http_code}" -L --max-time 25 "$alvo" || true)
           if [ "$codigo" != "200" ]; then
             falhas="${falhas}- A raiz respondeu HTTP ${codigo} (esperado 200)\n"
           fi
@@ -48,7 +48,7 @@ jobs:
           # As landings sao o destino do trafego pago. Se uma cair, a verba
           # continua saindo e ninguem percebe.
           for slug in agenda atendimento juridico delivery; do
-            c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}lp/${slug}/" || echo "000")
+            c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}lp/${slug}/" || true)
             if [ "$c" != "200" ]; then
               falhas="${falhas}- A landing /lp/${slug}/ respondeu HTTP ${c}\n"
             fi
@@ -58,7 +58,7 @@ jobs:
           # Elas sairam do checador de links no PR (dominio proprio nao da pra
           # validar antes do merge), entao a vigilancia delas vive aqui.
           for demo in pdv-lio-demo configurador-camadas; do
-            c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}${demo}/" || echo "000")
+            c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}${demo}/" || true)
             if [ "$c" != "200" ]; then
               falhas="${falhas}- A demo /${demo}/ respondeu HTTP ${c}\n"
             fi
