@@ -57,16 +57,18 @@ jobs:
           # aqui o que interessa são os links externos.
           # wa.me e o 99freelas bloqueiam requisições automatizadas e dariam
           # falso positivo; o resto (demos, GitHub, OG) é checado de verdade.
-          # Auto-referencia: canonical, hreflang e og:url apontam para a propria
-          # pagina, que so passa a existir depois do merge. Checar isso no PR
-          # trava qualquer pagina nova num impasse. As referencias locais ja sao
-          # validadas por tools/check-assets.py, e a producao pelo workflow de
-          # disponibilidade. As demos em /pdv-lio-demo/ e /configurador-camadas/
-          # continuam checadas: sao outros repositorios e podem quebrar de verdade.
+          # Depois da migracao, TUDO no site e dominio proprio — inclusive as
+          # duas demos, que sao outros repositorios servidos em
+          # autarktech.com.br/<repo>/. E dominio proprio nao da pra validar
+          # antes do merge: as URLs so passam a existir quando o arquivo CNAME
+          # entra e o Pages comeca a servir. Checar isso aqui seria um impasse
+          # permanente, entao a verificacao mudou de lugar, nao sumiu:
           #
-          # Os pontos ficam sem escape de proposito: tools/trocar-dominio.py
-          # procura a string literal do dominio e nao acharia a versao escapada.
-          # Em regex o ponto casa qualquer caractere, o que aqui e inofensivo.
+          #   local     -> tools/check-assets.py (referencias quebradas)
+          #   producao  -> workflow Disponibilidade (site, landings e demos)
+          #
+          # O que sobra aqui e o que de fato apodrece sozinho e mora fora:
+          # as demos no Vercel e no Netlify, e os repositorios no GitHub.
           args: >-
             --no-progress
             --root-dir ${{ github.workspace }}
@@ -74,8 +76,7 @@ jobs:
             --timeout 25
             --accept 200,206,301,302,308,403,429
             --exclude "^https://wa\.me"
-            --exclude "^https://parknow914.github.io/(\?.*)?$"
-            --exclude "^https://parknow914.github.io/lp/"
+            --exclude "^https://autarktech.com.br"
             --exclude "^https://www\.99freelas\.com\.br"
             --exclude-path assets
             index.html 404.html README.md lp/agenda/index.html lp/atendimento/index.html lp/juridico/index.html lp/delivery/index.html
