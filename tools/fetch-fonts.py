@@ -31,6 +31,12 @@ import urllib.request
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 
+# A SIL OFL 1.1 permite uso comercial e self-hosting, mas exige que a licenca
+# acompanhe os arquivos redistribuidos. Ela vive em assets/fonts/LICENSE.txt e
+# NAO e gerada por este script — se voce trocar de familia de fonte, atualize
+# os titulares la a mao, senao o repositorio volta a redistribuir fonte sem
+# licenca.
+
 CSS_URL = (
     "https://fonts.googleapis.com/css2?"
     "family=Space+Grotesk:wght@400;500;600;700"

@@ -41,6 +41,10 @@ ALLOWED_ORPHANS = {
     # Banner da marca: consumido pelo README de github.com/ParkNow914/ParkNow914,
     # que aponta para a versão publicada aqui. Não é referenciado pelo site.
     "assets/banner.svg",
+    # Exigido pela SIL OFL 1.1: redistribuir os .woff2 obriga a licenca a
+    # acompanhar. Ninguem linka do HTML, e nao deve mesmo — mas apagar por
+    # parecer orfao quebraria a conformidade.
+    "assets/fonts/LICENSE.txt",
 }
 
 REF = re.compile(r'(?:src|href)\s*=\s*["\']([^"\']+)["\']|url\(\s*["\']?([^"\')]+)["\']?\s*\)')
