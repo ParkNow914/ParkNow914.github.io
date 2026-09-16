@@ -54,10 +54,11 @@ jobs:
             fi
           done
 
-          # As duas demos sao outros repositorios servidos sob o mesmo dominio.
+          # Outros repositorios servidos sob o mesmo dominio: as duas demos e o
+          # laboratorio poliglota, que e linkado da secao de projetos.
           # Elas sairam do checador de links no PR (dominio proprio nao da pra
           # validar antes do merge), entao a vigilancia delas vive aqui.
-          for demo in pdv-lio-demo configurador-camadas; do
+          for demo in pdv-lio-demo configurador-camadas lab; do
             c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}${demo}/" || true)
             if [ "$c" != "200" ]; then
               falhas="${falhas}- A demo /${demo}/ respondeu HTTP ${c}\n"

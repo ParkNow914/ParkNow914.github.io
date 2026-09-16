@@ -789,6 +789,37 @@
     .card.demo:hover .demo-cta { transform: translateX(4px); }
     @media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; } }
 
+    /* ============ LABORATORIO POLIGLOTA ============ */
+    /* Vive em outro repositorio (ParkNow914/lab), servido sob o mesmo dominio.
+       Faixa propria, e nao mais um card em .demo-grid, porque a separacao entre
+       "isto rodou para cliente" e "isto e estudo" precisa ficar obvia. */
+    .lab-faixa {
+      display: block; margin-top: 20px; color: inherit;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.07), rgba(34, 211, 238, 0.05));
+      border: 1px solid rgba(52, 211, 153, 0.22); border-radius: var(--radius);
+      padding: 30px 34px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .lab-faixa:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .lab-faixa .lab-tag {
+      font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.08em;
+      color: var(--accent); text-transform: lowercase;
+    }
+    .lab-faixa h3 {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+      letter-spacing: -0.02em; margin: 10px 0 0; line-height: 1.3;
+    }
+    .lab-faixa p { color: var(--text-muted); font-size: 0.93rem; margin: 10px 0 0; max-width: 70ch; }
+    .lab-nums { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 20px; }
+    .lab-nums .n {
+      font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .lab-nums .l { font-size: 0.76rem; color: var(--text-dim); margin-top: 4px; }
+    @media (max-width: 760px) {
+      .lab-faixa { padding: 24px 22px; }
+      .lab-nums { gap: 18px; }
+    }
+
     /* ============ OUTROS TRABALHOS ============ */
     .outros {
       margin-top: 42px; background: var(--bg-card); border: 1px solid var(--border);
@@ -1701,6 +1732,25 @@
         </ul>
       </div>
 
+      <!--
+        Link absoluto, igual as outras demos que moram em repositorio separado:
+        e assim que ele escapa do check-assets.py (nao e caminho local) e do
+        lychee (autarktech.com.br esta excluido, porque dominio proprio nao da
+        para validar antes do merge). A vigilancia dele fica no workflow
+        Disponibilidade, junto com as landings.
+      -->
+      <a class="lab-faixa reveal" href="https://autarktech.com.br/lab/" target="_blank" rel="noopener noreferrer">
+        <span class="lab-tag" data-i18n="lab.tag">// laboratório</span>
+        <h3 data-i18n="lab.t">Um projeto rodando em cada linguagem de programação</h3>
+        <p data-i18n-html="lab.d">Fora do trabalho com cliente eu mantenho um laboratório aberto: um programa por linguagem, escolhido para mostrar aquilo que <strong>só aquela linguagem faz bem</strong> — e que você abre e usa no seu navegador, sem instalar nada. Não são sistemas de produção; são estudos, com o código todo aberto.</p>
+        <div class="lab-nums">
+          <div><div class="n">67</div><div class="l" data-i18n="lab.n1">linguagens</div></div>
+          <div><div class="n">88</div><div class="l" data-i18n="lab.n2">projetos mapeados</div></div>
+          <div><div class="n">100%</div><div class="l" data-i18n="lab.n3">código aberto</div></div>
+        </div>
+        <span class="demo-cta" data-i18n="lab.c">▶ Abrir o laboratório →</span>
+      </a>
+
     </div>
   </section>
 
@@ -2546,6 +2596,13 @@
           "d3.t": "Layer-based visual configurator",
           "d3.d": "Real-time uniform customisation: fixed base, dynamic colour and layers that recombine without generating one image per variation. <strong>One file, no dependencies</strong> — instant even on a poor connection.",
           "d3.c": "▶ Open the configurator →",
+          "lab.tag": "// laboratory",
+          "lab.t": "One project running in every programming language",
+          "lab.d": "Outside of client work I keep an open laboratory: one program per language, chosen to show what <strong>only that language does well</strong> \u2014 and that you open and use right in your browser, with nothing to install. These are not production systems; they are studies, with all the source open.",
+          "lab.n1": "languages",
+          "lab.n2": "projects mapped",
+          "lab.n3": "open source",
+          "lab.c": "\u25b6 Open the laboratory \u2192",
           "outros.t": "Other completed work",
           "o1.t": "XML import into a SQL database",
           "o1.d": "Field-by-field mapping of multiple XML files into an existing schema, with no manual rework.",
