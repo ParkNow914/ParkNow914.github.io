@@ -21,6 +21,12 @@ updates:
     groups:
       site:
         update-types: ["minor", "patch"]
+    ignore:
+      # Os tipos do Node acompanham o Node que roda o build (node-version nos
+      # workflows). Tipos de uma versão mais nova deixariam o código usar APIs
+      # que não existem em produção. Suba os dois juntos, à mão.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "deps"
     labels:
