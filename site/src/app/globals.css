@@ -988,16 +988,19 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: opacity 360ms ease;
 }
-.js .stage[data-motion="scroll"] .step {
-  opacity: 0.32;
+/* Passo fora de foco: o texto inteiro vai para a Tinta Apagada (5,7:1 sobre o
+   fundo) e perde o laranja e o verde, que ficam só no passo ativo. Esmaecer com
+   opacidade derrubava o contraste para 2:1, abaixo do mínimo de leitura. */
+.js .stage[data-motion="scroll"] .step * {
+  transition: color 360ms ease, border-color 360ms ease;
 }
-.js .stage[data-motion="scroll"] .step[data-state="now"] {
-  opacity: 1;
+.js .stage[data-motion="scroll"] .step:not([data-state="now"]) * {
+  color: var(--ink-3);
+  border-color: var(--rule-strong);
 }
-.js .stage[data-motion="scroll"] .step[data-state="done"] {
-  opacity: 0.55;
+.js .stage[data-motion="scroll"] .step[data-state="done"] .step__title {
+  color: var(--ink-2);
 }
 .stage[data-motion="static"] .step {
   min-height: 0;
