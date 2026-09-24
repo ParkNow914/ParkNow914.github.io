@@ -41,8 +41,8 @@ jobs:
           # HTTP 200 nao prova que a pagina esta certa: o Pages devolve 200 numa
           # pagina de erro dele. Conferir uma frase que so existe no site
           # distingue "no ar" de "respondendo".
-          if ! grep -q "Autark" corpo.html 2>/dev/null; then
-            falhas="${falhas}- A resposta veio sem a palavra Autark: pode ser pagina de erro do Pages\n"
+          if ! grep -q "Manual de Operação" corpo.html 2>/dev/null; then
+            falhas="${falhas}- A resposta veio sem \"Manual de Operação\": pode ser pagina de erro do Pages ou a versao antiga\n"
           fi
 
           # As landings sao o destino do trafego pago. Se uma cair, a verba
@@ -84,7 +84,7 @@ jobs:
             exit 1
           fi
           echo "ok=sim" >> "$GITHUB_OUTPUT"
-          echo "Site no ar, 4 landings respondendo." >> "$GITHUB_STEP_SUMMARY"
+          echo "Site no ar (Manual de Operação), 4 landings e 3 demos respondendo." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Abrir issue se caiu
         if: failure()

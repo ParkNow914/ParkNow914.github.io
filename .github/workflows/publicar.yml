@@ -1,0 +1,88 @@
+name: Publicar
+
+# O domínio inteiro (autarktech.com.br) sai daqui: o site em site/ (Next.js
+# exportado como arquivos estáticos) mais as landings em lp/ e os arquivos em
+# assets/. Nada vai ao ar sem passar pelos testes de ponta a ponta no site já
+# montado, com as landings junto. Em pull request o workflow compila e testa, e
+# para antes de publicar: publicar é só a partir da main.
+#
+# O Pages está configurado com a fonte "GitHub Actions" (Settings > Pages). O
+# domínio e o HTTPS ficam nessa mesma tela; o arquivo CNAME na raiz é só registro.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publicar-${{ github.ref }}
+  # Um PR novo cancela o teste do anterior; uma publicação nunca é interrompida.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  montar:
+    name: Compilar, montar e testar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Instalar dependências
+        working-directory: site
+        run: npm ci
+
+      - name: Compilar o site
+        working-directory: site
+        run: npm run build
+
+      - name: Montar o domínio (site + landings + assets)
+        run: bash tools/montar-site.sh
+
+      - name: Instalar o Chromium dos testes
+        working-directory: site
+        run: npx playwright install --with-deps chromium
+
+      - name: Testes de ponta a ponta no site montado
+        run: |
+          node site/scripts/serve.mjs _site 3100 &
+          for i in $(seq 1 30); do curl -fs -o /dev/null http://localhost:3100/ && break; sleep 1; done
+          node site/scripts/e2e.mjs http://localhost:3100/ e2e.json --landings
+
+      - name: Guardar o resultado dos testes
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e
+          path: e2e.json
+          if-no-files-found: ignore
+
+      - name: Empacotar para o Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  publicar:
+    name: Publicar no GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: montar
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publicar
+        id: deploy
+        uses: actions/deploy-pages@v5

@@ -2,7 +2,7 @@
   "//": "Mesma página, perfil mobile (CPU 4x mais lenta e rede 4G lenta, que é o padrão do Lighthouse). A maioria dos visitantes chega do Instagram, no celular — não faz sentido só medir desktop. Os limiares de performance são menores porque o throttling é agressivo; acessibilidade e SEO continuam iguais, porque não dependem de hardware.",
   "ci": {
     "collect": {
-      "staticDistDir": ".",
+      "staticDistDir": "_site",
       "url": [
         "http://localhost/index.html",
         "http://localhost/404.html",

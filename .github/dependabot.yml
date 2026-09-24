@@ -1,6 +1,7 @@
-# O site não tem dependências em runtime — o que envelhece aqui são as actions
-# do CI. Uma action desatualizada é risco de segurança (supply chain) e de quebra
-# silenciosa quando o GitHub aposenta uma versão do runner.
+# Duas coisas envelhecem aqui: as actions da CI (risco de supply chain e de
+# quebra quando o GitHub aposenta um runner) e as dependências do site em site/.
+# Todo PR do dependabot passa pelo workflow Publicar, que compila e roda os
+# testes de ponta a ponta antes de qualquer merge.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -9,5 +10,18 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "ci"
+    labels:
+      - "dependências"
+  - package-ecosystem: "npm"
+    directory: "/site"
+    schedule:
+      interval: "monthly"
+    # Um PR por mês com as atualizações menores juntas; versão major vem sozinha
+    # porque costuma pedir ajuste de código.
+    groups:
+      site:
+        update-types: ["minor", "patch"]
+    commit-message:
+      prefix: "deps"
     labels:
       - "dependências"

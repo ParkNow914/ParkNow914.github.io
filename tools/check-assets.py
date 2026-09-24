@@ -10,22 +10,18 @@ Pega os dois erros que passam despercebidos num site sem build:
 Uso: python3 tools/check-assets.py   (sai com código 1 se achar problema)
 """
 
-import json
 import os
 import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Arquivos onde procuramos referências.
+# Arquivos onde procuramos referências. O site em site/ é um app Next.js: as
+# referências dele são conferidas pelo build e pelos testes de ponta a ponta
+# (site/scripts/e2e.mjs). Aqui fica o que é HTML escrito à mão.
 SOURCES = [
-    "index.html",
-    "404.html",
-    "sw.js",
-    "manifest.webmanifest",
     "assets/fonts/fonts.css",
-    # Landings de anúncio: moram fora do index e têm CSP própria, mas quebram
-    # do mesmo jeito se um asset sumir. Sem estas linhas nasceriam sem rede.
+    # Landings de anúncio: têm CSP própria e quebram se um asset sumir.
     "lp/lp.css",
     "lp/agenda/index.html",
     "lp/atendimento/index.html",
@@ -33,17 +29,32 @@ SOURCES = [
     "lp/delivery/index.html",
 ]
 
-# Assets que existem para o mundo externo (crawlers, sistema operacional) e por
-# isso não aparecem citados no HTML.
+# Assets que existem para o mundo externo (crawlers, outros repositórios,
+# links antigos) e por isso não aparecem citados no HTML deste repositório.
 ALLOWED_ORPHANS = {
+    # Preview social da home anterior: links compartilhados antes de set/2026
+    # continuam apontando para ele.
     "assets/og.jpg",
     "assets/apple-touch-icon.png",
-    # Banner da marca: consumido pelo README de github.com/ParkNow914/ParkNow914,
-    # que aponta para a versão publicada aqui. Não é referenciado pelo site.
+    "assets/icon-192.png",
+    "assets/icon-512.png",
+    # Consumidos pelo README de github.com/ParkNow914/ParkNow914, que aponta
+    # para as versões publicadas aqui. Não são referenciados pelo site.
     "assets/banner.svg",
+    "assets/agendazap.webp",
+    "assets/bia.webp",
+    "assets/crm.webp",
+    "assets/flowhub.webp",
+    "assets/marvet.webp",
+    "assets/parknow.webp",
+    # Prints da home anterior que ninguém mais cita. Ficam porque podem estar
+    # em mensagens e posts antigos; o site novo usa as cópias em site/public/.
+    "assets/acerto.webp",
+    "assets/jurisia.webp",
+    "assets/realcredmais.webp",
+    "assets/tratto.webp",
     # Exigido pela SIL OFL 1.1: redistribuir os .woff2 obriga a licenca a
-    # acompanhar. Ninguem linka do HTML, e nao deve mesmo — mas apagar por
-    # parecer orfao quebraria a conformidade.
+    # acompanhar. Ninguem linka do HTML, e nao deve mesmo.
     "assets/fonts/LICENSE.txt",
 }
 
@@ -68,18 +79,15 @@ def main() -> int:
         text = open(full, encoding="utf-8").read()
 
         raw = [a or b for a, b in REF.findall(text)]
-        if src.endswith(".webmanifest"):
-            raw += [i["src"] for i in json.loads(text).get("icons", [])]
-        if src == "sw.js":
-            raw += re.findall(r'"(/[^"]*)"', text)
 
         for ref in raw:
             if not is_local(ref):
                 continue
             rel = ref.split("?")[0].split("#")[0].lstrip("/")
-            if rel in ("", "index.html"):
-                rel = "index.html"
             referenced.add(rel)
+            # "/" e as âncoras da home são do site em site/, publicado na raiz.
+            if rel in ("", "index.html"):
+                continue
             if not os.path.exists(os.path.join(ROOT, rel)):
                 problems.append(f"referência quebrada em {src}: {ref}")
 
