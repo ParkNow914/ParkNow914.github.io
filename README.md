@@ -1,205 +1,110 @@
-# Autark — site institucional
+# Autark — autarktech.com.br
 
-Site de uma página da **Autark**, estúdio de automação com IA de **Alisson Santos**.
-Estático de verdade: sem framework, sem build, sem dependência em runtime.
+Tudo o que vai ao ar em **<https://autarktech.com.br/>**, o domínio da Autark, estúdio de
+automação com IA de **Alisson Santos**.
 
-**No ar:** <https://autarktech.com.br/>
+Desde setembro de 2026 a home é o **Manual de Operação**: o site inteiro é o manual do
+proprietário de um sistema que trabalha sozinho, com uma máquina 3D que se monta conforme a
+página rola. O código dele mora em [`site/`](site/) e tem o próprio README.
 
----
-
-## Estrutura
+## O que mora aqui
 
 ```
-index.html              página inteira (HTML + CSS + JS inline)
-404.html                página de erro
-sw.js                   service worker (offline + cache)
-manifest.webmanifest    PWA instalável
-robots.txt / sitemap.xml
-lighthouserc.json       metas da CI no perfil desktop
-lighthouserc.mobile.json  idem no perfil mobile (limiares menores: throttling)
-_headers                cabeçalhos HTTP reais — só valem fora do GitHub Pages
-assets/
-  *.webp                screenshots dos projetos e foto
-                        (tratto e acerto sao capas ilustradas: o print real
-                         mostraria a marca do cliente)
-  og.jpg                preview social 1200x630
-  icon-*.png            ícones do PWA
-  logo-mark.svg         logo vetorial (favicon e navbar)
-  banner.svg            banner animado do README do perfil (não usado no site)
-  fonts/                Space Grotesk, Inter, JetBrains Mono (self-hosted)
+site/                  a home: Next.js exportado como arquivos estáticos (ver site/README.md)
+lp/                    landings de tráfego pago: agenda, atendimento, juridico, delivery
+assets/                arquivos das landings (fontes, logo, foto). Também servem a quem
+                       mora fora deste repositório: o /lab/ puxa assets/fonts/ e o README
+                       do perfil no GitHub mostra os prints de assets/*.webp
 tools/
-  fetch-fonts.py        regenera assets/fonts/
-  check-assets.py       valida referências locais e assets órfãos
-  e2e.mjs               testes de ponta a ponta dos fluxos da página
-  trocar-dominio.py     migra o domínio em todos os 28 pontos de uma vez
-.github/workflows/      CI de qualidade
-.github/dependabot.yml  atualização mensal das actions
+  montar-site.sh       junta site/out, lp/ e assets/ em _site/, o que vai ao ar
+  check-assets.py      referências locais das landings e assets órfãos
+  fetch-fonts.py       regenera assets/fonts/ (fontes das landings e do /lab/)
+lighthouserc*.json     metas de Lighthouse da CI (desktop e mobile)
+_headers               cabeçalhos HTTP ideais; o GitHub Pages ignora (ver o próprio arquivo)
+CNAME                  registro do domínio; quem manda é Settings > Pages
+.github/workflows/     publicação, qualidade e disponibilidade
 ```
 
-## Rodar localmente
-
-Não tem build. Qualquer servidor estático serve — mas **abra por HTTP, não por
-`file://`**, senão o service worker e o manifest não funcionam.
-
-```bash
-python3 -m http.server 8000
-# http://localhost:8000
-```
-
-## Editar
-
-Tudo vive em `index.html`, na ordem: `<head>` (meta/SEO/JSON-LD) → `<style>` →
-markup das seções → `<script>`.
-
-### Trocar o número de WhatsApp
-
-O número `5512991743827` aparece **11 vezes** no `index.html`: 9 dentro de
-`href` e **2 montadas em JavaScript** — o CTA da calculadora de ROI e o botão do
-formulário de contato, que injetam o texto da mensagem antes de abrir o WhatsApp.
-
-Os `href` ficaram hardcoded de propósito: assim os CTAs continuam funcionando
-mesmo se o JavaScript falhar. Para trocar, faça find/replace em `index.html` e
-neste README — e confira que pegou também as duas ocorrências dentro do
-`<script>`, que um find/replace limitado a `href=` deixaria para trás.
-
-### Traduções (PT/EN)
-
-O site é bilíngue via JavaScript, sem duplicar arquivos. Cinco atributos:
-
-| Atributo | O que substitui | Use quando |
-|---|---|---|
-| `data-i18n` | `textContent` | texto puro |
-| `data-i18n-html` | `innerHTML` | o texto tem `<strong>`, `<br>` ou entidades |
-| `data-i18n-aria` | `aria-label` | rótulo de leitor de tela |
-| `data-i18n-alt` | `alt` | descrição de imagem |
-| `data-i18n-ph` | `placeholder` | campo do formulário de contato |
-
-> ⚠️ Se o valor em inglês contiver **qualquer** tag ou entidade HTML, o elemento
-> **precisa** usar `data-i18n-html`. Com `data-i18n` o markup aparece como texto
-> literal na tela (`&amp;`, `<br />`), e o snapshot do português perde a
-> formatação ao voltar de idioma.
-
-O português é lido do próprio DOM (não existe dicionário PT). Para adicionar um
-texto novo: marque o elemento com o atributo certo e acrescente a chave ao objeto
-`en` dentro do `<script>`.
-
-O idioma vem, nesta ordem: `?lang=en` na URL → preferência salva no
-`localStorage` → português. O toggle atualiza a URL, o `<title>`, a
-`description`, as tags Open Graph e o `canonical`.
-
-### Regenerar as fontes
-
-```bash
-python3 tools/fetch-fonts.py
-```
-
-As fontes são **self-hosted** de propósito: carregá-las do `fonts.googleapis.com`
-enviaria o IP de todo visitante para o Google sem consentimento — incoerente com
-uma página que vende conformidade com a LGPD. Só o subset `latin` é baixado
-(o conteúdo é PT/EN), o que dá ~320 KB no total.
-
-## Qualidade (CI)
-
-`.github/workflows/quality.yml` roda a cada push, PR e toda segunda-feira, em
-6 jobs:
-
-| Job | O que garante |
-|---|---|
-| HTML + referências locais | HTML/CSS válidos e nenhum arquivo referenciado faltando |
-| Links externos | as demos continuam no ar (elas caem sozinhas com o tempo) |
-| Lighthouse (desktop) | performance/boas práticas ≥ 90, a11y/SEO ≥ 95 |
-| Lighthouse (mobile) | mesmos mínimos, performance ≥ 80 (throttling é agressivo) |
-| Fluxos críticos (E2E) | 26 testes de comportamento — ver abaixo |
-
-O limiar de SEO vale só para o `index.html`. O `404.html` é `noindex` de propósito,
-o que derruba a categoria de SEO para ~0.58 — cobrar 95 dele seria exigir que a
-página de erro fosse indexável. Ele continua sendo checado em performance,
-acessibilidade e boas práticas (ver `assertMatrix` no `lighthouserc.json`).
-
-**A rodada semanal não é enfeite.** Ela roda no mesmo commit que já passou no push
-e mesmo assim pega coisa nova: link externo que morreu, e falhas que dependem de
-tempo — a asserção `color-contrast`, por exemplo, só enxerga as mensagens do chat
-depois que elas animam, então um contraste ruim pode passar num push e reprovar
-no agendamento. CI vermelha no agendado é sinal real, não flake para ignorar.
-
-Rodar localmente:
-
-```bash
-python3 tools/check-assets.py    # referências e assets órfãos
-node tools/e2e.mjs               # precisa de: npm install playwright
-```
-
-### O que o E2E cobre
-
-O resto da CI valida estrutura; nenhuma dessas checagens pega uma regressão de
-comportamento. `tools/e2e.mjs` cobre o formulário montando a mensagem, a troca de
-idioma sem sobra de português, o FAQ abrindo, a calculadora, o tema e erros de
-runtime no console.
-
-Cobre também **rolagem horizontal em 7 larguras** (320 a 1024px). Por muito tempo
-o teste rodava só em 1440px e por isso não pegou o hero escapando 18px num Android
-de 360px — a largura mais comum de quem chega pelo Instagram.
-
-## Decisões técnicas
-
-- **Zero dependências.** Sem framework, sem CDN, sem tracker. O único request de
-  terceiros que existia (Google Fonts) foi eliminado.
-- **CSP via `<meta>`.** O GitHub Pages não permite cabeçalhos customizados, então
-  a política vai no HTML. `frame-ancestors` foi omitido porque é ignorado em
-  `<meta>` — proteção contra clickjacking exigiria um cabeçalho real
-  (o Cloudflare Pages, por exemplo, permite).
-- **Degradação sem JS.** As animações de entrada escondem seções com
-  `opacity: 0`; um bloco `<noscript>` e um `try/catch` por módulo garantem que
-  a página continue legível se o JavaScript falhar ou for bloqueado.
-- **Imagens em WebP** com `width`/`height` declarados, para CLS zero.
-- **Sem markup de avaliação (`aggregateRating`).** As notas do 99freelas seguem
-  visíveis na página, mas não são declaradas em JSON-LD: nota da própria empresa
-  sobre si mesma viola a política de reviews do Google e rende aviso de spam de
-  dados estruturados.
-- **Acessibilidade:** contraste AA em todo texto **nos dois temas**,
-  `prefers-reduced-motion` (inclusive nas View Transitions), skip-link, FAQ com
-  `aria-controls` e headings, menu mobile com `Esc`, clique-fora e retorno de foco.
-- **Formulário sem `<form>`.** A CSP declara `form-action 'none'`; o botão monta a
-  mensagem e abre o WhatsApp por JS, e o link direto logo abaixo cobre o caso sem
-  JavaScript.
-- **Grid com `minmax(0, …)`.** Colunas de grid têm `min-width: auto` e não encolhem
-  abaixo do conteúdo — com o mockup do celular em 330px fixos, isso empurrava a
-  página inteira para o lado em telas pequenas, e o `max-width: 100%` dele não
-  segurava nada porque resolvia contra a própria largura travada.
-- **`CACHE_VERSION` no `sw.js` precisa subir** sempre que um arquivo em `assets/`
-  mudar de conteúdo mantendo o nome. Os assets são servidos
-  *stale-while-revalidate*: sem o bump, quem já visitou o site continua vendo a
-  versão antiga na primeira visita depois da atualização.
+Outros endereços do domínio são repositórios próprios, servidos pelo GitHub Pages em
+`autarktech.com.br/<repo>/`: `/lab/`, `/pdv-lio-demo/` e `/configurador-camadas/`. Nada
+aqui os publica, mas o monitor de disponibilidade vigia os três.
 
 ## Publicar
 
-O repositório é `ParkNow914/ParkNow914.github.io`, então o GitHub Pages serve a
-branch `main` na raiz do domínio automaticamente — basta dar push.
+Push na `main` publica. O workflow **Publicar** (`.github/workflows/publicar.yml`):
+
+1. compila o site (`npm ci && npm run build` em `site/`);
+2. monta o domínio com `tools/montar-site.sh`: o site na raiz, `lp/` e `assets/` ao lado;
+3. roda os testes de ponta a ponta no site montado, com as landings junto;
+4. só então publica no GitHub Pages.
+
+Em pull request ele faz os passos 1 a 3 e para. Se um teste falha, nada vai ao ar e o
+site continua na versão anterior.
+
+O Pages está com a fonte **GitHub Actions** (Settings > Pages). O domínio, o HTTPS e o
+DNS no Registro.br (registros A para o GitHub Pages) ficam como estão.
+
+### Voltar uma versão
+
+Reverta o commit na `main` (`git revert <commit>` e push). O workflow publica a versão
+anterior em poucos minutos.
+
+## Rodar localmente
 
 ```bash
-git push origin main
+cd site
+npm install
+npm run dev                      # http://localhost:3000, só o site
+npm run build                    # gera site/out/
+cd .. && bash tools/montar-site.sh
+node site/scripts/serve.mjs _site 3100      # domínio montado, como no GitHub Pages
+node site/scripts/e2e.mjs http://localhost:3100/ --landings
 ```
 
-Alternativa com banda ilimitada e cabeçalhos HTTP customizáveis:
-[Cloudflare Pages](https://dash.cloudflare.com) → Workers & Pages → Create →
-Pages → conectar o repositório (sem comando de build, output `/`). O arquivo
-`_headers` já está pronto para esse dia: leva a CSP completa (com o
-`frame-ancestors` que o `<meta>` não consegue entregar), `Permissions-Policy`,
-HSTS e as regras de cache.
+## Qualidade (CI)
+
+| Workflow | Quando | O que garante |
+|---|---|---|
+| Publicar | push, PR | build, 32 testes de ponta a ponta no site montado (landings incluídas), publicação |
+| Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
+| Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
+
+O E2E cobre:
+- estrutura e JSON-LD;
+- ilhas estáticas funcionando sem hidratação;
+- calculadora e ordem de serviço montando a mensagem do WhatsApp;
+- índice com teclado;
+- montagem 3D até OPERANDO;
+- origem UTM nos links;
+- página sem JavaScript;
+- links antigos da home anterior (`#projetos`, `#contato`, `#faq`, `#calculadora`) caindo na seção certa;
+- 404;
+- ausência de rolagem horizontal em 7 larguras;
+- movimento reduzido.
+
+## Decisões que valem para o domínio inteiro
+
+- **Nenhum request a terceiros.** Fontes, imagens e 3D saem do próprio domínio; sem
+  analytics, sem cookies. A página vende LGPD e precisa ser coerente com isso.
+- **CSP via `<meta>`.** O GitHub Pages não deixa configurar cabeçalhos, então cada página
+  leva a política no HTML. `frame-ancestors` fica de fora porque o navegador ignora essa
+  diretiva em `<meta>`.
+- **O service worker da home anterior foi desligado.** `/sw.js` agora é um desinstalador:
+  apaga os caches e se desregistra no navegador de quem visitou o site antigo. Não volte a
+  registrar service worker sem pensar em como desligá-lo depois.
+- **Links antigos continuam chegando.** As âncoras da home anterior existem no site novo
+  como marcadores invisíveis na seção equivalente (`LEGACY_ANCHORS` em
+  `site/src/content/site.ts`).
+- **Sem `aggregateRating` no JSON-LD.** Nota da própria empresa sobre si viola a política de
+  reviews do Google. As avaliações do 99freelas ficam visíveis na página.
 
 ### Trocar de domínio
 
-```bash
-python3 tools/trocar-dominio.py --conferir meudominio.com   # simula
-python3 tools/trocar-dominio.py meudominio.com              # grava
-```
+O domínio aparece em:
+- `SITE_URL` em `site/src/content/site.ts`;
+- canonical e Open Graph de cada landing em `lp/*/index.html`;
+- `.github/workflows/disponibilidade.yml`;
+- a exclusão do lychee em `.github/workflows/quality.yml`;
+- `CNAME`.
 
-A URL aparece em 28 pontos (canonical, hreflang, OG, Twitter, 5 blocos de JSON-LD,
-sitemap, robots e README). Trocar à mão deixa algum para trás, e uma `canonical`
-ou `og:image` errada quebra SEO e preview sem dar erro visível.
-
-## Analytics (opcional)
-
-Não há nenhum tracker instalado. Há um comentário no `<head>` do `index.html`
-com duas opções gratuitas e sem cookies (Cloudflare Web Analytics e GoatCounter).
-Ao adicionar uma delas, **libere o domínio na CSP** — senão o script é bloqueado.
+Depois de trocar esses pontos, configure o domínio novo em Settings > Pages e aponte o DNS.

@@ -10,13 +10,11 @@ Uso:
     python3 tools/fetch-fonts.py
 
 Gera:
-    assets/fonts/*.woff2   (subset latin apenas — o site é PT/EN)
-    assets/fonts/fonts.css (@font-face apontando para os arquivos locais; usado pelo 404)
-    index.html             bloco entre /* FONTS:START */ e /* FONTS:END */
+    assets/fonts/*.woff2   (subset latin apenas)
+    assets/fonts/fonts.css (@font-face apontando para os arquivos locais)
 
-O index.html leva os @font-face inline de propósito: um <link> a mais custaria um
-round-trip inteiro antes do primeiro paint. O 404.html, que não é crítico para
-performance, continua usando o fonts.css.
+Quem usa: as landings em lp/ e o /lab/ (outro repositório, servido no mesmo
+domínio). O site principal em site/ tem fontes próprias, ver site/src/app/fonts.ts.
 
 Licença das fontes: SIL Open Font License 1.1 (permite self-hosting e
 redistribuição). Space Grotesk, Inter e JetBrains Mono.
@@ -92,32 +90,6 @@ def main() -> int:
 
     with open(os.path.join(OUT_DIR, "fonts.css"), "w", encoding="utf-8") as fh:
         fh.write(HEADER + "\n\n".join(kept) + "\n")
-
-    # Mantém o bloco inline do index.html em sincronia com o fonts.css.
-    index = os.path.join(os.path.dirname(OUT_DIR), "..", "index.html")
-    index = os.path.normpath(index)
-    html = open(index, encoding="utf-8").read()
-    start, end = "/* FONTS:START", "/* FONTS:END */"
-    if start in html and end in html:
-        before = html[: html.index(start)]
-        after = html[html.index(end) + len(end):]
-        inline = "\n".join(
-            "    " + line if line.strip() else line
-            for line in "\n\n".join(kept).splitlines()
-        )
-        html = (
-            before
-            + "/* FONTS:START — gerado por tools/fetch-fonts.py, nao edite a mao */\n"
-            + inline
-            + "\n    "
-            + end
-            + after
-        )
-        with open(index, "w", encoding="utf-8") as fh:
-            fh.write(html)
-        print("index.html: bloco @font-face inline atualizado")
-    else:
-        print("aviso: marcadores FONTS:START/END nao encontrados no index.html", file=sys.stderr)
 
     total = sum(written.values())
     for name, size in sorted(written.items()):
