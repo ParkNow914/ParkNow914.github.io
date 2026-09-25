@@ -74,7 +74,7 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
   - Acerto: demo aberta `acerto-comissao.netlify.app`, 276 testes.
 - 3 demonstrações técnicas: PDV Cielo Lio (`/pdv-lio-demo/`), atendimento em camadas (Make.com, GitHub) e configurador visual (`/configurador-camadas/`).
 - Laboratório Poliglota em `/lab/`, com um projeto por linguagem rodando no navegador.
-- 5 depoimentos reais do 99freelas. São 7 avaliações, todas 5.0, com 100% de recomendação, e são verificáveis. Não inventar outros.
+- 6 depoimentos reais do 99freelas. São 10 avaliações, todas 5.0, com 100% de recomendação e 11 projetos concluídos (conferido em 25/09/2026), e são verificáveis. Não inventar outros.
 - Prints reais em `ref/ParkNow914.github.io/assets/*.webp`. Tratto e Acerto são capas ilustradas, porque o print real mostraria a marca do cliente. A foto do Alisson está em `foto-square.webp`.
 - Números do hero: nota 5.0, 100% de recomendação, 6 SaaS próprios e 3 sistemas em produção real.
 - Não existem e não podem ser inventados: logos de clientes, estudos de caso com receita, prêmios, imprensa, preços fechados por projeto.

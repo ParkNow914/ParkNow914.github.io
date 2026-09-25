@@ -73,7 +73,7 @@ Três outros endereços do domínio são repositórios próprios, servidos pelo 
 
 Push na `main` publica. Nada chega ao domínio sem passar pelos testes no site já montado, com as landings junto.
 
-<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 32 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
+<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 33 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
 
 2. `npm ci && npm run build` em `site/` gera o export estático em `site/out/`.
 3. `tools/montar-site.sh` põe o site na raiz e `lp/` e `assets/` ao lado, em `_site/`. Se o site e as pastas antigas disputarem o mesmo caminho, a montagem falha.
@@ -93,7 +93,7 @@ O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Regist
 
 | Workflow | Quando | O que garante |
 |---|---|---|
-| Publicar | push, PR | build, 32 testes de ponta a ponta no site montado, publicação |
+| Publicar | push, PR | build, 33 testes de ponta a ponta no site montado, publicação |
 | Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
 | Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
 
