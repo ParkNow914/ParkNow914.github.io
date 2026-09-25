@@ -53,13 +53,13 @@ A cena é procedural: sem modelo baixado, sem HDRI de CDN, sem nenhuma requisiç
 ```
 site/                  a home: Next.js exportado como arquivos estáticos (ver site/README.md)
 lp/                    landings de tráfego pago: agenda, atendimento, juridico, delivery
-assets/                arquivos das landings (fontes, logo, foto). Também servem a quem
+assets/                arquivos das landings (fontes do site, logo, foto). Também servem a quem
                        mora fora deste repositório: o /lab/ puxa assets/fonts/ e o README
                        do perfil no GitHub mostra os prints de assets/*.webp
 tools/
   montar-site.sh       junta site/out, lp/ e assets/ em _site/, o que vai ao ar
   check-assets.py      referências locais das landings e assets órfãos
-  fetch-fonts.py       regenera assets/fonts/ (fontes das landings e do /lab/)
+  fetch-fonts.py       regenera as fontes antigas de assets/fonts/, que o /lab/ ainda usa
 lighthouserc*.json     metas de Lighthouse da CI (desktop e mobile)
 _headers               cabeçalhos HTTP ideais; o GitHub Pages ignora (ver o próprio arquivo)
 CNAME                  registro do domínio; quem manda é Settings > Pages

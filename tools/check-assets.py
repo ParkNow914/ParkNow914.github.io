@@ -56,6 +56,9 @@ ALLOWED_ORPHANS = {
     # Exigido pela SIL OFL 1.1: redistribuir os .woff2 obriga a licenca a
     # acompanhar. Ninguem linka do HTML, e nao deve mesmo.
     "assets/fonts/LICENSE.txt",
+    "assets/fonts/hubot-sans-OFL.txt",
+    "assets/fonts/mona-sans-OFL.txt",
+    "assets/fonts/martian-mono-OFL.txt",
 }
 
 REF = re.compile(r'(?:src|href)\s*=\s*["\']([^"\']+)["\']|url\(\s*["\']?([^"\')]+)["\']?\s*\)')
