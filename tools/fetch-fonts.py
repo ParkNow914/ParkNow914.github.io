@@ -13,8 +13,9 @@ Gera:
     assets/fonts/*.woff2   (subset latin apenas)
     assets/fonts/fonts.css (@font-face apontando para os arquivos locais)
 
-Quem usa: as landings em lp/ e o /lab/ (outro repositório, servido no mesmo
-domínio). O site principal em site/ tem fontes próprias, ver site/src/app/fonts.ts.
+Quem usa: o /lab/ (outro repositório, servido no mesmo domínio). As landings em
+lp/ passaram a usar as fontes do site (assets/fonts/hubot, mona e martian, as
+mesmas de site/src/fonts), declaradas em lp/lp.css.
 
 Licença das fontes: SIL Open Font License 1.1 (permite self-hosting e
 redistribuição). Space Grotesk, Inter e JetBrains Mono.
