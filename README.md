@@ -73,20 +73,14 @@ Três outros endereços do domínio são repositórios próprios, servidos pelo 
 
 Push na `main` publica. Nada chega ao domínio sem passar pelos testes no site já montado, com as landings junto.
 
-```mermaid
-flowchart LR
-    A[push na main] --> B[build do site]
-    B --> C[montar o domínio]
-    C --> D[32 testes E2E]
-    D --> E[GitHub Pages]
-```
+<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 32 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
 
-1. `npm ci && npm run build` em `site/` gera o export estático em `site/out/`.
-2. `tools/montar-site.sh` põe o site na raiz e `lp/` e `assets/` ao lado, em `_site/`. Se o site e as pastas antigas disputarem o mesmo caminho, a montagem falha.
-3. `site/scripts/e2e.mjs --landings` roda os testes de ponta a ponta no domínio montado.
-4. `actions/deploy-pages` publica.
+2. `npm ci && npm run build` em `site/` gera o export estático em `site/out/`.
+3. `tools/montar-site.sh` põe o site na raiz e `lp/` e `assets/` ao lado, em `_site/`. Se o site e as pastas antigas disputarem o mesmo caminho, a montagem falha.
+4. `site/scripts/e2e.mjs --landings` roda os testes de ponta a ponta no domínio montado.
+5. `actions/deploy-pages` publica.
 
-Em pull request o workflow faz os passos 1 a 3 e para. Se um teste falha, nada vai ao ar e o site continua na versão anterior. Para voltar uma versão, reverta o commit na `main`: o workflow publica o estado anterior em poucos minutos.
+Em pull request o workflow faz os passos 2 a 4 e para. Se um teste falha, nada vai ao ar e o site continua na versão anterior. Para voltar uma versão, reverta o commit na `main`: o workflow publica o estado anterior em poucos minutos.
 
 O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Registro.br aponta os registros A para o GitHub Pages, e o HTTPS é do próprio GitHub.
 
