@@ -484,6 +484,17 @@ export const PROOFS = {
 };
 
 export const OTHER_WORK = [
+  {
+    name: "KineQuote: banco multiempresa isolado",
+    body: "Postgres no Supabase com RLS forçado por empresa e uma suíte automatizada que tenta ler, inserir e alterar dados de outra empresa, e precisa falhar em todas.",
+    date: "set/2026",
+  },
+  { name: "Etiqueta do Word com dados do SQL Server", body: "Três campos novos do banco na etiqueta de impressão, ajustando o script que já existia.", date: "set/2026" },
+  {
+    name: "Página HTML na frente do WordPress",
+    body: "index.html como página principal sem derrubar o WordPress com Elementor, e formulários enviando por SMTP autenticado.",
+    date: "ago/2026",
+  },
   { name: "Importação de XML para banco SQL", body: "Mapeamento campo a campo de vários arquivos XML para um schema existente, sem retrabalho manual.", date: "ago/2026" },
   { name: "Site jurídico: GA4, blog e conversão", body: "Segunda etapa de melhorias num site de escritório de advocacia já publicado.", date: "ago/2026" },
   { name: "Publicação de página e responsividade", body: "Página nova publicada no domínio existente, testada no ambiente real e com o botão ligado ao WhatsApp.", date: "ago/2026" },
@@ -540,13 +551,20 @@ export const SIZING = {
 };
 
 export const FIELD = {
+  /** Conferido no perfil público do 99freelas em 25/09/2026: 10 avaliações, todas 5.0, 10 recomendações. */
+  reviews: 10,
   intro:
-    "Sete avaliações no 99freelas, todas 5.0, com 100% de recomendação. Cinco estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
+    "Dez avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
   items: [
     {
       quote:
         "Excelente profissional! Desde o início, demonstrou muita organização, agilidade e compromisso com o projeto. A comunicação foi clara durante todo o processo, cumpriu os prazos combinados e entregou um trabalho de altíssima qualidade. Além de ser muito rápido, é extremamente competente, atencioso e sempre disposto a realizar os ajustes necessários para que o resultado fique exatamente como esperado. Superou minhas expectativas e mostrou que realmente entende do que faz.",
       project: "Landing page em Next.js (Marvet)",
+      date: "ago. 2026",
+    },
+    {
+      quote: "Excelente profissional. Explica bem tudo.",
+      project: "Página HTML na frente do WordPress",
       date: "ago. 2026",
     },
     {

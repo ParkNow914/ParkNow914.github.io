@@ -350,7 +350,7 @@ export function Field() {
         <dl className="field-sum__figs">
           <div>
             <dt>Avaliações</dt>
-            <dd>7</dd>
+            <dd>{FIELD.reviews}</dd>
           </div>
           <div>
             <dt>Nota</dt>

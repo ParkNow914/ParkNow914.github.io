@@ -107,7 +107,7 @@ DESIGN.md         sistema visual: tokens, tipografia, componentes e regras
   faixa de tela em que é o primeiro visual. No celular, o pôster da bancada vem depois,
   sem pressa, e o desktop nem baixa o da capa do celular (um `<picture>` entrega um
   pixel vazio).
-- **E2E:** 32/32 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
+- **E2E:** 33/33 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
   JSON-LD, ilhas estáticas, calculadora, ordem de serviço, índice, montagem até OPERANDO,
   UTM, página sem JS, links da home anterior, 404, landings, 7 larguras sem rolagem
   horizontal e movimento reduzido.
