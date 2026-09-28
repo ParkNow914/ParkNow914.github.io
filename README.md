@@ -95,6 +95,7 @@ O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Regist
 |---|---|---|
 | Publicar | push, PR | build, 58 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
 | Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
+| Notas agendadas | 11:00 UTC (08:00 em Brasília) | copia do calendário privado a nota do dia, gera a imagem e chama o Publicar |
 | Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
 
 Os testes de ponta a ponta cobrem:
@@ -141,13 +142,11 @@ Tudo aqui é gratuito e não põe script de terceiros na página.
 
 ### Notas de campo
 
-São os posts do Instagram (`autark-instagram/posts/`) publicados também como artigo em `/notas/`. Só entra no site post cuja data já chegou: o calendário é privado. Para publicar uma nota nova:
+São os posts do Instagram (`autark-instagram/posts/`) publicados também como artigo em `/notas/`. Só entra no site post cuja data já chegou: o calendário é privado.
 
-```bash
-cp ../autark-instagram/posts/2026-09-30-ia-que-mostra-a-fonte.md site/content/notas/
-cd site && npm run og:notas     # gera a imagem de compartilhamento dela
-git add content/notas public/notas/og && git commit -m "Nota: ..." && git push
-```
+A publicação é sozinha. Todo dia às 08:00 (Brasília) o workflow **Notas agendadas** lê o calendário com uma chave só de leitura (segredo `INSTAGRAM_DEPLOY_KEY`), copia o post que venceu, gera a imagem de compartilhamento e chama o **Publicar**. Sem post novo, ele termina em segundos. Para adiantar, rode o workflow à mão em Actions.
+
+Notas que existem só no site, feitas para a busca do Google, moram direto em `site/content/notas/` com `projeto:` apontando para o sistema, e aparecem também na página dele.
 
 ## §6 Decisões que valem para o domínio inteiro
 
