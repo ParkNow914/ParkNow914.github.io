@@ -55,8 +55,9 @@ jobs:
           # ("/assets/...") em arquivos locais e reporta cada um como erro.
           # As referências locais já são validadas por tools/check-assets.py;
           # aqui o que interessa são os links externos.
-          # wa.me e o 99freelas bloqueiam requisições automatizadas e dariam
-          # falso positivo; o resto (demos, GitHub, OG) é checado de verdade.
+          # wa.me, o 99freelas e o LinkedIn (que responde 999 a robô) bloqueiam
+          # requisições automatizadas e dariam falso positivo; o resto (demos,
+          # GitHub, OG) é checado de verdade.
           # Depois da migracao, TUDO no site e dominio proprio — inclusive as
           # duas demos, que sao outros repositorios servidos em
           # autarktech.com.br/<repo>/. E dominio proprio nao da pra validar
@@ -78,6 +79,7 @@ jobs:
             --exclude "^https://wa\.me"
             --exclude "^https://autarktech.com.br"
             --exclude "^https://www\.99freelas\.com\.br"
+            --exclude "^https://www\.linkedin\.com"
             --exclude-path assets
             README.md site/src/content/site.ts lp/agenda/index.html lp/atendimento/index.html lp/juridico/index.html lp/delivery/index.html
           fail: true

@@ -3096,3 +3096,474 @@ body {
   grid-column: 1 / -1;
   height: 0;
 }
+
+/* --- Notas de campo (/notas/ e o anexo D da home) ------------------------------ */
+
+.rh__notas {
+  color: var(--ink);
+  text-decoration: none;
+}
+.rh__notas:hover {
+  color: var(--signal);
+}
+.toc__extra {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px 0 4px;
+  border-top: 1px solid var(--rule-strong);
+  text-decoration: none;
+}
+.toc__extra .toc__title {
+  flex: 1;
+}
+.toc__extra:hover .toc__title {
+  color: var(--signal);
+}
+
+/* Lista de notas: um registro, como o dos sistemas. */
+.notas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule-strong);
+}
+.notas__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr) auto;
+  gap: 8px clamp(16px, 3vw, 40px);
+  align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.notas__n {
+  padding-top: 0.35em;
+  font: 500 0.78rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--ink-3);
+}
+.notas__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 8px;
+  font: 500 0.74rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--ink-3);
+}
+.notas__t {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(1.45rem, 1.1rem + 1.2vw, 2.1rem);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.notas__t a {
+  color: var(--ink);
+  text-decoration: none;
+}
+/* O título é o link, mas a linha inteira responde ao clique. */
+.notas__t a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.notas__lede {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+}
+.notas__seta {
+  margin-top: 0.4em;
+  color: var(--ink-3);
+  transition: transform 200ms var(--ease-out), color 160ms ease;
+}
+.notas__item:hover .notas__t a {
+  color: var(--signal);
+}
+.notas__item:hover .notas__seta {
+  color: var(--signal);
+  transform: translateX(4px);
+}
+.notas__t a:focus-visible {
+  outline: none;
+}
+.notas__item:has(a:focus-visible) {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
+}
+.nota__pilar {
+  color: var(--signal);
+}
+
+.notas-home__cab {
+  margin-bottom: 28px;
+}
+.notas-home__t {
+  margin: 0 0 12px;
+  font-family: var(--f-display);
+  font-weight: 850;
+  font-stretch: 75%;
+  font-size: var(--fs-h3);
+  line-height: 1;
+}
+.notas-home__lede {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--ink-2);
+}
+.notas-home .link-arrow {
+  justify-self: start;
+  margin-top: 26px;
+}
+
+/* Página de índice e página de cada nota: coluna de leitura. */
+.notas-pag,
+.nota-pag {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + clamp(40px, 7vw, 88px)) var(--gutter) clamp(56px, 8vw, 104px);
+}
+.notas-pag__cab {
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+.nota__kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0 0 18px;
+  font: 500 0.78rem var(--f-mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.notas-pag__t,
+.nota__t {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 850;
+  font-stretch: 75%;
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.notas-pag__lede {
+  margin: 22px 0 18px;
+  max-width: 62ch;
+  font-size: var(--fs-lede);
+  color: var(--ink-2);
+}
+.notas-pag__lede a {
+  color: var(--ink);
+  text-decoration-color: var(--signal);
+}
+
+.nota__trilha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(24px, 4vw, 40px);
+  font: 500 0.74rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--ink-3);
+}
+.nota__trilha a {
+  color: var(--ink-2);
+  text-decoration-color: var(--rule-strong);
+}
+.nota__trilha a:hover {
+  color: var(--signal);
+}
+.nota__cab {
+  padding-bottom: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.nota__lede {
+  margin: 24px 0 0;
+  padding-left: 22px;
+  border-left: 4px solid var(--signal);
+  font-size: var(--fs-lede);
+  font-weight: 650;
+  color: var(--ink);
+  max-width: 44ch;
+}
+.nota__autor {
+  margin: 22px 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+.nota__texto {
+  max-width: 64ch;
+  padding: clamp(28px, 4vw, 44px) 0;
+  font-size: clamp(1.06rem, 1rem + 0.25vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.nota__texto p {
+  margin: 0 0 1.1em;
+}
+.nota__texto strong,
+.ficha strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+.nota__texto code,
+.ficha code {
+  font: 500 0.86em var(--f-mono);
+  font-stretch: 87.5%;
+  padding: 0.05em 0.3em;
+  background: var(--ground-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  color: var(--ink);
+}
+
+/* A ficha: cada slide do carrossel vira uma parte numerada, como os passos da §1. */
+.ficha {
+  border-top: 1px solid var(--rule-strong);
+}
+.ficha__cab {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 14px 0;
+  font: 500 0.74rem var(--f-mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--rule);
+}
+.ficha__parte {
+  display: grid;
+  grid-template-columns: 3.2em minmax(0, 1fr);
+  gap: 16px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ficha__n {
+  font: 600 0.8rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--signal);
+  padding-top: 0.3em;
+}
+.ficha__corpo {
+  max-width: 62ch;
+  color: var(--ink-2);
+}
+.ficha__corpo > * {
+  margin: 0 0 12px;
+}
+.ficha__corpo > :last-child {
+  margin-bottom: 0;
+}
+.ficha__t {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  color: var(--ink);
+}
+/* O número grande leva a régua de cota por baixo, como nos carrosséis. */
+.ficha__numero {
+  display: inline-block;
+  font-family: var(--f-display);
+  font-weight: 850;
+  font-stretch: 75%;
+  font-size: clamp(3.6rem, 2.4rem + 5vw, 6rem);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  padding-bottom: 14px;
+  background:
+    linear-gradient(var(--signal), var(--signal)) left bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--signal) 0 2px, transparent 2px 26px) left bottom / 100% 10px no-repeat;
+}
+.ficha__destaque {
+  padding-left: 18px;
+  border-left: 4px solid var(--signal);
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 1.5rem;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.ficha__lista {
+  list-style: none;
+  padding: 0;
+}
+.ficha__lista li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+}
+.ficha__lista li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  background: var(--signal);
+}
+.ficha__codigo {
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--ground-raised);
+  overflow: hidden;
+}
+.ficha__codigo figcaption {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule);
+  font: 500 0.72rem var(--f-mono);
+  font-stretch: 87.5%;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.ficha__codigo pre {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  font: 500 0.88rem/1.6 var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Fecho de cada nota: a mesma página laranja da §11 da home. */
+.nota__cta {
+  margin-top: clamp(40px, 6vw, 64px);
+  padding: clamp(28px, 4vw, 44px);
+  background: var(--signal);
+  color: var(--signal-ink);
+}
+.nota__cta-k {
+  margin: 0 0 12px;
+  font: 600 0.78rem var(--f-mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nota__cta-t {
+  margin: 0 0 12px;
+  font-family: var(--f-display);
+  font-weight: 850;
+  font-stretch: 75%;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+  line-height: 0.95;
+  text-wrap: balance;
+}
+.nota__cta-d {
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.nota__cta-p {
+  margin: 0 0 24px;
+  max-width: 56ch;
+  color: var(--signal-ink-2);
+}
+.nota__cta .btn--signal {
+  background: var(--ground);
+  color: var(--ink);
+}
+.nota__cta .btn--signal:hover {
+  background: var(--ground-sunk);
+}
+.nota__cta-nota {
+  margin: 14px 0 0;
+  font-size: 0.88rem;
+  color: var(--signal-ink-2);
+}
+
+.nota__vizinhas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(32px, 5vw, 56px);
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.nota__vizinhas a {
+  display: block;
+  padding: 18px 20px;
+  background: var(--ground);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+.nota__vizinhas a span {
+  display: block;
+  margin-bottom: 6px;
+  font: 500 0.72rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--ink-3);
+}
+.nota__vizinhas a:hover {
+  color: var(--signal);
+}
+.nota__vizinhas--ant {
+  text-align: right;
+}
+
+.nota-pag__partilha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.nota-pag__partilha p {
+  margin: 0;
+  color: var(--ink-2);
+}
+.partilha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.partilha__zap {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.partilha__zap:hover {
+  border-color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .notas__item {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .notas__n {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+  .ficha__parte {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .nota__vizinhas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .nota__vizinhas--ant {
+    text-align: left;
+  }
+}

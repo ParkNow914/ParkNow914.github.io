@@ -106,6 +106,11 @@ export function RunningHeader() {
             </li>
           ))}
         </ol>
+        <a className="toc__extra" href="/notas/" onClick={() => setOpen(false)}>
+          <span className="toc__addr">D</span>
+          <span className="toc__title">Notas de campo</span>
+          <Icon name="arrow-right" size={16} />
+        </a>
       </nav>
     </>
   );

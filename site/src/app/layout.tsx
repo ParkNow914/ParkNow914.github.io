@@ -1,6 +1,6 @@
 ﻿import type { Metadata, Viewport } from "next";
 import { hubot, mona, martian } from "./fonts";
-import { SITE_URL, EMAIL, GITHUB, FREELAS, WHATSAPP, TROUBLESHOOTING, WARRANTY } from "@/content/site";
+import { SITE_URL } from "@/content/site";
 import "./globals.css";
 
 const title = "Autark · Sistemas que trabalham sozinhos enquanto você cresce";
@@ -55,58 +55,6 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-// Sem aggregateRating: nota da própria empresa sobre si mesma viola a política
-// de reviews do Google. As avaliações seguem visíveis na página.
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Alisson Santos",
-    url: SITE_URL,
-    jobTitle: "Desenvolvedor full-stack, automação e IA",
-    email: `mailto:${EMAIL}`,
-    sameAs: [GITHUB, FREELAS],
-    worksFor: { "@type": "Organization", name: "Autark", url: SITE_URL },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Autark",
-    url: SITE_URL,
-    description:
-      "Estúdio de automação com IA: atendimento de WhatsApp com IA, SaaS full-stack, landing pages e integrações. Por Alisson Santos.",
-    image: `${SITE_URL}/marca/og-manual.png`,
-    telephone: `+${WHATSAPP}`,
-    email: EMAIL,
-    address: { "@type": "PostalAddress", addressLocality: "Lorena", addressRegion: "SP", addressCountry: "BR" },
-    areaServed: { "@type": "Country", name: "Brasil" },
-    founder: { "@type": "Person", name: "Alisson Santos" },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    url: SITE_URL,
-    name: "Autark",
-    inLanguage: "pt-BR",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...TROUBLESHOOTING.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-      {
-        "@type": "Question",
-        name: "E se eu não gostar do resultado?",
-        acceptedAnswer: { "@type": "Answer", text: WARRANTY[0].body },
-      },
-    ],
-  },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${hubot.variable} ${mona.variable} ${martian.variable}`}>
@@ -116,11 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Pular para o conteúdo
         </a>
         {children}
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </body>
     </html>
   );

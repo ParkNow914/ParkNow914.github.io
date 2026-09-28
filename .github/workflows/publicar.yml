@@ -86,3 +86,24 @@ jobs:
       - name: Publicar
         id: deploy
         uses: actions/deploy-pages@v5
+
+  avisar:
+    name: Avisar os buscadores (IndexNow)
+    needs: publicar
+    runs-on: ubuntu-latest
+    # Aviso é bônus: se o IndexNow estiver fora ou recusar, o site já está no ar.
+    continue-on-error: true
+    steps:
+      - name: Enviar as URLs do sitemap
+        run: |
+          set -eu
+          # Mesma chave de site/public/<chave>.txt (e de site/scripts/e2e.mjs).
+          chave=d4eae759f4b20e14de2f8920e2e65853
+          # O Pages leva alguns segundos para servir a versão nova.
+          sleep 30
+          curl -fsS https://autarktech.com.br/sitemap.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' > urls.txt
+          jq -Rn --arg k "$chave" '{host: "autarktech.com.br", key: $k, keyLocation: ("https://autarktech.com.br/" + $k + ".txt"), urlList: [inputs]}' < urls.txt > corpo.json
+          codigo=$(curl -s -o resposta.txt -w "%{http_code}" -X POST https://api.indexnow.org/indexnow \
+            -H "Content-Type: application/json; charset=utf-8" --data @corpo.json)
+          echo "IndexNow respondeu HTTP ${codigo} para $(wc -l < urls.txt) URLs (Bing, Yandex, Naver, Seznam, Yep)" | tee -a "$GITHUB_STEP_SUMMARY"
+          case "$codigo" in 200|202) ;; *) cat resposta.txt; exit 1 ;; esac

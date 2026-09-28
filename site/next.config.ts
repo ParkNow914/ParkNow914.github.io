@@ -6,6 +6,9 @@ import type { NextConfig } from "next";
 // desligado: as larguras em WebP dos pôsteres saem de scripts/posters.mjs.
 const config: NextConfig = {
   output: "export",
+  // /notas/ e /notas/<nota>/ viram pasta com index.html: é o formato que o
+  // GitHub Pages serve com e sem a barra no fim.
+  trailingSlash: true,
   reactStrictMode: true,
   turbopack: { root: process.cwd() },
   images: { unoptimized: true },

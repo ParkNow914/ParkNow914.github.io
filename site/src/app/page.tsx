@@ -5,6 +5,9 @@ import { Assistance } from "@/components/Assistance";
 import { MachineMount } from "@/components/machine/MachineMount";
 import { Enhance } from "@/components/Enhance";
 import { STATIC_SECTIONS as S } from "@/generated/static-sections";
+import { jsonLdHome } from "@/content/jsonld";
+import { NotasRecentes } from "@/components/Notas";
+import { notas } from "@/lib/notas";
 
 // Ilha estática: HTML pronto, gerado no build a partir dos mesmos componentes
 // (scripts/prerender.mjs). O React insere o bloco inteiro de uma vez em vez de
@@ -25,6 +28,7 @@ export default function Page() {
         <Static html={S.install} />
         <Sizing />
         <Static html={S.field} />
+        <NotasRecentes lista={notas()} />
         <Static html={S.maker} />
         <Static html={S.troubleshooting} />
         <Static html={S.warranty} />
@@ -33,6 +37,11 @@ export default function Page() {
       <Static html={S.colophon} />
       <MachineMount />
       <Enhance />
+      <script
+        type="application/ld+json"
+        // Sem aggregateRating: ver o comentário em content/jsonld.ts.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHome) }}
+      />
     </>
   );
 }
