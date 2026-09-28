@@ -80,6 +80,7 @@ jobs:
             --exclude "^https://autarktech.com.br"
             --exclude "^https://www\.99freelas\.com\.br"
             --exclude "^https://www\.linkedin\.com"
+            --exclude "^file://"
             --exclude-path assets
             README.md site/src/content/site.ts lp/agenda/index.html lp/atendimento/index.html lp/juridico/index.html lp/delivery/index.html
           fail: true

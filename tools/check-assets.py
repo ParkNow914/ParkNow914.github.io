@@ -91,6 +91,10 @@ def main() -> int:
             # "/" e as âncoras da home são do site em site/, publicado na raiz.
             if rel in ("", "index.html"):
                 continue
+            # Páginas do app Next (/privacidade/, /sistemas/…) só viram arquivo no
+            # build; aqui basta existir a rota em site/src/app.
+            if rel.endswith("/") and os.path.exists(os.path.join(ROOT, "site", "src", "app", rel.rstrip("/"), "page.tsx")):
+                continue
             if not os.path.exists(os.path.join(ROOT, rel)):
                 problems.append(f"referência quebrada em {src}: {ref}")
 
