@@ -242,6 +242,59 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   await ctx.close();
 }
 
+// 3d. Páginas avulsas: uma por sistema, Vale do Paraíba e privacidade
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+  const abs = (p) => new globalThis.URL(p, URL).href;
+  const tiposLd = async () =>
+    (await page.$$eval('script[type="application/ld+json"]', (els) => els.map((e) => JSON.parse(e.textContent))))
+      .flat()
+      .map((x) => x["@type"])
+      .sort()
+      .join(",");
+
+  await page.goto(URL, { waitUntil: "networkidle" });
+  check("cada ficha da home leva à página do sistema", (await page.locator('.sheet a[href^="/sistemas/"]').count()) === 10);
+  check("rodapé leva à política de privacidade", (await page.locator('.colophon a[href="/privacidade/"]').count()) === 1);
+
+  await page.goto(abs("sistemas/"), { waitUntil: "networkidle" });
+  const sis = await page.$$eval(".notas__t a", (as) => as.map((a) => a.getAttribute("href")));
+  check("registro lista os 10 sistemas com página própria", sis.length === 10 && sis.every((h) => /^\/sistemas\/[a-z0-9-]+\/$/.test(h)), `${sis.length}`);
+
+  await page.goto(abs("sistemas/bia/"), { waitUntil: "networkidle" });
+  const h1 = (await page.locator("h1").textContent()).trim();
+  const tipos = await tiposLd();
+  check("página do sistema tem h1 e JSON-LD com trilha", h1 === "Bia" && tipos === "BreadcrumbList,CreativeWork", `${h1} ${tipos}`);
+  const cta = decodeURIComponent((await page.locator(".nota__cta a").getAttribute("href")) || "");
+  check("CTA do sistema leva o nome dele para o WhatsApp", cta.includes("Bia"));
+  check("página do sistema lista as notas sobre ele", (await page.locator(".bloco .notas__item").count()) > 0);
+  const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+  check("página do sistema tem imagem de compartilhamento própria", (await page.request.get(abs(new globalThis.URL(og).pathname.slice(1)))).status() === 200, og);
+
+  await page.goto(abs("vale-do-paraiba/"), { waitUntil: "networkidle" });
+  const cidades = await page.locator(".cidades li").count();
+  const ld = (await page.$$eval('script[type="application/ld+json"]', (els) => els.map((e) => JSON.parse(e.textContent)))).flat();
+  const servico = ld.find((x) => x["@type"] === "Service");
+  check("Vale do Paraíba: 7 cidades na página e no JSON-LD", cidades === 7 && servico?.areaServed?.length === 8, `${cidades} cidades`);
+
+  await page.goto(abs("privacidade/"), { waitUntil: "networkidle" });
+  check("política de privacidade publicada", (await page.locator("h1").textContent()).includes("privacidade"));
+
+  const mapa = await (await page.request.get(abs("sitemap.xml"))).text();
+  check("sitemap inclui sistemas, Vale e privacidade", ["/sistemas/", "/sistemas/bia/", "/vale-do-paraiba/", "/privacidade/"].every((p) => mapa.includes(`${p}</loc>`)));
+  if (LANDINGS) {
+    const lp = await (await page.request.get(abs("lp/agenda/"))).text();
+    const ogLp = (await page.request.get(abs("lp/og/agenda.png"))).status();
+    check("landing leva à privacidade e tem imagem nova", lp.includes('href="/privacidade/"') && lp.includes("/lp/og/agenda.png") && ogLp === 200, `og ${ogLp}`);
+  }
+  check("páginas avulsas sem erro no console", errors.length === 0, errors.slice(0, 2).join(" | "));
+  await ctx.close();
+}
+
 // 4. Sem rolagem horizontal em 7 larguras
 for (const w of [320, 360, 390, 414, 768, 1024, 1440]) {
   const ctx = await browser.newContext({ viewport: { width: w, height: 800 } });
@@ -250,6 +303,20 @@ for (const w of [320, 360, 390, 414, 768, 1024, 1440]) {
   const sw = await page.evaluate(() => document.documentElement.scrollWidth);
   check(`sem rolagem horizontal em ${w}px`, sw <= w, `scrollWidth=${sw}`);
   await ctx.close();
+}
+{
+  const largos = [];
+  for (const w of [320, 390]) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: 800 } });
+    const page = await ctx.newPage();
+    for (const p of ["sistemas/", "sistemas/acerto/", "vale-do-paraiba/", "privacidade/"]) {
+      await page.goto(new globalThis.URL(p, URL).href, { waitUntil: "networkidle" });
+      const sw = await page.evaluate(() => document.documentElement.scrollWidth);
+      if (sw > w) largos.push(`${p} ${w}px=${sw}`);
+    }
+    await ctx.close();
+  }
+  check("páginas avulsas sem rolagem horizontal em 320 e 390px", largos.length === 0, largos.join(", "));
 }
 
 // 5. Movimento reduzido: máquina montada e estática, com opção de animar

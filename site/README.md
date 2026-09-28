@@ -38,12 +38,15 @@ src/
     RunningHeader.tsx cabeçalho corrido com seção atual, página e índice
     Enhance.tsx       carimbos, opção de movimento e origem UTM nos links do WhatsApp
     Notas.tsx         notas de campo: cabeçalho, artigo, lista e o anexo D da home
+    Paginas.tsx       trilha, bloco e fecho laranja das páginas avulsas (sistemas, Vale, privacidade)
     Compartilhar.tsx  compartilhar nativo do celular, copiar link, mandar pelo WhatsApp
-  lib/            preferência de movimento e origem UTM
+  lib/            preferência de movimento, origem UTM e o que cada sistema junta de outras partes (sistemas.ts)
 scripts/
   prerender.mjs   gera as ilhas estáticas (roda sozinho antes de dev, build e typecheck)
   posters.mjs     larguras em WebP dos pôsteres da Fig. 1
-  og-notas.mjs    imagem de compartilhamento 1200x630 de cada nota (npm run og:notas)
+  og-molde.mjs    molde das imagens de compartilhamento 1200x630
+  og-notas.mjs    imagem de cada nota (npm run og:notas)
+  og-paginas.mjs  imagens dos sistemas, das páginas avulsas e das landings (npm run og:paginas)
   serve.mjs       servidor estático que imita o GitHub Pages
   e2e.mjs         testes de ponta a ponta
   fonts/          Hubot Sans, Mona Sans e Martian Mono recortadas (ver fonts.ts)
@@ -112,10 +115,10 @@ DESIGN.md         sistema visual: tokens, tipografia, componentes e regras
   faixa de tela em que é o primeiro visual. No celular, o pôster da bancada vem depois,
   sem pressa, e o desktop nem baixa o da capa do celular (um `<picture>` entrega um
   pixel vazio).
-- **E2E:** 44/44 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
+- **E2E:** 58/58 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
   JSON-LD, ilhas estáticas, calculadora, ordem de serviço, índice, montagem até OPERANDO,
-  UTM, página sem JS, links da home anterior, 404, landings, 7 larguras sem rolagem
-  horizontal e movimento reduzido.
+  UTM, página sem JS, links da home anterior, 404, landings, notas, páginas de sistema,
+  Vale do Paraíba, privacidade, 7 larguras sem rolagem horizontal e movimento reduzido.
 - **Detector do impeccable:** 0 achados no código-fonte. Na página renderizada em 1440
   sobra um, sancionado: o título grande da capa, que é a folha de rosto do manual. Há
   também um aviso consultivo sobre as réguas de cota, que fazem parte do desenho técnico.

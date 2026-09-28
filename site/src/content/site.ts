@@ -231,6 +231,8 @@ export type SystemAction = { label: string; href: string; kind: "demo" | "chat" 
 
 export type System = {
   code: string;
+  /** Endereço da página própria: /sistemas/<slug>/ */
+  slug: string;
   name: string;
   kind: string;
   status: Status;
@@ -253,6 +255,7 @@ export const SYSTEMS_INTRO =
 export const SYSTEMS: System[] = [
   {
     code: "SYS-01",
+    slug: "agendazap",
     name: "AgendaZap",
     kind: "SaaS · IA · WhatsApp",
     status: "producao",
@@ -277,6 +280,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-02",
+    slug: "crm-whatsapp",
     name: "CRM de WhatsApp",
     kind: "CRM · API oficial da Meta",
     status: "encerrado",
@@ -305,6 +309,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-03",
+    slug: "jurisia",
     name: "JurisIA",
     kind: "IA jurídica · SaaS B2B",
     status: "proprio",
@@ -325,6 +330,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-04",
+    slug: "parknow",
     name: "ParkNow",
     kind: "SaaS B2B2C · web + mobile",
     status: "proprio",
@@ -344,6 +350,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-05",
+    slug: "bia",
     name: "Bia",
     kind: "Delivery multicanal · IA",
     status: "entregue",
@@ -366,6 +373,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-06",
+    slug: "flowhub",
     name: "FlowHub",
     kind: "CRM SaaS · código aberto",
     status: "proprio",
@@ -381,6 +389,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-07",
+    slug: "marvet",
     name: "Marvet",
     kind: "Site e catálogo · SEO",
     status: "entregue",
@@ -397,6 +406,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-08",
+    slug: "realcredmais",
     name: "RealCred+",
     kind: "Landing + simulador",
     status: "entregue",
@@ -413,6 +423,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-09",
+    slug: "indice-de-gestao",
     name: "Índice de Gestão",
     kind: "Diagnóstico · agronegócio",
     status: "producao",
@@ -434,6 +445,7 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-10",
+    slug: "acerto",
     name: "Acerto",
     kind: "SaaS · crédito consignado",
     status: "proprio",
@@ -640,7 +652,7 @@ export const TROUBLESHOOTING = [
   },
   {
     q: "Você trabalha remoto? De onde?",
-    a: "Trabalho 100% remoto, de Lorena (SP), para o Brasil inteiro. A conversa acontece no WhatsApp e em chamada quando precisa, com resposta no mesmo dia.",
+    a: "Trabalho de Lorena (SP) para o Brasil inteiro, a distância, com a conversa no WhatsApp e em chamada quando precisa. No Vale do Paraíba eu também vou até o seu negócio quando ver o processo de perto ajuda. Resposta no mesmo dia.",
   },
 ];
 
@@ -668,4 +680,12 @@ export const ASSISTANCE = {
   title: "Seu próximo sistema começa com uma mensagem.",
   body: "Conte o que você precisa automatizar ou construir. Eu respondo no mesmo dia e já te mostro um projeto parecido funcionando.",
   promises: ["Escopo e prazo por escrito", "Resposta no mesmo dia", "Infraestrutura gratuita quando dá"],
+};
+
+/**
+ * Onde eu vou até o negócio. Fora destas cidades o trabalho é a distância.
+ * É a mesma área de atendimento do Perfil da Empresa no Google: mudou lá, muda aqui.
+ */
+export const VALE = {
+  cidades: ["Lorena", "Guaratinguetá", "Cachoeira Paulista", "Cruzeiro", "Aparecida", "Taubaté", "São José dos Campos"],
 };

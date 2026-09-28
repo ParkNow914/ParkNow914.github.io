@@ -1,6 +1,16 @@
 // Dados estruturados da marca (JSON-LD). Moram aqui, e não no layout, porque a
 // FAQ só vale para a home: as notas de campo têm o próprio Article.
-import { SITE_URL, EMAIL, GITHUB, FREELAS, INSTAGRAM, LINKEDIN, WHATSAPP, TROUBLESHOOTING, WARRANTY } from "./site";
+import { SITE_URL, EMAIL, GITHUB, FREELAS, INSTAGRAM, LINKEDIN, WHATSAPP, TROUBLESHOOTING, WARRANTY, VALE } from "./site";
+
+/** Vale do Paraíba com visita, Brasil a distância. Usado na home e na página do Vale. */
+export const AREA_ATENDIDA = [
+  ...VALE.cidades.map((name) => ({
+    "@type": "City",
+    name,
+    containedInPlace: { "@type": "State", name: "São Paulo" },
+  })),
+  { "@type": "Country", name: "Brasil" },
+];
 
 // Sem aggregateRating: nota da própria empresa sobre si mesma viola a política
 // de reviews do Google. As avaliações seguem visíveis na página.
@@ -26,7 +36,7 @@ export const jsonLdHome = [
     telephone: `+${WHATSAPP}`,
     email: EMAIL,
     address: { "@type": "PostalAddress", addressLocality: "Lorena", addressRegion: "SP", addressCountry: "BR" },
-    areaServed: { "@type": "Country", name: "Brasil" },
+    areaServed: AREA_ATENDIDA,
     founder: { "@type": "Person", name: "Alisson Santos" },
     sameAs: [INSTAGRAM, GITHUB, FREELAS],
   },
