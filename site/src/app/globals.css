@@ -3567,3 +3567,148 @@ body {
     text-align: left;
   }
 }
+
+/* --- Páginas avulsas: sistemas, Vale do Paraíba, privacidade ------------------- */
+
+/* Bloco com título em régua mono, o mesmo idioma do cabeçalho da ficha. */
+.bloco {
+  margin-top: clamp(32px, 5vw, 52px);
+}
+.bloco__t {
+  margin: 0 0 18px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+  font: 500 0.74rem var(--f-mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.bloco .nota__texto {
+  padding: 0;
+}
+.bloco__nota {
+  margin: 18px 0 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+}
+.bloco__nota a,
+.bloco .nota__texto a {
+  color: var(--ink);
+  text-decoration-color: var(--signal);
+}
+
+/* Sistema: o carimbo fica embaixo do lede, como na ficha da home. */
+.sis__carimbo {
+  margin-top: 22px;
+}
+.sis__fig {
+  margin: clamp(28px, 4vw, 44px) 0 0;
+}
+.sis__fig figcaption {
+  margin-top: 10px;
+  font-size: 0.84rem;
+  color: var(--ink-3);
+}
+.sis .nota__texto {
+  padding-bottom: 0;
+}
+
+/* Onde o sistema trabalha: a linha da §2, em três partes. */
+.uso {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 12px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.uso > div {
+  padding: 16px 18px;
+  background: var(--ground);
+}
+.uso dt {
+  margin-bottom: 6px;
+  font: 500 0.72rem var(--f-mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.uso dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* Vale do Paraíba */
+.cidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cidades li {
+  padding: 8px 14px;
+  border: 1px solid var(--rule-strong);
+  font-family: var(--f-display);
+  font-weight: 750;
+  font-stretch: 85%;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.notas__item--sem-n {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.passos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.passos li {
+  display: grid;
+  grid-template-columns: 3.2em minmax(0, 1fr);
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.passos__n {
+  padding-top: 0.25em;
+  font: 600 0.8rem var(--f-mono);
+  font-stretch: 87.5%;
+  color: var(--signal);
+}
+.passos__t {
+  margin: 0 0 6px;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 1.3rem;
+  line-height: 1.05;
+}
+.passos p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+}
+
+/* Privacidade: leitura corrida, sem o fecho laranja. */
+.juridico .nota__texto p,
+.juridico .nota__texto li {
+  max-width: 64ch;
+}
+.juridico .ficha__lista {
+  margin: 0 0 1.1em;
+}
+
+@media (max-width: 720px) {
+  .uso {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .passos li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}

@@ -173,6 +173,9 @@ function Sheet({ s, i }: { s: System; i: number }) {
               {a.label}
             </a>
           ))}
+          <a className="link-arrow" href={`/sistemas/${s.slug}/`}>
+            Ficha completa: {s.name} <Icon name="arrow-right" size={16} />
+          </a>
         </div>
       </div>
     </article>
@@ -526,6 +529,15 @@ export function Colophon({ capa = "#capa" }: { capa?: string } = {}) {
         </a>
         <a href="/notas/feed.xml">
           <Icon name="rss" size={16} /> RSS
+        </a>
+        <a href="/sistemas/">
+          <Icon name="index" size={16} /> Sistemas
+        </a>
+        <a href="/vale-do-paraiba/">
+          <Icon name="arrow-right" size={16} /> Vale do Paraíba
+        </a>
+        <a href="/privacidade/">
+          <Icon name="check" size={16} /> Privacidade
         </a>
         <a href={capa}>
           <Icon name="arrow-right" size={16} className="rot-up" /> Voltar à capa

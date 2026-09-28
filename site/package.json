@@ -12,7 +12,8 @@
     "pretypecheck": "node scripts/prerender.mjs",
     "typecheck": "tsc --noEmit",
     "e2e": "node scripts/e2e.mjs",
-    "og:notas": "node scripts/og-notas.mjs"
+    "og:notas": "node scripts/og-notas.mjs",
+    "og:paginas": "node scripts/og-paginas.mjs"
   },
   "dependencies": {
     "@fontsource-variable/hubot-sans": "^5.3.0",

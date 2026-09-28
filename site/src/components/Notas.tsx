@@ -11,7 +11,8 @@ const Html = ({ as: Tag = "p", className, t }: { as?: "p" | "h3" | "li" | "block
 
 const inicial = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
-export function NotasHeader() {
+/** Cabeçalho das páginas fora da home. `secao` diz em que parte do manual a pessoa está. */
+export function NotasHeader({ secao = { label: "Notas de campo", href: "/notas/" } }: { secao?: { label: string; href: string } } = {}) {
   return (
     <header className="rh">
       <a className="rh__brand" href="/" aria-label="Autark, ir para a capa do manual">
@@ -22,8 +23,8 @@ export function NotasHeader() {
         Manual de Operação <span className="rh__rev">{REVISION}</span>
       </span>
       <span className="rh__sec">
-        <a className="rh__notas" href="/notas/">
-          Notas de campo
+        <a className="rh__notas" href={secao.href}>
+          {secao.label}
         </a>
       </span>
       <a

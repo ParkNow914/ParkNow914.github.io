@@ -93,7 +93,7 @@ O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Regist
 
 | Workflow | Quando | O que garante |
 |---|---|---|
-| Publicar | push, PR | build, 44 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
+| Publicar | push, PR | build, 58 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
 | Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
 | Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
 
@@ -107,6 +107,7 @@ Os testes de ponta a ponta cobrem:
 - página sem JavaScript;
 - links da home anterior (`#projetos`, `#contato`, `#faq`, `#calculadora`) caindo na seção certa;
 - notas de campo: índice, artigo com JSON-LD, imagem de compartilhamento, CTA com o título da nota, RSS, `llms.txt`, sitemap e chave do IndexNow;
+- páginas avulsas: uma por sistema (com as notas sobre ele), Vale do Paraíba com as cidades no JSON-LD, política de privacidade e o link dela nas landings;
 - 404;
 - 7 larguras de tela sem rolagem horizontal;
 - movimento reduzido.
@@ -129,12 +130,13 @@ Tudo aqui é gratuito e não põe script de terceiros na página.
 
 | Canal | Como funciona |
 |---|---|
-| Google | `sitemap.xml` declarado no `robots.txt`. Falta verificar o domínio no Search Console e enviar o sitemap lá (passo a passo no kit de divulgação, repositório `autark-instagram`, pasta `divulgacao/`) |
-| Bing, Yandex, Naver, Seznam, Yep | a cada publicação o workflow manda as URLs do sitemap pelo **IndexNow** (chave em `site/public/<chave>.txt`). O índice do Bing também alimenta a busca do ChatGPT |
+| Google | domínio verificado no Search Console (registro TXT no DNS do Registro.br: não apague), com `sitemap.xml` e o RSS das notas enviados. O `sitemap.xml` também está no `robots.txt` |
+| Busca local | Perfil da Empresa no Google (área de atendimento, endereço oculto) e a página `/vale-do-paraiba/`. As cidades moram em `VALE`, no `site.ts`, e precisam bater com a área do Perfil |
+| Bing, Yandex, Naver, Seznam, Yep | site importado no Bing Webmaster Tools. A cada publicação o workflow manda as URLs do sitemap pelo **IndexNow** (chave em `site/public/<chave>.txt`). O índice do Bing também alimenta a busca do ChatGPT |
 | Assistentes de IA | `/llms.txt` (padrão llmstxt.org) com serviços, sistemas e notas, gerado do mesmo conteúdo do site |
-| Resultado rico no Google | JSON-LD: `ProfessionalService`, `Person`, `FAQPage` na home; `BlogPosting` e `BreadcrumbList` em cada nota |
+| Resultado rico no Google | JSON-LD: `ProfessionalService` (com as cidades atendidas), `Person`, `FAQPage` na home; `BlogPosting` e `BreadcrumbList` em cada nota; `CreativeWork` em cada sistema; `Service` e `FAQPage` no Vale do Paraíba |
 | Leitores de feed e automações | `/notas/feed.xml` (RSS 2.0) |
-| Compartilhamento | cada nota tem imagem própria 1200x630 (`site/public/notas/og/`), botão de compartilhar nativo e link de mandar pelo WhatsApp |
+| Compartilhamento | cada nota, sistema, página avulsa e landing tem imagem própria 1200x630 (`npm run og:notas` e `npm run og:paginas`), e as notas têm botão de compartilhar nativo e link de mandar pelo WhatsApp |
 | Origem do contato | UTM da URL vai no fim da mensagem do WhatsApp; o CTA de cada nota cita o título dela |
 
 ### Notas de campo
