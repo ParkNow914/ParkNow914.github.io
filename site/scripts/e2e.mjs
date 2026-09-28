@@ -143,8 +143,10 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   await page.goto(`${URL}?utm_source=instagram&utm_medium=bio`, { waitUntil: "networkidle" });
   const hrefs = await page.$$eval('a[href*="wa.me"]:not([data-no-origin])', (as) => as.map((a) => decodeURIComponent(a.href)));
   check("todo link de WhatsApp carrega a origem", hrefs.length > 5 && hrefs.every((h) => h.includes("[instagram/bio]")), `${hrefs.length} links`);
-  await page.goto(URL, { waitUntil: "networkidle" });
-  const clean = await page.$$eval('a[href*="wa.me"]:not([data-no-origin])', (as) => as.every((a) => !decodeURIComponent(a.href).includes("[")));
+  // Outra visita (aba nova): a origem da anterior não pode vazar para ela.
+  const limpa = await (await browser.newContext({ viewport: { width: 1440, height: 900 } })).newPage();
+  await limpa.goto(URL, { waitUntil: "networkidle" });
+  const clean = await limpa.$$eval('a[href*="wa.me"]:not([data-no-origin])', (as) => as.every((a) => !decodeURIComponent(a.href).includes("[")));
   check("sem UTM, a mensagem fica intacta", clean);
   await ctx.close();
 }
@@ -221,6 +223,12 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   const zap = decodeURIComponent((await page.locator(".partilha__zap").getAttribute("href")) || "");
   const ctaUtm = decodeURIComponent((await page.locator(".nota__cta a").getAttribute("href")) || "");
   check("origem vai para a conversa com a Autark, não para o link de mandar a um amigo", ctaUtm.includes("[instagram/bio]") && !zap.includes("["));
+
+  // A origem de entrada acompanha a visita: entra pela home com UTM, abre uma nota.
+  await page.goto(`${URL}?utm_source=linkedin&utm_medium=post`, { waitUntil: "networkidle" });
+  await page.goto(abs(links[1].slice(1)), { waitUntil: "networkidle" });
+  const ctaDepois = decodeURIComponent((await page.locator(".nota__cta a").getAttribute("href")) || "");
+  check("origem da entrada segue na nota aberta depois", ctaDepois.includes("[linkedin/post]"));
 
   const feed = await (await page.request.get(abs("notas/feed.xml"))).text();
   check("RSS lista todas as notas", (feed.match(/<item>/g) || []).length === links.length, `${(feed.match(/<item>/g) || []).length} itens`);

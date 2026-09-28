@@ -2,12 +2,31 @@
 // do WhatsApp. Assim a conversa que veio da bio do Instagram chega marcada como
 // [instagram/bio], e quem entrou direto manda a mensagem limpa.
 
+const CHAVE = "autark-origem";
+
+// A origem de entrada vale para a visita inteira: quem chega pela bio na home,
+// abre uma nota e só então chama no WhatsApp continua marcado como
+// [instagram/bio]. Fica em sessionStorage, que não é cookie, some ao fechar a
+// aba e não vai para lugar nenhum além da mensagem que a própria pessoa envia.
 export function origem(): string {
   if (typeof window === "undefined") return "";
   try {
     const q = new URLSearchParams(window.location.search);
     const parts = ["utm_source", "utm_medium", "utm_campaign"].map((k) => q.get(k)).filter(Boolean);
-    return parts.length ? `\n\n[${parts.join("/")}]` : "";
+    if (parts.length) {
+      const mark = `\n\n[${parts.join("/")}]`;
+      try {
+        sessionStorage.setItem(CHAVE, mark);
+      } catch {
+        /* navegação privada sem storage: vale só para esta página */
+      }
+      return mark;
+    }
+    try {
+      return sessionStorage.getItem(CHAVE) || "";
+    } catch {
+      return "";
+    }
   } catch {
     return "";
   }
