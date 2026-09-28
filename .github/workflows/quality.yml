@@ -34,10 +34,10 @@ jobs:
         with:
           root: lp
           css: true
-          # O validador do W3C ainda nao conhece size-adjust (fallback de fonte,
-          # CSS Fonts 5) nem ::view-transition (View Transitions API). Sao validos
-          # nos navegadores; ignoramos so essas duas mensagens.
-          extra: --ignore-re "size-adjust|view-transition" 
+          # O validador do W3C ainda nao conhece os descritores de fallback de
+          # fonte (size-adjust e os *-override, CSS Fonts 5) nem ::view-transition
+          # (View Transitions API). Sao validos nos navegadores; ignoramos so eles.
+          extra: --ignore-re "size-adjust|ascent-override|descent-override|line-gap-override|view-transition" 
 
       - name: Conferir que todo arquivo referenciado existe
         run: python3 tools/check-assets.py

@@ -5,7 +5,7 @@ export const metadata = { title: "Página não encontrada · Autark", robots: { 
 
 export default function NotFound() {
   return (
-    <main className="nf">
+    <main id="conteudo" className="nf">
       <LogoMark size={36} />
       <p className="nf__code">Erro 404</p>
       <h1 className="nf__t">Esta página não consta no manual.</h1>
