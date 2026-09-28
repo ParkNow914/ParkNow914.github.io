@@ -12,6 +12,8 @@ type Name =
   | "index"
   | "close"
   | "warning"
+  | "share"
+  | "rss"
   | "whatsapp"
   | "github";
 
@@ -33,6 +35,20 @@ const stroke: Record<Exclude<Name, "whatsapp" | "github" | "star">, React.ReactN
     <>
       <path d="M10 3 17.5 16.5h-15z" />
       <path d="M10 8v4M10 14.2v.3" />
+    </>
+  ),
+  share: (
+    <>
+      <circle cx="15" cy="4.5" r="2" />
+      <circle cx="5" cy="10" r="2" />
+      <circle cx="15" cy="15.5" r="2" />
+      <path d="M6.8 9 13.2 5.5M6.8 11l6.4 3.5" />
+    </>
+  ),
+  rss: (
+    <>
+      <path d="M4 9.5a6.5 6.5 0 0 1 6.5 6.5M4 4.5A11.5 11.5 0 0 1 15.5 16" />
+      <path d="M4.5 15.5h.5" />
     </>
   ),
 };

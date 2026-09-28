@@ -26,6 +26,8 @@ ou use o botão "Ver a montagem animada" na Fig. 1. A escolha fica guardada no n
 src/
   app/            layout (metadados, JSON-LD, fontes), página, CSS, robots, sitemap, 404
   content/site.ts TODO o texto do site, com os dados reais; nada ali pode ser inventado
+  content/jsonld.ts dados estruturados da marca (home) e de quem publica as notas
+  lib/notas.ts    lê content/notas/*.md (mesmo formato dos carrosséis do Instagram)
   components/
     Stage.tsx         capa + §1 (montagem) com a Fig. 1
     StageDriver.tsx   liga o scroll dos passos ao progresso da montagem
@@ -35,10 +37,13 @@ src/
     Assistance.tsx    §11, ordem de serviço que abre o WhatsApp
     RunningHeader.tsx cabeçalho corrido com seção atual, página e índice
     Enhance.tsx       carimbos, opção de movimento e origem UTM nos links do WhatsApp
+    Notas.tsx         notas de campo: cabeçalho, artigo, lista e o anexo D da home
+    Compartilhar.tsx  compartilhar nativo do celular, copiar link, mandar pelo WhatsApp
   lib/            preferência de movimento e origem UTM
 scripts/
   prerender.mjs   gera as ilhas estáticas (roda sozinho antes de dev, build e typecheck)
   posters.mjs     larguras em WebP dos pôsteres da Fig. 1
+  og-notas.mjs    imagem de compartilhamento 1200x630 de cada nota (npm run og:notas)
   serve.mjs       servidor estático que imita o GitHub Pages
   e2e.mjs         testes de ponta a ponta
   fonts/          Hubot Sans, Mona Sans e Martian Mono recortadas (ver fonts.ts)
@@ -107,7 +112,7 @@ DESIGN.md         sistema visual: tokens, tipografia, componentes e regras
   faixa de tela em que é o primeiro visual. No celular, o pôster da bancada vem depois,
   sem pressa, e o desktop nem baixa o da capa do celular (um `<picture>` entrega um
   pixel vazio).
-- **E2E:** 33/33 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
+- **E2E:** 44/44 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
   JSON-LD, ilhas estáticas, calculadora, ordem de serviço, índice, montagem até OPERANDO,
   UTM, página sem JS, links da home anterior, 404, landings, 7 larguras sem rolagem
   horizontal e movimento reduzido.

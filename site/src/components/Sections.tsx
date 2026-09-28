@@ -19,6 +19,7 @@ import {
   WARRANTY,
   type Status,
   type System,
+  INSTAGRAM,
 } from "@/content/site";
 import { Icon, LogoMark } from "./Icon";
 import { Folio, LegacyAnchors, SectionHead } from "./Manual";
@@ -492,7 +493,8 @@ export function Warranty() {
 }
 
 /* Colofão -------------------------------------------------------------- */
-export function Colophon() {
+// `capa` muda fora da home: nas notas de campo a capa fica em "/#capa".
+export function Colophon({ capa = "#capa" }: { capa?: string } = {}) {
   return (
     <footer className="colophon">
       <div className="colophon__brand">
@@ -516,7 +518,16 @@ export function Colophon() {
         <a href={FREELAS} target="_blank" rel="noopener">
           <Icon name="star" size={16} /> 99freelas
         </a>
-        <a href="#capa">
+        <a href={INSTAGRAM} target="_blank" rel="noopener">
+          <Icon name="arrow-up-right" size={16} /> Instagram
+        </a>
+        <a href="/notas/">
+          <Icon name="index" size={16} /> Notas de campo
+        </a>
+        <a href="/notas/feed.xml">
+          <Icon name="rss" size={16} /> RSS
+        </a>
+        <a href={capa}>
           <Icon name="arrow-right" size={16} className="rot-up" /> Voltar à capa
         </a>
       </nav>

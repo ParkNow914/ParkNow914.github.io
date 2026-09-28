@@ -73,7 +73,7 @@ Três outros endereços do domínio são repositórios próprios, servidos pelo 
 
 Push na `main` publica. Nada chega ao domínio sem passar pelos testes no site já montado, com as landings junto.
 
-<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 33 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
+<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 44 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
 
 2. `npm ci && npm run build` em `site/` gera o export estático em `site/out/`.
 3. `tools/montar-site.sh` põe o site na raiz e `lp/` e `assets/` ao lado, em `_site/`. Se o site e as pastas antigas disputarem o mesmo caminho, a montagem falha.
@@ -93,7 +93,7 @@ O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Regist
 
 | Workflow | Quando | O que garante |
 |---|---|---|
-| Publicar | push, PR | build, 33 testes de ponta a ponta no site montado, publicação |
+| Publicar | push, PR | build, 44 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
 | Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
 | Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
 
@@ -106,6 +106,7 @@ Os testes de ponta a ponta cobrem:
 - origem UTM nos links;
 - página sem JavaScript;
 - links da home anterior (`#projetos`, `#contato`, `#faq`, `#calculadora`) caindo na seção certa;
+- notas de campo: índice, artigo com JSON-LD, imagem de compartilhamento, CTA com o título da nota, RSS, `llms.txt`, sitemap e chave do IndexNow;
 - 404;
 - 7 larguras de tela sem rolagem horizontal;
 - movimento reduzido.
@@ -122,7 +123,31 @@ node site/scripts/serve.mjs _site 3100      # domínio montado, como no GitHub P
 node site/scripts/e2e.mjs http://localhost:3100/ --landings
 ```
 
-## §5 Decisões que valem para o domínio inteiro
+## §5 Como o site é encontrado
+
+Tudo aqui é gratuito e não põe script de terceiros na página.
+
+| Canal | Como funciona |
+|---|---|
+| Google | `sitemap.xml` declarado no `robots.txt`. Falta verificar o domínio no Search Console e enviar o sitemap lá (passo a passo no kit de divulgação, repositório `autark-instagram`, pasta `divulgacao/`) |
+| Bing, Yandex, Naver, Seznam, Yep | a cada publicação o workflow manda as URLs do sitemap pelo **IndexNow** (chave em `site/public/<chave>.txt`). O índice do Bing também alimenta a busca do ChatGPT |
+| Assistentes de IA | `/llms.txt` (padrão llmstxt.org) com serviços, sistemas e notas, gerado do mesmo conteúdo do site |
+| Resultado rico no Google | JSON-LD: `ProfessionalService`, `Person`, `FAQPage` na home; `BlogPosting` e `BreadcrumbList` em cada nota |
+| Leitores de feed e automações | `/notas/feed.xml` (RSS 2.0) |
+| Compartilhamento | cada nota tem imagem própria 1200x630 (`site/public/notas/og/`), botão de compartilhar nativo e link de mandar pelo WhatsApp |
+| Origem do contato | UTM da URL vai no fim da mensagem do WhatsApp; o CTA de cada nota cita o título dela |
+
+### Notas de campo
+
+São os posts do Instagram (`autark-instagram/posts/`) publicados também como artigo em `/notas/`. Só entra no site post cuja data já chegou: o calendário é privado. Para publicar uma nota nova:
+
+```bash
+cp ../autark-instagram/posts/2026-09-30-ia-que-mostra-a-fonte.md site/content/notas/
+cd site && npm run og:notas     # gera a imagem de compartilhamento dela
+git add content/notas public/notas/og && git commit -m "Nota: ..." && git push
+```
+
+## §6 Decisões que valem para o domínio inteiro
 
 - **Nenhum request a terceiros.** Fontes, imagens e 3D saem do próprio domínio; não há analytics nem cookies. A página vende LGPD e precisa ser coerente com isso.
 - **CSP via `<meta>`.** O GitHub Pages não deixa configurar cabeçalhos, então cada página leva a política no HTML. `frame-ancestors` fica de fora porque o navegador ignora essa diretiva em `<meta>`.

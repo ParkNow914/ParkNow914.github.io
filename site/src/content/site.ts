@@ -5,6 +5,8 @@ export const WHATSAPP = "5512991743827";
 export const EMAIL = "alimiguel1098@gmail.com";
 export const GITHUB = "https://github.com/ParkNow914";
 export const FREELAS = "https://www.99freelas.com.br/user/Alisson_sntsz";
+export const INSTAGRAM = "https://www.instagram.com/autark.tech/";
+export const LINKEDIN = "https://www.linkedin.com/in/alisson-santos-70a327270";
 export const SITE_URL = "https://autarktech.com.br";
 export const REVISION = "Rev. 2026.09";
 

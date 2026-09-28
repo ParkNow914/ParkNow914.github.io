@@ -12,6 +12,9 @@ const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
 const URL = args[0] || "http://localhost:3100/";
 const OUT = args[1];
 const LANDINGS = process.argv.includes("--landings");
+// A mesma chave de site/public/<chave>.txt, que o workflow Publicar usa para
+// avisar Bing e cia. (IndexNow) a cada publicação.
+const INDEXNOW_KEY = "d4eae759f4b20e14de2f8920e2e65853";
 const results = [];
 const check = (name, ok, detail = "") => {
   results.push({ name, ok: !!ok, detail });
@@ -138,10 +141,10 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
   await page.goto(`${URL}?utm_source=instagram&utm_medium=bio`, { waitUntil: "networkidle" });
-  const hrefs = await page.$$eval('a[href*="wa.me"]', (as) => as.map((a) => decodeURIComponent(a.href)));
+  const hrefs = await page.$$eval('a[href*="wa.me"]:not([data-no-origin])', (as) => as.map((a) => decodeURIComponent(a.href)));
   check("todo link de WhatsApp carrega a origem", hrefs.length > 5 && hrefs.every((h) => h.includes("[instagram/bio]")), `${hrefs.length} links`);
   await page.goto(URL, { waitUntil: "networkidle" });
-  const clean = await page.$$eval('a[href*="wa.me"]', (as) => as.every((a) => !decodeURIComponent(a.href).includes("[")));
+  const clean = await page.$$eval('a[href*="wa.me"]:not([data-no-origin])', (as) => as.every((a) => !decodeURIComponent(a.href).includes("[")));
   check("sem UTM, a mensagem fica intacta", clean);
   await ctx.close();
 }
@@ -182,6 +185,52 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
     }
     check("landings e assets das landings respondem 200", bad.length === 0, bad.join(", "));
   }
+  await ctx.close();
+}
+
+// 3c. Notas de campo, RSS, llms.txt e IndexNow: o que leva o site para fora dele
+{
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+  const abs = (p) => new globalThis.URL(p, URL).href;
+
+  await page.goto(URL, { waitUntil: "networkidle" });
+  check("home mostra as 3 notas mais recentes", (await page.locator(".notas-home .notas__item").count()) === 3);
+
+  await page.goto(abs("notas/"), { waitUntil: "networkidle" });
+  const links = await page.$$eval(".notas__t a", (as) => as.map((a) => a.getAttribute("href")));
+  check("índice das notas lista as notas publicadas", links.length >= 12, `${links.length} notas`);
+
+  await page.goto(abs(`${links[0].replace(/^\//, "")}`), { waitUntil: "networkidle" });
+  const h1 = await page.locator("h1").count();
+  const ld = await page.$$eval('script[type="application/ld+json"]', (els) => els.map((e) => JSON.parse(e.textContent)));
+  const tipos = ld.flat().map((x) => x["@type"]).sort().join(",");
+  check("nota tem um h1 e JSON-LD de artigo com trilha", h1 === 1 && tipos === "BlogPosting,BreadcrumbList", tipos);
+  const titulo = (await page.locator("h1").textContent()).trim();
+  const cta = decodeURIComponent((await page.locator(".nota__cta a").getAttribute("href")) || "");
+  check("CTA da nota leva o título dela para o WhatsApp", cta.includes(titulo));
+  const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+  const canon = await page.locator('link[rel="canonical"]').getAttribute("href");
+  const ogOk = (await page.request.get(abs(new globalThis.URL(og).pathname.slice(1)))).status() === 200;
+  check("nota tem canonical e imagem de compartilhamento própria", ogOk && canon.endsWith(links[0]), `${canon}`);
+
+  await page.goto(`${abs(links[0].slice(1))}?utm_source=instagram&utm_medium=bio`, { waitUntil: "networkidle" });
+  const zap = decodeURIComponent((await page.locator(".partilha__zap").getAttribute("href")) || "");
+  const ctaUtm = decodeURIComponent((await page.locator(".nota__cta a").getAttribute("href")) || "");
+  check("origem vai para a conversa com a Autark, não para o link de mandar a um amigo", ctaUtm.includes("[instagram/bio]") && !zap.includes("["));
+
+  const feed = await (await page.request.get(abs("notas/feed.xml"))).text();
+  check("RSS lista todas as notas", (feed.match(/<item>/g) || []).length === links.length, `${(feed.match(/<item>/g) || []).length} itens`);
+  const llms = await page.request.get(abs("llms.txt"));
+  check("llms.txt responde para assistentes de IA", llms.status() === 200 && (await llms.text()).startsWith("# Autark"));
+  const mapa = await (await page.request.get(abs("sitemap.xml"))).text();
+  check("sitemap inclui as notas", mapa.includes("/notas/") && (mapa.match(/\/notas\/[a-z0-9-]+\//g) || []).length === links.length);
+  const chave = (await (await page.request.get(abs(`${INDEXNOW_KEY}.txt`))).text()).trim();
+  check("chave do IndexNow publicada", chave === INDEXNOW_KEY);
+  check("notas sem erro no console", errors.length === 0, errors.slice(0, 2).join(" | "));
   await ctx.close();
 }
 

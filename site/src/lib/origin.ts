@@ -17,7 +17,9 @@ export function origem(): string {
 export function stampWhatsAppLinks(root: ParentNode = document) {
   const mark = origem();
   if (!mark) return;
-  root.querySelectorAll<HTMLAnchorElement>('a[href*="wa.me"]').forEach((a) => {
+  // data-no-origin: links que a pessoa usa para mandar o site a alguém. A marca
+  // de origem é para a conversa com a Autark, não para a mensagem de um amigo.
+  root.querySelectorAll<HTMLAnchorElement>('a[href*="wa.me"]:not([data-no-origin])').forEach((a) => {
     if (a.dataset.origin === "1") return;
     try {
       const u = new URL(a.href);
