@@ -12,13 +12,26 @@
    propósito: o HTML das quatro páginas usa alguns deles em style inline. */
 
 /* Fontes do site, as mesmas de site/src/fonts, com as licenças OFL em
-   assets/fonts/. Variáveis: um arquivo cobre a faixa de peso e largura. */
+   assets/fonts/. Variáveis: um arquivo cobre a faixa de peso e largura.
+   Hubot e Mona vêm com preload no HTML e usam "block": o texto espera a fonte
+   por um instante em vez de aparecer em Arial e pular quando ela chega. Com
+   swap, o título condensado quebrava em outra quantidade de linhas e a página
+   inteira descia (CLS de até 0,28 no celular); com block fica abaixo de 0,06. */
 @font-face { font-family: "Hubot Sans"; src: url("/assets/fonts/hubot.woff2") format("woff2");
-  font-weight: 600 900; font-stretch: 75% 100%; font-display: swap; }
+  font-weight: 600 900; font-stretch: 75% 100%; font-display: block; }
 @font-face { font-family: "Mona Sans"; src: url("/assets/fonts/mona.woff2") format("woff2");
-  font-weight: 400 700; font-display: swap; }
+  font-weight: 400 700; font-display: block; }
 @font-face { font-family: "Martian Mono"; src: url("/assets/fonts/martian.woff2") format("woff2");
   font-weight: 400 600; font-stretch: 87.5% 100%; font-display: swap; }
+/* Fallback com as métricas da fonte real (as mesmas que o next/font gera para o
+   site): enquanto a fonte não chega, o Arial ocupa o mesmo espaço e a página não
+   pula na troca. */
+@font-face { font-family: "Hubot Fallback"; src: local("Arial");
+  ascent-override: 138.25%; descent-override: 40.59%; line-gap-override: 0%; size-adjust: 78.84%; }
+@font-face { font-family: "Mona Fallback"; src: local("Arial");
+  ascent-override: 103.98%; descent-override: 30.53%; line-gap-override: 0%; size-adjust: 104.83%; }
+@font-face { font-family: "Martian Fallback"; src: local("Arial");
+  ascent-override: 65.19%; descent-override: 13.04%; line-gap-override: 0%; size-adjust: 153.41%; }
 
 :root {
   --bg: #15181b;
@@ -32,9 +45,9 @@
   --borda: #2c3238;
   --borda-forte: #465058;
   --superficie: #1b1f23;
-  --display: "Hubot Sans", "Arial Narrow", sans-serif;
-  --corpo: "Mona Sans", system-ui, sans-serif;
-  --mono: "Martian Mono", ui-monospace, monospace;
+  --display: "Hubot Sans", "Hubot Fallback", "Arial Narrow", sans-serif;
+  --corpo: "Mona Sans", "Mona Fallback", system-ui, sans-serif;
+  --mono: "Martian Mono", "Martian Fallback", ui-monospace, monospace;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

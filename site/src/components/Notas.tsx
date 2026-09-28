@@ -116,10 +116,10 @@ export function NotaArtigo({ nota, anterior, proxima }: { nota: Nota; anterior?:
 
       {nota.slides.length ? (
         <div className="ficha" aria-label="A nota em partes">
-          <p className="ficha__cab">
+          <h2 className="ficha__cab">
             <span>Ficha da nota</span>
             <span>{nota.slides.length} partes</span>
-          </p>
+          </h2>
           {nota.slides.map((s, k) => (
             <Parte key={k} s={s} k={k} />
           ))}
