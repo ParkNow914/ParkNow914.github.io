@@ -565,10 +565,10 @@ export const SIZING = {
 };
 
 export const FIELD = {
-  /** Conferido no perfil público do 99freelas em 25/09/2026: 10 avaliações, todas 5.0, 10 recomendações. */
-  reviews: 10,
+  /** Conferido no perfil público do 99freelas em 29/09/2026: 11 avaliações, todas 5.0, 11 recomendações, 11 projetos concluídos. */
+  reviews: 11,
   intro:
-    "Dez avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
+    "Onze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
   items: [
     {
       quote:
