@@ -49,7 +49,7 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 - Qualidade mínima herdada da CI atual: Lighthouse desktop com performance e boas práticas ≥ 90 e a11y/SEO ≥ 95; mobile com performance ≥ 80. Sem rolagem horizontal de 320 a 1440px, exatamente um `h1` e JSON-LD de Person, ProfessionalService, WebSite e FAQPage, sem `aggregateRating`.
 - A página continua legível se o JS falhar (conteúdo não depende de animação para aparecer).
 - Só português por enquanto. Inglês fica para depois (o site atual tem `?lang=en`).
-- Contatos: WhatsApp `5512991743827`, e-mail `alimiguel1098@gmail.com`, GitHub `github.com/ParkNow914`, 99freelas `99freelas.com.br/user/Alisson_sntsz`.
+- Contatos: WhatsApp `5512991743827`, e-mail `contato@autarktech.com.br` (encaminha para o Gmail pelo ImprovMX), GitHub `github.com/ParkNow914`, 99freelas `99freelas.com.br/user/Alisson_sntsz`.
 
 ## Brand Commitments
 
