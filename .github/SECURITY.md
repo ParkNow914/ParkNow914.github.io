@@ -1,7 +1,7 @@
 # Segurança
 
 Achou uma falha em autarktech.com.br, nas landings em `/lp/` ou neste repositório? Escreva
-para **alimiguel1098@gmail.com** com o endereço afetado e os passos para reproduzir. Não
+para **contato@autarktech.com.br** com o endereço afetado e os passos para reproduzir. Não
 abra issue pública com o detalhe da falha antes de ela ser corrigida.
 
 A resposta sai no mesmo dia útil. Correções de segurança passam na frente de qualquer outra
