@@ -65,6 +65,16 @@ jobs:
             fi
           done
 
+          # A demo do AgendaZap é a prova que o site promete ("Testar um
+          # agendamento"). O banco dela fica no plano gratuito do Supabase, que
+          # pausa depois de uma semana sem uso, e aí a página responde 200 com
+          # "This page could not be found". Abrir a página duas vezes por dia
+          # mantém o banco acordado e confere que o salão de exemplo aparece.
+          demo=$(curl -s -L --max-time 30 https://agendazap-three.vercel.app/b/demo || true)
+          if ! printf "%s" "$demo" | grep -q "Agende em"; then
+            falhas="${falhas}- A demo do AgendaZap (/b/demo) não mostra o salão de exemplo: o banco no Supabase pode ter pausado\n"
+          fi
+
           # Certificado prestes a vencer e a falha que da aviso antes de doer.
           fim=$(echo | openssl s_client -servername autarktech.com.br \
                 -connect autarktech.com.br:443 2>/dev/null \
@@ -84,7 +94,7 @@ jobs:
             exit 1
           fi
           echo "ok=sim" >> "$GITHUB_OUTPUT"
-          echo "Site no ar (Manual de Operação), 4 landings e 3 demos respondendo." >> "$GITHUB_STEP_SUMMARY"
+          echo "Site no ar (Manual de Operação), 4 landings, 3 demos e a agenda de exemplo do AgendaZap respondendo." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Abrir issue se caiu
         if: failure()

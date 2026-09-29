@@ -449,7 +449,7 @@ export const SYSTEMS: System[] = [
     name: "Acerto",
     kind: "SaaS · crédito consignado",
     status: "proprio",
-    statusNote: "Demo aberta.",
+    statusNote: "Demo com acesso sob pedido: eu libero o login e mostro o fechamento de um mês.",
     metric: "276 testes",
     image: "/projetos/acerto.webp",
     imageW: 1200,
@@ -464,7 +464,7 @@ export const SYSTEMS: System[] = [
       { k: "LGPD", v: "Dossiê, anonimização e portabilidade" },
     ],
     stack: ["Next.js", "Drizzle", "PostgreSQL", "RLS multi-tenant", "2FA TOTP"],
-    actions: [{ label: "Abrir a demo", href: "https://acerto-comissao.netlify.app", kind: "demo" }],
+    actions: [{ label: "Pedir acesso à demo", href: wa("Olá Alisson! Quero ver a demo do Acerto."), kind: "chat" }],
   },
 ];
 
