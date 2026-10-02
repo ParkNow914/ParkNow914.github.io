@@ -16,20 +16,23 @@ export function wa(text: string) {
 
 export const WA_DEFAULT = wa("Olá Alisson! Vi o site da Autark e quero conversar sobre um projeto.");
 
-/** Seções na ordem do manual. `page` alimenta o contador "Pág. NN/TT" do cabeçalho. */
+/**
+ * Seções na ordem do manual. `page` alimenta o contador "Pág. NN/TT" do cabeçalho.
+ * `hint` traduz o título do manual para quem não fala a língua dele; aparece só no índice.
+ */
 export const SECTIONS = [
-  { id: "capa", address: "Capa", title: "Capa" },
-  { id: "montagem", address: "§1", title: "Montagem" },
-  { id: "aplicacoes", address: "§2", title: "Aplicações" },
-  { id: "modelos", address: "§3", title: "Modelos" },
-  { id: "sistemas", address: "§4", title: "Sistemas em operação" },
-  { id: "instalacao", address: "§5", title: "Instalação" },
-  { id: "dimensionamento", address: "§6", title: "Dimensionamento" },
-  { id: "campo", address: "§7", title: "Relatório de campo" },
-  { id: "fabricante", address: "§8", title: "Fabricante" },
-  { id: "problemas", address: "§9", title: "Solução de problemas" },
-  { id: "garantia", address: "§10", title: "Garantia" },
-  { id: "assistencia", address: "§11", title: "Assistência técnica" },
+  { id: "capa", address: "Capa", title: "Capa", hint: "" },
+  { id: "montagem", address: "§1", title: "Montagem", hint: "como o sistema funciona" },
+  { id: "aplicacoes", address: "§2", title: "Aplicações", hint: "para quem é" },
+  { id: "modelos", address: "§3", title: "Modelos", hint: "o que eu faço" },
+  { id: "sistemas", address: "§4", title: "Sistemas em operação", hint: "" },
+  { id: "instalacao", address: "§5", title: "Instalação", hint: "como trabalho" },
+  { id: "dimensionamento", address: "§6", title: "Dimensionamento", hint: "calculadora de economia" },
+  { id: "campo", address: "§7", title: "Relatório de campo", hint: "avaliações dos clientes" },
+  { id: "fabricante", address: "§8", title: "Fabricante", hint: "quem eu sou" },
+  { id: "problemas", address: "§9", title: "Solução de problemas", hint: "perguntas frequentes" },
+  { id: "garantia", address: "§10", title: "Garantia", hint: "" },
+  { id: "assistencia", address: "§11", title: "Assistência técnica", hint: "contato" },
 ] as const;
 
 export type SectionId = (typeof SECTIONS)[number]["id"];
@@ -332,20 +335,20 @@ export const SYSTEMS: System[] = [
     code: "SYS-04",
     slug: "parknow",
     name: "ParkNow",
-    kind: "SaaS B2B2C · web + mobile",
+    kind: "SaaS B2B2C · web",
     status: "proprio",
-    metric: "web + mobile",
+    metric: "PIX sem gateway",
     image: "/projetos/parknow.webp",
     imageW: 1080,
     imageH: 670,
     body:
-      "Estacionamento inteligente em monorepo. Tem painel B2B em Next.js, app B2C em React Native com Expo que funciona offline e Supabase com PostGIS para geolocalização. O backend mostra o mapa em tempo real com Socket.IO, expira reservas sozinho e gera o PIX com BR Code local, sem gateway pago.",
+      "Estacionamento inteligente para motorista e dono de estacionamento. O mapa de vagas atualiza em tempo real com Socket.IO, a reserva expira sozinha quando o motorista não chega e o pagamento sai em PIX com BR Code gerado no próprio servidor, direto na chave do estacionamento, sem gateway pago.",
     spec: [
       { k: "Segurança", v: "JWT + refresh httpOnly, Argon2id, rate limiting" },
       { k: "CI/CD", v: "CodeQL" },
-      { k: "Infra", v: "100% em serviços always-free" },
+      { k: "Infra", v: "Oracle Cloud Free Tier, R$ 0 por mês" },
     ],
-    stack: ["Turborepo", "Next.js", "React Native", "Expo", "Supabase + PostGIS", "Socket.IO", "PIX"],
+    stack: ["Node.js", "Express", "PostgreSQL", "Socket.IO", "PIX BR Code", "Terraform"],
     actions: [{ label: "Ver o código", href: "https://github.com/ParkNow914/ParkNow", kind: "code" }],
   },
   {
@@ -640,7 +643,7 @@ export const TROUBLESHOOTING = [
   },
   {
     q: "Você usa APIs oficiais e métodos seguros?",
-    a: "Sim. No WhatsApp trabalho com a API oficial da Meta (Cloud API) ou com a Evolution API, conforme o caso, sempre com consentimento, opt-out e LGPD. Sem lista comprada, sem spam e sem técnica que arrisque bloquear seu número.",
+    a: "Sim. Quando a empresa manda a primeira mensagem, em campanha ou lembrete em volume, uso só a API oficial da Meta (Cloud API). A Evolution API, que não é oficial, entra apenas no atendimento em que o cliente chama primeiro e com volume baixo, e eu explico esse risco antes de começar. Sempre com consentimento, opt-out e LGPD, sem lista comprada e sem spam.",
   },
   {
     q: "O sistema fica caro para manter?",

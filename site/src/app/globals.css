@@ -439,6 +439,16 @@ button {
   font-stretch: 90%;
   font-size: 1.05rem;
 }
+/* Largura zero: a dica fica na segunda linha sem empurrar o pontilhado da primeira. */
+.toc__hint {
+  display: block;
+  width: 0;
+  white-space: nowrap;
+  margin-top: 2px;
+  font: 400 0.8rem var(--f-body);
+  font-stretch: 100%;
+  color: var(--ink-3);
+}
 .toc__dots {
   flex: 1 1 auto;
   border-bottom: 1px dotted var(--rule-strong);
