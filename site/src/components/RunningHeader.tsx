@@ -99,7 +99,10 @@ export function RunningHeader() {
             <li key={s.id}>
               <a href={`#${s.id}`} onClick={() => setOpen(false)} aria-current={s.id === cur ? "location" : undefined}>
                 <span className="toc__addr">{s.address === "Capa" ? "" : s.address}</span>
-                <span className="toc__title">{s.title}</span>
+                <span className="toc__title">
+                  {s.title}
+                  {s.hint ? <span className="toc__hint">{s.hint}</span> : null}
+                </span>
                 <span className="toc__dots" aria-hidden="true" />
                 <span className="toc__pg">{String(k + 1).padStart(2, "0")}</span>
               </a>
