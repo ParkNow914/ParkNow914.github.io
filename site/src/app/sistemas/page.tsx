@@ -8,7 +8,7 @@ import { SITE_URL, STATUS_LABEL, SYSTEMS, SYSTEMS_INTRO } from "@/content/site";
 import { AUTHOR, PUBLISHER } from "@/content/jsonld";
 
 const descricao =
-  "Os dez sistemas da Autark, com a situação de cada um: agenda com IA no WhatsApp, delivery multicanal, CRM com a API oficial da Meta, IA jurídica e mais. Três rodam hoje com clientes.";
+  "Os nove sistemas da Autark, com a situação de cada um: agenda com IA no WhatsApp, delivery multicanal, CRM com a API oficial da Meta, IA jurídica e mais. Três rodam hoje com clientes.";
 
 export const metadata: Metadata = {
   title: "Sistemas em operação · Autark",

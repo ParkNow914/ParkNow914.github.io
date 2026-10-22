@@ -61,14 +61,15 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 
 ## Evidence on Hand
 
-- 10 sistemas com texto, métricas e stack no site atual:
+- Projetos feitos para agências parceiras (white-label) nunca aparecem no site, nem anônimos com detalhe que identifique o cliente final.
+
+- 9 sistemas com texto, métricas e stack no site atual:
   - AgendaZap: em produção, demo `agendazap-three.vercel.app` e agendamento em `/b/demo`.
   - CRM WhatsApp Meta: entregue e encerrado pelo cliente, com 12 workflows de CI.
   - JurisIA: produto próprio, 4 produtos, planos de R$297 a R$1.200/mês.
   - ParkNow: produto próprio, GitHub.
   - Bia: cliente real, 487 testes, 6.438 produtos.
   - FlowHub: código aberto, GitHub.
-  - Marvet: cliente real, Next.js 16.
   - RealCred+: landing e simulador, GitHub.
   - Índice de Gestão: em produção, 85 testes.
   - Acerto: demo aberta `acerto-comissao.netlify.app`, 276 testes.

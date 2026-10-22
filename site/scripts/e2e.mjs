@@ -61,7 +61,7 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   check("JSON-LD com Person, ProfessionalService, WebSite e FAQPage", types === "FAQPage,Person,ProfessionalService,WebSite", types);
   check("sem aggregateRating no JSON-LD", !JSON.stringify(parsed).includes("aggregateRating"));
   check("12 seções endereçadas", (await page.locator("[data-section]").count()) === 12);
-  check("10 fichas de sistema", (await page.locator("article.sheet").count()) === 10);
+  check("9 fichas de sistema", (await page.locator("article.sheet").count()) === 9);
   check("6 depoimentos", (await page.locator(".field__row").count()) === 6);
   check("relatório de campo com 11 avaliações", (await page.locator(".field-sum__figs dd").first().textContent()).trim() === "11");
 
@@ -258,12 +258,12 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
       .join(",");
 
   await page.goto(URL, { waitUntil: "networkidle" });
-  check("cada ficha da home leva à página do sistema", (await page.locator('.sheet a[href^="/sistemas/"]').count()) === 10);
+  check("cada ficha da home leva à página do sistema", (await page.locator('.sheet a[href^="/sistemas/"]').count()) === 9);
   check("rodapé leva à política de privacidade", (await page.locator('.colophon a[href="/privacidade/"]').count()) === 1);
 
   await page.goto(abs("sistemas/"), { waitUntil: "networkidle" });
   const sis = await page.$$eval(".notas__t a", (as) => as.map((a) => a.getAttribute("href")));
-  check("registro lista os 10 sistemas com página própria", sis.length === 10 && sis.every((h) => /^\/sistemas\/[a-z0-9-]+\/$/.test(h)), `${sis.length}`);
+  check("registro lista os 9 sistemas com página própria", sis.length === 9 && sis.every((h) => /^\/sistemas\/[a-z0-9-]+\/$/.test(h)), `${sis.length}`);
 
   await page.goto(abs("sistemas/bia/"), { waitUntil: "networkidle" });
   const h1 = (await page.locator("h1").textContent()).trim();

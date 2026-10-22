@@ -161,7 +161,7 @@ export const APPLICATIONS = {
       who: "Quem investe em tráfego pago",
       pain: "O anúncio traz o lead e ele cai num formulário sem resposta.",
       fix: "Landing de alta conversão, WhatsApp e rastreamento completo para medir cada real.",
-      ref: "SYS-08",
+      ref: "SYS-07",
     },
     {
       who: "Qualquer negócio com tarefa repetitiva",
@@ -392,23 +392,6 @@ export const SYSTEMS: System[] = [
   },
   {
     code: "SYS-07",
-    slug: "marvet",
-    name: "Marvet",
-    kind: "Site e catálogo · SEO",
-    status: "entregue",
-    statusNote: "Cliente real: agropecuária de Santa Catarina.",
-    metric: "1 arquivo = 1 página",
-    image: "/projetos/marvet.webp",
-    imageW: 1080,
-    imageH: 670,
-    body:
-      "Site e catálogo de uma agropecuária que vende mudas de capim para o Brasil inteiro. Cada cultivar ganhou página própria, com ficha técnica, dúvidas e pedido de orçamento, porque quem busca “muda de tifton 85” precisa cair numa página sobre tifton 85. Para adicionar uma cultivar, basta editar um arquivo e a página, o SEO e o sitemap aparecem sozinhos.",
-    spec: [{ k: "Conversão", v: "Todo caminho leva ao WhatsApp já preenchido" }],
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind v4"],
-    actions: [{ label: "Ver no chat", href: wa("Olá Alisson! Quero ver o site da Marvet."), kind: "chat" }],
-  },
-  {
-    code: "SYS-08",
     slug: "realcredmais",
     name: "RealCred+",
     kind: "Landing + simulador",
@@ -425,7 +408,7 @@ export const SYSTEMS: System[] = [
     actions: [{ label: "Ver o código", href: "https://github.com/ParkNow914/realcredmais", kind: "code" }],
   },
   {
-    code: "SYS-09",
+    code: "SYS-08",
     slug: "indice-de-gestao",
     name: "Índice de Gestão",
     kind: "Diagnóstico · agronegócio",
@@ -447,7 +430,7 @@ export const SYSTEMS: System[] = [
     ],
   },
   {
-    code: "SYS-10",
+    code: "SYS-09",
     slug: "acerto",
     name: "Acerto",
     kind: "SaaS · crédito consignado",
@@ -576,7 +559,7 @@ export const FIELD = {
     {
       quote:
         "Excelente profissional! Desde o início, demonstrou muita organização, agilidade e compromisso com o projeto. A comunicação foi clara durante todo o processo, cumpriu os prazos combinados e entregou um trabalho de altíssima qualidade. Além de ser muito rápido, é extremamente competente, atencioso e sempre disposto a realizar os ajustes necessários para que o resultado fique exatamente como esperado. Superou minhas expectativas e mostrou que realmente entende do que faz.",
-      project: "Landing page em Next.js (Marvet)",
+      project: "Site e catálogo em Next.js",
       date: "ago. 2026",
     },
     {

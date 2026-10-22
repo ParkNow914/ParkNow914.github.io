@@ -13,7 +13,7 @@ Página única de `autarktech.com.br` (vitrine comercial da Autark). Visitor mod
 
 - Público: donos de pequenos negócios no Brasil, frios, muitas vezes no celular vindo do Instagram.
 - Ação: abrir conversa no WhatsApp com mensagem contextual e origem UTM carimbada.
-- Prova: 10 sistemas reais com status honesto, números de testes, demos abertas, 5 depoimentos verificáveis e a foto do Alisson.
+- Prova: 9 sistemas reais com status honesto, números de testes, demos abertas, 5 depoimentos verificáveis e a foto do Alisson.
 - Momento memorável: a máquina "Cérebro Autark" sai do desenho técnico e se monta, peça por peça, conforme o scroll, até a lâmpada acender OPERANDO.
 - Decisão do usuário: delegou todas as decisões em 23/09/2026 ("decida tudo por mim"). Direção sorteada aceita sem troca.
 

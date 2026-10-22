@@ -12,10 +12,9 @@ const PROJETOS: Record<string, string[]> = {
   "SYS-03": ["JurisIA"],
   "SYS-04": ["ParkNow"],
   "SYS-05": ["Bia"],
-  "SYS-07": ["Marvet", "Marvet / RealCred+"],
-  "SYS-08": ["RealCred+", "Marvet / RealCred+"],
-  "SYS-09": ["Índice de Gestão"],
-  "SYS-10": ["Acerto"],
+  "SYS-07": ["RealCred+"],
+  "SYS-08": ["Índice de Gestão"],
+  "SYS-09": ["Acerto"],
 };
 
 export function sistema(slug: string): System | undefined {

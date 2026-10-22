@@ -45,7 +45,6 @@ ALLOWED_ORPHANS = {
     "assets/bia.webp",
     "assets/crm.webp",
     "assets/flowhub.webp",
-    "assets/marvet.webp",
     "assets/parknow.webp",
     # Prints da home anterior que ninguém mais cita. Ficam porque podem estar
     # em mensagens e posts antigos; o site novo usa as cópias em site/public/.
