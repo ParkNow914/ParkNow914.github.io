@@ -20,6 +20,7 @@ import {
   type Status,
   type System,
   INSTAGRAM,
+  LINKEDIN,
 } from "@/content/site";
 import { Icon, LogoMark } from "./Icon";
 import { Folio, LegacyAnchors, SectionHead } from "./Manual";
@@ -523,6 +524,9 @@ export function Colophon({ capa = "#capa" }: { capa?: string } = {}) {
         </a>
         <a href={INSTAGRAM} target="_blank" rel="noopener">
           <Icon name="arrow-up-right" size={16} /> Instagram
+        </a>
+        <a href={LINKEDIN} target="_blank" rel="noopener">
+          <Icon name="arrow-up-right" size={16} /> LinkedIn
         </a>
         <a href="/notas/">
           <Icon name="index" size={16} /> Notas de campo

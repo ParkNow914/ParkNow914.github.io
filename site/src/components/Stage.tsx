@@ -1,4 +1,4 @@
-import { ASSEMBLY, ASSEMBLY_INTRO, COVER, PARTS, REVISION, WA_DEFAULT } from "@/content/site";
+import { ASSEMBLY, ASSEMBLY_INTRO, COVER, FREELAS, PARTS, REVISION, WA_DEFAULT } from "@/content/site";
 import { Balloon, Icon } from "./Icon";
 import { Folio, LegacyAnchors, SectionHead } from "./Manual";
 import { StageDriver } from "./StageDriver";
@@ -112,6 +112,9 @@ export function Stage() {
           </a>
           <a className="link-arrow" href="#sistemas">
             Ver sistemas em operação <Icon name="arrow-down" size={16} />
+          </a>
+          <a className="link-arrow" href={FREELAS} target="_blank" rel="noopener">
+            Avaliações no 99freelas <Icon name="arrow-up-right" size={16} />
           </a>
         </div>
         {/* Só aparece no celular: a promessa ("montado peça por peça") precisa
