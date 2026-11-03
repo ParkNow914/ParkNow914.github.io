@@ -8,13 +8,13 @@ web
 
 ## Stack
 
-Next.js (App Router, TypeScript) com deploy na Vercel. Escolha do Alisson em 23/09/2026. O 3D usa Three.js via React Three Fiber, e o scroll usa GSAP.
+Next.js com App Router e TypeScript, export estático publicado no GitHub Pages. O 3D usa Three.js via React Three Fiber; a rolagem é nativa. Estado conferido na fonte em 02/11/2026.
 
-Decisão em aberto: o domínio `autarktech.com.br` hoje é servido pelo GitHub Pages (repo `ParkNow914/ParkNow914.github.io`), e outros repos publicam no mesmo domínio: `/lab/`, `/configurador-camadas/`, `/pdv-lio-demo/`, além das landings `/lp/agenda/`, `/lp/atendimento/`, `/lp/juridico/` e `/lp/delivery/`. Antes de apontar o domínio para a Vercel, essas rotas precisam continuar respondendo, seja por rewrite, por export estático no próprio Pages ou por migração.
+Contexto histórico da migração: o domínio `autarktech.com.br` hoje é servido pelo GitHub Pages (repo `ParkNow914/ParkNow914.github.io`), e outros repos publicam no mesmo domínio: `/lab/`, `/configurador-camadas/`, `/pdv-lio-demo/`, além das landings `/lp/agenda/`, `/lp/atendimento/`, `/lp/juridico/` e `/lp/delivery/`. Antes de apontar o domínio para a Vercel, essas rotas precisam continuar respondendo, seja por rewrite, por export estático no próprio Pages ou por migração.
 
 ## Users
 
-Donos de pequenos e médios negócios no Brasil que perdem venda e tempo no atendimento manual, confirmado em 23/09/2026. Os públicos concretos, já atendidos em produção:
+Donos de pequenos e médios negócios no Brasil que perdem venda e tempo no atendimento manual, confirmado em 23/09/2026. Os cenários cobertos por entregas, produtos próprios e demonstrações:
 - salões, barbearias e clínicas (agenda);
 - corretoras e financeiras (CRM de WhatsApp com a API oficial);
 - delivery e comércio local (pedido multicanal);
@@ -30,13 +30,14 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 ## Positioning
 
 - **Uma pessoa só: atende, constrói e entrega.** Não há agência nem camadas. O "CEO" foi recusado de propósito, porque contradiz o argumento.
-- **Prova, não promessa.** Sistemas em produção com número verificável (487 testes na Bia, 276 no Acerto, 85 no Índice), demos abertas e código público.
+- **Evidência com contexto.** Identificar entregas para clientes, produtos próprios e provas de conceito. Demos e código só são anunciados quando disponíveis. Contagens históricas de testes não equivalem a uma execução atual.
 - **O "Cérebro Autark":** um cérebro de regras de negócio com canais plugáveis, cada regra virando teste antes do ar, e integração real com banco, pagamento e agenda.
 - **Honestidade operacional como marca.** O card do CRM diz que o cliente encerrou a operação. Card que promete demo inexistente é "a única mentira que a página não pode contar".
 
 ## Operating Context
 
 - O visitante decide pelo celular, muitas vezes vindo do Instagram. Largura crítica: 360px.
+- Atendimento remoto e assíncrono, normalmente das 19h às 00h, todos os dias (Brasília). Horas reservadas e prazo de resposta são combinados por projeto; não oferecer chamadas, visitas ou plantão 24h.
 - A conversão acontece fora do site, no WhatsApp `5512991743827`, com mensagem pré-preenchida por contexto (projeto, calculadora, formulário).
 - A UTM de entrada (`utm_source/medium/campaign`) é carimbada na mensagem do WhatsApp para medir a origem da conversa.
 - A calculadora de ROI é uma ferramenta educativa: horas/dia × pessoas × custo/hora, 22 dias úteis e ~70% automatizável.
@@ -64,20 +65,20 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 - Projetos feitos para agências parceiras (white-label) nunca aparecem no site, nem anônimos com detalhe que identifique o cliente final.
 
 - 9 sistemas com texto, métricas e stack no site atual:
-  - AgendaZap: em produção, demo `agendazap-three.vercel.app` e agendamento em `/b/demo`.
-  - CRM WhatsApp Meta: entregue e encerrado pelo cliente, com 12 workflows de CI.
+  - AgendaZap: produto próprio com demonstração pública, demo `agendazap-three.vercel.app` e agendamento em `/b/demo`.
+  - CRM WhatsApp Meta: entregue e encerrado pelo cliente; dados e acessos preservados.
   - JurisIA: produto próprio, 4 produtos, planos de R$297 a R$1.200/mês.
   - ParkNow: produto próprio, GitHub.
-  - Bia: cliente real, 487 testes, 6.438 produtos.
+  - Bia: cliente real, loja web e Telegram, catálogo do ERP, Docker/VPS Linux. WhatsApp não foi ativado no cliente. Contagens de catálogo e testes nas notas de setembro são históricas.
   - FlowHub: código aberto, GitHub.
   - RealCred+: landing e simulador, GitHub.
-  - Índice de Gestão: em produção, 85 testes.
-  - Acerto: demo aberta `acerto-comissao.netlify.app`, 276 testes.
+  - Índice de Gestão: entregue para cliente; acesso restrito e apresentação sem dados identificáveis.
+  - Acerto: produto próprio, disponibilidade de demo com dados fictícios sob consulta. Não prometer acesso aberto sem confirmação.
 - 3 demonstrações técnicas: PDV Cielo Lio (`/pdv-lio-demo/`), atendimento em camadas (Make.com, GitHub) e configurador visual (`/configurador-camadas/`).
 - Laboratório Poliglota em `/lab/`, com um projeto por linguagem rodando no navegador.
-- 6 depoimentos reais do 99freelas. São 12 avaliações, todas 5.0, com 100% de recomendação e 12 projetos concluídos (conferido em 24/10/2026), e são verificáveis. Não inventar outros.
+- 6 depoimentos reais do 99freelas. São 12 avaliações, todas 5.0, com 100% de recomendação e 12 projetos concluídos (conferido em 02/11/2026), e são verificáveis. Não inventar outros.
 - Prints reais em `ref/ParkNow914.github.io/assets/*.webp`. Tratto e Acerto são capas ilustradas, porque o print real mostraria a marca do cliente. A foto do Alisson está em `foto-square.webp`.
-- Números do hero: nota 5.0, 100% de recomendação, 6 SaaS próprios e 3 sistemas em produção real.
+- Números do hero: nota 5.0, 12 projetos concluídos e 12 recomendações no 99freelas (02/11/2026), 9 sistemas apresentados. Não afirmar contagem de sistemas atualmente em produção sem verificação.
 - Não existem e não podem ser inventados: logos de clientes, estudos de caso com receita, prêmios, imprensa, preços fechados por projeto.
 
 ## Product Principles

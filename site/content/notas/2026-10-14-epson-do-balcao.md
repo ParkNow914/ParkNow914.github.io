@@ -72,6 +72,6 @@ O que o cliente escolheu é exatamente o que sai no papel.
 ---
 :: cta
 # Quer ver imprimindo?
-> Eu abro na sua frente.
+> Eu envio uma apresentação por escrito.
 E no próximo post eu conto por que o preço nunca é calculado no navegador do
 cliente — é uma armadilha comum e cara.

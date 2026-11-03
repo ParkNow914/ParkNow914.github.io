@@ -59,7 +59,6 @@ bot consulta", você tem um sistema.
 
 ---
 :: cta
-# Isso já me salvou um projeto inteiro
-> No meio do caminho.
-No próximo post eu conto qual foi — e o que aconteceu quando o WhatsApp do
-cliente ficou inviável com o sistema já em pé.
+# Canais separados das regras
+> O exemplo da Bia.
+Na próxima nota, conto como a restrição prévia do WhatsApp do cliente levou à entrega pela loja web e pelo Telegram.

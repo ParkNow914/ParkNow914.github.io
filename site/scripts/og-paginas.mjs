@@ -31,8 +31,8 @@ const alvos = [
     html: pagina({
       secao: "Sistemas",
       kicker: `${SYSTEMS.length} sistemas`,
-      titulo: "Sistemas em operação",
-      lede: "Três rodam hoje com clientes. Qualquer um abre na sua frente.",
+      titulo: "Projetos e sistemas",
+      lede: "Entregas para clientes, produtos próprios e demonstrações, com o contexto de cada projeto.",
       rodape,
     }),
   },
@@ -52,9 +52,9 @@ const alvos = [
     destino: path.join(OG, "vale-do-paraiba.png"),
     html: pagina({
       secao: "Vale do Paraíba",
-      kicker: "Atendimento local",
+      kicker: "Atendimento remoto",
       titulo: "Automação para negócios do Vale do Paraíba",
-      lede: `Base em Lorena, com visita ao seu negócio em ${VALE.cidades.length} cidades.`,
+      lede: "Base em Lorena. Atendimento remoto e por escrito no Vale e em todo o Brasil.",
       rodape,
     }),
   },

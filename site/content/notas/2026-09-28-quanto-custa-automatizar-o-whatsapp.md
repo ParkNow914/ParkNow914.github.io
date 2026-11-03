@@ -72,5 +72,5 @@ Comece pelo que mais toma tempo da equipe e cresça quando o resultado aparecer.
 :: cta
 # Quer o número do seu caso?
 > Mande o que toma o seu tempo hoje.
-Eu respondo no mesmo dia com uma estimativa honesta, incluindo o custo mensal
+Retorno na minha janela de atendimento com uma estimativa, incluindo o custo mensal
 de manter no ar.

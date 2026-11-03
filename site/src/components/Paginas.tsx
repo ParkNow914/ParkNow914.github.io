@@ -43,7 +43,7 @@ export function Chamada({
         <Icon name="whatsapp" size={18} />
         Chamar no WhatsApp
       </a>
-      <p className="nota__cta-nota">Resposta no mesmo dia. Sem formulário: abre o WhatsApp com a mensagem pronta.</p>
+      <p className="nota__cta-nota">Atendimento por escrito, normalmente 19h–00h (Brasília). O botão abre o WhatsApp com a mensagem pronta.</p>
     </aside>
   );
 }

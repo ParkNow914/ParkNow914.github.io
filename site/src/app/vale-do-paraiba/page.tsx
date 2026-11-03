@@ -9,7 +9,7 @@ import { AREA_ATENDIDA } from "@/content/jsonld";
 
 const titulo = "Sistemas e automação para negócios do Vale do Paraíba";
 const descricao =
-  "Atendimento de WhatsApp com IA, agenda, delivery e sistemas sob medida para negócios de Lorena, Guaratinguetá, Taubaté, São José dos Campos e região, com visita ao seu negócio.";
+  "Atendimento de WhatsApp com IA, agenda, delivery e sistemas sob medida para negócios de Lorena, Guaratinguetá, Taubaté, São José dos Campos e região, com atendimento remoto e por escrito.";
 
 const SEGMENTOS = [
   {
@@ -37,11 +37,11 @@ const SEGMENTOS = [
 const PERGUNTAS = [
   {
     q: "Você vai até o meu negócio?",
-    a: `Vou, em ${VALE.cidades.slice(0, -1).join(", ")} e ${VALE.cidades.at(-1)}. Fora dessas cidades o trabalho é a distância, para o Brasil inteiro.`,
+    a: "O atendimento é remoto e assíncrono, inclusive no Vale do Paraíba. Você pode descrever o processo por escrito e enviar capturas e vídeos gravados quando forem necessários.",
   },
   {
     q: "Preciso me encontrar pessoalmente para contratar?",
-    a: "Não. A maior parte do projeto anda bem pelo WhatsApp e por chamada. A visita serve para quando ver o processo de perto ajuda: o balcão, a agenda, o computador ligado na impressora.",
+    a: "O projeto é organizado por mensagens, com escopo, dúvidas e validações por escrito. Normalmente atendo das 19h às 00h, todos os dias, no horário de Brasília.",
   },
   {
     q: "Em quanto tempo fica pronto?",
@@ -107,23 +107,23 @@ export default function ValePage() {
           <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Vale do Paraíba" }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
-              <span className="nota__pilar">Atendimento local</span>
+              <span className="nota__pilar">Atendimento remoto</span>
               <span>Base em Lorena, SP</span>
             </p>
             <h1 className="nota__t">{titulo}</h1>
             <p className="nota__lede">
-              A Autark fica em Lorena. Nas cidades do Vale eu posso ir até o seu negócio para ver o processo de perto. No resto
-              do Brasil, o trabalho é a distância.
+              A Autark tem base em Lorena e atende negócios do Vale e de todo o Brasil de forma remota, com briefing,
+              acompanhamento e validações por escrito.
             </p>
           </header>
 
-          <Bloco id="vale-cidades" titulo="Cidades onde eu vou até você">
+          <Bloco id="vale-cidades" titulo="Negócios do Vale atendidos a distância">
             <ul className="cidades">
               {VALE.cidades.map((c) => (
                 <li key={c}>{c}</li>
               ))}
             </ul>
-            <p className="bloco__nota">Sua cidade fica perto e não está aqui? Pergunte no WhatsApp.</p>
+            <p className="bloco__nota">O atendimento remoto também está disponível para outras cidades do Brasil.</p>
           </Bloco>
 
           <Bloco id="vale-o-que" titulo="O que dá para instalar">
@@ -142,16 +142,16 @@ export default function ValePage() {
             </ol>
             <p className="bloco__nota">
               Outro tipo de negócio? Se a tarefa se repete e dá para descrever a regra, dá para automatizar.{" "}
-              <a href="/sistemas/">Veja os sistemas que já estão no ar</a>.
+              <a href="/sistemas/">Conheça os projetos e sistemas</a>.
             </p>
           </Bloco>
 
-          <Bloco id="vale-perto" titulo="Por que ver de perto ajuda">
+          <Bloco id="vale-perto" titulo="Como entender a rotina a distância">
             <div className="nota__texto">
               <p>
-                Tem coisa que só aparece no balcão: onde o pedido chega, quem responde o WhatsApp entre um atendimento e
-                outro, em que computador a impressora está ligada. Uma visita curta poupa muita ida e volta por mensagem e
-                deixa o sistema do jeito que o seu dia já funciona.
+                O diagnóstico registra onde o pedido chega, quem responde ao cliente e quais sistemas e equipamentos
+                participam do fluxo. Mensagens, capturas e vídeos gravados ajudam a esclarecer a rotina e as dependências
+                antes de definir a solução.
               </p>
             </div>
           </Bloco>
@@ -163,7 +163,7 @@ export default function ValePage() {
                   <span className="passos__n">{String(k + 1).padStart(2, "0")}</span>
                   <div>
                     <h3 className="passos__t">{p.title}</h3>
-                    <p>{k === 0 ? `${p.body} Se você está no Vale, a conversa pode ser no seu negócio.` : p.body}</p>
+                    <p>{p.body}</p>
                   </div>
                 </li>
               ))}
@@ -173,7 +173,7 @@ export default function ValePage() {
           <Bloco id="vale-prova" titulo="Antes de contratar, confira">
             <div className="nota__texto">
               <p>
-                Três sistemas rodam hoje com clientes, e eu abro qualquer um na sua frente.{" "}
+                O portfólio identifica entregas para clientes, produtos próprios e demonstrações.{" "}
                 <a href="/sistemas/">Veja o registro completo</a>. No 99freelas são {FIELD.reviews} avaliações, todas 5.0, com
                 100% de recomendação,{" "}
                 <a href={FREELAS} target="_blank" rel="noopener">
@@ -204,7 +204,7 @@ export default function ValePage() {
           <Chamada
             id="vale-cta-t"
             titulo="Tem um negócio no Vale?"
-            texto="Conte o que toma o seu tempo. Eu respondo no mesmo dia e, se fizer sentido, marco uma visita."
+            texto="Conte por escrito o que toma o seu tempo. Retorno na minha janela de atendimento para organizar o escopo e os próximos passos."
             mensagem="Olá Alisson! Tenho um negócio no Vale do Paraíba e quero conversar sobre automação."
           />
         </article>

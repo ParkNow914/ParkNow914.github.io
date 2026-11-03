@@ -34,7 +34,7 @@ export function Stamp({ status, compact }: { status: Status; compact?: boolean }
   return (
     <span className={`stamp stamp--${status} ${compact ? "stamp--compact" : ""}`} data-stamp>
       <span className="stamp__t">{STATUS_LABEL[status]}</span>
-      {compact ? null : <span className="stamp__d">conferido set/2026</span>}
+      {compact ? null : <span className="stamp__d">apresentação nov/2026</span>}
     </span>
   );
 }
@@ -187,10 +187,10 @@ export function Systems() {
   return (
     <section className="sec sec--systems" id="sistemas" data-section="sistemas" aria-labelledby="h-sistemas">
       <LegacyAnchors section="sistemas" />
-      <SectionHead id="h-sistemas" address="§4" title="Sistemas em operação" lede={SYSTEMS_INTRO} />
+      <SectionHead id="h-sistemas" address="§4" title="Projetos e sistemas" lede={SYSTEMS_INTRO} />
 
       <table className="register">
-        <caption>Registro de sistemas, conferido em setembro de 2026</caption>
+        <caption>Registro de sistemas, apresentação revisada em novembro de 2026</caption>
         <thead>
           <tr>
             <th scope="col">Código</th>

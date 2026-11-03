@@ -16,7 +16,7 @@ legenda: |
   E ele não para no agendamento: recupera cliente que sumiu, manda mensagem de
   aniversário, pergunta como foi o atendimento e dispara campanha pra base.
 
-  Roda em produção, com demo aberta. Quer ver funcionando na sua frente? Chama
+  Produto próprio com demonstração pública. Quer conhecer? Chama
   no WhatsApp que eu abro.
 hashtags: salaodebeleza, barbearia, agendamento, whatsapp, automacao, saas
 ---
@@ -58,7 +58,7 @@ Não é protótipo. Está **em produção**.
 
 ---
 :: cta
-# Quer ver funcionando na sua frente?
+# Quer conhecer a demonstração?
 > Tem demo aberta.
 Me chama no WhatsApp que eu abro o sistema e você mesmo marca um horário de
 teste, na hora.
