@@ -121,8 +121,6 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   await page.waitForFunction(() => document.querySelector(".fig--main")?.getAttribute("data-fig") === "running", null, { timeout: 8000 }).catch(() => {});
   const figState = await page.locator(".fig--main").getAttribute("data-fig");
   check("montagem chega a OPERANDO no último passo", figState === "running", figState);
-  const bia = await page.locator('[data-count="487"]').textContent();
-  check("bancada conta 487 testes", bia === "487", bia);
 
   // Imagens: todo arquivo carregou
   await page.evaluate(async () => {

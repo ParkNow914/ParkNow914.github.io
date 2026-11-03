@@ -1,10 +1,10 @@
-titulo: O WhatsApp do cliente ficou inviável no meio do projeto
+titulo: Quando o WhatsApp não pode ser o canal de entrega
 data: 2026-09-18
 pilar: bastidor
 projeto: Bia
 legenda: |
-  Projeto de delivery em andamento, sistema em pé, e o canal principal cai: o
-  WhatsApp do cliente se tornou inviável no meio do caminho.
+  No delivery da Bia, o WhatsApp do cliente tinha uma restrição prévia e não
+  chegou a ser ativado. O conector foi preparado; a entrega usou loja web e Telegram.
 
   Em muito projeto, isso é o fim. O bot foi construído dentro do WhatsApp, então
   sem WhatsApp não sobra nada — recomeça, refaz o orçamento, refaz o prazo.
@@ -23,8 +23,8 @@ hashtags: delivery, supermercado, whatsapp, telegram, automacao, arquitetura
 ---
 :: capa
 ## bastidor
-# O WhatsApp do cliente ficou inviável no meio do projeto
-> Sistema já em pé.
+# Quando o WhatsApp não pode ser o canal de entrega
+> Na Bia, o WhatsApp tinha uma restrição prévia e não chegou a operar.
 
 ---
 :: conteudo
@@ -37,8 +37,8 @@ recomeça, refaz o orçamento, refaz o prazo.
 ---
 :: destaque
 ## o que aconteceu de verdade
-> A loja web e o Telegram entraram no lugar.
-Sem reescrever **uma única regra de negócio**.
+> A entrega foi feita pela loja web e pelo Telegram.
+O conector de WhatsApp foi preparado, mas não ativado nesse cliente. As regras de negócio ficaram no núcleo compartilhado.
 
 ---
 :: conteudo

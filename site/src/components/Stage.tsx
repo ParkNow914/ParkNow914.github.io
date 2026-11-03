@@ -111,7 +111,7 @@ export function Stage() {
             Pedir instalação no WhatsApp
           </a>
           <a className="link-arrow" href="#sistemas">
-            Ver sistemas em operação <Icon name="arrow-down" size={16} />
+            Ver projetos e sistemas <Icon name="arrow-down" size={16} />
           </a>
           <a className="link-arrow" href={FREELAS} target="_blank" rel="noopener">
             Avaliações no 99freelas <Icon name="arrow-up-right" size={16} />
@@ -201,21 +201,6 @@ export function Stage() {
                   <span className="step__proof-k">Nota de campo</span>
                   {s.proof}
                 </p>
-              ) : null}
-              {"tests" in s && s.tests ? (
-                <dl className="counters">
-                  {s.tests.map((t) => (
-                    <div key={t.label} className="counter">
-                      <dt>{t.label}</dt>
-                      <dd>
-                        <span className="counter__n" data-count={t.n}>
-                          {t.n}
-                        </span>{" "}
-                        testes verdes
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
               ) : null}
             </li>
           ))}

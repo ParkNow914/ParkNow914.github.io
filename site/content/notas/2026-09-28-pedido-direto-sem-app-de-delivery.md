@@ -12,14 +12,14 @@ legenda: |
   para a impressora do balcão. Ninguém digita nada duas vezes.
 
   Na Bia, o delivery que eu construí para um supermercado de bairro, o catálogo
-  veio direto do ERP da loja: **6.438 produtos**, sem cadastrar um por um.
+  veio direto do ERP da loja, sem cadastrar um por um.
   Preço e taxa são recalculados no servidor, então ninguém muda o valor pelo
-  navegador. O cupom sai na impressora que a loja já tinha, e 487 testes
-  automáticos conferem as regras a cada mudança.
+  navegador. O cupom sai na impressora que a loja já tinha, e testes
+  automáticos conferem as regras.
 
-  O cliente pode pedir pela loja web, pelo Telegram ou pelo WhatsApp, e os três
-  caem no mesmo sistema. Quando o WhatsApp da loja precisou sair do projeto, a
-  venda seguiu pelos outros canais sem mudar regra nenhuma.
+  A entrega da Bia usou loja web e Telegram. O conector de WhatsApp foi
+  preparado, mas não foi ativado por uma restrição prévia no número do cliente.
+  Os canais compartilham o núcleo de regras do sistema.
 
   E tem um detalhe que pesa com o tempo: pedido feito no seu canal fica com
   você. O cadastro e o histórico de cada cliente são da loja.
@@ -49,19 +49,18 @@ Cada passo é uma chance de erro.
 ---
 :: conteudo
 ## na Bia
-# 6.438
-produtos vieram do ERP da loja, sem cadastro manual. E **487 testes**
-automáticos conferem as regras a cada mudança.
+O catálogo veio do ERP da loja, sem cadastro manual de cada produto. Testes
+automáticos cobrem as regras de preço e taxa.
 
 ---
 :: conteudo
 ## três canais, um sistema
-Loja web, Telegram e WhatsApp caem no mesmo lugar.
+Loja web e Telegram compartilham as regras do sistema.
 
-Quando o WhatsApp da loja saiu do projeto, a venda seguiu pelos outros canais.
+O conector de WhatsApp foi preparado, mas não foi ativado nesse cliente.
 
 ---
 :: cta
-# Quer ver a Bia funcionando?
-> Eu abro a loja na sua frente.
-Me chame no WhatsApp e faça um pedido de teste, do catálogo até o total.
+# Quer conhecer o projeto da Bia?
+> Eu envio uma apresentação do projeto por escrito.
+Me chame para conhecer os materiais que podem ser compartilhados, preservando os dados do cliente.

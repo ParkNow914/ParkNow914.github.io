@@ -72,4 +72,4 @@ O mesmo cuidado, do outro lado.
 :: cta
 # Vitrine minha não pode custar caro pro cliente
 > Nem em lead falso, nem em métrica torta.
-Quer ver funcionando? Me chama que eu abro na sua frente.
+Quer conhecer o projeto? Me chama para receber materiais que possam ser compartilhados, preservando os dados do cliente.

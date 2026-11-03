@@ -2,7 +2,7 @@
 // FAQ só vale para a home: as notas de campo têm o próprio Article.
 import { SITE_URL, EMAIL, GITHUB, FREELAS, INSTAGRAM, LINKEDIN, WHATSAPP, TROUBLESHOOTING, WARRANTY, VALE } from "./site";
 
-/** Vale do Paraíba com visita, Brasil a distância. Usado na home e na página do Vale. */
+/** Atendimento remoto no Vale do Paraíba e em todo o Brasil. */
 export const AREA_ATENDIDA = [
   ...VALE.cidades.map((name) => ({
     "@type": "City",

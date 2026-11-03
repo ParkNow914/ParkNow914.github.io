@@ -179,7 +179,7 @@ export default async function SistemaPage({ params }: Props) {
           <Chamada
             id="sis-cta-t"
             titulo="Quer um sistema assim no seu negócio?"
-            texto="Conte o que você precisa. Eu respondo no mesmo dia e mostro este sistema funcionando antes de qualquer proposta."
+            texto="Conte por escrito o que você precisa. Retorno na minha janela de atendimento com exemplos e materiais que possam ser compartilhados."
             mensagem={`Olá Alisson! Vi o sistema ${s.name} no site e quero algo parecido para o meu negócio.`}
           />
 

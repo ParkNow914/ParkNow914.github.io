@@ -8,7 +8,7 @@ export const FREELAS = "https://www.99freelas.com.br/user/Alisson_sntsz";
 export const INSTAGRAM = "https://www.instagram.com/autark.tech/";
 export const LINKEDIN = "https://www.linkedin.com/in/alisson-santos-70a327270";
 export const SITE_URL = "https://autarktech.com.br";
-export const REVISION = "Rev. 2026.09";
+export const REVISION = "Rev. 2026.11";
 
 export function wa(text: string) {
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
@@ -25,7 +25,7 @@ export const SECTIONS = [
   { id: "montagem", address: "§1", title: "Montagem", hint: "como o sistema funciona" },
   { id: "aplicacoes", address: "§2", title: "Aplicações", hint: "para quem é" },
   { id: "modelos", address: "§3", title: "Modelos", hint: "o que eu faço" },
-  { id: "sistemas", address: "§4", title: "Sistemas em operação", hint: "" },
+  { id: "sistemas", address: "§4", title: "Projetos e sistemas", hint: "" },
   { id: "instalacao", address: "§5", title: "Instalação", hint: "como trabalho" },
   { id: "dimensionamento", address: "§6", title: "Dimensionamento", hint: "calculadora de economia" },
   { id: "campo", address: "§7", title: "Relatório de campo", hint: "avaliações dos clientes" },
@@ -61,9 +61,9 @@ export const COVER = {
   plate: [
     { k: "Fabricante", v: "Alisson Santos" },
     { k: "Avaliação", v: "5.0 no 99freelas", star: true },
-    { k: "Recomendação", v: "100% dos clientes" },
-    { k: "Em produção real", v: "3 sistemas" },
-    { k: "SaaS próprios", v: "6 construídos" },
+    { k: "Recomendação", v: "12 no 99freelas" },
+    { k: "Projetos concluídos", v: "12 no 99freelas" },
+    { k: "No portfólio", v: "9 sistemas" },
   ],
 };
 
@@ -96,25 +96,21 @@ export const ASSEMBLY = [
     body:
       "WhatsApp, Telegram e site entram como portas plugadas no núcleo. Você soma ou troca um canal sem reescrever regra nenhuma.",
     proof:
-      "Na Bia, o WhatsApp do cliente caiu no meio do projeto. A loja web e o Telegram assumiram o atendimento sem mudar uma linha de regra de negócio.",
+      "Na Bia, uma restrição prévia no WhatsApp do cliente levou à entrega pela loja web e pelo Telegram. O núcleo de regras ficou separado dos canais.",
   },
   {
     parts: [5, 6, 7],
     title: "Ligado aos seus sistemas",
     body:
       "O fluxo conversa com seu banco, seu pagamento e sua agenda. Assim ele fecha o pedido sozinho e só chama um humano quando precisa.",
-    proof: "PIX, Stripe e Mercado Pago rodando em operação real.",
+    proof: "A integração e seus custos são definidos conforme o provedor, as credenciais e o fluxo de cada projeto.",
   },
   {
     parts: [8],
     title: "Testado antes de você depender dele",
     body:
-      "Cada regra vira um teste automatizado. O sistema entra no ar sabendo o que fazer e continua certo depois de cada mudança.",
-    tests: [
-      { label: "Bia", n: 487 },
-      { label: "Acerto", n: 276 },
-      { label: "Índice de Gestão", n: 85 },
-    ],
+      "Regras críticas, permissões e integrações recebem testes proporcionais ao projeto. As mudanças são validadas em ambiente separado antes da publicação.",
+    proof: "A entrega inclui o registro do que foi testado e das dependências que ainda exigem acesso ou aprovação.",
   },
   {
     parts: [9],
@@ -131,7 +127,7 @@ export const ASSEMBLY = [
 ] as const;
 
 export const APPLICATIONS = {
-  intro: "Cada cenário abaixo tem um sistema meu por trás, construído e entregue.",
+  intro: "Cenários cobertos por entregas para clientes, produtos próprios e demonstrações apresentados neste portfólio.",
   rows: [
     {
       who: "Salões, barbearias e clínicas",
@@ -160,7 +156,7 @@ export const APPLICATIONS = {
     {
       who: "Quem investe em tráfego pago",
       pain: "O anúncio traz o lead e ele cai num formulário sem resposta.",
-      fix: "Landing de alta conversão, WhatsApp e rastreamento completo para medir cada real.",
+      fix: "Landing, encaminhamento ao WhatsApp e integrações de analytics para acompanhar a campanha.",
       ref: "SYS-07",
     },
     {
@@ -253,7 +249,7 @@ export type System = {
 };
 
 export const SYSTEMS_INTRO =
-  "Você quer ver funcionando, então aqui estão. Três rodam hoje com clientes. Os outros são produtos meus ou entregas concluídas, com código aberto ou demo ao vivo. Me chame no WhatsApp e eu abro qualquer um na sua frente.";
+  "Entregas para clientes, produtos próprios e demonstrações, com o contexto de cada projeto. As fichas mostram recursos, tecnologia e código ou demo quando disponíveis. Sistemas de clientes são apresentados com materiais que preservam seus dados e acessos.";
 
 export const SYSTEMS: System[] = [
   {
@@ -261,14 +257,14 @@ export const SYSTEMS: System[] = [
     slug: "agendazap",
     name: "AgendaZap",
     kind: "SaaS · IA · WhatsApp",
-    status: "producao",
+    status: "proprio",
     metric: "14 dias grátis",
     image: "/projetos/agendazap.webp",
     imageW: 1200,
     imageH: 744,
     feature: true,
     body:
-      "Agenda inteligente para salão, barbearia e estética. O cliente marca sozinho pelo link público ou conversando com a atendente de IA no WhatsApp, que consulta horário, agenda e cancela sem ninguém encostar. Os lembretes de 24h e 2h antes derrubam o bolo, e as campanhas de inativos, aniversário e NPS seguram o cliente na base.",
+      "Produto próprio de agendamento para salão, barbearia e estética, com demonstração pública. Reúne agenda, página de reservas, recursos de atendimento com IA, lembretes e campanhas. As integrações externas dependem das credenciais e da configuração de cada operação.",
     spec: [
       { k: "Arquitetura", v: "Multiempresa com RLS no Supabase" },
       { k: "Cobrança", v: "Assinatura no Mercado Pago, teste de 14 dias" },
@@ -288,18 +284,18 @@ export const SYSTEMS: System[] = [
     kind: "CRM · API oficial da Meta",
     status: "encerrado",
     statusNote: "Entregue. O cliente encerrou a operação por custo de infraestrutura.",
-    metric: "12 workflows de CI",
+    metric: "templates e auditoria",
     image: "/projetos/crm.webp",
     imageW: 1200,
     imageH: 744,
     feature: true,
     body:
-      "Inbox omnichannel e CRM para WhatsApp Business que rodou em operação financeira real, com campanhas sob governança de templates, motor de elegibilidade, opt-out, auditoria completa e retenção LGPD automática. Ficava no Fly.io em São Paulo, com duas máquinas sempre ligadas e cerca de 28 ms até o banco. O sistema seguia estável até o dia do desligamento.",
+      "Inbox e CRM entregue para operação financeira, com governança de templates, regras de elegibilidade, opt-out, auditoria e políticas de retenção de dados. A operação foi encerrada pelo cliente. A apresentação do case preserva seus dados e acessos.",
     spec: [
-      { k: "CI", v: "12 workflows no GitHub Actions" },
+      { k: "CI", v: "GitHub Actions" },
       { k: "Testes", v: "E2E com Playwright, CodeQL, Trivy + SBOM" },
       { k: "Operação", v: "Backup diário e deploy a cada push" },
-      { k: "Latência", v: "~28 ms até o banco, zero cold start" },
+      { k: "Processamento", v: "Filas com BullMQ e Redis" },
     ],
     stack: ["Fastify", "React", "Prisma", "Postgres 17", "BullMQ + Redis", "Fly.io"],
     actions: [
@@ -346,7 +342,7 @@ export const SYSTEMS: System[] = [
     spec: [
       { k: "Segurança", v: "JWT + refresh httpOnly, Argon2id, rate limiting" },
       { k: "CI/CD", v: "CodeQL" },
-      { k: "Infra", v: "Oracle Cloud Free Tier, R$ 0 por mês" },
+      { k: "Infra", v: "Configuração de infraestrutura no repositório" },
     ],
     stack: ["Node.js", "Express", "PostgreSQL", "Socket.IO", "PIX BR Code", "Terraform"],
     actions: [{ label: "Ver o código", href: "https://github.com/ParkNow914/ParkNow", kind: "code" }],
@@ -358,21 +354,21 @@ export const SYSTEMS: System[] = [
     kind: "Delivery multicanal · IA",
     status: "entregue",
     statusNote: "Cliente real: supermercado de bairro.",
-    metric: "487 testes verdes",
+    metric: "web + Telegram",
     image: "/projetos/bia.webp",
     imageW: 1080,
     imageH: 670,
     feature: true,
     body:
-      "Delivery completo para supermercado de bairro, com catálogo de 6.438 produtos importado do ERP, carrinho com taxa dinâmica, checkout, cupom impresso direto na Epson do balcão e acompanhamento do pedido. Loja web, Telegram e WhatsApp caem no mesmo cérebro, e por isso o WhatsApp do cliente pôde sair do projeto sem quebrar nada.",
+      "Delivery entregue para supermercado de bairro, com catálogo importado do ERP, carrinho, cálculo de taxa, checkout, impressão de pedidos e acompanhamento. A entrega utilizou loja web e Telegram. O conector de WhatsApp foi preparado, mas não foi ativado nesse cliente.",
     spec: [
-      { k: "Testes", v: "487 automatizados, todos verdes" },
+      { k: "Deploy", v: "Docker em VPS Linux, backup e reversão documentados" },
       { k: "Runtime", v: "Node.js puro, zero dependência" },
       { k: "Segurança", v: "Preço e taxa recalculados no servidor" },
       { k: "Impressão", v: "ESC/POS direto na impressora do balcão" },
     ],
-    stack: ["Node.js", "PWA", "Telegram API", "Meta Cloud API", "ESC/POS"],
-    actions: [{ label: "Ver a demo no chat", href: wa("Olá Alisson! Quero ver a demo da Bia (delivery)."), kind: "chat" }],
+    stack: ["Node.js", "PWA", "Telegram API", "Docker", "ESC/POS"],
+    actions: [{ label: "Conhecer este projeto", href: wa("Olá Alisson! Quero conhecer o case da Bia (delivery)."), kind: "chat" }],
   },
   {
     code: "SYS-06",
@@ -396,13 +392,13 @@ export const SYSTEMS: System[] = [
     name: "RealCred+",
     kind: "Landing + simulador",
     status: "entregue",
-    statusNote: "Em uso pela corretora.",
-    metric: "funil 100% rastreado",
+    statusNote: "Landing e simulador entregues.",
+    metric: "landing + simulador",
     image: "/projetos/realcredmais.webp",
     imageW: 1080,
     imageH: 670,
     body:
-      "Landing de conversão para corretora de crédito, com simulador de consignado e calculadora de portabilidade que mostram o número na hora, WhatsApp direto e formulário por e-mail. GTM, GA4, Meta Pixel e Conversions API medem cada real de anúncio até a conversa.",
+      "Landing para corretora de crédito, com simulador de consignado, calculadora de portabilidade, encaminhamento ao WhatsApp e formulário por e-mail. Inclui integrações de analytics; regras comerciais, credenciais e consentimento precisam acompanhar a configuração da operação.",
     spec: [{ k: "Rastreamento", v: "GTM, GA4, Meta Pixel e CAPI" }],
     stack: ["JavaScript", "Node.js", "GTM + GA4", "Meta CAPI"],
     actions: [{ label: "Ver o código", href: "https://github.com/ParkNow914/realcredmais", kind: "code" }],
@@ -412,8 +408,8 @@ export const SYSTEMS: System[] = [
     slug: "indice-de-gestao",
     name: "Índice de Gestão",
     kind: "Diagnóstico · agronegócio",
-    status: "producao",
-    metric: "85 testes",
+    status: "entregue",
+    metric: "diagnóstico por pilares",
     image: "/projetos/tratto.webp",
     imageW: 1200,
     imageH: 744,
@@ -426,7 +422,7 @@ export const SYSTEMS: System[] = [
     ],
     stack: ["Next.js", "Supabase + RLS", "@react-pdf", "Resend", "RD Station"],
     actions: [
-      { label: "Ver funcionando no chat", href: wa("Olá Alisson! Quero ver o Índice de Gestão funcionando."), kind: "chat" },
+      { label: "Conhecer este projeto", href: wa("Olá Alisson! Quero conhecer o case do Índice de Gestão."), kind: "chat" },
     ],
   },
   {
@@ -435,8 +431,8 @@ export const SYSTEMS: System[] = [
     name: "Acerto",
     kind: "SaaS · crédito consignado",
     status: "proprio",
-    statusNote: "Demo com acesso sob pedido: eu libero o login e mostro o fechamento de um mês.",
-    metric: "276 testes",
+    statusNote: "Produto próprio; consulte a disponibilidade de demonstração com dados fictícios.",
+    metric: "comissão e auditoria",
     image: "/projetos/acerto.webp",
     imageW: 1200,
     imageH: 744,
@@ -444,7 +440,7 @@ export const SYSTEMS: System[] = [
     body:
       "Gestão de comissão para promotoras de crédito consignado e correspondentes bancários. A promotora precisa provar cada comissão, e o sistema foi desenhado para isso: aritmética inteira, tabelas versionadas, splits, cinco tipos de estorno e fechamento mensal com saldo que rola.",
     spec: [
-      { k: "Testes", v: "276 (263 unidade e integração, 13 ponta a ponta)" },
+      { k: "Cálculo", v: "Aritmética inteira e regras versionadas" },
       { k: "Segurança", v: "RLS multiempresa, 2FA TOTP, RBAC" },
       { k: "Auditoria", v: "Hash-encadeada" },
       { k: "LGPD", v: "Dossiê, anonimização e portabilidade" },
@@ -469,7 +465,7 @@ export const PROOFS = {
     {
       name: "Atendimento em camadas, montado por API",
       body:
-        "Entrada, automação, chatbot, IA e humano. Cada pedido se resolve no nível mais simples e barato possível e só sobe de camada quando precisa, em vez de pagar token de IA para responder o horário de funcionamento.",
+        "Prova de conceito de roteamento entre entrada, automação, chatbot, IA e humano, com blueprint criado por API no Make.com. As respostas das camadas são simuladas, inclusive a de IA; a demo demonstra a arquitetura do fluxo.",
       tags: ["Make.com", "Blueprint por API", "PowerShell"],
       link: { label: "Ver arquitetura e blueprint", href: "https://github.com/ParkNow914/make-atendimento-camadas" },
     },
@@ -518,7 +514,7 @@ export const INSTALL = {
   steps: [
     {
       title: "Diagnóstico",
-      body: "Uma conversa direta no WhatsApp para entender o resultado que o projeto precisa gerar, além do que você quer construir.",
+      body: "Briefing por escrito para entender o objetivo, o código existente e as dependências do projeto.",
     },
     {
       title: "Proposta por escrito",
@@ -534,7 +530,7 @@ export const INSTALL = {
     },
   ],
   requirements: [
-    "Uma conversa inicial de 20 a 30 minutos",
+    "Um briefing por escrito com o objetivo e o fluxo desejado",
     "Acesso ao que o sistema vai usar: número de WhatsApp, site, planilha",
     "Uma resposta rápida quando eu mandar algo para você aprovar",
   ],
@@ -551,7 +547,7 @@ export const SIZING = {
 };
 
 export const FIELD = {
-  /** Conferido no perfil público do 99freelas em 24/10/2026: 12 avaliações, todas 5.0, 12 recomendações, 12 projetos concluídos. */
+  /** Conferido no perfil público do 99freelas em 02/11/2026: 12 avaliações, nota 5.0, 12 recomendações, 12 projetos concluídos. */
   reviews: 12,
   intro:
     "Doze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
@@ -603,7 +599,7 @@ export const MAKER = {
     { k: "Função", v: "Full-stack, automação e IA" },
     { k: "Formação", v: "Gestão da Tecnologia da Informação" },
     { k: "Base", v: "Lorena, SP, atendendo o Brasil inteiro" },
-    { k: "Resposta", v: "No mesmo dia" },
+    { k: "Atendimento", v: "Por escrito, normalmente 19h–00h (Brasília), todos os dias" },
   ],
 };
 
@@ -618,19 +614,19 @@ export const TROUBLESHOOTING = [
   },
   {
     q: "Quantos projetos você pega por vez?",
-    a: "Poucos, de propósito. Como sou eu quem atende e constrói, trabalho com poucos projetos ao mesmo tempo para responder no mesmo dia e cumprir prazo. Se a agenda estiver cheia quando você chamar, eu aviso na hora em vez de aceitar e atrasar.",
+    a: "A quantidade depende do escopo e das horas já reservadas. Confirmo a capacidade antes de fechar o cronograma. A janela habitual de atendimento é das 19h às 00h, todos os dias, no horário de Brasília; a dedicação a cada cliente é combinada separadamente.",
   },
   {
     q: "O que você precisa de mim durante o projeto?",
-    a: "Menos do que parece: uma conversa inicial de 20 a 30 minutos, acesso ao que o sistema vai usar e uma resposta rápida quando eu pedir aprovação. Você não precisa entender de tecnologia para tocar o projeto.",
+    a: "Um briefing por escrito, os acessos necessários e a validação de cada entrega. A conversa é assíncrona: você descreve o fluxo e eu organizo as dúvidas e os próximos passos. Você não precisa programar para acompanhar o projeto.",
   },
   {
     q: "Você usa APIs oficiais e métodos seguros?",
-    a: "Sim. Quando a empresa manda a primeira mensagem, em campanha ou lembrete em volume, uso só a API oficial da Meta (Cloud API). A Evolution API, que não é oficial, entra apenas no atendimento em que o cliente chama primeiro e com volume baixo, e eu explico esse risco antes de começar. Sempre com consentimento, opt-out e LGPD, sem lista comprada e sem spam.",
+    a: "Para WhatsApp, priorizo a API oficial da Meta e verifico os requisitos do fluxo, como templates, consentimento e opt-out. Soluções que usam sessão não oficial têm risco de bloqueio mesmo em baixo volume. A escolha do provedor e as limitações ficam esclarecidas antes da implementação.",
   },
   {
     q: "O sistema fica caro para manter?",
-    a: "Na maioria dos casos, não. Eu priorizo serviços com camada gratuita, como Supabase, Cloudflare, Oracle Cloud e Fly.io, então você começa pagando pouco ou nada de infraestrutura e o custo só cresce junto com o projeto.",
+    a: "O custo depende de hospedagem, banco, modelos de IA, mensagens e volume de uso. Comparo alternativas econômicas e informo mensalidades, franquias e cobranças de terceiros antes de implementar. Uma camada gratuita pode ajudar no início, mas seus limites precisam ser conferidos para cada projeto.",
   },
   {
     q: "Depois de entregue, eu fico na mão?",
@@ -638,7 +634,7 @@ export const TROUBLESHOOTING = [
   },
   {
     q: "Você trabalha remoto? De onde?",
-    a: "Trabalho de Lorena (SP) para o Brasil inteiro, a distância, com a conversa no WhatsApp e em chamada quando precisa. No Vale do Paraíba eu também vou até o seu negócio quando ver o processo de perto ajuda. Resposta no mesmo dia.",
+    a: "Trabalho de Lorena (SP) para o Brasil inteiro, de forma remota e assíncrona, por escrito. Normalmente atendo das 19h às 00h, todos os dias, no horário de Brasília. Escopo, horas reservadas e prazo de resposta são combinados para cada projeto.",
   },
 ];
 
@@ -646,7 +642,7 @@ export const WARRANTY = [
   {
     title: "Primeira entrega cedo",
     body:
-      "Você vê o sistema funcionando antes do fim do projeto. Se nesse ponto não fizer sentido continuar, a gente encerra ali: você fica com o que já foi entregue e não paga o restante. Nunca precisei usar esta cláusula, mas ela existe para o risco não ficar todo com você.",
+      "As etapas têm entregas e critérios de validação definidos por escrito. Você acompanha o trabalho e aprova cada marco. Condições de pagamento, cancelamento e uso do código seguem o contrato e as regras da plataforma em que o projeto for contratado.",
   },
   {
     title: "Tudo por escrito",
@@ -658,19 +654,18 @@ export const WARRANTY = [
   },
   {
     title: "Método seguro",
-    body: "APIs oficiais, consentimento, opt-out e LGPD. Nada de lista comprada ou spam que coloque seu número em risco.",
+    body: "Acessos separados, cuidado com dados pessoais e integrações verificadas antes da publicação. Requisitos de consentimento, opt-out e limites dos provedores entram no planejamento.",
   },
 ];
 
 export const ASSISTANCE = {
   title: "Seu próximo sistema começa com uma mensagem.",
-  body: "Conte o que você precisa automatizar ou construir. Eu respondo no mesmo dia e já te mostro um projeto parecido funcionando.",
-  promises: ["Escopo e prazo por escrito", "Resposta no mesmo dia", "Infraestrutura gratuita quando dá"],
+  body: "Conte por escrito o que você precisa automatizar ou construir. Retorno na minha janela habitual, das 19h às 00h (Brasília), com os próximos passos e exemplos que possam ser compartilhados.",
+  promises: ["Escopo e prazo por escrito", "Atendimento remoto e assíncrono", "Custos de terceiros esclarecidos"],
 };
 
 /**
- * Onde eu vou até o negócio. Fora destas cidades o trabalho é a distância.
- * É a mesma área de atendimento do Perfil da Empresa no Google: mudou lá, muda aqui.
+ * Cidades da região de base da Autark. O atendimento é remoto em todo o Brasil.
  */
 export const VALE = {
   cidades: ["Lorena", "Guaratinguetá", "Cachoeira Paulista", "Cruzeiro", "Aparecida", "Taubaté", "São José dos Campos"],

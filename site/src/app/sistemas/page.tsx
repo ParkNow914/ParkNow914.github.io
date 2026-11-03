@@ -8,10 +8,10 @@ import { SITE_URL, STATUS_LABEL, SYSTEMS, SYSTEMS_INTRO } from "@/content/site";
 import { AUTHOR, PUBLISHER } from "@/content/jsonld";
 
 const descricao =
-  "Os nove sistemas da Autark, com a situação de cada um: agenda com IA no WhatsApp, delivery multicanal, CRM com a API oficial da Meta, IA jurídica e mais. Três rodam hoje com clientes.";
+  "Nove sistemas da Autark, com o contexto de cada projeto: entregas para clientes, produtos próprios e demonstrações de agenda, delivery, CRM, IA e integrações.";
 
 export const metadata: Metadata = {
-  title: "Sistemas em operação · Autark",
+  title: "Projetos e sistemas · Autark",
   description: descricao,
   alternates: { canonical: "/sistemas/" },
   openGraph: {
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     url: "/sistemas/",
     siteName: "Autark",
     locale: "pt_BR",
-    title: "Sistemas em operação · Autark",
+    title: "Projetos e sistemas · Autark",
     description: descricao,
-    images: [{ url: "/og/sistemas.png", width: 1200, height: 630, alt: "Sistemas em operação da Autark" }],
+    images: [{ url: "/og/sistemas.png", width: 1200, height: 630, alt: "Projetos e sistemas da Autark" }],
   },
   twitter: { card: "summary_large_image", images: ["/og/sistemas.png"] },
 };
@@ -31,7 +31,7 @@ export default function SistemasPage() {
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Sistemas em operação · Autark",
+      name: "Projetos e sistemas · Autark",
       url: `${SITE_URL}/sistemas/`,
       inLanguage: "pt-BR",
       description: descricao,
@@ -56,9 +56,9 @@ export default function SistemasPage() {
         <header className="notas-pag__cab">
           <p className="nota__kicker">
             <span className="nota__pilar">§4</span>
-            <span>{SYSTEMS.length} sistemas, conferidos em setembro de 2026</span>
+            <span>{SYSTEMS.length} sistemas, apresentação revisada em novembro de 2026</span>
           </p>
-          <h1 className="notas-pag__t">Sistemas em operação</h1>
+          <h1 className="notas-pag__t">Projetos e sistemas</h1>
           <p className="notas-pag__lede">{SYSTEMS_INTRO}</p>
         </header>
         <ol className="notas">
@@ -81,8 +81,8 @@ export default function SistemasPage() {
         </ol>
         <Chamada
           id="sistemas-cta-t"
-          titulo="Quer ver um deles funcionando?"
-          texto="Me chame no WhatsApp e eu abro o sistema na sua frente, com a mesma tela que o cliente usa."
+          titulo="Quer conhecer um destes projetos?"
+          texto="Me escreva sobre o que precisa. Envio exemplos e materiais que possam ser compartilhados, preservando os dados dos clientes."
           mensagem="Olá Alisson! Vi a lista de sistemas no site e quero ver um funcionando."
         />
       </main>
