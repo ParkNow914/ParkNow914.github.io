@@ -1,7 +1,8 @@
 ﻿import type { Metadata, Viewport } from "next";
-import { hubot, mona, martian } from "./fonts";
+import { alfa, archivo, elite } from "./fonts";
 import { SITE_URL } from "@/content/site";
 import "./globals.css";
+import "./xilo.css";
 
 const title = "Autark · Sistemas que trabalham sozinhos enquanto você cresce";
 const description =
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: "Autark · Sistemas que trabalham sozinhos enquanto você cresce",
     description:
       "Atendimento de WhatsApp com IA, SaaS completos e sistemas em produção real. Nota 5.0, com 100% de recomendação. Por Alisson Santos.",
-    images: [{ url: "/marca/og-manual.png", width: 1200, height: 630, alt: "Capa do Manual de Operação da Autark: sistemas que trabalham sozinhos enquanto você cresce, com a Fig. 1 em vista explodida." }],
+    images: [{ url: "/marca/og-manual.png", width: 1200, height: 630, alt: "Folheto da Autark impresso em xilogravura: sistemas que trabalham sozinhos enquanto você cresce." }],
   },
   twitter: { card: "summary_large_image", images: ["/marca/og-manual.png"] },
   icons: { apple: "/marca/apple-touch-icon.png" },
@@ -51,15 +52,22 @@ const csp = [
 ].join("; ");
 
 export const viewport: Viewport = {
-  themeColor: "#15181b",
-  colorScheme: "dark",
+  themeColor: "#f2c12e",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${hubot.variable} ${mona.variable} ${martian.variable}`}>
+    <html lang="pt-BR" className={`${alfa.variable} ${archivo.variable} ${elite.variable}`}>
       <head>{process.env.NODE_ENV === "production" ? <meta httpEquiv="Content-Security-Policy" content={csp} /> : null}</head>
       <body>
+        {/* Borda roída da goiva nos títulos grandes (filter: url(#entalhe) em xilo.css). */}
+        <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: "absolute" }}>
+          <filter id="entalhe" x="-2%" y="-4%" width="104%" height="108%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="4" />
+            <feDisplacementMap in="SourceGraphic" scale="2.6" />
+          </filter>
+        </svg>
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
         </a>

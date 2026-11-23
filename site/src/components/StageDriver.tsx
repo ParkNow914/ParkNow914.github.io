@@ -69,9 +69,9 @@ export function StageDriver() {
       // pode estar sob a figura fixa, e o leitor nunca perde onde está.
       const label =
         state === "drawing"
-          ? "Cérebro Autark, vista explodida"
+          ? "Cérebro Autark, desenhado a pincel"
           : state === "running"
-            ? "Cérebro Autark, operando"
+            ? "Cérebro Autark impresso: operando"
             : `Passo ${idx + 1}/${STEP_COUNT}: ${ASSEMBLY[idx].title}`;
       if (state !== lastState || label !== lastLabel) {
         lastState = state;

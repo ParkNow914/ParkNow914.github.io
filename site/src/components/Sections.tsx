@@ -506,11 +506,11 @@ export function Colophon({ capa = "#capa" }: { capa?: string } = {}) {
         <span>Autark</span>
       </div>
       <p className="colophon__text">
-        Manual de Operação, {REVISION}. Escrito, desenhado e construído à mão por Alisson Santos, sem template.
+        Folheto da Oficina, {REVISION}. Escrito, entalhado e construído à mão por Alisson Santos, sem template.
       </p>
       <p className="colophon__text colophon__dim">
-        Este site não usa cookies nem rastreadores, e as fontes são servidas daqui mesmo. Fontes Hubot Sans, Mona Sans
-        e Martian Mono sob licença SIL OFL 1.1.
+        Este site não usa cookies nem rastreadores, e as fontes são servidas daqui mesmo. Fontes Alfa Slab One, Archivo
+        e Special Elite sob licença SIL OFL 1.1 (Special Elite: Apache 2.0). Gravuras entalhadas a partir de arte gerada no Recraft e montadas à mão.
       </p>
       <nav className="colophon__nav" aria-label="Links do rodapé">
         <a href={GITHUB} target="_blank" rel="noopener">

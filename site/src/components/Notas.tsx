@@ -20,7 +20,7 @@ export function NotasHeader({ secao = { label: "Notas de campo", href: "/notas/"
         <span className="rh__name">Autark</span>
       </a>
       <span className="rh__doc">
-        Manual de Operação <span className="rh__rev">{REVISION}</span>
+        Folheto da Oficina <span className="rh__rev">{REVISION}</span>
       </span>
       <span className="rh__sec">
         <a className="rh__notas" href={secao.href}>

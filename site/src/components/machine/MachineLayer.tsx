@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Machine, type OverlayRefs } from "./Machine";
+import { Machine, type OverlayRefs } from "./Matriz";
 import { machine } from "./store";
 import { PARTS } from "@/content/site";
 import { reducedMotion } from "@/lib/motion";
@@ -60,7 +60,7 @@ export default function MachineLayer() {
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.NeutralToneMapping;
-          gl.toneMappingExposure = 1.05;
+          gl.toneMappingExposure = 1.0;
           machine.live = true;
           requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("fig-ready")));
         }}

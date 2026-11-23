@@ -3,36 +3,34 @@ import localFont from "next/font/local";
 // Três fontes self-hosted (SIL OFL 1.1, licenças em /licencas). Carregar do
 // Google Fonts mandaria o IP do visitante para terceiros sem consentimento.
 //
-// Os arquivos em src/fonts são recortes dos originais do @fontsource-variable:
-// só o latim e só a faixa de peso e largura que o site usa (fontTools
-// instancer + subset). De ~230 KB para ~120 KB. Para regenerar, rode o
-// instancer nos .woff2 do node_modules com as faixas abaixo.
+// Os arquivos em src/fonts saem do @fontsource (recorte latim):
+//   alfa.woff2     Alfa Slab One: letra de madeira de cartaz, só nos títulos
+//   archivo.woff2  Archivo variável (400 a 800): todo o texto corrido
+//   elite.woff2    Special Elite: carimbo e numeração de folheto, nada mais
 
-export const hubot = localFont({
-  src: "../fonts/hubot.woff2",
-  weight: "600 900",
+export const alfa = localFont({
+  src: "../fonts/alfa.woff2",
+  weight: "400",
   style: "normal",
   display: "swap",
-  variable: "--font-hubot",
-  declarations: [{ prop: "font-stretch", value: "75% 100%" }],
+  variable: "--font-display",
   preload: true,
 });
 
-export const mona = localFont({
-  src: "../fonts/mona.woff2",
-  weight: "400 700",
+export const archivo = localFont({
+  src: "../fonts/archivo.woff2",
+  weight: "400 800",
   style: "normal",
   display: "swap",
-  variable: "--font-mona",
+  variable: "--font-text",
   preload: true,
 });
 
-export const martian = localFont({
-  src: "../fonts/martian.woff2",
-  weight: "400 600",
+export const elite = localFont({
+  src: "../fonts/elite.woff2",
+  weight: "400",
   style: "normal",
   display: "swap",
-  variable: "--font-martian",
-  declarations: [{ prop: "font-stretch", value: "87.5% 100%" }],
+  variable: "--font-stamp",
   preload: false,
 });

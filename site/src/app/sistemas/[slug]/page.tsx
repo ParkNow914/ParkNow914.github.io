@@ -77,7 +77,7 @@ export default async function SistemaPage({ params }: Props) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Manual de Operação", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 1, name: "Autark", item: `${SITE_URL}/` },
         { "@type": "ListItem", position: 2, name: "Sistemas", item: `${SITE_URL}/sistemas/` },
         { "@type": "ListItem", position: 3, name: s.name, item: url },
       ],

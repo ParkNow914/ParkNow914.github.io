@@ -1,0 +1,680 @@
+/* ==========================================================================
+   Autark · Oficina de Xilogravura
+   O site impresso como folheto de cordel: tinta preta de rolo sobre papéis de
+   capa saturados, um por seção. Letra de madeira entalhada nos títulos, carimbo
+   só para status e endereço, profundidade por sobreposição de cor, nunca por
+   brilho. Esta camada vem depois de globals.css e substitui o mundo anterior;
+   a estrutura (classes, ids, ilhas estáticas) é a mesma.
+   ========================================================================== */
+
+:root {
+  --papel-amarelo: #f2c12e;
+  --papel-rosa: #f2789f;
+  --papel-azul: #93c6e4;
+  --papel-verde: #86c681;
+  --papel-laranja: #f2914a;
+  --papel-jornal: #dfdcd1;
+
+  --ink: #17130f;
+  --ink-2: #241c16;
+  --ink-3: #33291f;
+  --stamp: #c8261d;
+  --run: #1d6b3f;
+
+  --ground: var(--papel-amarelo);
+  --ground-raised: color-mix(in oklab, var(--ground), var(--ink) 8%);
+  --ground-sunk: color-mix(in oklab, var(--ground), var(--ink) 14%);
+  --rule: color-mix(in oklab, var(--ground), var(--ink) 34%);
+  --rule-strong: var(--ink);
+
+  --signal: var(--ink);
+  --signal-hover: #3d3027;
+  --signal-ink: var(--ground);
+  --signal-ink-2: var(--ground);
+
+  --f-display: var(--font-display), "Rockwell Extra Bold", "Rockwell", serif;
+  --f-body: var(--font-text), "Segoe UI", system-ui, sans-serif;
+  --f-mono: var(--font-stamp), "Courier New", monospace;
+
+  --fs-display: clamp(2.35rem, 1.1rem + 3.9vw, 5.1rem);
+  --fs-h2: clamp(2rem, 1.25rem + 2.6vw, 3.9rem);
+  --fs-h3: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
+
+  /* Falhas de tinta: o rolo não pega igual em toda a madeira. */
+  --falha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 7.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  /* Fibra de papel jornal. */
+  --fibra: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .5' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+html {
+  color-scheme: light;
+  background: var(--papel-amarelo);
+  scrollbar-color: var(--ink) var(--ground);
+  font-synthesis: none;
+}
+body {
+  background: var(--papel-amarelo);
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+}
+body::after {
+  background-image: var(--fibra);
+  mix-blend-mode: multiply;
+  opacity: 0.14;
+}
+::selection {
+  background: var(--ink);
+  color: var(--papel-amarelo);
+}
+::-webkit-scrollbar-track {
+  background: var(--papel-amarelo);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border-color: var(--papel-amarelo);
+}
+input,
+textarea,
+button {
+  caret-color: var(--stamp);
+}
+:focus-visible {
+  outline: 3px dashed var(--ink);
+  outline-offset: 4px;
+}
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+.skip {
+  background: var(--ink);
+  color: var(--papel-amarelo);
+}
+
+/* --- letra de madeira ----------------------------------------------------- */
+
+:where(.cover__title, .shead__t, .step__title, .sheet__name, .model__name, .nf__t, .nota__t, .notas-pag__t, .notas-home__t, .os__t, .lab__t, .annex__t, .proof__t, .clause__t, .trouble__q, .procedure__t, .bloco__t, .others__t, .readout__v, .counter__n, .field-sum__figs dd, .ficha__t, .passos__t, .req__t, .colophon__brand) {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: 0;
+}
+/* Títulos grandes saem com as falhas do rolo e a borda roída da goiva. */
+.cover__title,
+.shead__title,
+.nota__t,
+.notas-pag__t,
+.notas-home__t,
+.nf__t {
+  filter: url(#entalhe);
+  -webkit-mask-image: var(--falha);
+  mask-image: var(--falha);
+  -webkit-mask-size: 220px;
+  mask-size: 220px;
+}
+.cover__title {
+  font-size: var(--fs-display);
+  line-height: 0.98;
+  max-width: 13ch;
+  text-wrap: balance;
+}
+.shead__t {
+  font-size: var(--fs-h2);
+  line-height: 1;
+}
+.shead__title {
+  max-width: 18ch;
+}
+.shead__addr {
+  font-family: var(--f-mono);
+  font-size: clamp(1.05rem, 0.85rem + 0.6vw, 1.45rem);
+  color: var(--stamp);
+  transform: rotate(-4deg);
+  transform-origin: left top;
+  padding-top: 0.4em;
+}
+
+/* --- seções: cada uma num papel de capa diferente ----------------------- */
+
+/* O papel vai de ponta a ponta sem criar rolagem lateral. */
+.sec,
+.stage {
+  border-image: conic-gradient(var(--ground) 0 0) fill 0 // 0 100vw;
+  color: var(--ink);
+}
+.sec {
+  padding-bottom: clamp(56px, 7vw, 104px);
+  position: relative;
+}
+/* Borda serrilhada entre uma folha e outra: o corte do papel de capa. */
+.sec::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -9px;
+  width: 100vw;
+  height: 18px;
+  transform: translateX(-50%);
+  background: var(--ground);
+  -webkit-mask: radial-gradient(9px at 50% 0, #0000 98%, #000) 0 0 / 18px 100%;
+  mask: radial-gradient(9px at 50% 0, #0000 98%, #000) 0 0 / 18px 100%;
+  pointer-events: none;
+}
+.stage {
+  --ground: var(--papel-amarelo);
+}
+.sec[data-section="aplicacoes"] {
+  --ground: var(--papel-rosa);
+}
+.sec[data-section="modelos"] {
+  --ground: var(--papel-jornal);
+}
+.sec[data-section="sistemas"] {
+  --ground: var(--papel-azul);
+}
+.sec[data-section="instalacao"] {
+  --ground: var(--papel-verde);
+}
+.sec[data-section="dimensionamento"] {
+  --ground: var(--papel-laranja);
+}
+.sec[data-section="campo"] {
+  --ground: var(--papel-jornal);
+}
+.sec[data-section="fabricante"] {
+  --ground: var(--papel-amarelo);
+}
+.sec[data-section="problemas"] {
+  --ground: var(--papel-azul);
+}
+.sec[data-section="garantia"] {
+  --ground: var(--papel-rosa);
+}
+.notas-home {
+  --ground: var(--papel-verde);
+}
+
+.folio {
+  border-top: 3px solid var(--ink);
+  color: var(--ink-3);
+  font-family: var(--f-mono);
+  font-size: 0.86rem;
+}
+
+/* --- cabeçalho corrido: a tarja preta do alto da capa ------------------- */
+
+.rh {
+  --ground: var(--ink);
+  background: var(--ink);
+  color: var(--papel-amarelo);
+  border-bottom: 0;
+}
+.rh :is(.rh__doc, .rh__rev, .rh__sec, .rh__page, .rh__addr, .rh__name) {
+  color: var(--papel-amarelo);
+}
+.rh .btn--signal {
+  background: var(--papel-amarelo);
+  color: var(--ink);
+}
+.rh .btn--signal:active {
+  background: var(--ink);
+  color: var(--papel-amarelo);
+  border-color: var(--papel-amarelo);
+}
+
+/* --- botões: bloco de tinta sólida ---------------------------------------- */
+
+.btn {
+  border-radius: 0;
+  font-family: var(--f-body);
+  font-weight: 750;
+  font-stretch: 100%;
+  letter-spacing: 0.005em;
+  border-width: 2px;
+}
+.btn--signal,
+.btn--ink {
+  background: var(--ink);
+  color: var(--ground);
+  border-color: var(--ink);
+}
+.btn--signal:active,
+.btn--ink:active {
+  background: var(--ground);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.link-arrow {
+  text-decoration-color: color-mix(in oklab, var(--ink), transparent 55%);
+  font-weight: 700;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn--signal:hover,
+  .btn--ink:hover {
+    background: var(--signal-hover);
+    transform: translateY(-2px);
+  }
+  .rh .btn--signal:hover {
+    background: #f6d059;
+  }
+}
+
+/* --- capa ----------------------------------------------------------------- */
+
+.cover__lede {
+  color: var(--ink-2);
+  max-width: 31em;
+}
+
+/* A ficha do folheto: cada dado numa linha cavada. */
+.plate {
+  background: transparent;
+  border: 0;
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px 0 8px;
+  max-width: 420px;
+}
+.plate__rivet {
+  display: none;
+}
+.plate__head {
+  font-family: var(--f-mono);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 0.9rem;
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink);
+}
+.plate dt {
+  font-family: var(--f-body);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.plate dd {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-stretch: 100%;
+  font-size: 1.05rem;
+}
+.plate__row {
+  border-bottom: 1px dashed color-mix(in oklab, var(--ink), transparent 50%);
+}
+
+/* --- a matriz (Fig. 1) ---------------------------------------------------- */
+
+.fig--main {
+  border-left: 0;
+  background: var(--ground);
+}
+.fig__mark {
+  display: none;
+}
+.fig__cap {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-weight: 650;
+}
+.fig__no {
+  font-family: var(--f-mono);
+  font-weight: 400;
+  color: var(--stamp);
+}
+.fig[data-fig="running"] .fig__cap::before {
+  background: var(--run);
+  border-radius: 0;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+}
+.fig__block {
+  font-family: var(--f-mono);
+  color: var(--ink-3);
+}
+.fig__hint,
+.fig__meter {
+  color: var(--ink);
+  font-weight: 750;
+}
+.fig__meter-track {
+  height: 12px;
+  background:
+    repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px calc(100% / 6)) bottom / 100% 8px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) bottom / 100% 2px no-repeat;
+}
+.fig__meter-fill {
+  height: 5px;
+  background: var(--ink);
+}
+.fig[data-fig="running"] .fig__meter-fill {
+  background: var(--run);
+}
+.fig__parts li {
+  border-color: var(--ink);
+  font-family: var(--f-mono);
+}
+.fig-leader {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.fig-balloon {
+  fill: var(--papel-amarelo);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.fig-balloon-n {
+  fill: var(--ink);
+  font: 400 12px var(--f-mono);
+}
+.fig__poster {
+  filter: drop-shadow(10px 14px 0 color-mix(in oklab, var(--ink), transparent 82%));
+}
+
+/* --- montagem: passos e lista de peças ---------------------------------- */
+
+.balloon {
+  border-width: 2px;
+  font-family: var(--f-mono);
+  font-weight: 400;
+  background: var(--ground);
+}
+.bom thead th,
+.bom caption {
+  color: var(--ink);
+  font-weight: 750;
+}
+.bom thead th {
+  border-bottom: 3px solid var(--ink);
+}
+.bom tbody tr {
+  border-bottom: 1px solid var(--rule);
+}
+.bom tbody th {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-stretch: 100%;
+}
+.bom td:nth-child(3) {
+  color: var(--ink-3);
+}
+.step__n {
+  font-family: var(--f-mono);
+  color: var(--stamp);
+}
+.step__proof-k {
+  font-family: var(--f-mono);
+  color: var(--stamp);
+}
+.chiplet {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  font-family: var(--f-mono);
+  color: var(--ink);
+}
+
+/* --- carimbos de status --------------------------------------------------- */
+
+.stamp {
+  border: 3px double currentColor;
+  border-radius: 2px;
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--stamp);
+  background: transparent;
+  -webkit-mask-image: var(--falha);
+  mask-image: var(--falha);
+  -webkit-mask-size: 160px;
+  mask-size: 160px;
+}
+.stamp--producao,
+.stamp--ok {
+  color: var(--run);
+}
+.stamp--proprio {
+  color: var(--ink);
+}
+.stamp--encerrado {
+  color: var(--stamp);
+}
+.status {
+  font-family: var(--f-mono);
+}
+
+/* --- fichas dos sistemas: capas de folheto ------------------------------- */
+
+.sheet {
+  --capa: var(--papel-amarelo);
+  background: var(--capa);
+  border: 3px solid var(--ink);
+  padding: clamp(18px, 2.4vw, 32px);
+  box-shadow: 12px 12px 0 -3px var(--ink);
+  color: var(--ink);
+}
+.sheet:nth-of-type(5n + 2) {
+  --capa: var(--papel-rosa);
+}
+.sheet:nth-of-type(5n + 3) {
+  --capa: var(--papel-verde);
+}
+.sheet:nth-of-type(5n + 4) {
+  --capa: var(--papel-laranja);
+}
+.sheet:nth-of-type(5n + 5) {
+  --capa: var(--papel-jornal);
+}
+.sheet {
+  --ground: var(--capa);
+}
+.sheet__code {
+  font-family: var(--f-mono);
+  color: var(--stamp);
+}
+.sheet__kind {
+  color: var(--ink-3);
+}
+.sheet__name {
+  font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem);
+  line-height: 1;
+}
+.sheet__fig,
+.sheet__img {
+  border: 3px solid var(--ink);
+  background: var(--ink);
+}
+.sheet__img {
+  filter: grayscale(0.15) contrast(1.05);
+}
+
+/* --- §6 dimensionamento: régua e leitura -------------------------------- */
+
+.scale__track {
+  accent-color: var(--ink);
+}
+.readout {
+  border: 3px solid var(--ink);
+  background: var(--papel-amarelo);
+  --ground: var(--papel-amarelo);
+}
+.readout__v {
+  font-family: var(--f-display);
+  font-weight: 400;
+}
+
+/* --- §7 relatório de campo ---------------------------------------------- */
+
+.field__row {
+  border-color: var(--rule);
+}
+.field__q {
+  font-family: var(--f-body);
+  font-weight: 560;
+  font-size: 1.12rem;
+}
+.field__row--lead .field__q {
+  font-family: var(--f-body);
+  font-weight: 650;
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.6rem);
+  line-height: 1.4;
+}
+.field-sum__figs dd {
+  font-family: var(--f-display);
+  font-weight: 400;
+}
+
+/* --- §8 fabricante ------------------------------------------------------- */
+
+.maker__photo {
+  border: 3px solid var(--ink);
+  filter: grayscale(1) contrast(1.15);
+  mix-blend-mode: multiply;
+}
+.credential {
+  background: var(--ground-raised);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+}
+
+/* --- §9 e §10 ------------------------------------------------------------ */
+
+.trouble__row {
+  border-color: var(--ink);
+}
+.trouble__q {
+  font-family: var(--f-display);
+  font-weight: 400;
+}
+.clause__n {
+  font-family: var(--f-mono);
+  color: var(--stamp);
+}
+.warranty,
+.credential {
+  box-shadow: none;
+}
+
+/* --- §11 assistência: a matriz inteira entintada -------------------------- */
+
+.sec--signal {
+  --ground: #17130f;
+  --ink: var(--papel-amarelo);
+  --ink-2: #f4cf5c;
+  --ink-3: #e8c34d;
+  --rule: color-mix(in oklab, var(--papel-amarelo), #17130f 60%);
+  --signal: var(--papel-amarelo);
+  --signal-hover: #f6d059;
+  --signal-ink: #17130f;
+  color: var(--papel-amarelo);
+}
+.sec--signal .shead__addr {
+  color: var(--papel-rosa);
+}
+.sec--signal .btn--signal,
+.sec--signal .btn--ink {
+  background: var(--papel-amarelo);
+  color: #17130f;
+  border-color: var(--papel-amarelo);
+}
+/* A ordem de serviço é uma folha amarela presa sobre a matriz preta. */
+.os {
+  --ground: var(--papel-amarelo);
+  --ink: #17130f;
+  --ink-2: #241c16;
+  --ink-3: #33291f;
+  --signal: #17130f;
+  --signal-ink: var(--papel-amarelo);
+  background: var(--papel-amarelo);
+  color: #17130f;
+  border: 0;
+  transform: rotate(-1.2deg);
+  box-shadow: 14px 16px 0 -2px color-mix(in oklab, var(--papel-amarelo), transparent 70%);
+}
+.os .btn--signal {
+  background: #17130f;
+  color: var(--papel-amarelo);
+  border-color: #17130f;
+}
+.os input,
+.os textarea {
+  border-bottom: 2px solid #17130f;
+  color: #17130f;
+}
+
+/* --- colofão ------------------------------------------------------------- */
+
+.colophon {
+  --ground: var(--ink);
+  border-image: conic-gradient(var(--ink) 0 0) fill 0 // 0 100vw;
+  color: var(--papel-amarelo);
+  --ink-3: #e8c34d;
+}
+.colophon a,
+.colophon__text,
+.colophon__dim,
+.colophon__copy {
+  color: var(--papel-amarelo);
+}
+.colophon__dim {
+  opacity: 0.86;
+}
+
+/* --- índice -------------------------------------------------------------- */
+
+.toc {
+  --ground: var(--papel-jornal);
+  background: var(--papel-jornal);
+  color: #17130f;
+  border: 3px solid #17130f;
+}
+.toc__addr,
+.toc__pg {
+  font-family: var(--f-mono);
+  color: var(--stamp);
+}
+
+/* --- páginas de leitura: papel-jornal ------------------------------------- */
+
+:is(.notas-pag, .nota-pag, .sis, .juridico, .nf) {
+  --ground: var(--papel-jornal);
+}
+.nota__texto,
+.notas-pag__lede,
+.nota__lede {
+  color: var(--ink-2);
+}
+.nota__cta,
+.nota-pag .nota__cta {
+  --ground: #17130f;
+  --ink: var(--papel-amarelo);
+  --ink-2: #f4cf5c;
+  --ink-3: #e8c34d;
+  background: #17130f;
+  color: var(--papel-amarelo);
+}
+.nota__cta .btn {
+  background: var(--papel-amarelo);
+  color: #17130f;
+  border-color: var(--papel-amarelo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--signal:hover,
+  .btn--ink:hover {
+    transform: none;
+  }
+  .os {
+    transform: none;
+  }
+}
+
+/* Celular: a matriz da capa fica direto no papel, sem moldura nem grade. */
+.fig--inline {
+  border: 0;
+  background: none;
+}
