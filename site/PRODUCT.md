@@ -64,7 +64,7 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 
 - Projetos feitos para agências parceiras (white-label) nunca aparecem no site, nem anônimos com detalhe que identifique o cliente final.
 
-- 9 sistemas com texto, métricas e stack no site atual:
+- 10 sistemas com texto, métricas e stack no site atual:
   - AgendaZap: produto próprio com demonstração pública, demo `agendazap-three.vercel.app` e agendamento em `/b/demo`.
   - CRM WhatsApp Meta: entregue e encerrado pelo cliente; dados e acessos preservados.
   - JurisIA: produto próprio, 4 produtos, planos de R$297 a R$1.200/mês.
@@ -74,11 +74,12 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
   - RealCred+: landing e simulador, GitHub.
   - Índice de Gestão: entregue para cliente; acesso restrito e apresentação sem dados identificáveis.
   - Acerto: produto próprio, disponibilidade de demo com dados fictícios sob consulta. Não prometer acesso aberto sem confirmação.
+  - Autark Barber: produto próprio para barbearias e redes (repo `cadeira`), no ar em `cadeira-zeta.vercel.app`, agendamento de exemplo em `/b/jovem-barber`. 70 testes de domínio e 11 ponta a ponta (README do repo, nov/2026).
 - 3 demonstrações técnicas: PDV Cielo Lio (`/pdv-lio-demo/`), atendimento em camadas (Make.com, GitHub) e configurador visual (`/configurador-camadas/`).
 - Laboratório Poliglota em `/lab/`, com um projeto por linguagem rodando no navegador.
-- 6 depoimentos reais do 99freelas. São 12 avaliações, todas 5.0, com 100% de recomendação e 12 projetos concluídos (conferido em 02/11/2026), e são verificáveis. Não inventar outros.
+- 6 depoimentos reais do 99freelas. São 13 avaliações, todas 5.0, com 100% de recomendação e 14 projetos concluídos (conferido em 23/11/2026), e são verificáveis. Não inventar outros.
 - Prints reais em `ref/ParkNow914.github.io/assets/*.webp`. Tratto e Acerto são capas ilustradas, porque o print real mostraria a marca do cliente. A foto do Alisson está em `foto-square.webp`.
-- Números do hero: nota 5.0, 12 projetos concluídos e 12 recomendações no 99freelas (02/11/2026), 9 sistemas apresentados. Não afirmar contagem de sistemas atualmente em produção sem verificação.
+- Números do hero: nota 5.0, 14 projetos concluídos e 13 recomendações no 99freelas (23/11/2026), 10 sistemas apresentados. Não afirmar contagem de sistemas atualmente em produção sem verificação.
 - Não existem e não podem ser inventados: logos de clientes, estudos de caso com receita, prêmios, imprensa, preços fechados por projeto.
 
 ## Product Principles

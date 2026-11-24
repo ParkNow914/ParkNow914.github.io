@@ -76,7 +76,7 @@ export default async function NotaPage({ params }: Props) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Manual de Operação", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 1, name: "Autark", item: `${SITE_URL}/` },
         { "@type": "ListItem", position: 2, name: "Notas de campo", item: `${SITE_URL}/notas/` },
         { "@type": "ListItem", position: 3, name: n.titulo, item: url },
       ],

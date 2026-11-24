@@ -33,7 +33,7 @@ export function Folio({ id }: { id: SectionId }) {
   const p = pageOf(id);
   return (
     <p className="folio" aria-hidden="true">
-      <span>Autark · Manual de Operação · {REVISION}</span>
+      <span>Autark · Folheto da Oficina · {REVISION}</span>
       <span className="folio__n">
         Pág. {p.n}/{p.total}
       </span>

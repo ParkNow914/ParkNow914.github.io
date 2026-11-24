@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T00:00:00-03:00",
+  "title": "Design System: Autark · Oficina de Xilogravura",
+  "extensions": {
+    "colorMeta": {
+      "papel-amarelo": {
+        "role": "neutral",
+        "displayName": "Amarelo-Gema",
+        "canonical": "#f2c12e",
+        "tonalRamp": [
+          "#3a2c04",
+          "#5e4709",
+          "#85650f",
+          "#ad8516",
+          "#d4a51f",
+          "#f2c12e",
+          "#f6d36a",
+          "#fbe9b4"
+        ]
+      },
+      "papel-rosa": {
+        "role": "neutral",
+        "displayName": "Rosa-Chiclete",
+        "canonical": "#f2789f",
+        "tonalRamp": [
+          "#3d0f1e",
+          "#651a33",
+          "#8e2a4c",
+          "#b83d66",
+          "#e05785",
+          "#f2789f",
+          "#f6a3be",
+          "#fbd2df"
+        ]
+      },
+      "papel-azul": {
+        "role": "neutral",
+        "displayName": "Azul-Anil Claro",
+        "canonical": "#93c6e4",
+        "tonalRamp": [
+          "#0e2a3b",
+          "#18435d",
+          "#265f80",
+          "#367ca3",
+          "#5ea2c8",
+          "#93c6e4",
+          "#b9daee",
+          "#e0eff8"
+        ]
+      },
+      "papel-verde": {
+        "role": "neutral",
+        "displayName": "Verde-Folha",
+        "canonical": "#86c681",
+        "tonalRamp": [
+          "#11300f",
+          "#1e4d1b",
+          "#2e6c2a",
+          "#428d3d",
+          "#62ad5c",
+          "#86c681",
+          "#b0dbac",
+          "#dbefd9"
+        ]
+      },
+      "papel-laranja": {
+        "role": "neutral",
+        "displayName": "Laranja-Urucum",
+        "canonical": "#f2914a",
+        "tonalRamp": [
+          "#3b1a04",
+          "#602c08",
+          "#88410f",
+          "#b05818",
+          "#d77228",
+          "#f2914a",
+          "#f6b585",
+          "#fbdcc4"
+        ]
+      },
+      "papel-jornal": {
+        "role": "neutral",
+        "displayName": "Papel-Jornal",
+        "canonical": "#dadad3",
+        "tonalRamp": [
+          "#272724",
+          "#424240",
+          "#5f5f5a",
+          "#7e7e78",
+          "#9e9e97",
+          "#bdbdb6",
+          "#dadad3",
+          "#eeeeea"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Tinta de Rolo",
+        "canonical": "#17130f",
+        "tonalRamp": [
+          "#17130f",
+          "#241c16",
+          "#33291f",
+          "#3d3027",
+          "#5a4a3d",
+          "#7d6c5e",
+          "#a89a8d",
+          "#d6cdc4"
+        ]
+      },
+      "ink-2": {
+        "role": "primary",
+        "displayName": "Tinta Gasta",
+        "canonical": "#241c16"
+      },
+      "ink-3": {
+        "role": "primary",
+        "displayName": "Tinta Rala",
+        "canonical": "#33291f"
+      },
+      "ink-hover": {
+        "role": "primary",
+        "displayName": "Tinta Pisada",
+        "canonical": "#3d3027"
+      },
+      "amarelo-hover": {
+        "role": "neutral",
+        "displayName": "Amarelo Aceso",
+        "canonical": "#f6d059"
+      },
+      "stamp": {
+        "role": "secondary",
+        "displayName": "Vermelho de Carimbo",
+        "canonical": "#c8261d",
+        "tonalRamp": [
+          "#2e0805",
+          "#4f0e09",
+          "#6b130c",
+          "#961c14",
+          "#c8261d",
+          "#e0564d",
+          "#ec918b",
+          "#f7cbc8"
+        ]
+      },
+      "stamp-ink": {
+        "role": "secondary",
+        "displayName": "Vermelho-Sangue",
+        "canonical": "#6b130c"
+      },
+      "run": {
+        "role": "tertiary",
+        "displayName": "Verde de Operação",
+        "canonical": "#1d6b3f",
+        "tonalRamp": [
+          "#08200f",
+          "#0f3a1e",
+          "#16522e",
+          "#1d6b3f",
+          "#2f8c57",
+          "#55ad7a",
+          "#8fcfa8",
+          "#cdeadb"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Letra de madeira · capa",
+        "purpose": "Só o título da capa, até 13ch, com entalhe e falha de tinta."
+      },
+      "headline": {
+        "displayName": "Letra de madeira · seção",
+        "purpose": "Títulos de seção, até 18ch, entalhados."
+      },
+      "title": {
+        "displayName": "Letra de madeira · bloco",
+        "purpose": "Passos, cláusulas, problemas, nomes de ficha e números de leitura."
+      },
+      "body": {
+        "displayName": "Archivo · texto",
+        "purpose": "Todo texto corrido; ledes em ink-2."
+      },
+      "label": {
+        "displayName": "Archivo · rótulo",
+        "purpose": "Botões e cabeçalhos de tabela."
+      },
+      "stamp": {
+        "displayName": "Special Elite · carimbo",
+        "purpose": "Carimbos, numeração de folheto, código de ficha, folio e endereço de seção. Nada mais."
+      }
+    },
+    "shadows": [
+      {
+        "name": "segunda-folha",
+        "value": "pseudo-elemento atrás, fundo em outro papel de capa (rosa/azul/verde/laranja), translate(~10px, ~10px) rotate(~1deg), sem desfoque",
+        "purpose": "Única forma de destaque: fichas, OS, pôster da matriz, capas e foto das landings, gravura do OG. Não é sombra; é uma segunda matriz de cor em registro."
+      },
+      {
+        "name": "segunda-cor-chamada",
+        "value": "deslocamento chapado em var(--stamp-ink)",
+        "purpose": "Bloco de chamada: o vermelho-sangue vale como segunda tinta de impressão."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Toda entrada: folhas que assentam, carimbos que caem."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Movimento já em tela que muda de lugar."
+      },
+      {
+        "name": "carimbo-cai",
+        "value": "scale(1.35) rotate → scale(1), 420ms cubic-bezier(0.23, 1, 0.32, 1), uma vez ao entrar na tela",
+        "purpose": "Entrada dos carimbos. Com reduced motion já aparece batido."
+      },
+      {
+        "name": "impressao-scrub",
+        "value": "damp(alvo, 5) + easeOut cúbico por fase (rolo, prensa, levantamento)",
+        "purpose": "A única coreografia com scrub: entalhe, tinta, prensa e folha impressa da Matriz 1."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "folha já impressa e estática; carimbos já batidos; OS sem rotação; animações a 0.01ms",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "capa-reequilibra",
+        "value": "1180px"
+      },
+      {
+        "name": "uma-coluna",
+        "value": "960px"
+      },
+      {
+        "name": "compacto",
+        "value": "600px"
+      }
+    ],
+    "falha": {
+      "value": "feTurbulence baseFrequency '.9 .035' (grão direcional do rolo), mask-size em em",
+      "purpose": "Falha de rolo em títulos grandes e carimbos; o grão acompanha o corpo da letra."
+    }
+  },
+  "components": [
+    {
+      "name": "Bloco de tinta",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Botão principal: bloco de tinta sólida que inverte para papel ao pressionar. Hover não levanta.",
+      "html": "<button class=\"ds-btn-ink\">Pedir instalação no WhatsApp</button>",
+      "css": ".ds-btn-ink { background: var(--ink, #17130f); color: var(--ground, #f2c12e); border: 2px solid var(--ink, #17130f); border-radius: 0; padding: 14px 24px; font-family: var(--f-body, Archivo, sans-serif); font-weight: 750; font-size: 1rem; letter-spacing: 0.005em; cursor: pointer; transition: background-color 120ms ease, color 120ms ease; } .ds-btn-ink:hover { background: #3d3027; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; } .ds-btn-ink:active { background: var(--ground, #f2c12e); color: var(--ink, #17130f); } .ds-btn-ink:focus-visible { outline: 3px dashed var(--ink, #17130f); outline-offset: 4px; }"
+    },
+    {
+      "name": "Bloco amarelo sobre tinta",
+      "kind": "button",
+      "refersTo": "button-tarja",
+      "description": "Variante do botão dentro do cabeçalho, da §11 e do CTA de nota.",
+      "html": "<div class=\"ds-tarja-bg\"><button class=\"ds-btn-tarja\">Falar no WhatsApp</button></div>",
+      "css": ".ds-tarja-bg { background: #17130f; padding: 20px; } .ds-btn-tarja { background: #f2c12e; color: #17130f; border: 2px solid #f2c12e; border-radius: 0; padding: 12px 20px; font-family: Archivo, sans-serif; font-weight: 750; cursor: pointer; } .ds-btn-tarja:hover { background: #f6d059; text-decoration: underline; } .ds-btn-tarja:active { background: #17130f; color: #f2c12e; border-color: #f2c12e; } .ds-btn-tarja:focus-visible { outline: 3px dashed #f2c12e; outline-offset: 4px; }"
+    },
+    {
+      "name": "Cabeçalho em faixa de tinta",
+      "kind": "nav",
+      "refersTo": "tarja",
+      "description": "A tarja preta do alto da capa: marca, seção corrente e CTA amarelo.",
+      "html": "<header class=\"ds-rh\"><span class=\"ds-rh-brand\">AUTARK</span><span class=\"ds-rh-sec\">§2 Aplicações</span><a class=\"ds-rh-cta\" href=\"#\">WhatsApp</a></header>",
+      "css": ".ds-rh { display: flex; align-items: center; gap: 20px; background: #17130f; color: #f2c12e; padding: 12px 24px; } .ds-rh-brand { font-family: 'Alfa Slab One', Rockwell, serif; font-size: 1.3rem; } .ds-rh-sec { font-family: 'Special Elite', 'Courier New', monospace; font-size: 0.9rem; } .ds-rh-cta { margin-left: auto; background: #f2c12e; color: #17130f; padding: 8px 16px; font-family: Archivo, sans-serif; font-weight: 750; text-decoration: none; border: 2px solid #f2c12e; } .ds-rh-cta:hover { background: #f6d059; } .ds-rh-cta:active { background: #17130f; color: #f2c12e; } .ds-rh-cta:focus-visible { outline: 3px dashed #f2c12e; outline-offset: 4px; }"
+    },
+    {
+      "name": "Ficha como capa de cordel",
+      "kind": "card",
+      "refersTo": "ficha-capa",
+      "description": "Ficha de sistema: papel de capa próprio, borda de tinta de 3px e uma segunda folha de outro papel atrás, em registro.",
+      "html": "<article class=\"ds-ficha\"><span class=\"ds-ficha-code\">SIS-03</span><h3 class=\"ds-ficha-name\">Agenda Zap</h3><p class=\"ds-ficha-kind\">Agendamento por WhatsApp</p><span class=\"ds-carimbo\">Encerrado</span></article>",
+      "css": ".ds-ficha { position: relative; isolation: isolate; background: #f2789f; color: #17130f; border: 3px solid #17130f; border-radius: 0; padding: clamp(18px, 2.4vw, 32px); max-width: 360px; } .ds-ficha::before { content: ''; position: absolute; inset: -3px; z-index: -1; background: #93c6e4; border: 3px solid #17130f; transform: translate(10px, 10px) rotate(1deg); } .ds-ficha-code { font-family: 'Special Elite', 'Courier New', monospace; color: #6b130c; } .ds-ficha-name { font-family: 'Alfa Slab One', Rockwell, serif; font-weight: 400; font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem); line-height: 1; margin: 8px 0; } .ds-ficha-kind { font-family: Archivo, sans-serif; color: #33291f; } .ds-carimbo { display: inline-block; margin-top: 12px; padding: 4px 10px; border: 3px double #c8261d; border-radius: 2px; font-family: 'Special Elite', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: #6b130c; transform: rotate(-3deg); }"
+    },
+    {
+      "name": "Carimbo de status",
+      "kind": "chip",
+      "refersTo": "carimbo",
+      "description": "Status ou endereço, nunca enfeite. Moldura vermelha viva, letra em vermelho-sangue.",
+      "html": "<span class=\"ds-stamp\">Encerrado</span> <span class=\"ds-stamp ds-stamp--ok\">Operando</span>",
+      "css": ".ds-stamp { display: inline-block; padding: 4px 10px; border: 3px double #c8261d; border-radius: 2px; font-family: 'Special Elite', 'Courier New', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; color: #6b130c; background: transparent; } .ds-stamp--ok { border-color: #1d6b3f; color: #17130f; } .ds-stamp { animation: ds-cai 420ms cubic-bezier(0.23, 1, 0.32, 1) both; } @keyframes ds-cai { from { opacity: 0; transform: scale(1.35) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(-3deg); } } @media (prefers-reduced-motion: reduce) { .ds-stamp { animation: none; transform: rotate(-3deg); } }"
+    },
+    {
+      "name": "Ficha do folheto",
+      "kind": "custom",
+      "description": "Dados da capa em faixa horizontal na primeira dobra, entre réguas de tinta; valores em letra de madeira.",
+      "html": "<dl class=\"ds-plate\"><div class=\"ds-plate-row\"><dt>Avaliação</dt><dd>5.0</dd></div><div class=\"ds-plate-row\"><dt>Recomendações</dt><dd>100%</dd></div><div class=\"ds-plate-row\"><dt>Projetos</dt><dd>14</dd></div></dl>",
+      "css": ".ds-plate { display: flex; flex-wrap: wrap; border-top: 4px solid #17130f; border-bottom: 4px solid #17130f; margin: 0; color: #17130f; } .ds-plate-row { flex: 1 1 140px; padding: 10px 16px; border-left: 2px solid #17130f; } .ds-plate-row:first-child { border-left: 0; } .ds-plate dt { font-family: Archivo, sans-serif; font-weight: 700; letter-spacing: 0.04em; color: #33291f; font-size: 0.85rem; } .ds-plate dd { margin: 0; font-family: 'Alfa Slab One', Rockwell, serif; font-size: 1.6rem; line-height: 1.1; }"
+    },
+    {
+      "name": "Ordem de serviço",
+      "kind": "input",
+      "refersTo": "ordem-de-servico",
+      "description": "Folha amarela girada presa sobre a matriz entintada; campos são uma linha de tinta.",
+      "html": "<div class=\"ds-os-bg\"><form class=\"ds-os\"><label class=\"ds-os-l\">Seu negócio<input class=\"ds-os-in\" placeholder=\"Salão, clínica...\"></label></form></div>",
+      "css": ".ds-os-bg { background: #17130f; padding: 32px; } .ds-os { background: #f2c12e; color: #17130f; padding: 24px; transform: rotate(-1.2deg); max-width: 380px; position: relative; isolation: isolate; } .ds-os::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #f2789f; transform: translate(10px, 10px) rotate(1.4deg); } .ds-os-l { display: grid; gap: 6px; font-family: Archivo, sans-serif; font-weight: 700; } .ds-os-in { background: transparent; border: 0; border-bottom: 2px solid #17130f; border-radius: 0; padding: 8px 0; font: inherit; font-weight: 400; color: #17130f; caret-color: #c8261d; } .ds-os-in:focus-visible { outline: 3px dashed #17130f; outline-offset: 4px; } @media (prefers-reduced-motion: reduce) { .ds-os { transform: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Oficina de Xilogravura",
+    "overview": "A Autark é apresentada como uma oficina onde cada sistema é entalhado à mão numa matriz de madeira e sai impresso como capa de cordel. \"Construído à mão, sem template\" deixa de ser frase e vira material: tinta preta de rolo, papel de capa colorido, letra de madeira com a borda roída da goiva, carimbo de borracha batido por cima. O mundo foi escolhido para recusar duas coisas ao mesmo tempo: a landing escura de SaaS com 3D brilhante e o manual técnico grafite e laranja que este redesign substituiu.\n\nO papel de cordel resolve o problema do público. Quem chega é dono de salão, barbearia, clínica ou delivery, frio, no celular de 360px vindo do Instagram, muitas vezes à noite. Um folheto popular brasileiro é um objeto que essa pessoa já conhece e confia, lê de longe e não confunde com startup. As cores saturadas de capa dão contraste de sobra para a tinta preta (de 7:1 a 13,2:1) e trocam de seção para seção como as capas trocam de folheto, então a rolagem vira um maço de folhetos sendo folheado.\n\nA densidade é de impresso: blocos de texto curtos, títulos grandes, linhas de tinta grossas (2 a 4px) separando dados, nenhum canto arredondado, nenhum brilho. A profundidade vem só de sobreposição: uma folha de papel sobre outra de outra cor, como duas matrizes impressas em registro.",
+    "keyCharacteristics": [
+      "Tinta preta quente (`ink`) sobre um papel de capa saturado por seção; nada de creme, branco ou cinza neutro.",
+      "Letra de madeira (Alfa Slab One) nos títulos, com filtro de entalhe e máscara de falha de tinta.",
+      "Vermelho de carimbo só em moldura; quando o carimbo vira texto, a tinta é o vermelho-sangue `stamp-ink`.",
+      "Cantos retos, linhas de tinta cheias, nenhuma sombra: o que se destaca ganha uma segunda folha de outro papel atrás, em registro.",
+      "Uma coreografia só: a impressão da matriz, com scrub. O resto assenta com ease-out forte."
+    ],
+    "rules": [
+      {
+        "name": "The Um Papel por Seção Rule",
+        "body": "Cada seção define `--ground` com um papel de capa, e tudo que é \"fundo\" dentro dela herda esse papel. A sequência da home é amarelo, rosa, jornal, azul, verde, laranja, jornal, amarelo, azul, rosa, tinta (§11), tinta (colofão). Seção nova escolhe um papel que não repete o vizinho.",
+        "section": "colors"
+      },
+      {
+        "name": "The Carimbo na Moldura Rule",
+        "body": "`stamp` e `run` desenham moldura e sinal, nunca letra. Texto vermelho é sempre `stamp-ink`; texto de carimbo verde é `ink`. Teste: se o vermelho vivo ou o verde formam letras pequenas, está errado.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinta Nunca Preta Rule",
+        "body": "Nenhum #000, #fff ou cinza puro. A tinta é `ink`; o \"branco\" é o papel da seção.",
+        "section": "colors"
+      },
+      {
+        "name": "The Madeira Sem Peso Rule",
+        "body": "Alfa Slab One existe num peso só (400) e com `letter-spacing: 0`. Nunca sintetize negrito (`font-synthesis: none`) nem aperte o espaçamento: a letra de madeira já é o peso máximo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Entalhe Só no Grande Rule",
+        "body": "O filtro SVG `#entalhe` (turbulência 0.045, deslocamento 2.6) e a máscara `--falha` vão só nos títulos grandes (capa, seção, notas, 404). Em texto pequeno o deslocamento destrói a leitura. A falha de rolo tem grão direcional (turbulência `.9 .035`, o rastro horizontal do rolo) e `mask-size` medido em `em`, para que o grão acompanhe o corpo da letra em vez de ter o mesmo tamanho num título de 80px e num carimbo de 14px.",
+        "section": "typography"
+      },
+      {
+        "name": "The Elite Só Carimba Rule",
+        "body": "Special Elite é carimbo e numeração de folheto, nada mais. Nunca parágrafo, nunca botão, nunca título.",
+        "section": "typography"
+      },
+      {
+        "name": "The Segunda Matriz Rule",
+        "body": "Destaque é sobreposição de papel, não sombra. Se o que está atrás do elemento é preto ou translúcido, está errado; tem de ser outro papel de capa (ou o vermelho-sangue do bloco de chamada), chapado, deslocado e levemente girado.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sem Brilho Rule",
+        "body": "Nenhum glow, `backdrop-filter`, gradiente de luz ou sombra difusa. Na cena 3D a luz é rasante e quente, sem bloom.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do dar a cada seção nova um papel de capa via `--ground` e herdar dele fundos, linhas (`color-mix` com a tinta) e texto de botão.",
+      "Do escrever todo texto vermelho em `stamp-ink` e deixar `stamp` para molduras e o cursor.",
+      "Do usar Alfa Slab One 400 com espaçamento 0 em títulos e números de leitura, com entalhe só nos títulos grandes.",
+      "Do fazer o botão principal como bloco de `ink` de canto reto que inverte para o papel no `:active`.",
+      "Do destacar com uma segunda folha de outro papel de capa atrás do elemento, deslocada ~10px e girada ~1°.",
+      "Do manter fotos e prints em uma tinta por passada: foto do fabricante em `grayscale(1) contrast(1.15)` com `multiply`, borda de tinta de 3px.",
+      "Do entrar com `cubic-bezier(0.23, 1, 0.32, 1)`, animar só `transform` e `opacity` e entregar a versão estática sob reduced motion."
+    ],
+    "donts": [
+      "Don't escrever texto em `stamp` (#c8261d): dá 3,3:1 no amarelo e 2,1:1 no rosa.",
+      "Don't usar creme, branco, #000 ou cinza neutro; nem voltar ao grafite e laranja do mundo anterior.",
+      "Don't pôr sombra de qualquer tipo (`box-shadow`/`drop-shadow` preta, chapada ou difusa), glow, `backdrop-filter`, gradiente de luz ou texto em gradiente. A cena 3D não usa bloom.",
+      "Don't arredondar cantos de botão, ficha ou campo; a única curva é o carimbo de 2px.",
+      "Don't usar Special Elite fora de carimbo e numeração, nem pôr rótulo, kicker ou carimbo acima do título.",
+      "Don't levantar o botão no hover; o único gesto dele é inverter ao pressionar.",
+      "Don't criar uma segunda coreografia de scroll; a impressão da matriz é a única com scrub.",
+      "Don't usar bounce, elastic ou ease-in em entrada.",
+      "Don't carregar fontes ou imagens de terceiros; a CSP só aceita a própria origem."
+    ]
+  }
+}

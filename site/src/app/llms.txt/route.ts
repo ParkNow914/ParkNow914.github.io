@@ -32,7 +32,7 @@ export function GET() {
     "",
     "## Optional",
     "",
-    `- [Manual de Operação completo](${SITE_URL}/): a página inteira, com calculadora de economia, FAQ e termo de garantia`,
+    `- [Página principal completa](${SITE_URL}/): a página inteira, com calculadora de economia, FAQ e termo de garantia`,
     "- [Avaliações no 99freelas](https://www.99freelas.com.br/user/Alisson_sntsz): perfil público com todas as avaliações",
     "- [Código no GitHub](https://github.com/ParkNow914): projetos abertos e o código deste site",
     `- [Política de privacidade](${SITE_URL}/privacidade/): o site não usa cookies nem rastreadores`,

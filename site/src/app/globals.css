@@ -20,9 +20,9 @@
   --signal-ink-2: #2b140a;
   --run: #3ddc97;
 
-  --f-display: var(--font-hubot), "Arial Narrow", sans-serif;
-  --f-body: var(--font-mona), system-ui, sans-serif;
-  --f-mono: var(--font-martian), ui-monospace, monospace;
+  --f-display: var(--font-display), Rockwell, serif;
+  --f-body: var(--font-text), system-ui, sans-serif;
+  --f-mono: var(--font-stamp), "Courier New", monospace;
 
   --header-h: 60px;
   --gutter: clamp(16px, 3.4vw, 44px);

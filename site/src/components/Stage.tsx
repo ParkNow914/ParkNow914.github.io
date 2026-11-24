@@ -50,7 +50,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
       data-pad={inline ? "10 72" : "84 128"}
       data-pad-sm={inline ? "10 72" : "62 64"}
       data-fig="drawing"
-      aria-label="Fig. 1: o Cérebro Autark, uma máquina de nove peças que se monta conforme você rola a página."
+      aria-label="Matriz 1: o Cérebro Autark entalhado numa matriz de xilogravura, peça por peça, conforme você rola a página."
     >
       <Poster inline={inline} />
       <span className="fig__mark fig__mark--tl" />
@@ -58,11 +58,11 @@ function FigFrame({ inline }: { inline?: boolean }) {
       <span className="fig__mark fig__mark--bl" />
       <span className="fig__mark fig__mark--br" />
       <figcaption className="fig__cap">
-        <span className="fig__no">Fig. 1</span> <span data-fig-state>Cérebro Autark, vista explodida</span>
+        <span className="fig__no">Matriz 1</span> <span data-fig-state>Cérebro Autark, desenhado a pincel</span>
       </figcaption>
       {inline ? null : (
         <p className="fig__block" aria-hidden="true">
-          <span>Desenho AT-01</span>
+          <span>Matriz AT-01</span>
           <span>Folha 1/1</span>
           <span>{REVISION}</span>
         </p>
@@ -78,7 +78,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
       )}
       {inline ? null : (
         <div className="fig__meter" aria-hidden="true">
-          <span className="fig__meter-label">Montagem</span>
+          <span className="fig__meter-label">Entalhe</span>
           <span className="fig__meter-track">
             <span className="fig__meter-fill" data-fig-fill />
           </span>
@@ -88,7 +88,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
         </div>
       )}
       <p className="fig__hint" aria-hidden="true">
-        <Icon name="arrow-down" size={14} /> Role para montar
+        <Icon name="arrow-down" size={14} /> Role para entalhar
       </p>
       {inline ? null : <MotionToggle />}
     </figure>
@@ -122,20 +122,21 @@ export function Stage() {
         <FigFrame inline />
         <div className="plate">
           <p className="plate__head">
-            <span>Plaqueta de identificação</span>
-            <span className="plate__model">mod. 2026.09</span>
+            <span>Ficha do folheto</span>
+            <span className="plate__model">Folha 1</span>
           </p>
           <dl className="plate__list">
             {COVER.plate.map((r) => (
               <div className="plate__row" key={r.k}>
                 <dt>{r.k}</dt>
                 <dd>
-                  {r.star ? <Icon name="star" size={13} className="plate__star" /> : null}
+                  {"star" in r && r.star ? <Icon name="star" size={16} className="plate__star" /> : null}
                   {r.v}
                 </dd>
               </div>
             ))}
           </dl>
+          <p className="plate__note">{COVER.plateNote}</p>
           <span className="plate__rivet plate__rivet--tl" aria-hidden="true" />
           <span className="plate__rivet plate__rivet--tr" aria-hidden="true" />
           <span className="plate__rivet plate__rivet--bl" aria-hidden="true" />
@@ -149,7 +150,7 @@ export function Stage() {
         <p className="assembly__lede">{ASSEMBLY_INTRO}</p>
 
         <table className="bom">
-          <caption>Lista de peças da Fig. 1</caption>
+          <caption>Peças entalhadas na Matriz 1</caption>
           <thead>
             <tr>
               <th scope="col">Nº</th>
@@ -185,6 +186,12 @@ export function Stage() {
                 </span>
                 {s.title}
               </h3>
+              {"som" in s && s.som ? (
+                // O barulho do atendimento, maior quanto mais alto. Decorativo.
+                <p className="step__som" data-nivel={s.som.nivel} aria-hidden="true">
+                  {s.som.texto}
+                </p>
+              ) : null}
               {s.parts.length ? (
                 <p className="step__parts">
                   {s.parts.map((n) => (

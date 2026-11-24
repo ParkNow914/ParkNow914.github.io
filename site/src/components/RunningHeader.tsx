@@ -60,7 +60,7 @@ export function RunningHeader() {
           <span className="rh__name">Autark</span>
         </a>
         <span className="rh__doc">
-          Manual de Operação <span className="rh__rev">{REVISION}</span>
+          Folheto da Oficina <span className="rh__rev">{REVISION}</span>
         </span>
         <span className="rh__sec">
           <span className="rh__addr">{sec.address === "Capa" ? "" : sec.address}</span> {sec.title}

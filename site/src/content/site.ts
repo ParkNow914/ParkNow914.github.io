@@ -58,13 +58,13 @@ export const COVER = {
   title: "Sistemas que trabalham sozinhos enquanto você cresce.",
   lede:
     "Atendimento feito na mão perde venda fora do horário. A Autark instala no seu WhatsApp uma IA ligada aos seus sistemas, que atende, vende e agenda a qualquer hora, e só vai ao ar depois de testada.",
+  /** Três números do perfil público do 99freelas (conferidos em 23/11/2026). */
   plate: [
-    { k: "Fabricante", v: "Alisson Santos" },
-    { k: "Avaliação", v: "5.0 no 99freelas", star: true },
-    { k: "Recomendação", v: "12 no 99freelas" },
-    { k: "Projetos concluídos", v: "12 no 99freelas" },
-    { k: "No portfólio", v: "9 sistemas" },
+    { k: "Avaliação", v: "5.0", star: true },
+    { k: "Recomendações", v: "13" },
+    { k: "Projetos concluídos", v: "14" },
   ],
+  plateNote: "Números do perfil público no 99freelas · 10 sistemas no portfólio",
 };
 
 /** Peças da Fig. 1. `n` é o número do balão; a ordem de montagem está em ASSEMBLY. */
@@ -93,6 +93,8 @@ export const ASSEMBLY = [
   {
     parts: [2, 3, 4],
     title: "Canais que encaixam",
+    /** Som do atendimento, impresso em letra de madeira; `nivel` é o volume (1 a 3). */
+    som: { texto: "PLIM!", nivel: 1 },
     body:
       "WhatsApp, Telegram e site entram como portas plugadas no núcleo. Você soma ou troca um canal sem reescrever regra nenhuma.",
     proof:
@@ -101,6 +103,7 @@ export const ASSEMBLY = [
   {
     parts: [5, 6, 7],
     title: "Ligado aos seus sistemas",
+    som: { texto: "AGENDADO.", nivel: 2 },
     body:
       "O fluxo conversa com seu banco, seu pagamento e sua agenda. Assim ele fecha o pedido sozinho e só chama um humano quando precisa.",
     proof: "A integração e seus custos são definidos conforme o provedor, as credenciais e o fluxo de cada projeto.",
@@ -121,6 +124,7 @@ export const ASSEMBLY = [
   {
     parts: [],
     title: "Operando",
+    som: { texto: "PLIM! PLIM!", nivel: 3 },
     body:
       "Lâmpada verde. O sistema atende, vende e agenda sozinho, 24 horas por dia, e você volta a cuidar do que só você faz.",
   },
@@ -448,6 +452,31 @@ export const SYSTEMS: System[] = [
     stack: ["Next.js", "Drizzle", "PostgreSQL", "RLS multi-tenant", "2FA TOTP"],
     actions: [{ label: "Pedir acesso à demo", href: wa("Olá Alisson! Quero ver a demo do Acerto."), kind: "chat" }],
   },
+  {
+    code: "SYS-10",
+    slug: "autark-barber",
+    name: "Autark Barber",
+    kind: "SaaS · barbearias e redes",
+    status: "proprio",
+    metric: "plano grátis para 1 unidade",
+    image: "/projetos/autark-barber.webp",
+    imageW: 1200,
+    imageH: 744,
+    feature: true,
+    body:
+      "Sistema para barbearias e redes, nascido de duas dores vistas numa rede do Vale: o cliente agendado que perde o barbeiro para outro marcado no mesmo horário, e o caixa que ninguém consegue largar a cadeira para fechar. A agenda é travada no próprio banco, por pessoa, e o barbeiro cobra no celular com a cota-parte dividida na hora.",
+    spec: [
+      { k: "Agenda", v: "Trava por barbeiro no Postgres (EXCLUDE USING gist)" },
+      { k: "Cobrança", v: "Pix com QR na cadeira, cota-parte da Lei 13.352" },
+      { k: "WhatsApp", v: "Lembretes, fila de encaixe e recepcionista com IA" },
+      { k: "Testes", v: "70 de domínio e 11 ponta a ponta" },
+    ],
+    stack: ["Next.js", "React 19", "PostgreSQL", "Claude", "Web Push", "Three.js"],
+    actions: [
+      { label: "Abrir o sistema", href: "https://cadeira-zeta.vercel.app", kind: "demo" },
+      { label: "Ver um agendamento de exemplo", href: "https://cadeira-zeta.vercel.app/b/jovem-barber", kind: "demo" },
+    ],
+  },
 ];
 
 export const PROOFS = {
@@ -481,6 +510,11 @@ export const PROOFS = {
 
 export const OTHER_WORK = [
   {
+    name: "Bot de WhatsApp para clínica on-line",
+    body: "Atendimento automático no WhatsApp de uma clínica que atende on-line, com o provedor definido antes do código: número próprio na API oficial ou coexistência por um parceiro da Meta.",
+    date: "nov/2026",
+  },
+  {
     name: "KineQuote: banco multiempresa isolado",
     body: "Postgres no Supabase com RLS forçado por empresa e uma suíte automatizada que tenta ler, inserir e alterar dados de outra empresa, e precisa falhar em todas.",
     date: "set/2026",
@@ -491,7 +525,7 @@ export const OTHER_WORK = [
     body: "index.html como página principal sem derrubar o WordPress com Elementor, e formulários enviando por SMTP autenticado.",
     date: "ago/2026",
   },
-  { name: "Importação de XML para banco SQL", body: "Mapeamento campo a campo de vários arquivos XML para um schema existente, sem retrabalho manual.", date: "ago/2026" },
+  { name: "Importação de XML para banco SQL", body: "Ferramenta para Windows que lê vários XMLs de NF-e e atualiza os dados fiscais dos produtos no SQL Server, campo a campo, com simulação antes de gravar e relatório no fim.", date: "ago/2026" },
   { name: "Site jurídico: GA4, blog e conversão", body: "Segunda etapa de melhorias num site de escritório de advocacia já publicado.", date: "ago/2026" },
   { name: "Publicação de página e responsividade", body: "Página nova publicada no domínio existente, testada no ambiente real e com o botão ligado ao WhatsApp.", date: "ago/2026" },
 ];
@@ -547,10 +581,10 @@ export const SIZING = {
 };
 
 export const FIELD = {
-  /** Conferido no perfil público do 99freelas em 02/11/2026: 12 avaliações, nota 5.0, 12 recomendações, 12 projetos concluídos. */
-  reviews: 12,
+  /** Conferido no perfil público do 99freelas em 23/11/2026: 13 avaliações, nota 5.0, 13 recomendações, 14 projetos concluídos. */
+  reviews: 13,
   intro:
-    "Doze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
+    "Treze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
   items: [
     {
       quote:
@@ -600,6 +634,7 @@ export const MAKER = {
     { k: "Formação", v: "Gestão da Tecnologia da Informação" },
     { k: "Base", v: "Lorena, SP, atendendo o Brasil inteiro" },
     { k: "Atendimento", v: "Por escrito, normalmente 19h–00h (Brasília), todos os dias" },
+    { k: "Entrega", v: "Web e PWA, APIs e integrações, automação em n8n e Make, WordPress e ferramenta para Windows" },
   ],
 };
 

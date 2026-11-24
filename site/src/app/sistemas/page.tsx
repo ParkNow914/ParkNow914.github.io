@@ -8,7 +8,7 @@ import { SITE_URL, STATUS_LABEL, SYSTEMS, SYSTEMS_INTRO } from "@/content/site";
 import { AUTHOR, PUBLISHER } from "@/content/jsonld";
 
 const descricao =
-  "Nove sistemas da Autark, com o contexto de cada projeto: entregas para clientes, produtos próprios e demonstrações de agenda, delivery, CRM, IA e integrações.";
+  "Dez sistemas da Autark, com o contexto de cada projeto: entregas para clientes, produtos próprios e demonstrações de agenda, delivery, CRM, IA e integrações.";
 
 export const metadata: Metadata = {
   title: "Projetos e sistemas · Autark",
@@ -43,7 +43,7 @@ export default function SistemasPage() {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Manual de Operação", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 1, name: "Autark", item: `${SITE_URL}/` },
         { "@type": "ListItem", position: 2, name: "Sistemas", item: `${SITE_URL}/sistemas/` },
       ],
     },
@@ -52,7 +52,7 @@ export default function SistemasPage() {
     <>
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="notas-pag">
-        <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Sistemas" }]} />
+        <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas" }]} />
         <header className="notas-pag__cab">
           <p className="nota__kicker">
             <span className="nota__pilar">§4</span>

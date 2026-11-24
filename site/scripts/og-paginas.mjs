@@ -24,8 +24,21 @@ rmSync(tmp, { recursive: true, force: true });
 
 const img = (arquivo) => `public${arquivo}`;
 const rodape = "Por Alisson Santos";
+// As mesmas cores de papel do site, em rodízio, como as capas de cordel.
+const PAPEIS = ["#f2c12e", "#f2789f", "#93c6e4", "#86c681", "#f2914a"];
 
 const alvos = [
+  {
+    // A imagem da home (layout.tsx e JSON-LD).
+    destino: path.join(RAIZ, "public", "marca", "og-folheto.png"),
+    html: pagina({
+      secao: "Matriz 1",
+      kicker: "Operando",
+      titulo: "Sistemas que trabalham sozinhos enquanto você cresce.",
+      lede: "IA no seu WhatsApp, ligada aos seus sistemas. Atende, vende e agenda a qualquer hora.",
+      rodape: "Entalhado à mão por Alisson Santos",
+    }),
+  },
   {
     destino: path.join(OG, "sistemas.png"),
     html: pagina({
@@ -36,7 +49,7 @@ const alvos = [
       rodape,
     }),
   },
-  ...SYSTEMS.map((s) => ({
+  ...SYSTEMS.map((s, i) => ({
     destino: path.join(OG, "sistemas", `${s.slug}.png`),
     html: pagina({
       secao: "Sistemas",
@@ -46,6 +59,7 @@ const alvos = [
       rodape,
       fig: img(s.image),
       print: true,
+      papel: PAPEIS[i % PAPEIS.length],
     }),
   })),
   {
@@ -60,16 +74,16 @@ const alvos = [
   },
   {
     destino: path.join(OG, "privacidade.png"),
-    html: pagina({ secao: "Privacidade", kicker: "LGPD", titulo: "Política de privacidade", lede: "Sem cookies e sem rastreadores.", rodape }),
+    html: pagina({ secao: "Privacidade", kicker: "LGPD", titulo: "Política de privacidade", lede: "Sem cookies e sem rastreadores.", rodape, papel: "#dfdcd1" }),
   },
   ...[
     ["agenda", "Salão · barbearia · estética", "Agenda que atende sozinha no WhatsApp", "A cliente marca sozinha, e o sistema lembra 24h e 2h antes.", "agendazap"],
     ["atendimento", "Corretora · financeira", "Lead que espera uma hora já é do concorrente", "Atendimento na hora, no WhatsApp oficial da Meta.", "crm"],
     ["juridico", "Advocacia", "IA que mostra de onde tirou a resposta", "Triagem 24h e análise de documento com a fonte citada.", "jurisia"],
     ["delivery", "Supermercado · delivery", "O pedido chega pronto na cozinha", "Catálogo do ERP, taxa por bairro e cupom na impressora.", "bia"],
-  ].map(([slug, kicker, titulo, lede, print]) => ({
+  ].map(([slug, kicker, titulo, lede, print], i) => ({
     destino: path.join(LP, `${slug}.png`),
-    html: pagina({ secao: "Soluções", kicker, titulo, lede, rodape, fig: img(`/projetos/${print}.webp`), print: true }),
+    html: pagina({ secao: "Soluções", kicker, titulo, lede, rodape, fig: img(`/projetos/${print}.webp`), print: true, papel: ["#f2789f", "#93c6e4", "#86c681", "#f2914a"][i] }),
   })),
 ];
 

@@ -77,7 +77,7 @@ export default async function SistemaPage({ params }: Props) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Manual de Operação", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 1, name: "Autark", item: `${SITE_URL}/` },
         { "@type": "ListItem", position: 2, name: "Sistemas", item: `${SITE_URL}/sistemas/` },
         { "@type": "ListItem", position: 3, name: s.name, item: url },
       ],
@@ -89,7 +89,7 @@ export default async function SistemaPage({ params }: Props) {
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota sis">
-          <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
+          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
           <header className="nota__cab sis__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">{s.code}</span>
