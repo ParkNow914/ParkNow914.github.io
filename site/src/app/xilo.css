@@ -755,6 +755,10 @@ a {
   .rh__sec {
     display: none;
   }
+  /* Sem o nome da seção ocupando o meio, o índice e o WhatsApp vão para a direita. */
+  .rh__index {
+    margin-left: auto;
+  }
 }
 
 /* Sons do atendimento impressos em letra de madeira: maiores quanto mais alto. */
