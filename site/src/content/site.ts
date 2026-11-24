@@ -705,3 +705,148 @@ export const ASSISTANCE = {
 export const VALE = {
   cidades: ["Lorena", "Guaratinguetá", "Cachoeira Paulista", "Cruzeiro", "Aparecida", "Taubaté", "São José dos Campos"],
 };
+
+/**
+ * Página /pacotes/: venda sem conversa. Produtos de assinatura primeiro (o cliente
+ * se cadastra sozinho), depois pacotes com preço fechado. Decisão de 24/11/2026:
+ * o Alisson autorizou publicar preço e delegou a escolha dos valores, tirados da
+ * tabela interna (autark-instagram/comercial/precos.md, faixa de cliente direto).
+ * `checkout` vazio = o botão abre o WhatsApp com o pedido escrito; quando houver o
+ * link de pagamento do Mercado Pago, basta colar aqui.
+ */
+export type Pacote = {
+  code: string;
+  nome: string;
+  para: string;
+  preco: string;
+  sufixo?: string;
+  entrada?: string;
+  prazo: string;
+  inclui: string[];
+  fora: string[];
+  checkout: string;
+  mensagem: string;
+};
+
+export const PACOTES = {
+  titulo: "Pacotes e preços",
+  lede:
+    "Preço fechado, prazo por escrito e tudo por mensagem, sem reunião. Escolha um produto pronto e comece hoje, ou escolha um pacote: você paga a entrada, manda o briefing e acompanha o sistema sendo feito.",
+  produtos: [
+    {
+      code: "PROD-A",
+      nome: "AgendaZap",
+      para: "Salão, barbearia e estética",
+      o: "A cliente marca sozinha pelo link ou conversando no WhatsApp, e o sistema confirma e lembra 24h e 2h antes.",
+      preco: "14 dias grátis",
+      detalhe: "Sem cartão para testar. Depois, planos de R$ 97 a R$ 297 por mês, no próprio sistema.",
+      acao: { label: "Testar 14 dias grátis", href: "https://agendazap-three.vercel.app/signup?utm_source=site&utm_medium=pacotes" },
+      ficha: "/sistemas/agendazap/",
+    },
+    {
+      code: "PROD-B",
+      nome: "Autark Barber",
+      para: "Barbearia e rede de barbearias",
+      o: "Agenda que não aceita dois clientes no mesmo horário, cobrança no celular do barbeiro com a comissão dividida na hora e a rede inteira num painel.",
+      preco: "Grátis para 1 unidade",
+      detalhe: "Até 2 barbeiros no plano grátis. Barbearia por R$ 149 por mês; rede por R$ 189 por unidade.",
+      acao: { label: "Criar minha barbearia", href: "https://cadeira-zeta.vercel.app/cadastro?utm_source=site&utm_medium=pacotes" },
+      ficha: "/sistemas/autark-barber/",
+    },
+  ],
+  pacotes: [
+    {
+      code: "PAC-1",
+      nome: "Landing page que vira conversa",
+      para: "Para quem vai anunciar ou precisa de uma página que leve ao WhatsApp",
+      preco: "R$ 1.490",
+      entrada: "R$ 745",
+      prazo: "7 dias úteis depois do briefing",
+      inclui: [
+        "Uma página com até 6 seções, feita primeiro para o celular",
+        "Texto escrito a partir do seu briefing, revisado",
+        "Botão de WhatsApp com a mensagem pronta e a origem do anúncio marcada",
+        "Google Analytics 4 e Meta Pixel, com aviso de consentimento",
+        "Publicação no seu domínio ou num endereço grátis",
+        "Uma rodada de ajustes depois da entrega",
+      ],
+      fora: ["Domínio e hospedagem paga, se você quiser", "Fotos profissionais", "Gestão dos anúncios"],
+      checkout: "",
+      mensagem: "Olá Alisson! Quero o pacote Landing page que vira conversa (R$ 1.490).",
+    },
+    {
+      code: "PAC-2",
+      nome: "Atendente de WhatsApp com agenda",
+      para: "Para salão, barbearia, estética e clínica que vivem respondendo horário",
+      preco: "R$ 1.990",
+      sufixo: "+ plano do AgendaZap",
+      entrada: "R$ 995",
+      prazo: "10 dias úteis depois do briefing",
+      inclui: [
+        "AgendaZap configurado com os seus serviços, preços, horários e equipe",
+        "Atendimento com IA no WhatsApp: responde dúvidas, mostra horários e marca",
+        "Lembretes automáticos 24h e 2h antes do horário",
+        "Página pública de agendamento com a sua marca",
+        "Vídeo gravado mostrando o uso no dia a dia",
+        "30 dias de acompanhamento depois de ir ao ar",
+      ],
+      fora: [
+        "Plano mensal do AgendaZap, a partir de R$ 97, pago no próprio sistema",
+        "Custos de uso do provedor de WhatsApp, quando houver, pagos direto a ele",
+      ],
+      checkout: "",
+      mensagem: "Olá Alisson! Quero o pacote Atendente de WhatsApp com agenda (R$ 1.990).",
+    },
+    {
+      code: "PAC-3",
+      nome: "Manutenção mensal",
+      para: "Para quem já tem site ou sistema e quer alguém cuidando",
+      preco: "R$ 390",
+      sufixo: "por mês",
+      prazo: "Começa no dia do pagamento; cancela quando quiser",
+      inclui: [
+        "Até 4 horas por mês de ajustes e pequenas melhorias",
+        "Correção de erro com prioridade",
+        "Monitoramento de disponibilidade, com aviso se sair do ar",
+        "Backup e atualizações de segurança",
+        "Resposta no mesmo dia, na janela das 19h às 00h",
+      ],
+      fora: ["Funcionalidade nova grande: vira pacote ou etapa sob medida"],
+      checkout: "",
+      mensagem: "Olá Alisson! Quero o pacote Manutenção mensal (R$ 390 por mês).",
+    },
+  ] as Pacote[],
+  sobMedida: {
+    nome: "Sistema sob medida",
+    preco: "a partir de R$ 3.500 por etapa",
+    o: "Delivery, CRM, painel, integração com ERP ou impressora. Você descreve por escrito e recebe o orçamento dividido em etapas, cada uma com entrega que dá para ver funcionando.",
+    mensagem: "Olá Alisson! Quero um orçamento de sistema sob medida.",
+  },
+  pagamento: [
+    "Metade para começar e metade depois da primeira entrega aprovada.",
+    "Se na primeira entrega não fizer sentido continuar, a gente para ali: você fica com o que foi entregue e não paga o restante.",
+    "Pix ou cartão pelo Mercado Pago. Custos de provedores (WhatsApp oficial, IA, hospedagem paga) saem do seu cartão direto para eles.",
+  ],
+  perguntas: [
+    {
+      q: "Preciso fazer reunião ou ligação?",
+      a: "Não. Tudo acontece por mensagem: briefing por escrito, capturas de tela e vídeos gravados quando ajudarem. Você responde no seu tempo.",
+    },
+    {
+      q: "Quando começa?",
+      a: "No dia útil seguinte ao pagamento da entrada e ao briefing completo. O prazo do pacote conta a partir daí.",
+    },
+    {
+      q: "E se eu não gostar?",
+      a: "Você vê o sistema funcionando na primeira entrega, antes do fim. Se não fizer sentido continuar, a gente para ali, você fica com o que foi entregue e não paga o restante.",
+    },
+    {
+      q: "Posso parcelar?",
+      a: "No cartão, pelo Mercado Pago, nas parcelas que ele oferecer. No Pix o valor sai à vista.",
+    },
+    {
+      q: "O que acontece depois que eu pagar?",
+      a: "Você manda o briefing pelo formulário desta página, que abre o WhatsApp com tudo preenchido. Em até um dia eu confirmo o escopo por escrito e começo.",
+    },
+  ],
+};

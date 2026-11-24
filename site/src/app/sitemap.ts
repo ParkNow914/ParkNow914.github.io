@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    { url: `${SITE_URL}/pacotes/`, lastModified: "2026-11-24", changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/vale-do-paraiba/`, lastModified: "2026-09-28", changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/privacidade/`, lastModified: "2026-09-28", changeFrequency: "yearly", priority: 0.2 },
     ...LANDINGS.map((slug) => ({

@@ -99,6 +99,12 @@ export function Models() {
           </li>
         ))}
       </ol>
+      <p className="models__precos">
+        <a className="btn btn--ink" href="/pacotes/">
+          Ver pacotes com preço fechado <Icon name="arrow-right" size={16} />
+        </a>
+        <span>AgendaZap com 14 dias grátis, landing por R$ 1.490, atendente de WhatsApp por R$ 1.990.</span>
+      </p>
       <Folio id="modelos" />
     </section>
   );

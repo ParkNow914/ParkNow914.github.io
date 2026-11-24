@@ -279,11 +279,29 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   const servico = ld.find((x) => x["@type"] === "Service");
   check("Vale do Paraíba: 7 cidades na página e no JSON-LD", cidades === 7 && servico?.areaServed?.length === 8, `${cidades} cidades`);
 
+  await page.goto(abs("pacotes/"), { waitUntil: "networkidle" });
+  const precos = await page.locator(".pacote__preco").allTextContents();
+  check("pacotes mostram os 3 preços fechados", precos.length === 3 && precos[0].includes("R$ 1.490"), precos.join(" | "));
+  const cadastro = await page.locator(".produto a.btn").first().getAttribute("href");
+  check("produto pronto leva ao cadastro grátis", (cadastro || "").includes("agendazap-three.vercel.app/signup"), cadastro);
+  await page.evaluate(() => {
+    window.__opened = [];
+    window.open = (u) => {
+      window.__opened.push(u);
+      return null;
+    };
+  });
+  await page.locator(".briefing select").selectOption({ index: 1 });
+  await page.locator(".briefing input[type=text]").first().fill("Rafael");
+  await page.locator(".briefing .btn").click();
+  const briefing = decodeURIComponent((await page.evaluate(() => window.__opened[0])) || "");
+  check("briefing monta o pedido no WhatsApp", briefing.includes("Briefing do pacote") && briefing.includes("Rafael"));
+
   await page.goto(abs("privacidade/"), { waitUntil: "networkidle" });
   check("política de privacidade publicada", (await page.locator("h1").textContent()).includes("privacidade"));
 
   const mapa = await (await page.request.get(abs("sitemap.xml"))).text();
-  check("sitemap inclui sistemas, Vale e privacidade", ["/sistemas/", "/sistemas/bia/", "/vale-do-paraiba/", "/privacidade/"].every((p) => mapa.includes(`${p}</loc>`)));
+  check("sitemap inclui sistemas, Vale, pacotes e privacidade", ["/sistemas/", "/sistemas/bia/", "/vale-do-paraiba/", "/pacotes/", "/privacidade/"].every((p) => mapa.includes(`${p}</loc>`)));
   if (LANDINGS) {
     const lp = await (await page.request.get(abs("lp/agenda/"))).text();
     const ogLp = (await page.request.get(abs("lp/og/agenda.png"))).status();
@@ -307,7 +325,7 @@ for (const w of [320, 360, 390, 414, 768, 1024, 1440]) {
   for (const w of [320, 390]) {
     const ctx = await browser.newContext({ viewport: { width: w, height: 800 } });
     const page = await ctx.newPage();
-    for (const p of ["sistemas/", "sistemas/acerto/", "vale-do-paraiba/", "privacidade/"]) {
+    for (const p of ["sistemas/", "sistemas/acerto/", "vale-do-paraiba/", "pacotes/", "privacidade/"]) {
       await page.goto(new globalThis.URL(p, URL).href, { waitUntil: "networkidle" });
       const sw = await page.evaluate(() => document.documentElement.scrollWidth);
       if (sw > w) largos.push(`${p} ${w}px=${sw}`);
