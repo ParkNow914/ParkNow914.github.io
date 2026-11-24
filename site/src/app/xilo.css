@@ -40,7 +40,7 @@
   --f-body: var(--font-text), "Segoe UI", system-ui, sans-serif;
   --f-mono: var(--font-stamp), "Courier New", monospace;
 
-  --fs-display: clamp(2.35rem, 1.1rem + 3.9vw, min(5.1rem, 8.4vh));
+  --fs-display: clamp(2.35rem, 1.1rem + 3.9vw, min(5.1rem, 7.4vh));
   --fs-h2: clamp(2rem, 1.25rem + 2.6vw, 3.9rem);
   --fs-h3: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
 
@@ -737,9 +737,14 @@ a {
   font-size: 1.15rem;
 }
 
-/* A fileira de peças fica por cima da prancha, mesmo com a folha impressa. */
+/* Com a folha impressa a prancha desce e cobriria a fileira de peças; nessa hora
+   todas já estão no lugar e a legenda diz "operando", então a fileira sai. */
 .fig__parts {
   z-index: 3;
+  transition: opacity 300ms ease-out;
+}
+.fig[data-fig="running"] .fig__parts {
+  opacity: 0;
 }
 
 /* Celular: a marca no cabeçalho diz quem é; o nome da seção some. */

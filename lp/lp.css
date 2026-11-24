@@ -99,7 +99,10 @@ h1 {
 }
 /* A ênfase é um bloco entalhado ao contrário: papel sobre tinta. */
 h1 em {
-  font-style: normal; background: var(--ink); color: var(--ground);
+  font-style: normal; color: var(--ground);
+  /* O bloco começa um pouco abaixo do topo da linha: sem isso, quando a ênfase
+     quebra de linha, a borda de cima do bloco risca a linha anterior. */
+  background: linear-gradient(to bottom, transparent 12%, var(--ink) 12%);
   padding: 0 0.14em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 .sub {

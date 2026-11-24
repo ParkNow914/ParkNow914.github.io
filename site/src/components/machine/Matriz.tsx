@@ -177,10 +177,10 @@ function folhaTexture(tinta: HTMLImageElement) {
     ctx.fillStyle = PAPEL_FOLHA;
     ctx.fillRect(0, 0, w, h);
     ctx.drawImage(tinta, 0, 0, w, h);
-    // Carimbo na parte de baixo da gravura central, com um respiro de papel
-    // atrás para ler de longe; moldura dupla como a dos carimbos do site.
+    // Carimbo no terço de cima: é a parte da folha que fica de pé, virada para
+    // quem lê, quando ela levanta. Respiro de papel atrás e moldura dupla.
     ctx.save();
-    ctx.translate(w * 0.5, h * 0.66);
+    ctx.translate(w * 0.5, h * 0.34);
     ctx.rotate(-0.14);
     const bw = w * 0.62;
     const bh = w * 0.19;
@@ -349,7 +349,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
       const cx = rect.left + rect.width / 2;
       const innerH = Math.max(60, rect.height - pad[0] - pad[1]);
       const cy = rect.top + pad[0] + innerH / 2;
-      const fit = 3.95 + 1.85 * printed;
+      const fit = 3.95 + 2.35 * printed;
       const tx = (cx - size.width / 2) * upp;
       const ty = -(cy - vh / 2) * upp;
       const ts = (Math.min(rect.width * 1.25, innerH) * upp) / fit;
@@ -363,7 +363,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
         st.y = THREE.MathUtils.damp(st.y, ty, 9, delta);
         st.s = THREE.MathUtils.damp(st.s, ts, 9, delta);
       }
-      r.position.set(st.x, st.y - 0.36 * BH * st.s * printed, 0);
+      r.position.set(st.x, st.y - 0.3 * BH * st.s * printed, 0);
       r.scale.setScalar(st.s);
     }
 
