@@ -1,7 +1,7 @@
 // /llms.txt (llmstxt.org): o resumo do site para assistentes de IA, que hoje
 // também respondem "quem faz automação de WhatsApp em tal cidade". Sai do mesmo
 // conteúdo do site, então não desatualiza sozinho.
-import { SITE_URL, MODELS, SYSTEMS, STATUS_LABEL, FIELD, COVER, VALE } from "@/content/site";
+import { SITE_URL, MODELS, SYSTEMS, STATUS_LABEL, FIELD, COVER, VALE, PACOTES } from "@/content/site";
 import { notas } from "@/lib/notas";
 
 export const dynamic = "force-static";
@@ -17,6 +17,10 @@ export function GET() {
     "## Serviços",
     "",
     ...MODELS.items.map((m) => `- [${m.name}](${SITE_URL}/#modelos): ${m.body}`),
+    "",
+    "## Pacotes e preços",
+    "",
+    `- [Pacotes e preços](${SITE_URL}/pacotes/): ${PACOTES.produtos.map((p) => `${p.nome} (${p.preco})`).join(", ")}; ${PACOTES.pacotes.map((p) => `${p.nome} por ${p.preco}${p.sufixo ? ` ${p.sufixo}` : ""}`).join("; ")}. Tudo por mensagem, sem reunião.`,
     "",
     "## Projetos e sistemas",
     "",

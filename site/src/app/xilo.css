@@ -808,3 +808,217 @@ a {
 html:has(main:is(.notas-pag, .nota-pag, .sis, .juridico, .nf)) {
   --ground: var(--papel-jornal);
 }
+
+/* --- /pacotes/: tabela da oficina ----------------------------------------- */
+
+.pacotes-pag {
+  max-width: 1180px;
+}
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(22px, 3vw, 36px);
+}
+.produto,
+.pacote,
+.sob-medida,
+.briefing {
+  position: relative;
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  padding: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+}
+/* Segunda folha de outro papel atrás de cada capa: profundidade só por cor. */
+.produto { background: var(--papel-amarelo); box-shadow: 12px 12px 0 -3px var(--papel-rosa); }
+.produto:nth-child(2) { background: var(--papel-azul); box-shadow: 12px 12px 0 -3px var(--papel-amarelo); }
+.produto__code,
+.pacote__code {
+  margin: 0 0 6px;
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+  color: var(--stamp-ink);
+}
+.produto__nome,
+.pacote__nome,
+.sob-medida__t {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 1.2rem + 1.4vw, 2.4rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.produto__para,
+.pacote__para {
+  margin: 6px 0 14px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.produto__o {
+  margin: 0 0 16px;
+}
+.produto__preco,
+.pacote__preco,
+.sob-medida__preco {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 2.9rem);
+  line-height: 1;
+}
+.pacote__sufixo {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.produto__detalhe {
+  margin: 8px 0 18px;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+.produto__acoes,
+.pacote__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.tabela {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(22px, 3vw, 34px);
+  align-items: stretch;
+}
+.pacote {
+  display: flex;
+  flex-direction: column;
+  background: var(--papel-rosa);
+  box-shadow: 12px 12px 0 -3px var(--papel-amarelo);
+}
+.pacote:nth-child(2) { background: var(--papel-verde); box-shadow: 12px 12px 0 -3px var(--papel-laranja); }
+.pacote:nth-child(3) { background: var(--papel-laranja); box-shadow: 12px 12px 0 -3px var(--papel-azul); }
+.pacote__prazo {
+  margin: 8px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--ink);
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+}
+.pacote__inclui {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.pacote__inclui li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: start;
+  line-height: 1.4;
+}
+.pacote__inclui svg {
+  margin-top: 3px;
+}
+.pacote__fora {
+  margin: 0 0 18px;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+/* O botão vai para o pé da capa, alinhado entre os três pacotes. */
+.pacote__acoes {
+  margin-top: auto;
+}
+
+.sob-medida {
+  margin-top: clamp(28px, 4vw, 44px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  background: var(--papel-amarelo);
+  box-shadow: 12px 12px 0 -3px var(--papel-verde);
+}
+.sob-medida > div {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+.sob-medida__preco {
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  margin: 6px 0 10px;
+}
+.sob-medida p {
+  margin: 0;
+}
+
+.briefing {
+  max-width: 640px;
+  background: var(--papel-amarelo);
+  box-shadow: 12px 12px 0 -3px var(--papel-rosa);
+}
+.briefing__t {
+  margin: 0 0 16px;
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1;
+}
+.briefing input[type="text"],
+.briefing textarea,
+.briefing select {
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 500 1rem var(--f-body);
+}
+.briefing select {
+  cursor: pointer;
+}
+.briefing input:focus-visible,
+.briefing textarea:focus-visible,
+.briefing select:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+.briefing .os__field label {
+  color: var(--ink);
+}
+.briefing input::placeholder,
+.briefing textarea::placeholder {
+  color: var(--ink-3);
+  opacity: 0.85;
+}
+.briefing__pago {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 18px;
+  font-weight: 700;
+}
+.briefing__pago input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+}
+.briefing .os__note {
+  margin: 12px 0 0;
+  color: var(--ink-2);
+}
+
+.models__precos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: clamp(28px, 4vw, 44px) 0 0;
+  font-weight: 650;
+}

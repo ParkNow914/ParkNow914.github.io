@@ -63,6 +63,17 @@ const alvos = [
     }),
   })),
   {
+    destino: path.join(OG, "pacotes.png"),
+    html: pagina({
+      secao: "Tabela da oficina",
+      kicker: "Preço fechado",
+      titulo: "Pacotes e preços",
+      lede: "Landing R$ 1.490 · atendente de WhatsApp R$ 1.990 · AgendaZap 14 dias grátis. Tudo por mensagem.",
+      rodape,
+      papel: "#86c681",
+    }),
+  },
+  {
     destino: path.join(OG, "vale-do-paraiba.png"),
     html: pagina({
       secao: "Vale do Paraíba",
