@@ -154,34 +154,60 @@ function matrizMaterial(relevo: THREE.Texture, uniforms: Record<string, THREE.IU
   return mat;
 }
 
-/** Folha com a gravura impressa e o carimbo OPERANDO, desenhada num canvas. */
-function folhaTexture(img: HTMLImageElement) {
-  const w = img.naturalWidth;
-  const h = img.naturalHeight;
+/** Papel da folha impressa: jornal acinzentado, para a folha se destacar do
+ * amarelo da página (folha amarela sobre papel amarelo sumia). */
+const PAPEL_FOLHA = "#dadad3";
+const PAPEL_FOLHA_VERSO = "#c9c9c1";
+
+/** Folha com a gravura impressa e o carimbo OPERANDO, desenhada num canvas.
+ * `tinta` é a impressão na leitura certa: tinta preta sobre transparente. */
+function folhaTexture(tinta: HTMLImageElement) {
+  const w = tinta.naturalWidth;
+  const h = tinta.naturalHeight;
   const canvas = document.createElement("canvas");
   canvas.width = w;
   canvas.height = h;
   const ctx = canvas.getContext("2d")!;
-  ctx.drawImage(img, 0, 0, w, h);
-  const stamp = getComputedStyle(document.documentElement).getPropertyValue("--font-stamp").trim() || "monospace";
-  ctx.save();
-  ctx.translate(w * 0.7, h * 0.57);
-  ctx.rotate(-0.16);
-  ctx.globalAlpha = 0.92;
-  ctx.strokeStyle = "#c8261d";
-  ctx.fillStyle = "#c8261d";
-  ctx.lineWidth = w * 0.012;
-  const bw = w * 0.46;
-  const bh = w * 0.13;
-  ctx.strokeRect(-bw / 2, -bh / 2, bw, bh);
-  ctx.font = `${Math.round(w * 0.082)}px ${stamp}`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("OPERANDO", 0, w * 0.004);
-  ctx.restore();
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
+  const stamp = getComputedStyle(document.documentElement).getPropertyValue("--font-stamp").trim() || "monospace";
+
+  const draw = () => {
+    ctx.fillStyle = PAPEL_FOLHA;
+    ctx.fillRect(0, 0, w, h);
+    ctx.drawImage(tinta, 0, 0, w, h);
+    // Carimbo na parte de baixo da gravura central, com um respiro de papel
+    // atrás para ler de longe; moldura dupla como a dos carimbos do site.
+    ctx.save();
+    ctx.translate(w * 0.5, h * 0.66);
+    ctx.rotate(-0.14);
+    const bw = w * 0.62;
+    const bh = w * 0.19;
+    ctx.globalAlpha = 0.9;
+    ctx.fillStyle = PAPEL_FOLHA;
+    ctx.fillRect(-bw / 2, -bh / 2, bw, bh);
+    ctx.globalAlpha = 0.95;
+    ctx.strokeStyle = "#c8261d";
+    ctx.fillStyle = "#c8261d";
+    ctx.lineWidth = w * 0.012;
+    ctx.strokeRect(-bw / 2, -bh / 2, bw, bh);
+    ctx.lineWidth = w * 0.005;
+    const gap = w * 0.022;
+    ctx.strokeRect(-bw / 2 + gap, -bh / 2 + gap, bw - gap * 2, bh - gap * 2);
+    ctx.font = `${Math.round(w * 0.12)}px ${stamp}`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("OPERANDO", 0, w * 0.008);
+    ctx.restore();
+    tex.needsUpdate = true;
+  };
+  draw();
+  // A Special Elite não tem preload: se o canvas desenhar antes dela chegar,
+  // sai em fonte genérica. Redesenha quando ela estiver pronta.
+  if (document.fonts?.load) {
+    document.fonts.load(`48px ${stamp}`).then(draw, () => {});
+  }
   return tex;
 }
 
@@ -200,7 +226,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
   const roller = useRef<THREE.Group>(null);
   const sheet = useRef<THREE.Group>(null);
 
-  const [relevo, folhaImg] = useTexture([lite ? "/matriz/relevo-lite.webp" : "/matriz/relevo.webp", lite ? "/matriz/folha-720.webp" : "/matriz/folha-960.webp"]);
+  const [relevo, folhaImg] = useTexture([lite ? "/matriz/relevo-lite.webp" : "/matriz/relevo.webp", "/matriz/tinta.webp"]);
 
   const uniforms = useMemo(() => {
     relevo.colorSpace = THREE.NoColorSpace;
@@ -228,7 +254,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
     const src = (folhaImg as THREE.Texture).image as HTMLImageElement;
     return folhaTexture(src);
   }, [folhaImg]);
-  // Folha: frente impressa (só aparece depois de levantar) e verso de papel amarelo.
+  // Folha: frente impressa (só aparece depois de levantar) e verso de papel-jornal.
   const SX = 40;
   const SY = Math.round(40 * MATRIZ_ASPECT);
   const sheetGeo = useMemo(() => new THREE.PlaneGeometry(BW * 0.97, BH * 0.97, SX, SY), [SY]);
@@ -242,7 +268,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
     folha.repeat.set(-1, 1);
     return new THREE.MeshStandardMaterial({ map: folha, emissiveMap: folha, emissive: "#ffffff", emissiveIntensity: 0.5, roughness: 0.92, side: THREE.BackSide });
   }, [folha]);
-  const sheetPaper = useMemo(() => new THREE.MeshStandardMaterial({ color: "#e9b625", roughness: 0.95, side: THREE.FrontSide }), []);
+  const sheetPaper = useMemo(() => new THREE.MeshStandardMaterial({ color: PAPEL_FOLHA_VERSO, roughness: 0.95, side: THREE.FrontSide }), []);
 
   const rollerParts = useMemo(
     () => ({

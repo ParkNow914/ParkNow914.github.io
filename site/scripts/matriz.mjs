@@ -3,7 +3,6 @@
 //   public/matriz/relevo.webp       altura do entalhe, espelhada (a matriz é o avesso da impressão)
 //   public/matriz/relevo-lite.webp  a mesma, menor, para celular
 //   public/matriz/tinta.webp        a impressão na leitura certa, tinta preta sobre transparente
-//   public/matriz/folha-*.webp      a folha impressa em papel amarelo (pôster sem WebGL e capas)
 //   src/components/machine/matriz-layout.ts   onde cada peça mora na matriz (0..1)
 // Rode depois de trocar qualquer gravura: node scripts/matriz.mjs
 import { chromium } from "playwright";
@@ -149,9 +148,6 @@ const reading = plate({ mirror: false });
 await render(mirrored, 1024, 1331, { mode: "height", quality: 90, name: "relevo.webp" });
 await render(mirrored, 640, 832, { mode: "height", quality: 88, name: "relevo-lite.webp" });
 await render(reading, 1200, 1560, { mode: "ink", quality: 90, name: "tinta.webp" });
-for (const w of [480, 720, 960]) {
-  await render(reading, w, Math.round((w * H) / W), { mode: "sheet", quality: 86, name: `folha-${w}.webp` });
-}
 await browser.close();
 
 // Layout em 0..1 (u da esquerda, v de cima) na leitura da IMPRESSÃO.

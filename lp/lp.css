@@ -31,7 +31,8 @@
 :root {
   /* Papéis de capa de cordel: o amarelo é o padrão; cada landing troca o seu. */
   --ground: #f2c12e;
-  --jornal: #dfdcd1;
+  --jornal: #dadad3;
+  --papel-2: #f2789f;
   --ink: #17130f;
   --ink-2: #2a221b;
   --stamp: #c8261d;
@@ -43,10 +44,12 @@
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
 }
-body[data-papel="rosa"] { --ground: #f2789f; }
-body[data-papel="azul"] { --ground: #93c6e4; }
-body[data-papel="verde"] { --ground: #86c681; }
-body[data-papel="laranja"] { --ground: #f2914a; }
+/* --papel-2 é a segunda matriz de cor: a folha deslocada atrás de cada destaque.
+   É a única "profundidade" das landings; nada de sombra preta. */
+body[data-papel="rosa"] { --ground: #f2789f; --papel-2: #f2c12e; }
+body[data-papel="azul"] { --ground: #93c6e4; --papel-2: #f2789f; }
+body[data-papel="verde"] { --ground: #86c681; --papel-2: #f2c12e; }
+body[data-papel="laranja"] { --ground: #f2914a; --papel-2: #93c6e4; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -71,6 +74,12 @@ body::before {
 
 /* Cabeçalho: faixa de tinta sólida, como a do folheto. */
 header { padding-block: 16px; background: var(--ink); color: var(--ground); }
+header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+/* Para quem é a página, como carimbo no cabeçalho (e não como kicker acima do título). */
+.publico {
+  font-family: var(--carimbo); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--ground); padding: 5px 10px 3px; border: 4px double var(--stamp); transform: rotate(-2deg);
+}
 .marca { display: flex; align-items: center; gap: 10px;
   color: var(--ground); text-decoration: none; width: max-content; }
 .marca svg { width: 26px; height: 26px; display: block; }
@@ -82,14 +91,6 @@ header { padding-block: 16px; background: var(--ink); color: var(--ground); }
 .marca:focus-visible { outline: 3px solid var(--ground); outline-offset: 4px; }
 
 .hero { padding-block: clamp(48px, 8vw, 96px) clamp(48px, 7vw, 80px); }
-/* Selo de folheto: tinta preta com moldura dupla vermelha. O vermelho fica só na
-   moldura porque, como texto pequeno, não passa de 4,5:1 sobre os papéis. */
-.tag {
-  display: inline-block; margin-bottom: 26px;
-  font-family: var(--carimbo); font-size: 0.95rem; font-weight: 400;
-  text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink);
-  padding: 6px 12px 5px; border: 4px double var(--stamp); transform: rotate(-2deg);
-}
 h1 {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(2.35rem, 7.4vw, 4.4rem); line-height: 1.14;
@@ -113,13 +114,13 @@ h1 em {
   background: var(--ink); color: var(--ground);
   font-weight: 750; font-size: 1.08rem; font-family: var(--corpo);
   padding: 17px 28px; border: 3px solid var(--ink); border-radius: 0; text-decoration: none;
-  cursor: pointer; box-shadow: 6px 6px 0 -1px var(--ink-2);
+  cursor: pointer; box-shadow: 7px 7px 0 -1px var(--papel-2);
   transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), background-color 120ms ease, color 120ms ease;
 }
 .cta::after { content: "→"; font-weight: 800; transition: transform 160ms var(--ease); }
-.cta:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 -1px var(--ink-2); }
-.cta:hover::after { transform: translateX(3px); }
-.cta:active { transform: translate(3px, 3px); box-shadow: 0 0 0 0 var(--ink-2); background: var(--ground); color: var(--ink); }
+.cta:hover::after { transform: translateX(4px); }
+/* Pressionar encosta a folha na de baixo e inverte a tinta. */
+.cta:active { transform: translate(3px, 3px); box-shadow: 0 0 0 0 var(--papel-2); background: var(--ground); color: var(--ink); }
 .cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
 .cta-nota { font-size: 0.92rem; color: var(--muted); margin-top: 16px; font-weight: 500; }
 
@@ -131,26 +132,17 @@ h2 {
 }
 .secao-sub { color: var(--muted); margin-bottom: 32px; max-width: 620px; font-weight: 500; }
 
-/* Três capas de cordel lado a lado: papel de jornal, borda de tinta e a sombra
-   dura de uma folha sobre a outra. */
-.grade { display: grid; gap: 22px;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
-.cartao {
-  background: var(--jornal); padding: 24px 22px 26px; min-width: 0;
-  border: 3px solid var(--ink); box-shadow: 9px 9px 0 -3px var(--ink);
+.folha-lista {
+  background: var(--jornal); border: 3px solid var(--ink); padding: 6px 26px;
+  box-shadow: 12px 12px 0 -3px var(--papel-2); max-width: 760px;
 }
-.cartao:nth-child(2) { transform: rotate(0.6deg); }
-.cartao:nth-child(3) { transform: rotate(-0.5deg); }
-.cartao .n {
-  font-family: var(--carimbo); font-size: 1rem; color: var(--ink);
-  letter-spacing: 0.04em; display: inline-block; margin-bottom: 14px;
-  padding: 2px 8px; border: 3px double var(--stamp);
-}
-.cartao h3 {
+.folha-lista .item { padding: 22px 0 24px; min-width: 0; }
+.folha-lista .item + .item { border-top: 3px solid var(--ink); }
+.folha-lista h3 {
   font-family: var(--display); font-weight: 400;
-  font-size: 1.4rem; line-height: 1.08; margin-bottom: 10px;
+  font-size: 1.45rem; line-height: 1.1; margin-bottom: 8px;
 }
-.cartao p { color: var(--ink-2); font-size: 0.99rem; }
+.folha-lista p { color: var(--ink-2); font-size: 1rem; }
 
 ul.lista { list-style: none; display: grid; gap: 14px; }
 ul.lista li { padding-left: 30px; position: relative; color: var(--muted); font-weight: 500; }
@@ -167,11 +159,11 @@ details {
 summary { cursor: pointer; font-weight: 750; color: var(--text); }
 summary::marker { color: var(--ink); }
 summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
-details[open] { box-shadow: 7px 7px 0 -2px var(--ink); }
+details[open] { box-shadow: 8px 8px 0 -2px var(--papel-2); }
 details p { color: var(--ink-2); margin-top: 12px; }
 
 .quem { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
-.quem img { border: 3px solid var(--ink); box-shadow: 7px 7px 0 -2px var(--ink); filter: grayscale(1) contrast(1.15); }
+.quem img { border: 3px solid var(--ink); box-shadow: 8px 8px 0 -2px var(--papel-2); filter: grayscale(1) contrast(1.15); }
 .quem div { flex: 1 1 300px; min-width: 0; }
 
 footer { padding-block: 40px 56px; background: var(--ink); color: var(--ground); font-size: 0.95rem; }

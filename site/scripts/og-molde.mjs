@@ -16,10 +16,12 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, 
  * `print: true` vira a tela real de um sistema, colada como recorte.
  * `papel` troca a cor da folha (as mesmas do site).
  */
-export function pagina({ kicker, titulo, lede, rodape, secao = "Notas de campo", fig = "public/matriz/folha-720.webp", print = false, papel = "#f2c12e" }) {
+export function pagina({ kicker, titulo, lede, rodape, secao = "Notas de campo", fig = "public/matriz/tinta.webp", print = false, papel = "#f2c12e" }) {
   const tamanho = titulo.length > 46 ? 58 : titulo.length > 30 ? 68 : 80;
   const figW = print ? 470 : 330;
   const mainW = print ? 600 : 690;
+  // Segunda matriz de cor: a folha deslocada atrás da gravura, sempre outro papel.
+  const segunda = papel === "#f2789f" ? "#f2c12e" : "#f2789f";
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>
 @font-face{font-family:Alfa;src:url(${url("src/fonts/alfa.woff2")}) format("woff2")}
 @font-face{font-family:Archivo;src:url(${url("src/fonts/archivo.woff2")}) format("woff2");font-weight:400 800}
@@ -32,13 +34,13 @@ body{position:relative;overflow:hidden;background:${papel};color:#17130f;font-fa
 .head{position:absolute;left:66px;right:66px;top:56px;display:flex;align-items:center;gap:18px}
 .brand{font-family:Alfa;font-size:30px;letter-spacing:.02em}
 .doc{padding-left:18px;border-left:3px solid #17130f;font-weight:650;font-size:17px}
-.kicker{margin-left:auto;font-family:Elite;font-size:18px;color:#c8261d;text-transform:uppercase;letter-spacing:.04em;
-  padding:6px 12px;border:3px double #c8261d;transform:rotate(-3deg)}
+.kicker{margin-left:auto;font-family:Elite;font-size:19px;color:#6b130c;text-transform:uppercase;letter-spacing:.04em;
+  padding:6px 12px;border:4px double #c8261d;transform:rotate(-3deg)}
 .fig{position:absolute;right:70px;top:118px;width:${figW}px;height:408px;display:flex;align-items:center;justify-content:center}
-.fig img{max-width:100%;max-height:100%;border:3px solid #17130f;box-shadow:12px 12px 0 -3px #17130f;transform:rotate(${print ? "-1.6" : "2.4"}deg);background:#f2c12e}
+.fig img{max-width:100%;max-height:100%;border:3px solid #17130f;box-shadow:14px 14px 0 -3px ${segunda};transform:rotate(${print ? "-1.6" : "2.4"}deg);background:#dadad3}
 .main{position:absolute;left:66px;top:112px;bottom:104px;width:${mainW}px;display:flex;flex-direction:column;justify-content:center}
 h1{font-family:Alfa;font-weight:400;font-size:${tamanho}px;line-height:.98;letter-spacing:-.005em;text-wrap:balance;filter:url(#entalhe)}
-.lede{margin-top:26px;padding-left:20px;border-left:7px solid #17130f;font-size:23px;font-weight:650;line-height:1.32;max-width:${mainW - 50}px}
+.lede{margin-top:26px;font-size:25px;font-weight:700;line-height:1.3;max-width:${mainW - 50}px}
 .foot{position:absolute;left:66px;right:66px;bottom:54px;display:flex;justify-content:space-between;align-items:center}
 .foot span{font-family:Elite;font-size:18px}
 .foot b{font-family:Archivo;font-weight:800;font-size:19px;background:#17130f;color:${papel};padding:8px 16px;letter-spacing:.01em}

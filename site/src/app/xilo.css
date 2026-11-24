@@ -13,7 +13,7 @@
   --papel-azul: #93c6e4;
   --papel-verde: #86c681;
   --papel-laranja: #f2914a;
-  --papel-jornal: #dfdcd1;
+  --papel-jornal: #dadad3;
 
   --ink: #17130f;
   --ink-2: #241c16;
@@ -40,12 +40,12 @@
   --f-body: var(--font-text), "Segoe UI", system-ui, sans-serif;
   --f-mono: var(--font-stamp), "Courier New", monospace;
 
-  --fs-display: clamp(2.35rem, 1.1rem + 3.9vw, 5.1rem);
+  --fs-display: clamp(2.35rem, 1.1rem + 3.9vw, min(5.1rem, 8.4vh));
   --fs-h2: clamp(2rem, 1.25rem + 2.6vw, 3.9rem);
   --fs-h3: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
 
   /* Falhas de tinta: o rolo não pega igual em toda a madeira. */
-  --falha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 7.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --falha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .035' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 8.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
   /* Fibra de papel jornal. */
   --fibra: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .5' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
 }
@@ -114,8 +114,9 @@ a {
   filter: url(#entalhe);
   -webkit-mask-image: var(--falha);
   mask-image: var(--falha);
-  -webkit-mask-size: 220px;
-  mask-size: 220px;
+  /* Em em: a falha acompanha o corpo da letra e não salpica o título no celular. */
+  -webkit-mask-size: 4em;
+  mask-size: 4em;
 }
 .cover__title {
   font-size: var(--fs-display);
@@ -257,7 +258,6 @@ a {
   .btn--signal:hover,
   .btn--ink:hover {
     background: var(--signal-hover);
-    transform: translateY(-2px);
   }
   .rh .btn--signal:hover {
     background: #f6d059;
@@ -280,7 +280,7 @@ a {
   border-radius: 0;
   box-shadow: none;
   padding: 10px 0 8px;
-  max-width: 420px;
+  max-width: none;
 }
 .plate__rivet {
   display: none;
@@ -377,7 +377,7 @@ a {
   font: 400 12px var(--f-mono);
 }
 .fig__poster {
-  filter: drop-shadow(10px 14px 0 color-mix(in oklab, var(--ink), transparent 82%));
+  filter: none;
 }
 
 /* --- montagem: passos e lista de peças ---------------------------------- */
@@ -434,12 +434,14 @@ a {
   background: transparent;
   -webkit-mask-image: var(--falha);
   mask-image: var(--falha);
-  -webkit-mask-size: 160px;
-  mask-size: 160px;
+  -webkit-mask-size: 9em;
+  mask-size: 9em;
 }
+/* Verde de operação só na moldura: como texto pequeno ele não passa de 3,9:1. */
 .stamp--producao,
 .stamp--ok {
-  color: var(--run);
+  color: var(--ink);
+  border-color: var(--run);
 }
 .stamp--proprio {
   color: var(--ink);
@@ -459,7 +461,10 @@ a {
   background: var(--capa);
   border: 3px solid var(--ink);
   padding: clamp(18px, 2.4vw, 32px);
-  box-shadow: 12px 12px 0 -3px var(--ink);
+  /* Profundidade por sobreposição: uma segunda folha de outro papel, deslocada
+     como uma matriz de cor fora de registro. Nada de sombra preta. */
+  --capa-2: var(--papel-rosa);
+  box-shadow: 12px 12px 0 -3px var(--capa-2);
   color: var(--ink);
 }
 .sheet:nth-of-type(5n + 2) {
@@ -602,7 +607,7 @@ a {
   color: #17130f;
   border: 0;
   transform: rotate(-1.2deg);
-  box-shadow: 14px 16px 0 -2px color-mix(in oklab, var(--papel-amarelo), transparent 70%);
+  box-shadow: 14px 16px 0 -2px var(--papel-rosa);
 }
 .os .btn--signal {
   background: #17130f;
@@ -687,3 +692,81 @@ a {
   border: 0;
   background: none;
 }
+
+/* --- auditoria de 24/11 ---------------------------------------------------- */
+
+/* Segunda folha das capas em rodízio, sempre um papel diferente da capa. */
+/* Nunca azul: a seção dos sistemas já é papel azul. */
+.sheet:nth-of-type(5n + 1) { --capa-2: var(--papel-rosa); }
+.sheet:nth-of-type(5n + 2) { --capa-2: var(--papel-amarelo); }
+.sheet:nth-of-type(5n + 3) { --capa-2: var(--papel-laranja); }
+.sheet:nth-of-type(5n + 4) { --capa-2: var(--papel-verde); }
+.sheet:nth-of-type(5n + 5) { --capa-2: var(--papel-rosa); }
+
+/* Em seção de tinta, o carimbo vira rosa: o vermelho-sangue some no preto. */
+.sec--signal,
+.colophon,
+.nota__cta,
+.nota-pag .nota__cta {
+  --stamp-ink: var(--papel-rosa);
+}
+
+/* Ficha do folheto: faixa horizontal, dentro da primeira dobra. */
+.cover {
+  justify-content: flex-start;
+  padding-top: calc(var(--header-h) + clamp(24px, 4.5vh, 56px));
+}
+.plate__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5em, 1fr));
+  gap: 0;
+}
+.plate__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px 8px 0;
+  border-bottom: 0;
+  border-right: 2px solid var(--ink);
+  margin-right: 12px;
+}
+.plate__row:last-child {
+  border-right: 0;
+}
+.plate dd {
+  font-size: 1.15rem;
+}
+
+/* A fileira de peças fica por cima da prancha, mesmo com a folha impressa. */
+.fig__parts {
+  z-index: 3;
+}
+
+/* Celular: a marca no cabeçalho diz quem é; o nome da seção some. */
+@media (max-width: 600px) {
+  .rh__name {
+    display: inline;
+  }
+  .rh__sec {
+    display: none;
+  }
+}
+
+/* Sons do atendimento impressos em letra de madeira: maiores quanto mais alto. */
+.step__som {
+  margin: 0.15em 0 0.35em;
+  font-family: var(--f-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  transform: rotate(-3deg);
+  transform-origin: left center;
+  -webkit-mask-image: var(--falha);
+  mask-image: var(--falha);
+  -webkit-mask-size: 4em;
+  mask-size: 4em;
+}
+.step__som[data-nivel="1"] { font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.3rem); }
+.step__som[data-nivel="2"] { font-size: clamp(2.1rem, 1.5rem + 1.8vw, 3.2rem); }
+.step__som[data-nivel="3"] { font-size: clamp(2.7rem, 1.9rem + 2.6vw, 4.4rem); }

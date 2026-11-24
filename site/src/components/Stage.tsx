@@ -122,8 +122,8 @@ export function Stage() {
         <FigFrame inline />
         <div className="plate">
           <p className="plate__head">
-            <span>Plaqueta de identificação</span>
-            <span className="plate__model">mod. 2026.09</span>
+            <span>Ficha do folheto</span>
+            <span className="plate__model">Folha 1</span>
           </p>
           <dl className="plate__list">
             {COVER.plate.map((r) => (
@@ -185,6 +185,12 @@ export function Stage() {
                 </span>
                 {s.title}
               </h3>
+              {"som" in s && s.som ? (
+                // O barulho do atendimento, maior quanto mais alto. Decorativo.
+                <p className="step__som" data-nivel={s.som.nivel} aria-hidden="true">
+                  {s.som.texto}
+                </p>
+              ) : null}
               {s.parts.length ? (
                 <p className="step__parts">
                   {s.parts.map((n) => (
