@@ -714,7 +714,7 @@ a {
 /* Ficha do folheto: faixa horizontal, dentro da primeira dobra. */
 .cover {
   justify-content: flex-start;
-  padding-top: calc(var(--header-h) + clamp(24px, 4.5vh, 56px));
+  padding-top: calc(var(--header-h) + clamp(16px, 3vh, 44px));
 }
 .plate__list {
   display: grid;
@@ -752,6 +752,9 @@ a {
 }
 @media (max-width: 600px) {
   .cover__title {
+    /* Entalhe mais fino no celular: o deslocamento é medido em px e pesaria
+       demais na letra menor. */
+    filter: url(#entalhe-sm);
     -webkit-mask-size: 6em;
     mask-size: 6em;
   }

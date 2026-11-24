@@ -67,6 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="4" />
             <feDisplacementMap in="SourceGraphic" scale="2.6" />
           </filter>
+          <filter id="entalhe-sm" x="-2%" y="-4%" width="104%" height="108%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.07" numOctaves="2" seed="4" />
+            <feDisplacementMap in="SourceGraphic" scale="1.4" />
+          </filter>
         </svg>
         <a className="skip" href="#conteudo">
           Pular para o conteúdo
