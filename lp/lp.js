@@ -25,7 +25,7 @@
       var partes = ["utm_source", "utm_campaign", "utm_content"]
         .map(function (k) { return q.get(k); })
         .filter(Boolean);
-      return partes.length ? " [" + partes.join("/") + "]" : "";
+      return partes.length ? "\n\n[" + partes.join("/") + "]" : "";
     } catch (e) { return ""; }
   }
 

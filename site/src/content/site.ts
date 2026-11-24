@@ -10,8 +10,15 @@ export const LINKEDIN = "https://www.linkedin.com/in/alisson-santos-70a327270";
 export const SITE_URL = "https://autarktech.com.br";
 export const REVISION = "Rev. 2026.11";
 
+/**
+ * Roteiro que vai junto em toda mensagem pronta do site. O WhatsApp do Alisson é
+ * o pessoal (sem resposta automática), então a pergunta é feita antes: o cliente
+ * completa as três linhas e a conversa já chega com o pedido inteiro.
+ */
+export const ROTEIRO = "\n\nMeu negócio e cidade: \nComo chegam os pedidos hoje: \nO que mais toma o meu tempo: ";
+
 export function wa(text: string) {
-  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text + ROTEIRO)}`;
 }
 
 export const WA_DEFAULT = wa("Olá Alisson! Vi o site da Autark e quero conversar sobre um projeto.");
