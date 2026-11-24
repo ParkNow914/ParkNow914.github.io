@@ -146,6 +146,8 @@ a {
 .sec,
 .stage {
   border-image: conic-gradient(var(--ground) 0 0) fill 0 // 0 100vw;
+  /* Mesmo papel como cor de fundo real, para a auditoria de contraste enxergar. */
+  background-color: var(--ground);
   color: var(--ink);
 }
 .sec {
@@ -625,6 +627,9 @@ a {
 .colophon {
   --ground: var(--ink);
   border-image: conic-gradient(var(--ink) 0 0) fill 0 // 0 100vw;
+  /* Cor de fundo real além do border-image: a auditoria de contraste não lê o
+     border-image e media o texto amarelo contra o papel da página. */
+  background-color: var(--ink);
   color: var(--papel-amarelo);
   --ink-3: #e8c34d;
 }
