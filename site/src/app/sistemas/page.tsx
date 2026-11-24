@@ -8,7 +8,7 @@ import { SITE_URL, STATUS_LABEL, SYSTEMS, SYSTEMS_INTRO } from "@/content/site";
 import { AUTHOR, PUBLISHER } from "@/content/jsonld";
 
 const descricao =
-  "Nove sistemas da Autark, com o contexto de cada projeto: entregas para clientes, produtos próprios e demonstrações de agenda, delivery, CRM, IA e integrações.";
+  "Dez sistemas da Autark, com o contexto de cada projeto: entregas para clientes, produtos próprios e demonstrações de agenda, delivery, CRM, IA e integrações.";
 
 export const metadata: Metadata = {
   title: "Projetos e sistemas · Autark",

@@ -61,9 +61,9 @@ export const COVER = {
   plate: [
     { k: "Fabricante", v: "Alisson Santos" },
     { k: "Avaliação", v: "5.0 no 99freelas", star: true },
-    { k: "Recomendação", v: "12 no 99freelas" },
-    { k: "Projetos concluídos", v: "12 no 99freelas" },
-    { k: "No portfólio", v: "9 sistemas" },
+    { k: "Recomendação", v: "13 no 99freelas" },
+    { k: "Projetos concluídos", v: "14 no 99freelas" },
+    { k: "No portfólio", v: "10 sistemas" },
   ],
 };
 
@@ -448,6 +448,31 @@ export const SYSTEMS: System[] = [
     stack: ["Next.js", "Drizzle", "PostgreSQL", "RLS multi-tenant", "2FA TOTP"],
     actions: [{ label: "Pedir acesso à demo", href: wa("Olá Alisson! Quero ver a demo do Acerto."), kind: "chat" }],
   },
+  {
+    code: "SYS-10",
+    slug: "autark-barber",
+    name: "Autark Barber",
+    kind: "SaaS · barbearias e redes",
+    status: "proprio",
+    metric: "plano grátis para 1 unidade",
+    image: "/projetos/autark-barber.webp",
+    imageW: 1200,
+    imageH: 744,
+    feature: true,
+    body:
+      "Sistema para barbearias e redes, nascido de duas dores vistas numa rede do Vale: o cliente agendado que perde o barbeiro para outro marcado no mesmo horário, e o caixa que ninguém consegue largar a cadeira para fechar. A agenda é travada no próprio banco, por pessoa, e o barbeiro cobra no celular com a cota-parte dividida na hora.",
+    spec: [
+      { k: "Agenda", v: "Trava por barbeiro no Postgres (EXCLUDE USING gist)" },
+      { k: "Cobrança", v: "Pix com QR na cadeira, cota-parte da Lei 13.352" },
+      { k: "WhatsApp", v: "Lembretes, fila de encaixe e recepcionista com IA" },
+      { k: "Testes", v: "70 de domínio e 11 ponta a ponta" },
+    ],
+    stack: ["Next.js", "React 19", "PostgreSQL", "Claude", "Web Push", "Three.js"],
+    actions: [
+      { label: "Abrir o sistema", href: "https://cadeira-zeta.vercel.app", kind: "demo" },
+      { label: "Ver um agendamento de exemplo", href: "https://cadeira-zeta.vercel.app/b/jovem-barber", kind: "demo" },
+    ],
+  },
 ];
 
 export const PROOFS = {
@@ -480,6 +505,11 @@ export const PROOFS = {
 };
 
 export const OTHER_WORK = [
+  {
+    name: "Bot de WhatsApp para clínica on-line",
+    body: "Atendimento automático no WhatsApp de uma clínica que atende on-line, com o provedor definido antes do código: número próprio na API oficial ou coexistência por um parceiro da Meta.",
+    date: "nov/2026",
+  },
   {
     name: "KineQuote: banco multiempresa isolado",
     body: "Postgres no Supabase com RLS forçado por empresa e uma suíte automatizada que tenta ler, inserir e alterar dados de outra empresa, e precisa falhar em todas.",
@@ -547,10 +577,10 @@ export const SIZING = {
 };
 
 export const FIELD = {
-  /** Conferido no perfil público do 99freelas em 02/11/2026: 12 avaliações, nota 5.0, 12 recomendações, 12 projetos concluídos. */
-  reviews: 12,
+  /** Conferido no perfil público do 99freelas em 23/11/2026: 13 avaliações, nota 5.0, 13 recomendações, 14 projetos concluídos. */
+  reviews: 13,
   intro:
-    "Doze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
+    "Treze avaliações no 99freelas, todas 5.0, com 100% de recomendação. Seis estão abaixo, copiadas como o cliente escreveu, e dá para conferir todas no perfil público.",
   items: [
     {
       quote:

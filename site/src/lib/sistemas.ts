@@ -15,6 +15,7 @@ const PROJETOS: Record<string, string[]> = {
   "SYS-07": ["RealCred+"],
   "SYS-08": ["Índice de Gestão"],
   "SYS-09": ["Acerto"],
+  "SYS-10": ["Autark Barber"],
 };
 
 export function sistema(slug: string): System | undefined {

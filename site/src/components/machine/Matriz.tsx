@@ -284,9 +284,12 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
     if (!r || !t) return;
     const delta = Math.min(dt, 1 / 20);
 
-    // 1. Progresso, amortecido para o scrub parecer físico.
+    // 1. Progresso, amortecido para o scrub parecer físico. Aqui o passo segue o
+    // relógio de verdade (até meio segundo por quadro): num aparelho que só
+    // consegue 2 quadros por segundo a montagem ainda chega ao fim no tempo do
+    // scroll, em vez de ficar presa a 50 ms por quadro.
     const target = machine.reduced ? STEP_COUNT : machine.target;
-    st.a = machine.reduced ? target : THREE.MathUtils.damp(st.a, target, 5, delta);
+    st.a = machine.reduced ? target : THREE.MathUtils.damp(st.a, target, 5, Math.min(dt, 0.5));
     const a = st.a;
     machine.current = a;
     if (Math.abs(a - st.lastEmit) > 0.002) {

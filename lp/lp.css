@@ -1,173 +1,188 @@
-/* Estilo comum das landings de anúncio, no sistema do Manual de Operação, a
-   mesma linguagem da home (autarktech.com.br): papel grafite com grade
-   pontilhada, título em Hubot Sans condensada e o laranja de sinalização como
-   único acento. Quem clica no anúncio e depois vai para a home não troca de
-   marca no caminho.
+/* Estilo comum das landings de anúncio, no mesmo mundo da home
+   (autarktech.com.br): o folheto da oficina de xilogravura. Tinta preta de rolo
+   sobre papel de capa de cordel, uma cor de papel por landing (data-papel no
+   <body>), wood type pesado nos títulos e carimbo só para o que é selo. Quem
+   clica no anúncio e depois vai para a home não troca de marca no caminho.
 
-   Arquivo separado, e não inline: são quatro páginas irmãs, e inline
-   significaria manter o mesmo CSS em quatro lugares. Mesma origem, então a CSP
-   não muda.
+   Arquivo separado, e não inline: são quatro páginas irmãs. Mesma origem, então
+   a CSP não muda.
 
-   Os nomes das variáveis (--text, --muted...) são os da versão anterior de
-   propósito: o HTML das quatro páginas usa alguns deles em style inline. */
+   Os nomes --text e --muted continuam existindo de propósito: o HTML das quatro
+   páginas usa os dois em style inline. */
 
-/* Fontes do site, as mesmas de site/src/fonts, com as licenças OFL em
-   assets/fonts/. Variáveis: um arquivo cobre a faixa de peso e largura.
-   Hubot e Mona vêm com preload no HTML e usam "block": o texto espera a fonte
-   por um instante em vez de aparecer em Arial e pular quando ela chega. Com
-   swap, o título condensado quebrava em outra quantidade de linhas e a página
-   inteira descia (CLS de até 0,28 no celular); com block fica abaixo de 0,06. */
-@font-face { font-family: "Hubot Sans"; src: url("/assets/fonts/hubot.woff2") format("woff2");
-  font-weight: 600 900; font-stretch: 75% 100%; font-display: block; }
-@font-face { font-family: "Mona Sans"; src: url("/assets/fonts/mona.woff2") format("woff2");
-  font-weight: 400 700; font-display: block; }
-@font-face { font-family: "Martian Mono"; src: url("/assets/fonts/martian.woff2") format("woff2");
-  font-weight: 400 600; font-stretch: 87.5% 100%; font-display: swap; }
+/* Fontes do site (as mesmas de site/src/fonts), com as licenças em assets/fonts/.
+   Alfa e Archivo vêm com preload no HTML e usam "block": o texto espera a fonte
+   por um instante em vez de aparecer em Arial e pular quando ela chega. */
+@font-face { font-family: "Alfa Slab One"; src: url("/assets/fonts/alfa.woff2") format("woff2");
+  font-weight: 400; font-display: block; }
+@font-face { font-family: "Archivo"; src: url("/assets/fonts/archivo.woff2") format("woff2");
+  font-weight: 400 800; font-display: block; }
+@font-face { font-family: "Special Elite"; src: url("/assets/fonts/elite.woff2") format("woff2");
+  font-weight: 400; font-display: swap; }
 /* Fallback com as métricas da fonte real (as mesmas que o next/font gera para o
-   site): enquanto a fonte não chega, o Arial ocupa o mesmo espaço e a página não
-   pula na troca. */
-@font-face { font-family: "Hubot Fallback"; src: local("Arial");
-  ascent-override: 138.25%; descent-override: 40.59%; line-gap-override: 0%; size-adjust: 78.84%; }
-@font-face { font-family: "Mona Fallback"; src: local("Arial");
-  ascent-override: 103.98%; descent-override: 30.53%; line-gap-override: 0%; size-adjust: 104.83%; }
-@font-face { font-family: "Martian Fallback"; src: local("Arial");
-  ascent-override: 65.19%; descent-override: 13.04%; line-gap-override: 0%; size-adjust: 153.41%; }
+   site): enquanto a fonte não chega, o Arial ocupa o mesmo espaço. */
+@font-face { font-family: "Alfa Fallback"; src: local("Arial");
+  ascent-override: 85.41%; descent-override: 27.45%; line-gap-override: 0%; size-adjust: 121.3%; }
+@font-face { font-family: "Archivo Fallback"; src: local("Arial");
+  ascent-override: 85.41%; descent-override: 20.43%; line-gap-override: 0%; size-adjust: 102.8%; }
+@font-face { font-family: "Elite Fallback"; src: local("Arial");
+  ascent-override: 60.23%; descent-override: 25.43%; line-gap-override: 0%; size-adjust: 116.74%; }
 
 :root {
-  --bg: #15181b;
-  --bg-alto: #1b1f23;
-  --text: #ece7dc;
-  --muted: #c6c1b6;
-  --dim: #969188;
-  --accent: #ff5a1f;
-  --accent-strong: #ff5a1f;
-  --accent-ink: #15181b;
-  --borda: #2c3238;
-  --borda-forte: #465058;
-  --superficie: #1b1f23;
-  --display: "Hubot Sans", "Hubot Fallback", "Arial Narrow", sans-serif;
-  --corpo: "Mona Sans", "Mona Fallback", system-ui, sans-serif;
-  --mono: "Martian Mono", "Martian Fallback", ui-monospace, monospace;
-  color-scheme: dark;
+  /* Papéis de capa de cordel: o amarelo é o padrão; cada landing troca o seu. */
+  --ground: #f2c12e;
+  --jornal: #dfdcd1;
+  --ink: #17130f;
+  --ink-2: #2a221b;
+  --stamp: #c8261d;
+  --text: var(--ink);
+  --muted: var(--ink-2);
+  --display: "Alfa Slab One", "Alfa Fallback", Rockwell, serif;
+  --corpo: "Archivo", "Archivo Fallback", system-ui, sans-serif;
+  --carimbo: "Special Elite", "Elite Fallback", "Courier New", monospace;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: light;
 }
+body[data-papel="rosa"] { --ground: #f2789f; }
+body[data-papel="azul"] { --ground: #93c6e4; }
+body[data-papel="verde"] { --ground: #86c681; }
+body[data-papel="laranja"] { --ground: #f2914a; }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background-color: var(--bg);
-  background-image: radial-gradient(circle, rgb(236 231 220 / 0.07) 1px, transparent 1.3px);
-  background-size: 22px 22px;
-  color: var(--text); font-family: var(--corpo);
+  background-color: var(--ground);
+  color: var(--text); font-family: var(--corpo); font-synthesis: none;
   line-height: 1.6; -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-/* O brilho de fundo da versão anterior saiu: o manual não usa glow. */
+/* Fibra do papel: ruído fixo, multiplicado sobre a cor. Uma camada só, sem
+   imagem extra para baixar. */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  opacity: 0.16; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.06' numOctaves='3' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 0 0 0 1.4 -.35'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url%28%23f%29'/%3E%3C/svg%3E");
+}
 .fx { display: none; }
 
 /* padding-inline, e não o atalho "padding: 0 20px": toda seção é também
-   .container, e o atalho zerava o padding-block dela. Era por isso que cada
-   título encostava no bloco de cima. */
+   .container, e o atalho zerava o padding-block dela. */
 .container { width: 100%; max-width: 980px; margin: 0 auto; padding-inline: 20px; }
 
-header { padding-block: 22px; border-bottom: 1px solid var(--borda); }
+/* Cabeçalho: faixa de tinta sólida, como a do folheto. */
+header { padding-block: 16px; background: var(--ink); color: var(--ground); }
 .marca { display: flex; align-items: center; gap: 10px;
-  color: var(--text); text-decoration: none; width: max-content; }
+  color: var(--ground); text-decoration: none; width: max-content; }
 .marca svg { width: 26px; height: 26px; display: block; }
-/* Na interface a marca vai em tinta, como no cabeçalho da home; o gradiente do
-   logo fica para o ícone da aba. */
 .marca svg path { fill: currentColor; }
 .marca span {
-  font-family: var(--display); font-weight: 850; font-stretch: 75%;
-  font-size: 1.45rem; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1;
+  font-family: var(--display); font-weight: 400;
+  font-size: 1.4rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1;
 }
-.marca:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.marca:focus-visible { outline: 3px solid var(--ground); outline-offset: 4px; }
 
-.hero { padding-block: clamp(56px, 9vw, 104px) clamp(48px, 7vw, 80px); }
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(48px, 7vw, 80px); }
+/* Selo de folheto: tinta preta com moldura dupla vermelha. O vermelho fica só na
+   moldura porque, como texto pequeno, não passa de 4,5:1 sobre os papéis. */
 .tag {
-  font-family: var(--mono); font-stretch: 87.5%; font-size: 0.8rem; font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
-  display: block; margin-bottom: 20px;
+  display: inline-block; margin-bottom: 26px;
+  font-family: var(--carimbo); font-size: 0.95rem; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink);
+  padding: 6px 12px 5px; border: 4px double var(--stamp); transform: rotate(-2deg);
 }
 h1 {
-  font-family: var(--display); font-weight: 850; font-stretch: 75%;
-  font-size: clamp(2.7rem, 8.4vw, 5rem); line-height: 0.92;
-  letter-spacing: -0.015em; text-wrap: balance; margin-bottom: 26px;
-  max-width: 17ch;
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(2.35rem, 7.4vw, 4.4rem); line-height: 1.02;
+  letter-spacing: -0.005em; text-wrap: balance; margin-bottom: 26px;
+  max-width: 18ch;
 }
-h1 em { font-style: normal; color: var(--accent); }
+/* A ênfase é um bloco entalhado ao contrário: papel sobre tinta. */
+h1 em {
+  font-style: normal; background: var(--ink); color: var(--ground);
+  padding: 0 0.14em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
 .sub {
   font-size: clamp(1.08rem, 2.6vw, 1.3rem); color: var(--muted); line-height: 1.55;
-  max-width: 620px; text-wrap: pretty; margin-bottom: 34px;
+  max-width: 620px; text-wrap: pretty; margin-bottom: 34px; font-weight: 500;
 }
-.sub strong { color: var(--text); font-weight: 650; }
+.sub strong { color: var(--text); font-weight: 750; }
 
-/* O botão da home: laranja de sinalização com tinta grafite (5,7:1). */
+/* O botão é um bloco de tinta sólida que inverte para papel ao pressionar. */
 .cta {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--accent-strong); color: var(--accent-ink);
-  font-weight: 700; font-size: 1.06rem; font-family: var(--corpo);
-  padding: 16px 28px; border-radius: 2px; text-decoration: none;
-  border: 0; cursor: pointer;
-  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease;
+  background: var(--ink); color: var(--ground);
+  font-weight: 750; font-size: 1.08rem; font-family: var(--corpo);
+  padding: 17px 28px; border: 3px solid var(--ink); border-radius: 0; text-decoration: none;
+  cursor: pointer; box-shadow: 6px 6px 0 -1px var(--ink-2);
+  transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), background-color 120ms ease, color 120ms ease;
 }
-.cta:hover { background: #ff7040; }
-.cta:active { transform: scale(0.97); }
-.cta:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
-.cta-nota { font-size: 0.9rem; color: var(--dim); margin-top: 14px; }
+.cta::after { content: "→"; font-weight: 800; transition: transform 160ms var(--ease); }
+.cta:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 -1px var(--ink-2); }
+.cta:hover::after { transform: translateX(3px); }
+.cta:active { transform: translate(3px, 3px); box-shadow: 0 0 0 0 var(--ink-2); background: var(--ground); color: var(--ink); }
+.cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
+.cta-nota { font-size: 0.92rem; color: var(--muted); margin-top: 16px; font-weight: 500; }
 
-section { padding-block: clamp(56px, 8vw, 88px); border-top: 1px solid var(--borda); }
+section { padding-block: clamp(56px, 8vw, 88px); border-top: 4px solid var(--ink); }
 h2 {
-  font-family: var(--display); font-weight: 850; font-stretch: 75%;
-  font-size: clamp(2rem, 5.4vw, 3.1rem); line-height: 0.95;
-  letter-spacing: -0.01em; margin-bottom: 16px; text-wrap: balance;
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.04;
+  letter-spacing: 0; margin-bottom: 16px; text-wrap: balance;
 }
-.secao-sub { color: var(--muted); margin-bottom: 32px; max-width: 620px; }
+.secao-sub { color: var(--muted); margin-bottom: 32px; max-width: 620px; font-weight: 500; }
 
-.grade { display: grid; gap: 1px; background: var(--borda); border: 1px solid var(--borda);
+/* Três capas de cordel lado a lado: papel de jornal, borda de tinta e a sombra
+   dura de uma folha sobre a outra. */
+.grade { display: grid; gap: 22px;
   grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
-/* Uma ficha por coisa que muda, lado a lado como colunas de uma tabela, e não
-   cartões soltos com sombra. */
-.cartao { background: var(--bg-alto); padding: 26px 24px 28px; min-width: 0; }
+.cartao {
+  background: var(--jornal); padding: 24px 22px 26px; min-width: 0;
+  border: 3px solid var(--ink); box-shadow: 9px 9px 0 -3px var(--ink);
+}
+.cartao:nth-child(2) { transform: rotate(0.6deg); }
+.cartao:nth-child(3) { transform: rotate(-0.5deg); }
 .cartao .n {
-  font-family: var(--mono); font-stretch: 87.5%; font-weight: 600; font-size: 0.8rem;
-  color: var(--accent); letter-spacing: 0.06em; display: block; margin-bottom: 14px;
+  font-family: var(--carimbo); font-size: 1rem; color: var(--ink);
+  letter-spacing: 0.04em; display: inline-block; margin-bottom: 14px;
+  padding: 2px 8px; border: 3px double var(--stamp);
 }
 .cartao h3 {
-  font-family: var(--display); font-weight: 800; font-stretch: 80%;
-  font-size: 1.45rem; line-height: 1; margin-bottom: 10px;
+  font-family: var(--display); font-weight: 400;
+  font-size: 1.4rem; line-height: 1.08; margin-bottom: 10px;
 }
-.cartao p { color: var(--muted); font-size: 0.98rem; }
+.cartao p { color: var(--ink-2); font-size: 0.99rem; }
 
 ul.lista { list-style: none; display: grid; gap: 14px; }
-ul.lista li { padding-left: 28px; position: relative; color: var(--muted); }
+ul.lista li { padding-left: 30px; position: relative; color: var(--muted); font-weight: 500; }
 ul.lista li::before {
-  content: ""; position: absolute; left: 3px; top: 0.62em;
-  width: 9px; height: 9px; background: var(--accent);
+  content: ""; position: absolute; left: 2px; top: 0.5em;
+  width: 13px; height: 13px; background: var(--ink); transform: rotate(45deg);
 }
-ul.lista li strong { color: var(--text); font-weight: 650; }
+ul.lista li strong { color: var(--text); font-weight: 750; }
 
 details {
-  border: 1px solid var(--borda-forte); border-radius: 2px;
-  padding: 16px 20px; margin-bottom: 10px; background: var(--superficie);
+  border: 3px solid var(--ink); padding: 16px 20px; margin-bottom: 12px;
+  background: var(--jornal);
 }
-summary { cursor: pointer; font-weight: 650; color: var(--text); }
-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-details[open] summary { color: var(--accent); }
-details p { color: var(--muted); margin-top: 12px; }
+summary { cursor: pointer; font-weight: 750; color: var(--text); }
+summary::marker { color: var(--ink); }
+summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+details[open] { box-shadow: 7px 7px 0 -2px var(--ink); }
+details p { color: var(--ink-2); margin-top: 12px; }
 
 .quem { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
-.quem img { border-radius: 2px; border: 1px solid var(--borda-forte); }
+.quem img { border: 3px solid var(--ink); box-shadow: 7px 7px 0 -2px var(--ink); filter: grayscale(1) contrast(1.15); }
 .quem div { flex: 1 1 300px; min-width: 0; }
 
-footer { padding-block: 40px 56px; border-top: 1px solid var(--borda);
-  color: var(--dim); font-size: 0.9rem; }
-footer a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; }
-footer a:hover { color: var(--accent); }
+footer { padding-block: 40px 56px; background: var(--ink); color: var(--ground); font-size: 0.95rem; }
+footer a { color: var(--ground); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+footer a:hover { text-decoration-style: wavy; }
+footer a:focus-visible { outline: 3px solid var(--ground); outline-offset: 3px; }
 
-/* Banner de consentimento. Fica fixo, mas não cobre o CTA principal em
-   telas pequenas porque o body ganha padding enquanto ele existe. */
+/* Banner de consentimento. Só aparece quando existir um Pixel configurado. */
 #consentimento {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-  background: var(--bg-alto); border-top: 1px solid var(--borda-forte);
+  background: var(--ink); color: var(--ground); border-top: 4px solid var(--ground);
   padding: 16px 20px; display: none;
 }
 #consentimento.visivel { display: block; }
@@ -175,23 +190,19 @@ footer a:hover { color: var(--accent); }
   max-width: 980px; margin: 0 auto; display: flex; gap: 16px;
   align-items: center; flex-wrap: wrap;
 }
-.consent-caixa p { color: var(--muted); font-size: 0.9rem; flex: 1 1 320px; min-width: 0; }
+.consent-caixa p { color: var(--ground); font-size: 0.92rem; flex: 1 1 320px; min-width: 0; }
+.consent-caixa a { color: var(--ground); }
 .consent-botoes { display: flex; gap: 10px; }
 .btn-menor {
-  font-family: var(--corpo); font-size: 0.92rem; font-weight: 650;
-  padding: 10px 18px; border-radius: 2px; cursor: pointer; border: 1px solid var(--borda-forte);
-  background: transparent; color: var(--text);
+  font-family: var(--corpo); font-size: 0.94rem; font-weight: 700;
+  padding: 10px 18px; border-radius: 0; cursor: pointer; border: 3px solid var(--ground);
+  background: transparent; color: var(--ground);
 }
-.btn-menor.sim { background: var(--accent-strong); color: var(--accent-ink); border-color: transparent; }
-.btn-menor:hover { border-color: var(--text); }
-.btn-menor.sim:hover { background: #ff7040; }
-.btn-menor:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-
-/* A home do Manual de Operação só tem tema escuro, e as landings seguem. O
-   script do <head> ainda pode marcar data-theme="light" para quem escolheu o
-   tema claro no site anterior; sem regra para ele, nada muda. */
+.btn-menor.sim { background: var(--ground); color: var(--ink); }
+.btn-menor:active { transform: translate(1px, 1px); }
+.btn-menor:focus-visible { outline: 3px solid var(--ground); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .cta { transition: none; }
+  .cta, .cta::after { transition: none; }
 }

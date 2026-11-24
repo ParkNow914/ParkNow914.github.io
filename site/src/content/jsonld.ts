@@ -32,7 +32,7 @@ export const jsonLdHome = [
     url: SITE_URL,
     description:
       "Estúdio de automação com IA: atendimento de WhatsApp com IA, SaaS full-stack, landing pages e integrações. Por Alisson Santos.",
-    image: `${SITE_URL}/marca/og-manual.png`,
+    image: `${SITE_URL}/marca/og-folheto.png`,
     telephone: `+${WHATSAPP}`,
     email: EMAIL,
     address: { "@type": "PostalAddress", addressLocality: "Lorena", addressRegion: "SP", addressCountry: "BR" },

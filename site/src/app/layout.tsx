@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     title: "Autark · Sistemas que trabalham sozinhos enquanto você cresce",
     description:
       "Atendimento de WhatsApp com IA, SaaS completos e sistemas em produção real. Nota 5.0, com 100% de recomendação. Por Alisson Santos.",
-    images: [{ url: "/marca/og-manual.png", width: 1200, height: 630, alt: "Folheto da Autark impresso em xilogravura: sistemas que trabalham sozinhos enquanto você cresce." }],
+    images: [{ url: "/marca/og-folheto.png", width: 1200, height: 630, alt: "Folheto da Autark impresso em xilogravura: sistemas que trabalham sozinhos enquanto você cresce." }],
   },
-  twitter: { card: "summary_large_image", images: ["/marca/og-manual.png"] },
+  twitter: { card: "summary_large_image", images: ["/marca/og-folheto.png"] },
   icons: { apple: "/marca/apple-touch-icon.png" },
   referrer: "strict-origin-when-cross-origin",
 };

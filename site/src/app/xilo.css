@@ -19,6 +19,10 @@
   --ink-2: #241c16;
   --ink-3: #33291f;
   --stamp: #c8261d;
+  /* Tinta do carimbo quando vira texto: o vermelho vivo dá 3,3:1 no amarelo;
+     este vermelho-sangue passa de 4,5:1 em todos os papéis (o rosa é o pior, 4,6:1).
+     O vermelho vivo fica nas molduras. */
+  --stamp-ink: #6b130c;
   --run: #1d6b3f;
 
   --ground: var(--papel-amarelo);
@@ -129,7 +133,7 @@ a {
 .shead__addr {
   font-family: var(--f-mono);
   font-size: clamp(1.05rem, 0.85rem + 0.6vw, 1.45rem);
-  color: var(--stamp);
+  color: var(--stamp-ink);
   transform: rotate(-4deg);
   transform-origin: left top;
   padding-top: 0.4em;
@@ -324,7 +328,7 @@ a {
 .fig__no {
   font-family: var(--f-mono);
   font-weight: 400;
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 .fig[data-fig="running"] .fig__cap::before {
   background: var(--run);
@@ -405,11 +409,11 @@ a {
 }
 .step__n {
   font-family: var(--f-mono);
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 .step__proof-k {
   font-family: var(--f-mono);
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 .chiplet {
   border: 2px solid var(--ink);
@@ -426,7 +430,7 @@ a {
   font-family: var(--f-mono);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--stamp);
+  color: var(--stamp-ink);
   background: transparent;
   -webkit-mask-image: var(--falha);
   mask-image: var(--falha);
@@ -441,7 +445,8 @@ a {
   color: var(--ink);
 }
 .stamp--encerrado {
-  color: var(--stamp);
+  color: var(--stamp-ink);
+  border-color: var(--stamp);
 }
 .status {
   font-family: var(--f-mono);
@@ -474,7 +479,7 @@ a {
 }
 .sheet__code {
   font-family: var(--f-mono);
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 .sheet__kind {
   color: var(--ink-3);
@@ -552,7 +557,7 @@ a {
 }
 .clause__n {
   font-family: var(--f-mono);
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 .warranty,
 .credential {
@@ -635,7 +640,7 @@ a {
 .toc__addr,
 .toc__pg {
   font-family: var(--f-mono);
-  color: var(--stamp);
+  color: var(--stamp-ink);
 }
 
 /* --- páginas de leitura: papel-jornal ------------------------------------- */
