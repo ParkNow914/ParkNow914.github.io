@@ -63,7 +63,7 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   check("12 seções endereçadas", (await page.locator("[data-section]").count()) === 12);
   check("10 fichas de sistema", (await page.locator("article.sheet").count()) === 10);
   check("6 depoimentos", (await page.locator(".field__row").count()) === 6);
-  check("relatório de campo com 12 avaliações", (await page.locator(".field-sum__figs dd").first().textContent()).trim() === "12");
+  check("relatório de campo com 13 avaliações", (await page.locator(".field-sum__figs dd").first().textContent()).trim() === "13");
 
   // Ilhas estáticas: HTML sem hidratação ainda funciona
   const faq = page.locator(".trouble__row").first();
