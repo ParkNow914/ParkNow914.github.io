@@ -44,7 +44,7 @@ export default function PrivacidadePage() {
       <NotasHeader secao={{ label: "Privacidade", href: "/privacidade/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota juridico">
-          <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Privacidade" }]} />
+          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Privacidade" }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">LGPD</span>

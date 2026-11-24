@@ -52,7 +52,7 @@ export default function SistemasPage() {
     <>
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="notas-pag">
-        <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Sistemas" }]} />
+        <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas" }]} />
         <header className="notas-pag__cab">
           <p className="nota__kicker">
             <span className="nota__pilar">§4</span>

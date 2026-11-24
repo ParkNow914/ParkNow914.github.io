@@ -15,7 +15,7 @@ const inicial = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 export function NotasHeader({ secao = { label: "Notas de campo", href: "/notas/" } }: { secao?: { label: string; href: string } } = {}) {
   return (
     <header className="rh">
-      <a className="rh__brand" href="/" aria-label="Autark, ir para a capa do manual">
+      <a className="rh__brand" href="/" aria-label="Autark, ir para a capa do folheto">
         <LogoMark size={20} />
         <span className="rh__name">Autark</span>
       </a>
@@ -89,7 +89,7 @@ export function NotaArtigo({ nota, anterior, proxima }: { nota: Nota; anterior?:
   return (
     <article className="nota">
       <nav className="nota__trilha" aria-label="Você está em">
-        <a href="/">Manual</a>
+        <a href="/">Folheto</a>
         <span aria-hidden="true">/</span>
         <a href="/notas/">Notas de campo</a>
         <span aria-hidden="true">/</span>

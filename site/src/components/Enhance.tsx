@@ -25,12 +25,23 @@ export function Enhance() {
       { rootMargin: "0px 0px -12% 0px" },
     );
     document.querySelectorAll("[data-stamp]").forEach((el) => io.observe(el));
+    // Se o observador não disparar (aba em segundo plano, navegador econômico),
+    // o carimbo que já está na tela cai do mesmo jeito: nunca fica invisível.
+    const fallback = window.setTimeout(() => {
+      document.querySelectorAll("[data-stamp]:not(.is-down)").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("is-down");
+      });
+    }, 1200);
 
     if (!reducedMotion() && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("motion-on");
     }
 
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   return null;

@@ -104,7 +104,7 @@ export default function ValePage() {
       <NotasHeader secao={{ label: "Vale do Paraíba", href: "/vale-do-paraiba/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota">
-          <Trilha itens={[{ label: "Manual", href: "/" }, { label: "Vale do Paraíba" }]} />
+          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Vale do Paraíba" }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">Atendimento remoto</span>
