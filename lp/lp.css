@@ -117,13 +117,13 @@ h1 em {
   background: var(--ink); color: var(--ground);
   font-weight: 750; font-size: 1.08rem; font-family: var(--corpo);
   padding: 17px 28px; border: 3px solid var(--ink); border-radius: 0; text-decoration: none;
-  cursor: pointer; box-shadow: 7px 7px 0 -1px var(--papel-2);
-  transition: transform 160ms var(--ease), box-shadow 160ms var(--ease), background-color 120ms ease, color 120ms ease;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
 }
 .cta::after { content: "→"; font-weight: 800; transition: transform 160ms var(--ease); }
 .cta:hover::after { transform: translateX(4px); }
-/* Pressionar encosta a folha na de baixo e inverte a tinta. */
-.cta:active { transform: translate(3px, 3px); box-shadow: 0 0 0 0 var(--papel-2); background: var(--ground); color: var(--ink); }
+/* Pressionar inverte a tinta: o bloco vira papel. A segunda cor fica só nas folhas. */
+.cta:active { background: var(--ground); color: var(--ink); }
 .cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
 .cta-nota { font-size: 0.92rem; color: var(--muted); margin-top: 16px; font-weight: 500; }
 

@@ -176,6 +176,8 @@ function folhaTexture(tinta: HTMLImageElement) {
   const draw = () => {
     ctx.fillStyle = PAPEL_FOLHA;
     ctx.fillRect(0, 0, w, h);
+    // Duas passadas de tinta: uma só sai cinza sobre o jornal, com cara de fotocópia.
+    ctx.drawImage(tinta, 0, 0, w, h);
     ctx.drawImage(tinta, 0, 0, w, h);
     // Carimbo no terço de cima: é a parte da folha que fica de pé, virada para
     // quem lê, quando ela levanta. Respiro de papel atrás e moldura dupla.
@@ -266,7 +268,7 @@ export function Machine({ overlay, lite }: { overlay: React.RefObject<OverlayRef
     folha.center.set(0.5, 0.5);
     folha.rotation = Math.PI;
     folha.repeat.set(-1, 1);
-    return new THREE.MeshStandardMaterial({ map: folha, emissiveMap: folha, emissive: "#ffffff", emissiveIntensity: 0.5, roughness: 0.92, side: THREE.BackSide });
+    return new THREE.MeshStandardMaterial({ map: folha, emissiveMap: folha, emissive: "#ffffff", emissiveIntensity: 0.35, roughness: 0.92, side: THREE.BackSide });
   }, [folha]);
   const sheetPaper = useMemo(() => new THREE.MeshStandardMaterial({ color: PAPEL_FOLHA_VERSO, roughness: 0.95, side: THREE.FrontSide }), []);
 

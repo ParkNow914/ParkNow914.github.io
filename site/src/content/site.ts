@@ -58,13 +58,13 @@ export const COVER = {
   title: "Sistemas que trabalham sozinhos enquanto você cresce.",
   lede:
     "Atendimento feito na mão perde venda fora do horário. A Autark instala no seu WhatsApp uma IA ligada aos seus sistemas, que atende, vende e agenda a qualquer hora, e só vai ao ar depois de testada.",
+  /** Três números do perfil público do 99freelas (conferidos em 23/11/2026). */
   plate: [
-    { k: "Fabricante", v: "Alisson Santos" },
-    { k: "Avaliação", v: "5.0 no 99freelas", star: true },
-    { k: "Recomendação", v: "13 no 99freelas" },
-    { k: "Projetos concluídos", v: "14 no 99freelas" },
-    { k: "No portfólio", v: "10 sistemas" },
+    { k: "Avaliação", v: "5.0", star: true },
+    { k: "Recomendações", v: "13" },
+    { k: "Projetos concluídos", v: "14" },
   ],
+  plateNote: "Números do perfil público no 99freelas · 10 sistemas no portfólio",
 };
 
 /** Peças da Fig. 1. `n` é o número do balão; a ordem de montagem está em ASSEMBLY. */

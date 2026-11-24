@@ -130,12 +130,13 @@ export function Stage() {
               <div className="plate__row" key={r.k}>
                 <dt>{r.k}</dt>
                 <dd>
-                  {r.star ? <Icon name="star" size={13} className="plate__star" /> : null}
+                  {"star" in r && r.star ? <Icon name="star" size={16} className="plate__star" /> : null}
                   {r.v}
                 </dd>
               </div>
             ))}
           </dl>
+          <p className="plate__note">{COVER.plateNote}</p>
           <span className="plate__rivet plate__rivet--tl" aria-hidden="true" />
           <span className="plate__rivet plate__rivet--tr" aria-hidden="true" />
           <span className="plate__rivet plate__rivet--bl" aria-hidden="true" />

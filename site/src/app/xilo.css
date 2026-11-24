@@ -45,7 +45,7 @@
   --fs-h3: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
 
   /* Falhas de tinta: o rolo não pega igual em toda a madeira. */
-  --falha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .035' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 8.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --falha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .02' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -9 9.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
   /* Fibra de papel jornal. */
   --fibra: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .5' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
 }
@@ -734,7 +734,27 @@ a {
   border-right: 0;
 }
 .plate dd {
-  font-size: 1.15rem;
+  font-size: 1.6rem;
+  line-height: 1;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.plate__list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.plate__note {
+  margin: 8px 0 0;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+@media (max-width: 600px) {
+  .cover__title {
+    -webkit-mask-size: 6em;
+    mask-size: 6em;
+  }
 }
 
 /* Com a folha impressa a prancha desce e cobriria a fileira de peças; nessa hora
