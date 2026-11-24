@@ -488,10 +488,14 @@ a {
   font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem);
   line-height: 1;
 }
-.sheet__fig,
+/* Só o print vai na moldura de tinta; a legenda fica no papel da capa, em tinta
+   legível (antes a figura inteira era preta e a legenda sumia nela). */
 .sheet__img {
   border: 3px solid var(--ink);
   background: var(--ink);
+}
+.sheet__fig figcaption {
+  color: var(--ink-2);
 }
 .sheet__img {
   filter: grayscale(0.15) contrast(1.05);

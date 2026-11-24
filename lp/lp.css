@@ -92,7 +92,7 @@ header { padding-block: 16px; background: var(--ink); color: var(--ground); }
 }
 h1 {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(2.35rem, 7.4vw, 4.4rem); line-height: 1.02;
+  font-size: clamp(2.35rem, 7.4vw, 4.4rem); line-height: 1.14;
   letter-spacing: -0.005em; text-wrap: balance; margin-bottom: 26px;
   max-width: 18ch;
 }
