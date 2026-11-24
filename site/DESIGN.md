@@ -169,13 +169,13 @@ Uma tinta, seis papéis e dois sinais: a paleta é a de uma gráfica de cordel, 
 ### Named Rules
 **The Madeira Sem Peso Rule.** Alfa Slab One existe num peso só (400) e com `letter-spacing: 0`. Nunca sintetize negrito (`font-synthesis: none`) nem aperte o espaçamento: a letra de madeira já é o peso máximo.
 
-**The Entalhe Só no Grande Rule.** O filtro SVG `#entalhe` (turbulência 0.045, deslocamento 2.6) e a máscara `--falha` vão só nos títulos grandes (capa, seção, notas, 404). Em texto pequeno o deslocamento destrói a leitura. A falha de rolo tem grão direcional (turbulência `.9 .035`, o rastro horizontal do rolo) e `mask-size` medido em `em`, para que o grão acompanhe o corpo da letra em vez de ter o mesmo tamanho num título de 80px e num carimbo de 14px.
+**The Entalhe Só no Grande Rule.** O filtro SVG `#entalhe` (turbulência 0.045, deslocamento 2.6) e a máscara `--falha` vão só nos títulos grandes (capa, seção, notas, 404). Em texto pequeno o deslocamento destrói a leitura. A falha de rolo tem grão direcional (turbulência `.9 .02`, o rastro horizontal do rolo, com limiar alto para falhar pouco) e `mask-size` medido em `em` (4em; 6em no título do celular), para que o grão acompanhe o corpo da letra em vez de ter o mesmo tamanho num título de 80px e num carimbo de 14px.
 
 **The Elite Só Carimba Rule.** Special Elite é carimbo e numeração de folheto, nada mais. Nunca parágrafo, nunca botão, nunca título.
 
 ## Layout
 
-Grade de 12 colunas com `--gutter` fluido (`clamp(16px, 3.4vw, 44px)`) e largura máxima de 1440px. Na capa (1440x900), colunas 1 a 6 levam título, lede, botão e links; colunas 7 a 12 levam a matriz 3D. A ficha do folheto corre como faixa horizontal na base da primeira dobra, atravessando a grade. A capa abre com `clamp(96px, 11vw, 176px)` de respiro no topo; toda seção fecha com `clamp(56px, 7vw, 104px)`.
+Grade de 12 colunas com `--gutter` fluido (`clamp(16px, 3.4vw, 44px)`) e largura máxima de 1440px. Na capa (1440x900), colunas 1 a 6 levam título, lede, botão e links; colunas 7 a 12 levam a matriz 3D. A ficha do folheto corre como faixa horizontal na base da primeira dobra: três células (avaliação, recomendações, projetos) com o número em Alfa numa linha só e uma legenda única em Special Elite dizendo de onde vêm. A capa abre com `clamp(96px, 11vw, 176px)` de respiro no topo; toda seção fecha com `clamp(56px, 7vw, 104px)`.
 
 O papel de cada seção vai de ponta a ponta sem criar rolagem lateral (`border-image` com `conic-gradient` do `--ground` e extensão de 100vw), e o encontro de duas seções é uma borda serrilhada de 18px: semicírculos de 9px recortados no papel de cima, o corte do papel de capa. Abaixo de 1180px a capa reequilibra; abaixo de 960px tudo empilha em uma coluna e a matriz da capa fica direto no papel, sem moldura nem grade; abaixo de 600px tabelas e listas compactam suas colunas.
 
@@ -201,7 +201,7 @@ Cantos retos (0px) em tudo que é papel ou tinta: botões, fichas, ficha do folh
 ## Components
 
 ### Buttons
-O botão é um bloco de tinta sólida que inverte para papel ao pressionar, como a matriz que solta a tinta na folha.
+O botão é um bloco de tinta sólida que inverte para papel ao pressionar, como a matriz que solta a tinta na folha. Botão não ganha segunda folha de cor: ela é só para folhas (fichas, folha de vantagens, ordem de serviço, foto).
 - **Shape:** retângulo de canto reto (0px), borda de 2px na cor da tinta.
 - **Primary (bloco de tinta):** fundo `ink`, texto no papel da seção (`--ground`), Archivo 750.
 - **Hover (só com ponteiro fino):** o bloco não levanta (sem `translate`). O hover só sublinha o rótulo ou escurece a seta; o fundo pode ir a `ink-hover`. O papel não sai da mesa: o gesto do botão é o pressionar.
