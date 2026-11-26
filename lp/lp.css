@@ -82,8 +82,8 @@ h1 {
   letter-spacing: -0.03em; text-wrap: balance; margin-bottom: 24px;
   max-width: 19ch;
 }
-/* A ênfase é a tinta de aprovação, sem bloco nem sublinhado. */
-h1 em { font-style: normal; color: var(--verde); }
+/* A ênfase é uma hachura sob a palavra, como o trecho marcado de um desenho; sem cor nova. */
+h1 em { font-style: normal; color: inherit; background: repeating-linear-gradient(135deg, rgba(27,31,34,.32) 0 1.5px, transparent 1.5px 7px) left bottom / 100% .34em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .sub {
   font-size: clamp(1.06rem, 2.4vw, 1.25rem); color: var(--muted); line-height: 1.55;
   max-width: 620px; text-wrap: pretty; margin-bottom: 32px; font-weight: 400;

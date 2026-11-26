@@ -1,382 +1,416 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-24T00:00:00-03:00",
-  "title": "Design System: Autark · Oficina de Xilogravura",
+  "generatedAt": "2026-11-26T00:00:00-03:00",
+  "title": "Design System: Autark · Prancha Técnica",
   "extensions": {
     "colorMeta": {
-      "papel-amarelo": {
-        "role": "neutral",
-        "displayName": "Amarelo-Gema",
-        "canonical": "#f2c12e",
-        "tonalRamp": [
-          "#3a2c04",
-          "#5e4709",
-          "#85650f",
-          "#ad8516",
-          "#d4a51f",
-          "#f2c12e",
-          "#f6d36a",
-          "#fbe9b4"
-        ]
-      },
-      "papel-rosa": {
-        "role": "neutral",
-        "displayName": "Rosa-Chiclete",
-        "canonical": "#f2789f",
-        "tonalRamp": [
-          "#3d0f1e",
-          "#651a33",
-          "#8e2a4c",
-          "#b83d66",
-          "#e05785",
-          "#f2789f",
-          "#f6a3be",
-          "#fbd2df"
-        ]
-      },
-      "papel-azul": {
-        "role": "neutral",
-        "displayName": "Azul-Anil Claro",
-        "canonical": "#93c6e4",
-        "tonalRamp": [
-          "#0e2a3b",
-          "#18435d",
-          "#265f80",
-          "#367ca3",
-          "#5ea2c8",
-          "#93c6e4",
-          "#b9daee",
-          "#e0eff8"
-        ]
-      },
-      "papel-verde": {
-        "role": "neutral",
-        "displayName": "Verde-Folha",
-        "canonical": "#86c681",
-        "tonalRamp": [
-          "#11300f",
-          "#1e4d1b",
-          "#2e6c2a",
-          "#428d3d",
-          "#62ad5c",
-          "#86c681",
-          "#b0dbac",
-          "#dbefd9"
-        ]
-      },
-      "papel-laranja": {
-        "role": "neutral",
-        "displayName": "Laranja-Urucum",
-        "canonical": "#f2914a",
-        "tonalRamp": [
-          "#3b1a04",
-          "#602c08",
-          "#88410f",
-          "#b05818",
-          "#d77228",
-          "#f2914a",
-          "#f6b585",
-          "#fbdcc4"
-        ]
-      },
-      "papel-jornal": {
-        "role": "neutral",
-        "displayName": "Papel-Jornal",
-        "canonical": "#dadad3",
-        "tonalRamp": [
-          "#272724",
-          "#424240",
-          "#5f5f5a",
-          "#7e7e78",
-          "#9e9e97",
-          "#bdbdb6",
-          "#dadad3",
-          "#eeeeea"
-        ]
-      },
-      "ink": {
+      "verde": {
         "role": "primary",
-        "displayName": "Tinta de Rolo",
-        "canonical": "#17130f",
+        "displayName": "Verde de Aprovação",
+        "canonical": "#0d7050",
+        "oklch": "oklch(48.5% 0.099 164.4)",
         "tonalRamp": [
-          "#17130f",
-          "#241c16",
-          "#33291f",
-          "#3d3027",
-          "#5a4a3d",
-          "#7d6c5e",
-          "#a89a8d",
-          "#d6cdc4"
+          "#001502",
+          "#003116",
+          "#004f32",
+          "#0a6f4f",
+          "#3d9371",
+          "#64b894",
+          "#8adfba",
+          "#aeffdd"
+        ]
+      },
+      "verde-hover": {
+        "role": "primary",
+        "displayName": "Verde Assinado",
+        "canonical": "#0a5c41",
+        "oklch": "oklch(42.2% 0.086 164.2)",
+        "tonalRamp": [
+          "#001403",
+          "#003018",
+          "#004d33",
+          "#236d51",
+          "#4a9073",
+          "#6fb696",
+          "#95ddbc",
+          "#b8ffdf"
+        ]
+      },
+      "papel": {
+        "role": "neutral",
+        "displayName": "Papel Vegetal",
+        "canonical": "#edf0ef",
+        "oklch": "oklch(95.3% 0.003 174.5)",
+        "tonalRamp": [
+          "#0a0c0b",
+          "#222524",
+          "#3e403f",
+          "#5c5e5d",
+          "#7e8180",
+          "#a2a5a4",
+          "#c8cbca",
+          "#ecefee"
+        ]
+      },
+      "papel-2": {
+        "role": "neutral",
+        "displayName": "Papel de Margem",
+        "canonical": "#e4e8e6",
+        "oklch": "oklch(92.7% 0.005 165.0)",
+        "tonalRamp": [
+          "#090c0b",
+          "#222523",
+          "#3d413f",
+          "#5b5e5d",
+          "#7e817f",
+          "#a2a6a4",
+          "#c8cbca",
+          "#ebefed"
+        ]
+      },
+      "papel-3": {
+        "role": "neutral",
+        "displayName": "Papel de Dobra",
+        "canonical": "#d8dedb",
+        "oklch": "oklch(89.5% 0.008 164.9)",
+        "tonalRamp": [
+          "#080c0a",
+          "#212523",
+          "#3c413f",
+          "#5a5f5c",
+          "#7c827f",
+          "#a0a6a3",
+          "#c6ccc9",
+          "#eaf0ed"
+        ]
+      },
+      "mesa": {
+        "role": "neutral",
+        "displayName": "Mesa de Desenho",
+        "canonical": "#d3d9d6",
+        "oklch": "oklch(88.0% 0.008 164.9)",
+        "tonalRamp": [
+          "#080c0a",
+          "#212523",
+          "#3c413f",
+          "#5a5f5c",
+          "#7c827f",
+          "#a0a6a3",
+          "#c6ccc9",
+          "#eaf0ed"
+        ]
+      },
+      "grafite": {
+        "role": "neutral",
+        "displayName": "Grafite",
+        "canonical": "#1b1f22",
+        "oklch": "oklch(23.6% 0.008 240.2)",
+        "tonalRamp": [
+          "#080c0e",
+          "#212528",
+          "#3c4044",
+          "#5a5e62",
+          "#7c8185",
+          "#a0a5a9",
+          "#c6cbcf",
+          "#eaeff4"
         ]
       },
       "ink-2": {
-        "role": "primary",
-        "displayName": "Tinta Gasta",
-        "canonical": "#241c16"
-      },
-      "ink-3": {
-        "role": "primary",
-        "displayName": "Tinta Rala",
-        "canonical": "#33291f"
-      },
-      "ink-hover": {
-        "role": "primary",
-        "displayName": "Tinta Pisada",
-        "canonical": "#3d3027"
-      },
-      "amarelo-hover": {
         "role": "neutral",
-        "displayName": "Amarelo Aceso",
-        "canonical": "#f6d059"
-      },
-      "stamp": {
-        "role": "secondary",
-        "displayName": "Vermelho de Carimbo",
-        "canonical": "#c8261d",
+        "displayName": "Grafite Médio",
+        "canonical": "#353c41",
+        "oklch": "oklch(35.2% 0.013 238.9)",
         "tonalRamp": [
-          "#2e0805",
-          "#4f0e09",
-          "#6b130c",
-          "#961c14",
-          "#c8261d",
-          "#e0564d",
-          "#ec918b",
-          "#f7cbc8"
+          "#070c10",
+          "#1e252a",
+          "#3a4146",
+          "#575f64",
+          "#7a8187",
+          "#9ea6ac",
+          "#c3ccd2",
+          "#e7f0f6"
         ]
       },
-      "stamp-ink": {
-        "role": "secondary",
-        "displayName": "Vermelho-Sangue",
-        "canonical": "#6b130c"
-      },
-      "run": {
-        "role": "tertiary",
-        "displayName": "Verde de Operação",
-        "canonical": "#1d6b3f",
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Grafite Claro",
+        "canonical": "#545d63",
+        "oklch": "oklch(47.3% 0.015 236.9)",
         "tonalRamp": [
-          "#08200f",
-          "#0f3a1e",
-          "#16522e",
-          "#1d6b3f",
-          "#2f8c57",
-          "#55ad7a",
-          "#8fcfa8",
-          "#cdeadb"
+          "#060c11",
+          "#1d252a",
+          "#394147",
+          "#565f65",
+          "#788288",
+          "#9ca6ad",
+          "#c2ccd3",
+          "#e6f0f7"
+        ]
+      },
+      "cota": {
+        "role": "neutral",
+        "displayName": "Linha de Cota",
+        "canonical": "#7c868c",
+        "oklch": "oklch(61.4% 0.015 233.9)",
+        "tonalRamp": [
+          "#060c10",
+          "#1d252a",
+          "#384147",
+          "#565f65",
+          "#788288",
+          "#9ca6ad",
+          "#c2ccd3",
+          "#e5f0f7"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Letra de madeira · capa",
-        "purpose": "Só o título da capa, até 13ch, com entalhe e falha de tinta."
+        "displayName": "Título da capa",
+        "purpose": "Só o título da capa, até 14,5ch, com text-wrap: balance."
       },
       "headline": {
-        "displayName": "Letra de madeira · seção",
-        "purpose": "Títulos de seção, até 18ch, entalhados."
+        "displayName": "Título de prancha",
+        "purpose": "O título de cada seção, até 18ch, com o marcador de detalhe ao lado; também títulos de nota e de página."
       },
       "title": {
-        "displayName": "Letra de madeira · bloco",
-        "purpose": "Passos, cláusulas, problemas, nomes de ficha e números de leitura."
+        "displayName": "Título de bloco",
+        "purpose": "Passos da montagem, nomes de sistema, modelos, cláusulas, perguntas; números de leitura e preços em 600 com algarismos tabulares."
       },
       "body": {
-        "displayName": "Archivo · texto",
-        "purpose": "Todo texto corrido; ledes em ink-2."
+        "displayName": "Texto",
+        "purpose": "Texto corrido; ledes em grafite médio."
       },
       "label": {
-        "displayName": "Archivo · rótulo",
-        "purpose": "Botões e cabeçalhos de tabela."
+        "displayName": "Letra técnica",
+        "purpose": "Cotas, legendas, balões, cabeçalhos da lista de peças, rótulos de campo, etiquetas de status e coordenadas. Sempre caixa alta, 600 a 750, tracking 0,05 a 0,12em. Nunca parágrafo nem título."
       },
-      "stamp": {
-        "displayName": "Special Elite · carimbo",
-        "purpose": "Carimbos, numeração de folheto, código de ficha, folio e endereço de seção. Nada mais."
+      "folio": {
+        "displayName": "Quadro de identificação",
+        "purpose": "As células da legenda da prancha; a primeira (AUTARK) em 750 e 0,12em, as chaves em 500, 0,68rem, grafite claro."
       }
     },
-    "shadows": [
+    "shadows": [],
+    "strokes": [
       {
-        "name": "segunda-folha",
-        "value": "pseudo-elemento atrás, fundo em outro papel de capa (rosa/azul/verde/laranja), translate(~10px, ~10px) rotate(~1deg), sem desfoque",
-        "purpose": "Única forma de destaque: fichas, OS, pôster da matriz, capas e foto das landings, gravura do OG. Não é sombra; é uma segunda matriz de cor em registro."
+        "name": "traco",
+        "value": "1.5px solid #1b1f22",
+        "purpose": "Objetos: quadros, fichas, botões, campos (só embaixo), balões, símbolos, marcador de detalhe."
       },
       {
-        "name": "segunda-cor-chamada",
-        "value": "deslocamento chapado em var(--stamp-ink)",
-        "purpose": "Bloco de chamada: o vermelho-sangue vale como segunda tinta de impressão."
+        "name": "fio",
+        "value": "1px solid #1b1f22",
+        "purpose": "Fios internos de quadro, linhas de chamada, borda de imagem."
+      },
+      {
+        "name": "moldura",
+        "value": "1px solid color-mix(in oklab, #1b1f22, transparent 35%)",
+        "purpose": "Moldura de prancha, a uma margem fluida da borda."
+      },
+      {
+        "name": "hachura",
+        "value": "repeating-linear-gradient(135deg, color-mix(in oklab, #1b1f22, transparent 78%) 0 1px, transparent 1px 7px)",
+        "purpose": "O único preenchimento: passo atual na lista de peças, prova do passo, status encerrado, hover do cartão de laboratório, bloco sob medida."
+      },
+      {
+        "name": "regua",
+        "value": "repeating-linear-gradient(90deg, #1b1f22 0 1px, transparent 1px 12.5%)",
+        "purpose": "Tiques de 7px em cima e embaixo da moldura; a lateral usa seis divisões (calc(100% / 6))."
+      },
+      {
+        "name": "malha",
+        "value": "linear-gradient(color-mix(in oklab, #1b1f22, transparent 93%) 1px, transparent 1px) 0 0 / 24px 24px, linear-gradient(90deg, color-mix(in oklab, #1b1f22, transparent 93%) 1px, transparent 1px) 0 0 / 24px 24px",
+        "purpose": "Malha de desenho sob a Fig. 1 (22px no celular)."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "Toda entrada: folhas que assentam, carimbos que caem."
+        "purpose": "Entradas curtas e transições de estado (botões 160ms, pressão 120ms)."
       },
       {
-        "name": "ease-in-out",
-        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
-        "purpose": "Movimento já em tela que muda de lugar."
+        "name": "press",
+        "value": "transform: translateY(1px)",
+        "purpose": "Único deslocamento de botão, ao pressionar; nunca levantar no hover."
       },
       {
-        "name": "carimbo-cai",
-        "value": "scale(1.35) rotate → scale(1), 420ms cubic-bezier(0.23, 1, 0.32, 1), uma vez ao entrar na tela",
-        "purpose": "Entrada dos carimbos. Com reduced motion já aparece batido."
-      },
-      {
-        "name": "impressao-scrub",
-        "value": "damp(alvo, 5) + easeOut cúbico por fase (rolo, prensa, levantamento)",
-        "purpose": "A única coreografia com scrub: entalhe, tinta, prensa e folha impressa da Matriz 1."
-      },
-      {
-        "name": "reduced-motion",
-        "value": "folha já impressa e estática; carimbos já batidos; OS sem rotação; animações a 0.01ms",
-        "purpose": "prefers-reduced-motion: reduce."
+        "name": "montagem",
+        "value": "scrub no scroll de §1",
+        "purpose": "A única coreografia com scrub: peças da vista explodida até o lugar, peça atual em verde, enquadramento aproxima, lâmpada verde e OPERANDO no último passo. Reduced motion: montado e parado, com botão para animar."
       }
     ],
     "breakpoints": [
       {
-        "name": "capa-reequilibra",
-        "value": "1180px"
+        "name": "celular",
+        "value": "600px",
+        "purpose": "Quadro de identificação em AUTARK | PRANCHA mais duas linhas inteiras."
       },
       {
-        "name": "uma-coluna",
-        "value": "960px"
+        "name": "regua",
+        "value": "760px",
+        "purpose": "Abaixo disso some a numeração da régua."
       },
       {
-        "name": "compacto",
-        "value": "600px"
+        "name": "fichas",
+        "value": "960px",
+        "purpose": "Fichas empilham imagem e texto."
+      },
+      {
+        "name": "letras",
+        "value": "1100px",
+        "purpose": "Abaixo disso somem as letras A a F da margem."
       }
     ],
-    "falha": {
-      "value": "feTurbulence baseFrequency '.9 .035' (grão direcional do rolo), mask-size em em",
-      "purpose": "Falha de rolo em títulos grandes e carimbos; o grão acompanha o corpo da letra."
+    "three": {
+      "camera": "Ortográfica isométrica, zoom 1 (uma unidade do mundo = um pixel).",
+      "faces": "Três tons de papel pela normal, mistura de #d3d9d6 a #f8faf9; sem textura, luz real, sombra nem pós-processamento.",
+      "edges": "LineSegments2 de 1,6px em tela, grafite; linhas escondidas removidas pela profundidade; casca de contorno (BackSide) nos cilindros.",
+      "highlight": "Peça do passo atual: arestas e casca em verde #0d7050, faces levemente esverdeadas.",
+      "poster": "SVG gerado do mesmo modelo (scripts/cerebro-poster.mjs), traço 1,6, mesmos limites de enquadramento."
     }
   },
   "components": [
     {
-      "name": "Bloco de tinta",
+      "name": "Botão verde",
+      "kind": "button",
+      "refersTo": "button-signal",
+      "description": "A ação da tela: pedir instalação, enviar. Único botão de cor.",
+      "html": "<button class=\"ds-btn-signal\">Pedir instalação no WhatsApp</button>",
+      "css": ".ds-btn-signal { font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; display: inline-flex; align-items: center; min-height: 52px; padding: 10px 22px; background: #0d7050; color: #edf0ef; border: 1.5px solid #0d7050; border-radius: 0; font-weight: 600; font-size: 1.02rem; line-height: 1.1; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23, 1, 0.32, 1), transform 120ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-signal:hover { background: #0a5c41; border-color: #0a5c41; } .ds-btn-signal:active { transform: translateY(1px); } .ds-btn-signal:focus-visible { outline: 2px solid #1b1f22; outline-offset: 3px; }"
+    },
+    {
+      "name": "Botão de traço",
       "kind": "button",
       "refersTo": "button-ink",
-      "description": "Botão principal: bloco de tinta sólida que inverte para papel ao pressionar. Hover não levanta.",
-      "html": "<button class=\"ds-btn-ink\">Pedir instalação no WhatsApp</button>",
-      "css": ".ds-btn-ink { background: var(--ink, #17130f); color: var(--ground, #f2c12e); border: 2px solid var(--ink, #17130f); border-radius: 0; padding: 14px 24px; font-family: var(--f-body, Archivo, sans-serif); font-weight: 750; font-size: 1rem; letter-spacing: 0.005em; cursor: pointer; transition: background-color 120ms ease, color 120ms ease; } .ds-btn-ink:hover { background: #3d3027; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; } .ds-btn-ink:active { background: var(--ground, #f2c12e); color: var(--ink, #17130f); } .ds-btn-ink:focus-visible { outline: 3px dashed var(--ink, #17130f); outline-offset: 4px; }"
+      "description": "Ação secundária: traço grafite, sem preenchimento.",
+      "html": "<button class=\"ds-btn-ink\">Ver os sistemas</button>",
+      "css": ".ds-btn-ink { font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; display: inline-flex; align-items: center; min-height: 52px; padding: 10px 22px; background: transparent; color: #1b1f22; border: 1.5px solid #1b1f22; border-radius: 0; font-weight: 600; font-size: 1.02rem; line-height: 1.1; cursor: pointer; transition: background-color 160ms cubic-bezier(0.23, 1, 0.32, 1), transform 120ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-ink:active { transform: translateY(1px); } .ds-btn-ink:focus-visible { outline: 2px solid #1b1f22; outline-offset: 3px; }"
     },
     {
-      "name": "Bloco amarelo sobre tinta",
-      "kind": "button",
-      "refersTo": "button-tarja",
-      "description": "Variante do botão dentro do cabeçalho, da §11 e do CTA de nota.",
-      "html": "<div class=\"ds-tarja-bg\"><button class=\"ds-btn-tarja\">Falar no WhatsApp</button></div>",
-      "css": ".ds-tarja-bg { background: #17130f; padding: 20px; } .ds-btn-tarja { background: #f2c12e; color: #17130f; border: 2px solid #f2c12e; border-radius: 0; padding: 12px 20px; font-family: Archivo, sans-serif; font-weight: 750; cursor: pointer; } .ds-btn-tarja:hover { background: #f6d059; text-decoration: underline; } .ds-btn-tarja:active { background: #17130f; color: #f2c12e; border-color: #f2c12e; } .ds-btn-tarja:focus-visible { outline: 3px dashed #f2c12e; outline-offset: 4px; }"
-    },
-    {
-      "name": "Cabeçalho em faixa de tinta",
-      "kind": "nav",
-      "refersTo": "tarja",
-      "description": "A tarja preta do alto da capa: marca, seção corrente e CTA amarelo.",
-      "html": "<header class=\"ds-rh\"><span class=\"ds-rh-brand\">AUTARK</span><span class=\"ds-rh-sec\">§2 Aplicações</span><a class=\"ds-rh-cta\" href=\"#\">WhatsApp</a></header>",
-      "css": ".ds-rh { display: flex; align-items: center; gap: 20px; background: #17130f; color: #f2c12e; padding: 12px 24px; } .ds-rh-brand { font-family: 'Alfa Slab One', Rockwell, serif; font-size: 1.3rem; } .ds-rh-sec { font-family: 'Special Elite', 'Courier New', monospace; font-size: 0.9rem; } .ds-rh-cta { margin-left: auto; background: #f2c12e; color: #17130f; padding: 8px 16px; font-family: Archivo, sans-serif; font-weight: 750; text-decoration: none; border: 2px solid #f2c12e; } .ds-rh-cta:hover { background: #f6d059; } .ds-rh-cta:active { background: #17130f; color: #f2c12e; } .ds-rh-cta:focus-visible { outline: 3px dashed #f2c12e; outline-offset: 4px; }"
-    },
-    {
-      "name": "Ficha como capa de cordel",
-      "kind": "card",
-      "refersTo": "ficha-capa",
-      "description": "Ficha de sistema: papel de capa próprio, borda de tinta de 3px e uma segunda folha de outro papel atrás, em registro.",
-      "html": "<article class=\"ds-ficha\"><span class=\"ds-ficha-code\">SIS-03</span><h3 class=\"ds-ficha-name\">Agenda Zap</h3><p class=\"ds-ficha-kind\">Agendamento por WhatsApp</p><span class=\"ds-carimbo\">Encerrado</span></article>",
-      "css": ".ds-ficha { position: relative; isolation: isolate; background: #f2789f; color: #17130f; border: 3px solid #17130f; border-radius: 0; padding: clamp(18px, 2.4vw, 32px); max-width: 360px; } .ds-ficha::before { content: ''; position: absolute; inset: -3px; z-index: -1; background: #93c6e4; border: 3px solid #17130f; transform: translate(10px, 10px) rotate(1deg); } .ds-ficha-code { font-family: 'Special Elite', 'Courier New', monospace; color: #6b130c; } .ds-ficha-name { font-family: 'Alfa Slab One', Rockwell, serif; font-weight: 400; font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem); line-height: 1; margin: 8px 0; } .ds-ficha-kind { font-family: Archivo, sans-serif; color: #33291f; } .ds-carimbo { display: inline-block; margin-top: 12px; padding: 4px 10px; border: 3px double #c8261d; border-radius: 2px; font-family: 'Special Elite', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: #6b130c; transform: rotate(-3deg); }"
-    },
-    {
-      "name": "Carimbo de status",
-      "kind": "chip",
-      "refersTo": "carimbo",
-      "description": "Status ou endereço, nunca enfeite. Moldura vermelha viva, letra em vermelho-sangue.",
-      "html": "<span class=\"ds-stamp\">Encerrado</span> <span class=\"ds-stamp ds-stamp--ok\">Operando</span>",
-      "css": ".ds-stamp { display: inline-block; padding: 4px 10px; border: 3px double #c8261d; border-radius: 2px; font-family: 'Special Elite', 'Courier New', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; color: #6b130c; background: transparent; } .ds-stamp--ok { border-color: #1d6b3f; color: #17130f; } .ds-stamp { animation: ds-cai 420ms cubic-bezier(0.23, 1, 0.32, 1) both; } @keyframes ds-cai { from { opacity: 0; transform: scale(1.35) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(-3deg); } } @media (prefers-reduced-motion: reduce) { .ds-stamp { animation: none; transform: rotate(-3deg); } }"
-    },
-    {
-      "name": "Ficha do folheto",
-      "kind": "custom",
-      "description": "Dados da capa em faixa horizontal na primeira dobra, entre réguas de tinta; valores em letra de madeira.",
-      "html": "<dl class=\"ds-plate\"><div class=\"ds-plate-row\"><dt>Avaliação</dt><dd>5.0</dd></div><div class=\"ds-plate-row\"><dt>Recomendações</dt><dd>100%</dd></div><div class=\"ds-plate-row\"><dt>Projetos</dt><dd>14</dd></div></dl>",
-      "css": ".ds-plate { display: flex; flex-wrap: wrap; border-top: 4px solid #17130f; border-bottom: 4px solid #17130f; margin: 0; color: #17130f; } .ds-plate-row { flex: 1 1 140px; padding: 10px 16px; border-left: 2px solid #17130f; } .ds-plate-row:first-child { border-left: 0; } .ds-plate dt { font-family: Archivo, sans-serif; font-weight: 700; letter-spacing: 0.04em; color: #33291f; font-size: 0.85rem; } .ds-plate dd { margin: 0; font-family: 'Alfa Slab One', Rockwell, serif; font-size: 1.6rem; line-height: 1.1; }"
-    },
-    {
-      "name": "Ordem de serviço",
+      "name": "Campo de preenchimento",
       "kind": "input",
-      "refersTo": "ordem-de-servico",
-      "description": "Folha amarela girada presa sobre a matriz entintada; campos são uma linha de tinta.",
-      "html": "<div class=\"ds-os-bg\"><form class=\"ds-os\"><label class=\"ds-os-l\">Seu negócio<input class=\"ds-os-in\" placeholder=\"Salão, clínica...\"></label></form></div>",
-      "css": ".ds-os-bg { background: #17130f; padding: 32px; } .ds-os { background: #f2c12e; color: #17130f; padding: 24px; transform: rotate(-1.2deg); max-width: 380px; position: relative; isolation: isolate; } .ds-os::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #f2789f; transform: translate(10px, 10px) rotate(1.4deg); } .ds-os-l { display: grid; gap: 6px; font-family: Archivo, sans-serif; font-weight: 700; } .ds-os-in { background: transparent; border: 0; border-bottom: 2px solid #17130f; border-radius: 0; padding: 8px 0; font: inherit; font-weight: 400; color: #17130f; caret-color: #c8261d; } .ds-os-in:focus-visible { outline: 3px dashed #17130f; outline-offset: 4px; } @media (prefers-reduced-motion: reduce) { .ds-os { transform: none; } }"
+      "description": "Campo da ordem de serviço e do briefing: só o fio de baixo, rótulo técnico acima.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__k\">Seu nome</span><input class=\"ds-field__i\" type=\"text\" placeholder=\"Como devo te chamar\"></label>",
+      "css": ".ds-field { display: grid; gap: 6px; max-width: 360px; } .ds-field__k { font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 650; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: #545d63; } .ds-field__i { font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 450; font-size: 1rem; padding: 8px 0; border: 0; border-bottom: 1.5px solid #1b1f22; border-radius: 0; background: transparent; color: #1b1f22; caret-color: #0d7050; } .ds-field__i::placeholder { color: #6a7379; } .ds-field__i:focus-visible { outline: 2px solid #1b1f22; outline-offset: 4px; }"
+    },
+    {
+      "name": "Cabeçalho corrido",
+      "kind": "nav",
+      "description": "A faixa de título do desenho: marca, documento, revisão e índice.",
+      "html": "<header class=\"ds-rh\"><span class=\"ds-rh__name\">Autark</span><span class=\"ds-rh__doc\">Projeto executivo</span><span class=\"ds-rh__doc\">Rev. 2026.11</span><a class=\"ds-rh__index\" href=\"#\">Índice</a></header>",
+      "css": ".ds-rh { display: flex; align-items: center; gap: 18px; padding: 14px 20px; background: #edf0ef; color: #1b1f22; border-bottom: 1.5px solid #1b1f22; } .ds-rh__name { font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 650; letter-spacing: -0.01em; font-size: 1.15rem; } .ds-rh__doc { font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase; color: #545d63; } .ds-rh__index { margin-left: auto; font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 600; color: #1b1f22; text-decoration-thickness: 1.5px; text-underline-offset: 0.24em; text-decoration-color: #7c868c; } .ds-rh__index:hover { text-decoration-color: currentColor; } .ds-rh__index:focus-visible { outline: 2px solid #1b1f22; outline-offset: 3px; }"
+    },
+    {
+      "name": "Etiqueta de status",
+      "kind": "chip",
+      "refersTo": "stamp-operando",
+      "description": "Status no quadro dos sistemas; verde só para em produção.",
+      "html": "<span class=\"ds-stamp ds-stamp--op\">Em produção</span> <span class=\"ds-stamp\">Projeto próprio</span> <span class=\"ds-stamp ds-stamp--off\">Encerrado</span>",
+      "css": ".ds-stamp { display: inline-block; padding: 6px 10px 5px; border: 1.5px solid #1b1f22; border-radius: 0; background: #edf0ef; color: #1b1f22; font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; } .ds-stamp--op { border-color: #0d7050; color: #0d7050; } .ds-stamp--op::before { content: \"\"; display: inline-block; width: 7px; height: 7px; margin-right: 7px; background: #0d7050; vertical-align: 0.05em; } .ds-stamp--off { background: repeating-linear-gradient(135deg, color-mix(in oklab, #1b1f22, transparent 78%) 0 1px, transparent 1px 7px), #edf0ef; }"
+    },
+    {
+      "name": "Quadro de identificação",
+      "kind": "custom",
+      "refersTo": "folio",
+      "description": "A legenda que fecha cada prancha, com marca, desenho, responsável e número.",
+      "html": "<p class=\"ds-folio\"><span>Autark</span><span><span class=\"ds-folio__k\">Desenho</span>Projeto executivo · Rev. 2026.11</span><span><span class=\"ds-folio__k\">Responsável técnico</span>Alisson Santos</span><span class=\"ds-folio__n\"><span class=\"ds-folio__k\">Prancha</span>04/12</span></p>",
+      "css": ".ds-folio { display: grid; grid-template-columns: 1.1fr 1.4fr 1.4fr 0.9fr; width: min(100%, 760px); margin: 0 0 0 auto; border: 1.5px solid #1b1f22; color: #1b1f22; font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.25; } .ds-folio > span { padding: 8px 10px 7px; border-left: 1px solid #1b1f22; } .ds-folio > span:first-child { border-left: 0; font-weight: 750; letter-spacing: 0.12em; } .ds-folio__k { display: block; font-weight: 500; font-size: 0.68rem; letter-spacing: 0.08em; color: #545d63; } .ds-folio__n { text-align: right; }"
+    },
+    {
+      "name": "Título de prancha com marcador de detalhe",
+      "kind": "custom",
+      "description": "Número da seção num círculo cortado ao meio, ao lado do título.",
+      "html": "<h2 class=\"ds-shead\"><span class=\"ds-shead__addr\">04</span><span>Dez sistemas no mesmo quadro.</span></h2>",
+      "css": ".ds-shead { display: flex; align-items: flex-start; gap: 0.4em; margin: 0; font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 620; font-size: clamp(2rem, 1.3rem + 2.5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.03em; color: #1b1f22; } .ds-shead__addr { flex: none; display: inline-grid; place-items: center; width: 1.3em; height: 1.3em; border: 1.5px solid #1b1f22; border-radius: 50%; font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 600; font-size: 0.44em; letter-spacing: 0; background: linear-gradient(#1b1f22, #1b1f22) center 82% / 70% 1px no-repeat; }"
+    },
+    {
+      "name": "Prancha",
+      "kind": "card",
+      "description": "Seção como folha sobre a mesa: moldura de 1px com régua de coordenadas.",
+      "html": "<div class=\"ds-mesa\"><section class=\"ds-prancha\"><p class=\"ds-prancha__t\">Conteúdo da prancha</p></section></div>",
+      "css": ".ds-mesa { background: #d3d9d6; padding: 14px 0; } .ds-prancha { position: relative; background: #edf0ef; color: #1b1f22; padding: 48px 40px; } .ds-prancha::before { content: \"\"; position: absolute; inset: 12px; pointer-events: none; border: 1px solid color-mix(in oklab, #1b1f22, transparent 35%); background: repeating-linear-gradient(90deg, #1b1f22 0 1px, transparent 1px 12.5%) top left / 100% 7px no-repeat, repeating-linear-gradient(90deg, #1b1f22 0 1px, transparent 1px 12.5%) bottom left / 100% 7px no-repeat, repeating-linear-gradient(180deg, #1b1f22 0 1px, transparent 1px calc(100% / 6)) top left / 7px 100% no-repeat; } .ds-prancha__t { font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; margin: 0; }"
+    },
+    {
+      "name": "Ficha de sistema",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "Folha de detalhe com o símbolo na grade de 24 ao lado do nome.",
+      "html": "<article class=\"ds-sheet\"><h3 class=\"ds-sheet__name\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 12V9\"/></svg>Agenda</h3><p class=\"ds-sheet__kind\">Agendamento pelo WhatsApp</p></article>",
+      "css": ".ds-sheet { background: #edf0ef; color: #1b1f22; border: 1.5px solid #1b1f22; border-radius: 0; padding: clamp(18px, 2.2vw, 28px); max-width: 420px; } .ds-sheet__name { display: flex; align-items: center; gap: 14px; margin: 0; font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 600; font-size: clamp(1.7rem, 1.25rem + 1.4vw, 2.5rem); line-height: 1.02; letter-spacing: -0.015em; } .ds-sheet__kind { margin: 10px 0 0; font-family: \"Sofia Sans Condensed\", \"Arial Narrow\", sans-serif; font-weight: 600; letter-spacing: 0.04em; color: #545d63; }"
+    },
+    {
+      "name": "Campo verde",
+      "kind": "card",
+      "refersTo": "field-verde",
+      "description": "§11 e bloco final das páginas internas. Decisão do construtor sob a autorização geral do usuário (\"decida tudo você\"), não item do contrato de direção.",
+      "html": "<aside class=\"ds-verde\"><h2 class=\"ds-verde__t\">Precisa de um sistema funcionando?</h2><a class=\"ds-verde__btn\" href=\"#\">Chamar no WhatsApp</a></aside>",
+      "css": ".ds-verde { background: #0d7050; color: #edf0ef; padding: 40px; } .ds-verde__t { margin: 0 0 20px; font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 620; letter-spacing: -0.03em; font-size: 2rem; line-height: 1.05; } .ds-verde__btn { display: inline-flex; align-items: center; min-height: 52px; padding: 10px 22px; background: #edf0ef; color: #0d7050; border: 1.5px solid #edf0ef; font-family: \"Geologica\", \"Segoe UI\", system-ui, sans-serif; font-weight: 600; text-decoration: none; transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-verde__btn:active { transform: translateY(1px); } .ds-verde__btn:focus-visible { outline: 2px solid #edf0ef; outline-offset: 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "A Oficina de Xilogravura",
-    "overview": "A Autark é apresentada como uma oficina onde cada sistema é entalhado à mão numa matriz de madeira e sai impresso como capa de cordel. \"Construído à mão, sem template\" deixa de ser frase e vira material: tinta preta de rolo, papel de capa colorido, letra de madeira com a borda roída da goiva, carimbo de borracha batido por cima. O mundo foi escolhido para recusar duas coisas ao mesmo tempo: a landing escura de SaaS com 3D brilhante e o manual técnico grafite e laranja que este redesign substituiu.\n\nO papel de cordel resolve o problema do público. Quem chega é dono de salão, barbearia, clínica ou delivery, frio, no celular de 360px vindo do Instagram, muitas vezes à noite. Um folheto popular brasileiro é um objeto que essa pessoa já conhece e confia, lê de longe e não confunde com startup. As cores saturadas de capa dão contraste de sobra para a tinta preta (de 7:1 a 13,2:1) e trocam de seção para seção como as capas trocam de folheto, então a rolagem vira um maço de folhetos sendo folheado.\n\nA densidade é de impresso: blocos de texto curtos, títulos grandes, linhas de tinta grossas (2 a 4px) separando dados, nenhum canto arredondado, nenhum brilho. A profundidade vem só de sobreposição: uma folha de papel sobre outra de outra cor, como duas matrizes impressas em registro.",
+    "northStar": "O Projeto Executivo Assinado",
+    "overview": "O site inteiro é um jogo de pranchas de projeto executivo: cada seção é uma folha de papel vegetal frio pousada sobre a mesa de desenho, emoldurada por um traço fino com régua de coordenadas e fechada pelo quadro de identificação com a assinatura do responsável técnico. O desenho é feito a grafite firme; o que é medida aparece em linha de cota cinza; a única tinta de cor é o verde de aprovação, e ele só aparece onde o visitante age ou onde algo está operando.\n\nA densidade é a de uma prancha técnica: muito papel livre, traço exato, rótulos condensados pequenos e em caixa alta só onde um desenho técnico os teria (cotas, balões, legendas, quadros). Nada flutua: não há sombra, gradiente, canto arredondado nem fundo cinza para destacar. O destaque se faz com traço de 1,5px ou com hachura a 45°. A figura principal, o Cérebro Autark, é um modelo 3D desenhado como desenho isométrico de traço, não como render.\n\nO mundo substitui o folheto de xilogravura anterior e recusa, pelo contrato de direção, a landing escura de SaaS com 3D brilhante e o manual escuro de setembro.",
     "keyCharacteristics": [
-      "Tinta preta quente (`ink`) sobre um papel de capa saturado por seção; nada de creme, branco ou cinza neutro.",
-      "Letra de madeira (Alfa Slab One) nos títulos, com filtro de entalhe e máscara de falha de tinta.",
-      "Vermelho de carimbo só em moldura; quando o carimbo vira texto, a tinta é o vermelho-sangue `stamp-ink`.",
-      "Cantos retos, linhas de tinta cheias, nenhuma sombra: o que se destaca ganha uma segunda folha de outro papel atrás, em registro.",
-      "Uma coreografia só: a impressão da matriz, com scrub. O resto assenta com ease-out forte."
+      "Pranchas separadas sobre a mesa, cada uma com moldura de 1px, régua de coordenadas e quadro de identificação.",
+      "Duas tintas: grafite para o desenho, verde para ação e \"operando\".",
+      "Destaque por traço de 1,5px ou hachura a 45°, nunca por fundo de cor.",
+      "Geologica para títulos e texto; Sofia Sans Condensed em caixa alta só para a letra técnica.",
+      "Cantos retos, sem sombra, sem gradiente, sem glow.",
+      "3D isométrico de traço, sem luz, textura nem pós-processamento."
     ],
     "rules": [
       {
-        "name": "The Um Papel por Seção Rule",
-        "body": "Cada seção define `--ground` com um papel de capa, e tudo que é \"fundo\" dentro dela herda esse papel. A sequência da home é amarelo, rosa, jornal, azul, verde, laranja, jornal, amarelo, azul, rosa, tinta (§11), tinta (colofão). Seção nova escolhe um papel que não repete o vizinho.",
-        "section": "colors"
+        "name": "The Verde Só Opera Rule",
+        "section": "colors",
+        "body": "Verde só para ação (botões, links de ação, controles) e para \"operando\" (lâmpada, OPERANDO, status em produção, peça do passo atual). Código, numeração, rótulo, estrela de avaliação e ícone de lista ficam em grafite ou grafite claro."
       },
       {
-        "name": "The Carimbo na Moldura Rule",
-        "body": "`stamp` e `run` desenham moldura e sinal, nunca letra. Texto vermelho é sempre `stamp-ink`; texto de carimbo verde é `ink`. Teste: se o vermelho vivo ou o verde formam letras pequenas, está errado.",
-        "section": "colors"
+        "name": "The Nenhum Fundo Cinza Rule",
+        "section": "colors",
+        "body": "Nada se destaca por fundo cinza ou tingido. O que precisa sobressair ganha um traço de 1,5px em grafite ou a hachura a 45° (traço grafite a 22% de opacidade, 1px a cada 7px, a 135°)."
       },
       {
-        "name": "The Tinta Nunca Preta Rule",
-        "body": "Nenhum #000, #fff ou cinza puro. A tinta é `ink`; o \"branco\" é o papel da seção.",
-        "section": "colors"
+        "name": "The Campo Verde Rule",
+        "section": "colors",
+        "body": "§11 (assistência) e o bloco final das páginas internas são um campo verde de ponta a ponta com texto papel, moldura e régua em papel e botões papel com texto verde. Isto é uma decisão do construtor, tomada sob a autorização geral do usuário (\"decida tudo você\"), e não um item do contrato de direção. Use só nesses dois lugares: é a prancha aprovada que fecha o percurso, não um recurso de destaque."
       },
       {
-        "name": "The Madeira Sem Peso Rule",
-        "body": "Alfa Slab One existe num peso só (400) e com `letter-spacing: 0`. Nunca sintetize negrito (`font-synthesis: none`) nem aperte o espaçamento: a letra de madeira já é o peso máximo.",
-        "section": "typography"
+        "name": "The Letra Técnica Rule",
+        "section": "typography",
+        "body": "Sofia Sans Condensed só em cotas, legendas, quadros, balões e rótulos de dados. Nunca em parágrafo, nunca em título."
       },
       {
-        "name": "The Entalhe Só no Grande Rule",
-        "body": "O filtro SVG `#entalhe` (turbulência 0.045, deslocamento 2.6) e a máscara `--falha` vão só nos títulos grandes (capa, seção, notas, 404). Em texto pequeno o deslocamento destrói a leitura. A falha de rolo tem grão direcional (turbulência `.9 .035`, o rastro horizontal do rolo) e `mask-size` medido em `em`, para que o grão acompanhe o corpo da letra em vez de ter o mesmo tamanho num título de 80px e num carimbo de 14px.",
-        "section": "typography"
+        "name": "The Nada Acima do Título Rule",
+        "section": "typography",
+        "body": "Nenhum rótulo ou kicker acima de um título. Códigos como SYS-01, MOD-x, Passo n/6 e Anexo existem só para leitor de tela. Data, assunto e categoria vão abaixo do título, em letra técnica grafite claro, como a linha de identificação da prancha."
       },
       {
-        "name": "The Elite Só Carimba Rule",
-        "body": "Special Elite é carimbo e numeração de folheto, nada mais. Nunca parágrafo, nunca botão, nunca título.",
-        "section": "typography"
-      },
-      {
-        "name": "The Segunda Matriz Rule",
-        "body": "Destaque é sobreposição de papel, não sombra. Se o que está atrás do elemento é preto ou translúcido, está errado; tem de ser outro papel de capa (ou o vermelho-sangue do bloco de chamada), chapado, deslocado e levemente girado.",
-        "section": "elevation"
-      },
-      {
-        "name": "The Sem Brilho Rule",
-        "body": "Nenhum glow, `backdrop-filter`, gradiente de luz ou sombra difusa. Na cena 3D a luz é rasante e quente, sem bloom.",
-        "section": "elevation"
+        "name": "The Papel Sobre a Mesa Rule",
+        "section": "elevation",
+        "body": "A única camada é prancha sobre mesa. Uma folha sobre a prancha (ordem de serviço, ficha) se separa por traço de 1,5px, nunca por sombra ou deslocamento."
       }
     ],
     "dos": [
-      "Do dar a cada seção nova um papel de capa via `--ground` e herdar dele fundos, linhas (`color-mix` com a tinta) e texto de botão.",
-      "Do escrever todo texto vermelho em `stamp-ink` e deixar `stamp` para molduras e o cursor.",
-      "Do usar Alfa Slab One 400 com espaçamento 0 em títulos e números de leitura, com entalhe só nos títulos grandes.",
-      "Do fazer o botão principal como bloco de `ink` de canto reto que inverte para o papel no `:active`.",
-      "Do destacar com uma segunda folha de outro papel de capa atrás do elemento, deslocada ~10px e girada ~1°.",
-      "Do manter fotos e prints em uma tinta por passada: foto do fabricante em `grayscale(1) contrast(1.15)` com `multiply`, borda de tinta de 3px.",
-      "Do entrar com `cubic-bezier(0.23, 1, 0.32, 1)`, animar só `transform` e `opacity` e entregar a versão estática sob reduced motion."
+      "Do fechar toda seção com o quadro de identificação e a régua de coordenadas; nas páginas internas, com a folha avulsa.",
+      "Do destacar com traço de 1,5px grafite ou com a hachura a 45°.",
+      "Do pôr o número da seção no marcador de detalhe, ao lado do título.",
+      "Do usar Sofia Sans Condensed em caixa alta (600 a 750, tracking 0,05 a 0,12em) só para cotas, legendas, quadros, balões e rótulos de dados.",
+      "Do desenhar todo símbolo novo na grade de 24 com traço 1,5, sem preenchimento.",
+      "Do manter a imagem das fichas nas colunas 1 a 5.",
+      "Do usar entradas curtas em ease-out `cubic-bezier(0.23, 1, 0.32, 1)` e só transform e opacity.",
+      "Do manter texto em grafite, grafite médio ou grafite claro (mínimo ~5,8:1 sobre o papel)."
     ],
     "donts": [
-      "Don't escrever texto em `stamp` (#c8261d): dá 3,3:1 no amarelo e 2,1:1 no rosa.",
-      "Don't usar creme, branco, #000 ou cinza neutro; nem voltar ao grafite e laranja do mundo anterior.",
-      "Don't pôr sombra de qualquer tipo (`box-shadow`/`drop-shadow` preta, chapada ou difusa), glow, `backdrop-filter`, gradiente de luz ou texto em gradiente. A cena 3D não usa bloom.",
-      "Don't arredondar cantos de botão, ficha ou campo; a única curva é o carimbo de 2px.",
-      "Don't usar Special Elite fora de carimbo e numeração, nem pôr rótulo, kicker ou carimbo acima do título.",
-      "Don't levantar o botão no hover; o único gesto dele é inverter ao pressionar.",
-      "Don't criar uma segunda coreografia de scroll; a impressão da matriz é a única com scrub.",
-      "Don't usar bounce, elastic ou ease-in em entrada.",
-      "Don't carregar fontes ou imagens de terceiros; a CSP só aceita a própria origem."
+      "Don't usar verde em código, numeração, rótulo, estrela, ícone de lista, ênfase de título ou selo de \"recomendado\".",
+      "Don't usar fundo cinza ou tingido como destaque.",
+      "Don't pôr rótulo, kicker, código ou data acima de um título.",
+      "Don't usar sombra, gradiente de cor, glow, canto arredondado ou deslocamento de \"levantar\" no hover.",
+      "Don't usar a cor de cota em texto.",
+      "Don't criar uma segunda coreografia com scrub além da montagem, nem bounce ou elastic.",
+      "Don't dar luz, textura, sombra ou pós-processamento ao 3D.",
+      "Don't usar o campo verde fora de §11 e do bloco final das páginas internas."
     ]
   }
 }

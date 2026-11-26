@@ -312,7 +312,7 @@ a {
     border-color: var(--verde-hover);
   }
   .btn--ink:hover {
-    background: var(--papel-2);
+    background: var(--hachura);
   }
   .link-arrow:hover {
     text-decoration-color: currentColor;
@@ -795,7 +795,7 @@ a {
 @media (hover: hover) and (pointer: fine) {
   .sec--signal .btn--signal:hover,
   .sec--signal .btn--ink:hover {
-    background: #ffffff;
+    background: #f7f9f8;
   }
 }
 .sec--signal .folio,
@@ -1120,10 +1120,10 @@ body:has(main:is(.notas-pag, .nota-pag, .sis, .juridico, .nf)) {
   display: flex;
   flex-direction: column;
 }
-/* O pacote do meio (o atendente) é o recomendado: a faixa verde do topo diz isso
+/* O pacote do meio (o atendente) é o recomendado: a faixa grafite do topo diz isso
    sem selo nem cartão mais alto. */
 .pacote:nth-child(2) {
-  border-top: 6px solid var(--verde);
+  border-top: 6px solid var(--grafite);
 }
 .pacote__prazo {
   margin: 8px 0 14px;
