@@ -1,19 +1,19 @@
 <a href="https://autarktech.com.br/">
-  <img src=".github/readme/banner.png" alt="Autark, Manual de Operação. Sistemas que trabalham sozinhos enquanto você cresce. Ao lado, a Fig. 1: o Cérebro Autark em vista explodida, desenhado em traço." width="100%" />
+  <img src=".github/readme/banner.png" alt="Autark, Prancha Técnica. Sistemas que trabalham sozinhos enquanto você cresce. Ao lado, a Fig. 1: o Cérebro Autark em vista explodida, em traço isométrico sobre papel quadriculado." width="100%" />
 </a>
 
 <p align="center">
-  <a href="https://autarktech.com.br/"><img src="https://img.shields.io/badge/no_ar-autarktech.com.br-ff5a1f?style=flat-square&labelColor=15181b" alt="No ar em autarktech.com.br" /></a>
-  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/publicar.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/publicar.yml?branch=main&style=flat-square&label=publicar&labelColor=15181b" alt="Workflow Publicar" /></a>
-  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/quality.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/quality.yml?branch=main&style=flat-square&label=qualidade&labelColor=15181b" alt="Workflow Qualidade" /></a>
-  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/disponibilidade.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/disponibilidade.yml?branch=main&style=flat-square&label=disponibilidade&labelColor=15181b" alt="Workflow Disponibilidade" /></a>
-  <img src="https://img.shields.io/badge/Lighthouse-100_desktop_·_91_celular-3ddc97?style=flat-square&labelColor=15181b" alt="Lighthouse: 100 no desktop, 91 no celular" />
-  <img src="https://img.shields.io/badge/requests_a_terceiros-0-ece7dc?style=flat-square&labelColor=15181b" alt="Nenhum request a terceiros" />
+  <a href="https://autarktech.com.br/"><img src="https://img.shields.io/badge/no_ar-autarktech.com.br-0d7050?style=flat-square&labelColor=1b1f22" alt="No ar em autarktech.com.br" /></a>
+  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/publicar.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/publicar.yml?branch=main&style=flat-square&label=publicar&labelColor=1b1f22" alt="Workflow Publicar" /></a>
+  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/quality.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/quality.yml?branch=main&style=flat-square&label=qualidade&labelColor=1b1f22" alt="Workflow Qualidade" /></a>
+  <a href="https://github.com/ParkNow914/ParkNow914.github.io/actions/workflows/disponibilidade.yml"><img src="https://img.shields.io/github/actions/workflow/status/ParkNow914/ParkNow914.github.io/disponibilidade.yml?branch=main&style=flat-square&label=disponibilidade&labelColor=1b1f22" alt="Workflow Disponibilidade" /></a>
+  <img src="https://img.shields.io/badge/Lighthouse-100_desktop_·_95_celular-0d7050?style=flat-square&labelColor=1b1f22" alt="Lighthouse: 100 no desktop, 95 no celular" />
+  <img src="https://img.shields.io/badge/requests_a_terceiros-0-e4e8e6?style=flat-square&labelColor=1b1f22" alt="Nenhum request a terceiros" />
 </p>
 
 Este repositório é tudo o que vai ao ar em **[autarktech.com.br](https://autarktech.com.br/)**, o domínio da Autark, estúdio de automação com IA de Alisson Santos.
 
-A home é o **Manual de Operação**. O site inteiro é o manual do proprietário de um sistema que trabalha sozinho, com especificação, montagem, ensaios, termo de garantia e assistência técnica. Quem chega pelo Instagram ou por um anúncio lê o que a Autark faz no formato de um documento técnico, e cada afirmação vem com prova: sistema em produção, demo aberta, avaliação copiada como o cliente escreveu.
+A home é a **Prancha Técnica**: um jogo de pranchas de projeto executivo. Cada seção é uma folha de papel vegetal com moldura, régua e legenda, assinada pelo responsável técnico. Quem chega pelo Instagram ou por um anúncio lê o que a Autark faz no formato de um projeto, e cada afirmação vem com prova: sistema em produção, demo aberta, avaliação copiada como o cliente escreveu.
 
 <table>
 <tr>
@@ -30,7 +30,7 @@ A home é o **Manual de Operação**. O site inteiro é o manual do proprietári
 A peça central da home é o **Cérebro Autark**, uma máquina 3D de nove peças que começa como desenho técnico em vista explodida e se monta enquanto a página rola.
 
 - Cada passo da §1 encaixa as peças daquele passo, e a figura marca com balões numerados a peça da vez.
-- As faces pintam exatamente a cor do papel da página. É isso que faz o 3D parecer desenho em traço até ganhar volume.
+- A câmera é ortográfica e isométrica, o traço tem espessura fixa e as faces usam três tons do papel da página, a mesma conta do pôster. É isso que faz o 3D parecer desenho técnico até ganhar volume.
 - No último passo a lâmpada acende e aparece a etiqueta **OPERANDO**.
 - O Three.js só carrega na primeira interação. Até lá, e em aparelho sem WebGL, a moldura mostra um pôster gerado da própria cena.
 - Com "reduzir movimento" ligado no sistema, a máquina aparece montada e parada, com um botão para ver a montagem.
@@ -43,7 +43,7 @@ A cena é procedural: sem modelo baixado, sem HDRI de CDN, sem nenhuma requisiç
 
 <table>
 <tr>
-<td width="72%"><img src=".github/readme/desktop.png" alt="Capa do Manual de Operação no desktop: título à esquerda, a Fig. 1 em vista explodida à direita, plaqueta de identificação com nota 5.0 no 99freelas." /></td>
+<td width="72%"><img src=".github/readme/desktop.png" alt="Capa da Prancha Técnica no desktop: título à esquerda, a Fig. 1 em vista explodida à direita, e os números do 99freelas (5.0, 13 recomendações, 14 projetos) em leituras cotadas." /></td>
 <td width="28%"><img src=".github/readme/celular.png" alt="A mesma capa no celular: título, botão para pedir instalação no WhatsApp e a Fig. 1 logo abaixo." /></td>
 </tr>
 </table>
@@ -73,7 +73,7 @@ Três outros endereços do domínio são repositórios próprios, servidos pelo 
 
 Push na `main` publica. Nada chega ao domínio sem passar pelos testes no site já montado, com as landings junto.
 
-<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 44 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
+<img src=".github/readme/como-vai-ao-ar.png" alt="Caminho até o ar: 1, push na main; 2, build do site em site/out; 3, montagem do domínio em _site com as landings; 4, 61 testes de ponta a ponta; 5, GitHub Pages em autarktech.com.br. Se os testes falham, nada vai ao ar e o site segue na versão anterior. Em pull request, os passos 2 a 4 rodam e param antes de publicar." width="100%" />
 
 2. `npm ci && npm run build` em `site/` gera o export estático em `site/out/`.
 3. `tools/montar-site.sh` põe o site na raiz e `lp/` e `assets/` ao lado, em `_site/`. Se o site e as pastas antigas disputarem o mesmo caminho, a montagem falha.
@@ -88,18 +88,22 @@ O Pages está com a fonte **GitHub Actions** (Settings > Pages). O DNS no Regist
 
 | | Performance | Acessibilidade | Boas práticas | SEO |
 |---|:-:|:-:|:-:|:-:|
-| Desktop (mediana de 3) | 100 | 100 | 100 | 100 |
-| Celular, 4G lenta e CPU 4x (mediana de 5) | 91 | 100 | 100 | 100 |
+| Desktop, todas as páginas | 100 | 100 | 100 | 100 |
+| Celular, 4G lenta e CPU 4x: home | 95 | 100 | 100 | 100 |
+| Celular: notas, sistemas, Vale | 97 | 100 | 100 | 100 |
+| Celular: landings | 100 | 100 | 100 | 100 |
+
+Medido pela CI em 26/11/2026. No celular, o LCP simulado da home é 2,8 s; num navegador de verdade, o título aparece entre 0,4 e 0,8 s.
 
 | Workflow | Quando | O que garante |
 |---|---|---|
-| Publicar | push, PR | build, 58 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
+| Publicar | push, PR | build, 61 testes de ponta a ponta no site montado, publicação e aviso aos buscadores (IndexNow) |
 | Qualidade | push, PR, segunda 09:00 UTC | HTML e CSS das landings, referências locais, links externos, Lighthouse desktop e mobile na home, no 404 e nas landings |
 | Notas agendadas | 11:00 UTC (08:00 em Brasília) | copia do calendário privado a nota do dia, gera a imagem e chama o Publicar |
-| Disponibilidade | 09:00 e 21:00 UTC | a home responde com "Manual de Operação", as 4 landings e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue |
+| Disponibilidade | 09:00 e 21:00 UTC | a home responde com a frase da marca, as 4 landings, o `security.txt` e as 3 demos respondem, o certificado não está vencendo. Se algo cair, abre uma issue, e ela fecha sozinha quando tudo volta |
 
 Os testes de ponta a ponta cobrem:
-- estrutura e JSON-LD;
+- estrutura, JSON-LD e os dois favicons no `<head>`;
 - ilhas estáticas funcionando sem hidratação;
 - calculadora e ordem de serviço montando a mensagem do WhatsApp;
 - índice pelo teclado;
@@ -110,6 +114,7 @@ Os testes de ponta a ponta cobrem:
 - notas de campo: índice, artigo com JSON-LD, imagem de compartilhamento, CTA com o título da nota, RSS, `llms.txt`, sitemap e chave do IndexNow;
 - páginas avulsas: uma por sistema (com as notas sobre ele), Vale do Paraíba com as cidades no JSON-LD, política de privacidade e o link dela nas landings;
 - 404;
+- landings, `security.txt` e o retrato das landings respondendo;
 - 7 larguras de tela sem rolagem horizontal;
 - movimento reduzido.
 
@@ -170,4 +175,4 @@ Depois de trocar esses pontos, configure o domínio novo em Settings > Pages e a
 
 ---
 
-<p align="center"><sub><b>Autark</b> · Manual de Operação · Rev. 2026.09 · por <a href="https://github.com/ParkNow914">Alisson Santos</a> · <a href="https://autarktech.com.br/">autarktech.com.br</a></sub></p>
+<p align="center"><sub><b>Autark</b> · Prancha Técnica · Rev. 2026.11 · por <a href="https://github.com/ParkNow914">Alisson Santos</a> · <a href="https://autarktech.com.br/">autarktech.com.br</a></sub></p>

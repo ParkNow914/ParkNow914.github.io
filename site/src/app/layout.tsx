@@ -27,7 +27,16 @@ export const metadata: Metadata = {
     images: [{ url: "/marca/og-prancha.png", width: 1200, height: 630, alt: "Prancha técnica da Autark: sistemas que trabalham sozinhos enquanto você cresce, com responsável técnico Alisson Santos." }],
   },
   twitter: { card: "summary_large_image", images: ["/marca/og-prancha.png"] },
-  icons: { apple: "/marca/apple-touch-icon.png" },
+  // Declarados aqui, e não como arquivos em app/: com favicon.ico e icon.svg em
+  // app/, o Next só punha o .ico no <head>. O .ico leva sizes="32x32" (e não
+  // "any") para o Chrome preferir o SVG; os dois saem de scripts/icones.mjs.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/marca/apple-touch-icon.png",
+  },
   referrer: "strict-origin-when-cross-origin",
 };
 

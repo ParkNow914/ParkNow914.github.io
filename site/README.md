@@ -1,9 +1,10 @@
-# Autark · Manual de Operação
+# Autark · Prancha Técnica
 
 Home da **Autark** (autarktech.com.br), o estúdio de automação com IA de Alisson Santos.
-A página inteira é o manual do proprietário de um sistema que trabalha sozinho, com
-especificação, montagem, ensaios e assistência técnica. A Fig. 1 é uma máquina 3D que
-sai do desenho técnico e se monta, peça por peça, conforme a página rola.
+A página inteira é um jogo de pranchas de projeto executivo: cada seção é uma folha de
+papel vegetal com moldura, régua e legenda, assinada pelo responsável técnico. A Fig. 1
+é um desenho isométrico em traço que vira 3D e se monta, peça por peça, conforme a
+página rola.
 
 ## Rodar
 
@@ -17,48 +18,52 @@ node scripts/e2e.mjs http://localhost:3100/   # testes de ponta a ponta contra o
 ```
 
 Para ver a montagem animada num sistema com "reduzir movimento" ligado, abra `/?movimento=1`
-ou use o botão "Ver a montagem animada" na Fig. 1. A escolha fica guardada no navegador, e
-`/?movimento=0` desfaz.
+ou use o botão da Fig. 1. A escolha fica guardada no navegador, e `/?movimento=0` desfaz.
 
 ## Estrutura
 
 ```
 src/
-  app/            layout (metadados, JSON-LD, fontes), página, CSS, robots, sitemap, 404
-  content/site.ts TODO o texto do site, com os dados reais; nada ali pode ser inventado
+  app/              layout (metadados, ícones, JSON-LD, fontes), página, CSS, robots, sitemap, 404
+    globals.css     base estrutural (grade, seções, componentes)
+    prancha.css     a camada visual da prancha: papel, traço, moldura, régua, legenda
+  content/site.ts   TODO o texto do site, com os dados reais; nada ali pode ser inventado
   content/jsonld.ts dados estruturados da marca (home) e de quem publica as notas
-  lib/notas.ts    lê content/notas/*.md (mesmo formato dos carrosséis do Instagram)
+  lib/              notas, preferência de movimento, origem UTM e o que cada sistema junta (sistemas.ts)
   components/
-    Stage.tsx         capa + §1 (montagem) com a Fig. 1
+    Stage.tsx         capa + §1 (montagem) com a Fig. 1 e o quadro de legenda
     StageDriver.tsx   liga o scroll dos passos ao progresso da montagem
-    machine/          cena 3D (Three.js + React Three Fiber), camada fixa, carregamento adiado
+    machine/          cena 3D: Montagem.tsx (Three.js), modelo.json, carregamento adiado
+    Manual.tsx        régua, legenda (Folio) e cabeçalho de seção de cada prancha
+    Simbolo.tsx       os 10 símbolos geométricos dos sistemas (SYS-01 a SYS-10)
     Sections.tsx      §2 a §10 e o colofão
-    Sizing.tsx        §6, calculadora de economia
-    Assistance.tsx    §11, ordem de serviço que abre o WhatsApp
-    RunningHeader.tsx cabeçalho corrido com seção atual, página e índice
-    Enhance.tsx       carimbos, opção de movimento e origem UTM nos links do WhatsApp
-    Notas.tsx         notas de campo: cabeçalho, artigo, lista e o anexo D da home
-    Paginas.tsx       trilha, bloco e fecho laranja das páginas avulsas (sistemas, Vale, privacidade)
+    Sizing.tsx        calculadora de economia
+    Assistance.tsx    ordem de serviço que abre o WhatsApp
+    RunningHeader.tsx cabeçalho corrido com seção atual e índice
+    Enhance.tsx       entradas, opção de movimento e origem UTM nos links do WhatsApp
+    Notas.tsx         notas de campo: cabeçalho, artigo, lista e o anexo da home
+    Paginas.tsx       trilha, bloco e fecho das páginas avulsas (sistemas, Vale, privacidade)
     Compartilhar.tsx  compartilhar nativo do celular, copiar link, mandar pelo WhatsApp
-  lib/            preferência de movimento, origem UTM e o que cada sistema junta de outras partes (sistemas.ts)
+  fonts/            Geologica e Sofia Sans Condensed, recorte latim (ver fonts.ts)
 scripts/
-  prerender.mjs   gera as ilhas estáticas (roda sozinho antes de dev, build e typecheck)
-  posters.mjs     larguras em WebP dos pôsteres da Fig. 1
-  og-molde.mjs    molde das imagens de compartilhamento 1200x630
-  og-notas.mjs    imagem de cada nota (npm run og:notas)
-  og-paginas.mjs  imagens dos sistemas, das páginas avulsas e das landings (npm run og:paginas)
-  serve.mjs       servidor estático que imita o GitHub Pages
-  e2e.mjs         testes de ponta a ponta
-  fonts/          Hubot Sans, Mona Sans e Martian Mono recortadas (ver fonts.ts)
+  prerender.mjs     gera as ilhas estáticas (roda sozinho antes de dev, build e typecheck)
+  cerebro-poster.mjs pôster SVG da Fig. 1 e poster-bounds.json, tirados do mesmo modelo do 3D
+  icones.mjs        favicon, ícones do app, apple-touch-icon e a marca solta
+  og-molde.mjs      molde das imagens de compartilhamento 1200x630
+  og-notas.mjs      imagem de cada nota (npm run og:notas)
+  og-paginas.mjs    imagens dos sistemas, das páginas avulsas e das landings (npm run og:paginas)
+  serve.mjs         servidor estático que imita o GitHub Pages
+  e2e.mjs           testes de ponta a ponta
 public/
-  projetos/       prints reais dos sistemas (vieram do site anterior)
-  marca/          logo, foto, ícones, imagem de compartilhamento (og-manual.png)
-  figs/           pôsteres da Fig. 1 em vista explodida (gerados da própria cena 3D)
-  sw.js           desinstalador do service worker da home anterior
-  licencas/       licenças OFL das fontes
-PRODUCT.md        verdade do produto (público, posicionamento, provas, restrições)
-DESIGN.md         sistema visual: tokens, tipografia, componentes e regras
-.impeccable/      contrato de direção da página e evidências da revisão
+  projetos/         prints reais dos sistemas, cada um com uma cópia de 640 px (-640.webp)
+  marca/            logo, foto, ícones, imagem de compartilhamento (og-prancha.png)
+  figs/             pôster da Fig. 1 em vista explodida
+  .well-known/      security.txt
+  sw.js             desinstalador do service worker da home anterior
+  licencas/         licenças OFL das fontes
+PRODUCT.md          verdade do produto (público, posicionamento, provas, restrições)
+DESIGN.md           sistema visual: tokens, tipografia, componentes e regras
+.impeccable/        contrato de direção da página e tokens (design.json)
 ```
 
 ## Decisões que não podem se perder
@@ -68,73 +73,59 @@ DESIGN.md         sistema visual: tokens, tipografia, componentes e regras
   de CDN. A CSP vai em `<meta>` no `layout.tsx` (o GitHub Pages não deixa configurar
   cabeçalhos) e não libera nenhuma origem externa.
 - **Export estático.** `output: "export"` no `next.config.ts`: o build gera `out/` com HTML,
-  CSS e JS prontos, sem servidor. Por isso não existe otimizador de imagem; as larguras dos
-  pôsteres saem de `scripts/posters.mjs`, e as demais imagens já são WebP no tamanho certo.
+  CSS e JS prontos, sem servidor. Por isso não existe otimizador de imagem. Cada print de
+  sistema tem uma cópia de 640 px, e o `srcset` (função `telaSrcset` em `site.ts`) deixa o
+  navegador escolher.
 - **O WhatsApp funciona sem JavaScript.** Todo CTA tem o `href` real. O JS só acrescenta a
   origem UTM (`utm_source/medium/campaign`) no fim da mensagem, e a calculadora e a ordem de
   serviço montam o texto.
-- **3D sem pesar no primeiro carregamento.** O Three.js (~280 KB gz) só carrega na
-  primeira interação (mouse, toque, roda, tecla) ou depois de 12 s. Até lá, e sem WebGL, a
-  moldura mostra o pôster `public/figs/fig1-explodida*.png`. Com movimento reduzido, a
+- **3D sem pesar no primeiro carregamento.** O Three.js só carrega na primeira interação
+  (mouse, toque, roda, tecla) ou depois de 12 s (`MachineMount.tsx`). Até lá, e sem WebGL, a
+  moldura mostra o pôster `public/figs/cerebro-explodido.svg`. Com movimento reduzido, a
   máquina aparece montada e parada.
-- **Cor do "papel".** O traço da Fig. 1 funciona porque as faces 3D pintam exatamente a cor
-  do fundo da página. `--ground` em `globals.css` e `PAPER` em `machine/Machine.tsx` precisam
-  ser o mesmo hex (`#15181b`).
-- **Fontes recortadas.** `src/fonts/*.woff2` só têm o latim e a faixa de peso e largura usada
-  (de ~230 KB para ~120 KB). Se um título precisar de peso abaixo de 600 na Hubot, regenere
-  a fonte com `fontTools.varLib.instancer` a partir de `node_modules/@fontsource-variable`.
-- **Ilhas estáticas.** As seções sem interação (§2–§5, §7–§10 e o colofão) são
-  renderizadas para HTML puro antes do build por `scripts/prerender.mjs` (roda sozinho em
-  `predev`, `prebuild` e `pretypecheck`) e entram na página por `dangerouslySetInnerHTML`.
-  O React não hidrata esses nós. Edite `src/components/Sections.tsx` e `src/content/site.ts`
-  normalmente: o arquivo gerado `src/generated/static-sections.ts` é refeito a cada comando.
-  Não use hooks, estado ou eventos nessas seções; interação vive em componentes client
-  como `Sizing` e `Assistance`.
+- **Pôster e 3D batem.** A câmera é ortográfica e isométrica (1 unidade = 1 px), e o pôster
+  sai de `scripts/cerebro-poster.mjs` com a mesma conta de três tons das faces e os mesmos
+  limites (`poster-bounds.json`). Mudou o `modelo.json`, rode o script de novo para a troca
+  do pôster pelo 3D não pular.
+- **Uma tinta só.** O verde `#0d7050` aparece só no que opera (botão, status em produção,
+  peça da vez). O resto é grafite `#1b1f22` sobre papel `#edf0ef`. Fundo cinza não existe:
+  separação é traço de 1,5 px ou hachura. As regras completas estão em `DESIGN.md`.
+- **Ícones de um script só.** `node scripts/icones.mjs` regrava `public/icon.svg`,
+  `public/favicon.ico`, os PNGs de `public/marca/` e os ícones da raiz `../assets/`, que as
+  landings usam. Os PNGs saem em RGBA porque o Next recusa `.ico` com PNG RGB dentro. Os
+  dois favicons entram no `<head>` pelo `icons` do `layout.tsx`.
+- **Ilhas estáticas.** As seções sem interação são renderizadas para HTML puro antes do
+  build por `scripts/prerender.mjs` (roda sozinho em `predev`, `prebuild` e
+  `pretypecheck`) e entram na página por `dangerouslySetInnerHTML`. O React não hidrata
+  esses nós. Edite `src/components/Sections.tsx` e `src/content/site.ts` normalmente: o
+  arquivo gerado em `src/generated/` é refeito a cada comando. Não use hooks, estado ou
+  eventos nessas seções; interação vive em componentes client como `Sizing` e `Assistance`.
 - **Rolagem nativa.** Sem biblioteca de smooth scroll: a montagem da Fig. 1 já amortece o
   movimento, âncoras usam `scroll-behavior` e `scroll-padding-top` do CSS, e o sistema do
   visitante manda (movimento reduzido desliga o deslize).
-- **Nada caro na hidratação.** A sonda de WebGL e a primeira medida do scroll ficam para
-  depois do primeiro respiro do navegador. Esse adiamento levou o Lighthouse no
-  celular de ~74 para 91 (mediana de 5 rodadas).
 - **Sem `aggregateRating` no JSON-LD.** Nota da própria empresa sobre si viola a política de
   reviews do Google. As avaliações do 99freelas ficam visíveis na página.
 
-## Qualidade medida (23/09/2026, build de produção)
+## Qualidade medida (26/11/2026, CI no build de produção)
 
 | | Performance | Acessibilidade | Boas práticas | SEO |
 |---|---|---|---|---|
-| Desktop (mediana de 3) | 100 | 100 | 100 | 100 |
-| Celular, 4G lenta e CPU 4x (mediana de 5) | 91 | 100 | 100 | 100 |
+| Desktop | 100 | 100 | 100 | 100 |
+| Celular, 4G lenta e CPU 4x: home | 95 | 100 | 100 | 100 |
+| Celular: notas, sistemas, Vale | 97 | 100 | 100 | 100 |
 
-- **Desktop:** LCP de 0,69 s, TBT de 0 ms, CLS de 0.
-- **Celular:** o LCP simulado é de 3,3 s, mas o observado na mesma rodada é de 0,45 s. O
-  teto vem do primeiro layout da página longa, que custa ~1,3 s de CPU no celular
-  emulado. `content-visibility: auto` nas seções foi medido e descartado: não mexeu no LCP
-  e trouxe um falso positivo de `target-size` na acessibilidade.
-- **Pôsteres da Fig. 1:** cada um tem preload com `media` e `fetchpriority=high` só na
-  faixa de tela em que é o primeiro visual. No celular, o pôster da bancada vem depois,
-  sem pressa, e o desktop nem baixa o da capa do celular (um `<picture>` entrega um
-  pixel vazio).
-- **E2E:** 58/58 no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
-  JSON-LD, ilhas estáticas, calculadora, ordem de serviço, índice, montagem até OPERANDO,
-  UTM, página sem JS, links da home anterior, 404, landings, notas, páginas de sistema,
-  Vale do Paraíba, privacidade, 7 larguras sem rolagem horizontal e movimento reduzido.
-- **Detector do impeccable:** 0 achados no código-fonte. Na página renderizada em 1440
-  sobra um, sancionado: o título grande da capa, que é a folha de rosto do manual. Há
-  também um aviso consultivo sobre as réguas de cota, que fazem parte do desenho técnico.
+- **Celular:** o LCP simulado da home é 2,8 s, mas o medido num navegador de verdade é de
+  0,4 a 0,8 s. A simulação soma ao caminho crítico as duas fontes com preload e o
+  JavaScript do framework, em 4G lenta.
+- **E2E:** 61 checagens no domínio montado (`scripts/e2e.mjs --landings`). Cobre estrutura,
+  JSON-LD, favicons, ilhas estáticas, calculadora, ordem de serviço, índice, montagem até
+  OPERANDO, UTM, página sem JS, links da home anterior, 404, landings, `security.txt`,
+  notas, páginas de sistema, Vale do Paraíba, privacidade, 7 larguras sem rolagem
+  horizontal e movimento reduzido.
 
 A CI guarda o `e2e.json` de cada publicação como artefato do workflow Publicar. As
-medições locais (relatórios do Lighthouse, detector, capturas em 1440 e 390) vão para
-`.impeccable/review/`, que fica fora do git porque se refaz a cada rodada.
-
-## Regenerar os pôsteres da Fig. 1
-
-Se a máquina 3D mudar, os pôsteres precisam ser refeitos para a moldura não mostrar uma
-versão antiga antes do 3D carregar. Com o build servido em `localhost:3100`, capture a
-camada `.fig-layer` com fundo transparente, recortada no retângulo de `.fig--main`
-(1440×900) e de `.fig--inline` (390×844). Salve em `public/figs/fig1-explodida.png` e
-`public/figs/fig1-explodida-mobile.png` e rode `node scripts/posters.mjs` para gerar as
-larguras em WebP.
+medições locais (relatórios, capturas em 1440 e 390) vão para `.impeccable/review/`, que
+fica fora do git porque se refaz a cada rodada.
 
 ## Publicar
 

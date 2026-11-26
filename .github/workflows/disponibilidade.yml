@@ -40,9 +40,11 @@ jobs:
 
           # HTTP 200 nao prova que a pagina esta certa: o Pages devolve 200 numa
           # pagina de erro dele. Conferir uma frase que so existe no site
-          # distingue "no ar" de "respondendo".
-          if ! grep -q "Manual de Operação" corpo.html 2>/dev/null; then
-            falhas="${falhas}- A resposta veio sem \"Manual de Operação\": pode ser pagina de erro do Pages ou a versao antiga\n"
+          # distingue "no ar" de "respondendo". A frase e a ancora da marca
+          # (PRODUCT.md), e nao o nome de um visual: o teste antigo procurava
+          # "Manual de Operação" e passou a dar alarme falso depois do redesign.
+          if ! grep -q "Sistemas que trabalham sozinhos" corpo.html 2>/dev/null; then
+            falhas="${falhas}- A resposta veio sem \"Sistemas que trabalham sozinhos\": pode ser pagina de erro do Pages\n"
           fi
 
           # As landings sao o destino do trafego pago. Se uma cair, a verba
@@ -53,6 +55,13 @@ jobs:
               falhas="${falhas}- A landing /lp/${slug}/ respondeu HTTP ${c}\n"
             fi
           done
+
+          # Arquivos que só existem no ar se o empacotamento do Pages mantiver as
+          # pastas com ponto (include-hidden-files no publicar.yml).
+          c=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 25 "${alvo}.well-known/security.txt" || true)
+          if [ "$c" != "200" ]; then
+            falhas="${falhas}- /.well-known/security.txt respondeu HTTP ${c}\n"
+          fi
 
           # Outros repositorios servidos sob o mesmo dominio: as duas demos e o
           # laboratorio poliglota, que e linkado da secao de projetos.
@@ -94,7 +103,7 @@ jobs:
             exit 1
           fi
           echo "ok=sim" >> "$GITHUB_OUTPUT"
-          echo "Site no ar (Manual de Operação), 4 landings, 3 demos e a agenda de exemplo do AgendaZap respondendo." >> "$GITHUB_STEP_SUMMARY"
+          echo "Site no ar, 4 landings, 3 demos e a agenda de exemplo do AgendaZap respondendo." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Abrir issue se caiu
         if: failure()
@@ -118,3 +127,16 @@ jobs:
             } > corpo.md
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$titulo" --body-file corpo.md
           fi
+
+      - name: Fechar a issue quando o site voltar
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Sem isso a issue ficava aberta para sempre depois que tudo voltava, e
+          # uma issue aberta que ninguém lê ensina a ignorar o alarme.
+          for n in $(gh issue list --repo "$GITHUB_REPOSITORY" --state open \
+            --search "Site fora do ar ou degradado in:title" --json number --jq '.[].number'); do
+            gh issue close "$n" --repo "$GITHUB_REPOSITORY" \
+              --comment "Verificação de $(date -u +'%F %H:%M') UTC: site, landings, demos e certificado respondendo. Fechando."
+          done

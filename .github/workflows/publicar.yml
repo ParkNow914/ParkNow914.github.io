@@ -70,6 +70,9 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          # Sem isto a ação descarta pastas com ponto, e /.well-known/security.txt
+          # passava no e2e mas não chegava ao ar.
+          include-hidden-files: true
 
   publicar:
     name: Publicar no GitHub Pages

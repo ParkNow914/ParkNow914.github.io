@@ -19,6 +19,7 @@ import {
   WARRANTY,
   type Status,
   type System,
+  telaSrcset,
   INSTAGRAM,
   LINKEDIN,
 } from "@/content/site";
@@ -135,6 +136,8 @@ function Sheet({ s, i }: { s: System; i: number }) {
         <div className="sheet__img">
           <img
             src={s.image}
+            srcSet={telaSrcset(s)}
+            sizes="(max-width: 960px) calc(100vw - 72px), 516px"
             width={s.imageW}
             height={s.imageH}
             alt={`Tela real do ${s.name}.`}
@@ -416,6 +419,8 @@ export function Maker() {
         <figure className="maker__photo">
           <img
             src="/marca/foto-square.webp"
+            srcSet="/marca/foto-square-400.webp 400w, /marca/foto-square.webp 760w"
+            sizes="(max-width: 960px) calc(100vw - 34px), 340px"
             width={760}
             height={760}
             alt="Alisson Santos no escritório, trabalhando no computador."
