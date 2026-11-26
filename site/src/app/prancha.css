@@ -1641,3 +1641,9 @@ main > .regua {
   grid-column: auto;
   grid-row: auto;
 }
+
+/* §1 mora dentro do palco, que já tem a sua régua: a da legenda de §1 sairia
+   repetida, por dentro da moldura. */
+.assembly > .regua {
+  display: none;
+}
