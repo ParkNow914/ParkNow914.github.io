@@ -100,7 +100,7 @@ export const ASSEMBLY = [
   {
     parts: [2, 3, 4],
     title: "Canais que encaixam",
-    /** Som do atendimento, impresso em letra de madeira; `nivel` é o volume (1 a 3). */
+    /** Som do atendimento (decorativo, fora de uso no desenho atual); `nivel` é o volume (1 a 3). */
     som: { texto: "PLIM!", nivel: 1 },
     body:
       "WhatsApp, Telegram e site entram como portas plugadas no núcleo. Você soma ou troca um canal sem reescrever regra nenhuma.",

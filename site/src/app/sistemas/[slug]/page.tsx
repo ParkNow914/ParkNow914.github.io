@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NotasHeader, ListaNotas } from "@/components/Notas";
 import { Colophon, Stamp } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
+import { Simbolo } from "@/components/Simbolo";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Bloco, Chamada, Trilha, frases, resumir } from "@/components/Paginas";
@@ -89,13 +91,16 @@ export default async function SistemaPage({ params }: Props) {
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota sis">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
           <header className="nota__cab sis__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">{s.code}</span>
               <span>{s.kind}</span>
             </p>
-            <h1 className="nota__t">{s.name}</h1>
+            <h1 className="nota__t">
+              <Simbolo code={s.code} size={44} className="simbolo nota__simbolo" />
+              {s.name}
+            </h1>
             <p className="nota__lede">{lede}</p>
             <div className="sis__carimbo">
               <Stamp status={s.status} />
@@ -208,6 +213,7 @@ export default async function SistemaPage({ params }: Props) {
             )}
           </nav>
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

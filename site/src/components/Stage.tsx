@@ -1,44 +1,15 @@
 import { ASSEMBLY, ASSEMBLY_INTRO, COVER, PARTS, REVISION, WA_DEFAULT } from "@/content/site";
 import { Balloon, Icon } from "./Icon";
-import { Folio, LegacyAnchors, SectionHead } from "./Manual";
+import { Folio, LegacyAnchors, Regua, SectionHead, pageOf } from "./Manual";
 import { StageDriver } from "./StageDriver";
 import { MotionToggle } from "./MotionToggle";
 
-// Cada tela tem seu pôster: o da capa no celular, o da bancada no desktop. O
-// preload leva `media`, então nenhum aparelho baixa com pressa a imagem do outro.
-// As larguras em WebP saem de scripts/posters.mjs (o site é estático, sem
-// otimizador de imagem no servidor).
-const POSTER = {
-  inline: { base: "/figs/fig1-explodida-mobile", widths: [358, 537, 716], sizes: "100vw", media: "(max-width: 960px)" },
-  main: { base: "/figs/fig1-explodida", widths: [662, 993, 1324], sizes: "46vw", media: "(min-width: 961px)" },
-} as const;
-const BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
-
-function Poster({ inline }: { inline?: boolean }) {
-  const p = inline ? POSTER.inline : POSTER.main;
-  const srcSet = p.widths.map((w) => `${p.base}-${w}.webp ${w}w`).join(", ");
-  const src = `${p.base}-${p.widths[p.widths.length - 1]}.webp`;
+// O pôster é o mesmo desenho da cena em vista explodida, gerado em SVG por
+// scripts/cerebro-poster.mjs: aparece antes do 3D, sem WebGL e sem JavaScript.
+function Poster() {
   return (
-    <>
-      <link rel="preload" as="image" imageSrcSet={srcSet} imageSizes={p.sizes} media={p.media} fetchPriority="high" />
-      <picture>
-        {/* No desktop a figura da capa fica oculta; um pixel vazio evita baixar o pôster à toa. */}
-        {inline ? <source media={POSTER.main.media} srcSet={BLANK} /> : null}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          className="fig__poster"
-          src={src}
-          srcSet={srcSet}
-          sizes={p.sizes}
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          // No celular a figura da bancada começa fora da tela; só a da capa tem pressa.
-          fetchPriority={inline ? "high" : "auto"}
-          loading="eager"
-        />
-      </picture>
-    </>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="fig__poster" src="/figs/cerebro-explodido.svg" alt="" aria-hidden="true" decoding="async" loading="eager" width={719} height={725} />
   );
 }
 
@@ -50,21 +21,29 @@ function FigFrame({ inline }: { inline?: boolean }) {
       data-pad={inline ? "10 72" : "84 128"}
       data-pad-sm={inline ? "10 72" : "62 64"}
       data-fig="drawing"
-      aria-label="Matriz 1: o Cérebro Autark entalhado numa matriz de xilogravura, peça por peça, conforme você rola a página."
+      aria-label="Figura 1: o Cérebro Autark em desenho técnico, montado peça por peça conforme você rola a página."
     >
-      <Poster inline={inline} />
+      <Poster />
       <span className="fig__mark fig__mark--tl" />
       <span className="fig__mark fig__mark--tr" />
       <span className="fig__mark fig__mark--bl" />
       <span className="fig__mark fig__mark--br" />
       <figcaption className="fig__cap">
-        <span className="fig__no">Matriz 1</span> <span data-fig-state>Cérebro Autark, desenhado a pincel</span>
+        <span className="fig__no">Fig. 1</span> <span data-fig-state>Cérebro Autark, vista explodida</span>
       </figcaption>
       {inline ? null : (
         <p className="fig__block" aria-hidden="true">
-          <span>Matriz AT-01</span>
-          <span>Folha 1/1</span>
-          <span>{REVISION}</span>
+          <span>Autark</span>
+          <span>
+            <span className="folio__k">Desenho AT-01 · Escala 1:1</span>Cérebro Autark · {REVISION}
+          </span>
+          <span>
+            <span className="folio__k">Responsável técnico</span>Alisson Santos
+          </span>
+          <span>
+            <span className="folio__k">Prancha</span>
+            {pageOf("capa").n}/{pageOf("capa").total}
+          </span>
         </p>
       )}
       {inline ? null : (
@@ -78,7 +57,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
       )}
       {inline ? null : (
         <div className="fig__meter" aria-hidden="true">
-          <span className="fig__meter-label">Entalhe</span>
+          <span className="fig__meter-label">Montagem</span>
           <span className="fig__meter-track">
             <span className="fig__meter-fill" data-fig-fill />
           </span>
@@ -88,7 +67,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
         </div>
       )}
       <p className="fig__hint" aria-hidden="true">
-        <Icon name="arrow-down" size={14} /> Role para entalhar
+        <Icon name="arrow-down" size={14} /> Role para montar
       </p>
       {inline ? null : <MotionToggle />}
     </figure>
@@ -98,6 +77,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
 export function Stage() {
   return (
     <div className="stage" id="stage">
+      <Regua />
       <div className="stage__fig">
         <FigFrame />
       </div>
@@ -122,8 +102,8 @@ export function Stage() {
         <FigFrame inline />
         <div className="plate">
           <p className="plate__head">
-            <span>Ficha do folheto</span>
-            <span className="plate__model">Folha 1</span>
+            <span>Medições no 99freelas</span>
+            <span className="plate__model">Nov/2026</span>
           </p>
           <dl className="plate__list">
             {COVER.plate.map((r) => (
@@ -150,7 +130,7 @@ export function Stage() {
         <p className="assembly__lede">{ASSEMBLY_INTRO}</p>
 
         <table className="bom">
-          <caption>Peças entalhadas na Matriz 1</caption>
+          <caption>Lista de peças do Cérebro Autark</caption>
           <thead>
             <tr>
               <th scope="col">Nº</th>
@@ -186,12 +166,6 @@ export function Stage() {
                 </span>
                 {s.title}
               </h3>
-              {"som" in s && s.som ? (
-                // O barulho do atendimento, maior quanto mais alto. Decorativo.
-                <p className="step__som" data-nivel={s.som.nivel} aria-hidden="true">
-                  {s.som.texto}
-                </p>
-              ) : null}
               {s.parts.length ? (
                 <p className="step__parts">
                   {s.parts.map((n) => (

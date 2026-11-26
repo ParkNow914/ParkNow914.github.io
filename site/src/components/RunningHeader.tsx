@@ -6,7 +6,7 @@ import { Icon, LogoMark } from "./Icon";
 
 const TOTAL = String(SECTIONS.length).padStart(2, "0");
 
-// Cabeçalho corrido do manual: sabe em que seção você está e em que página.
+// Faixa de título do desenho: sabe em que seção você está e em que prancha.
 export function RunningHeader() {
   const [cur, setCur] = useState<SectionId>("capa");
   const [open, setOpen] = useState(false);
@@ -60,13 +60,13 @@ export function RunningHeader() {
           <span className="rh__name">Autark</span>
         </a>
         <span className="rh__doc">
-          Folheto da Oficina <span className="rh__rev">{REVISION}</span>
+          Projeto executivo <span className="rh__rev">{REVISION}</span>
         </span>
         <span className="rh__sec">
           <span className="rh__addr">{sec.address === "Capa" ? "" : sec.address}</span> {sec.title}
         </span>
         <span className="rh__page">
-          Pág. {page}/{TOTAL}
+          Prancha {page}/{TOTAL}
         </span>
         <button
           ref={btn}

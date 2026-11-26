@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Briefing } from "@/components/Briefing";
@@ -68,10 +69,10 @@ export default function PacotesPage() {
       <NotasHeader secao={{ label: titulo, href: "/pacotes/" }} />
       <main id="conteudo" className="nota-pag pacotes-pag">
         <article className="nota nota--larga">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: titulo }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: titulo }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
-              <span className="nota__pilar">Tabela da oficina</span>
+              <span className="nota__pilar">Tabela de preços</span>
               <span>Preço fechado · tudo por mensagem</span>
             </p>
             <h1 className="nota__t">{titulo}</h1>
@@ -195,6 +196,7 @@ export default function PacotesPage() {
             </div>
           </Bloco>
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

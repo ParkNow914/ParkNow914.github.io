@@ -1,0 +1,1649 @@
+/* ==========================================================================
+   Autark · Prancha Técnica
+   O site como projeto executivo assinado: papel vegetal frio, traço grafite
+   firme, linha de cota cinza e uma única tinta verde de aprovação, só para ação
+   e "operando". Cada seção é uma prancha separada sobre a mesa, fechada pela
+   legenda (quadro de identificação). Sem sombra, sem gradiente, cantos retos.
+   Esta camada vem depois de globals.css; a estrutura (classes, ids, ilhas
+   estáticas) é a mesma.
+   ========================================================================== */
+
+:root {
+  --papel: #edf0ef;
+  --papel-2: #e4e8e6;
+  --papel-3: #d8dedb;
+  --mesa: #d3d9d6;
+  --grafite: #1b1f22;
+  --verde: #0d7050;
+  --verde-hover: #0a5c41;
+  --cota: #7c868c;
+
+  --ink: var(--grafite);
+  --ink-2: #353c41;
+  --ink-3: #545d63;
+
+  --ground: var(--papel);
+  --ground-raised: var(--papel-2);
+  --ground-sunk: var(--papel-3);
+  --rule: color-mix(in oklab, var(--papel), var(--grafite) 22%);
+  --rule-strong: var(--grafite);
+  --run: var(--verde);
+
+  --signal: var(--verde);
+  --signal-hover: var(--verde-hover);
+  --signal-ink: var(--papel);
+  --signal-ink-2: var(--papel);
+
+  --f-display: var(--font-text), "Segoe UI", system-ui, sans-serif;
+  --f-body: var(--font-text), "Segoe UI", system-ui, sans-serif;
+  --f-mono: var(--font-label), "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-label: var(--font-label), "Arial Narrow", "Roboto Condensed", sans-serif;
+
+  --fs-display: clamp(2.4rem, 1.2rem + 3.3vw, min(4.6rem, 7.2vh));
+  --fs-h2: clamp(2rem, 1.3rem + 2.5vw, 3.6rem);
+  --fs-h3: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem);
+
+  --traco: 1.5px;
+  /* Hachura a 45°: o único preenchimento do desenho. */
+  --hachura: repeating-linear-gradient(135deg, color-mix(in oklab, var(--grafite), transparent 78%) 0 1px, transparent 1px 7px);
+  /* Régua de coordenadas da margem da prancha: um traço a cada 8%. */
+  --regua: repeating-linear-gradient(90deg, var(--grafite) 0 1px, transparent 1px 12.5%);
+  --regua-y: repeating-linear-gradient(180deg, var(--grafite) 0 1px, transparent 1px calc(100% / 6));
+  --margem: clamp(8px, 1.1vw, 16px);
+  /* Sem preenchimento cinza: o que se destaca ganha traço ou hachura. */
+  --ground-raised: var(--papel);
+}
+
+html {
+  color-scheme: light;
+  background: var(--mesa);
+  scrollbar-color: var(--cota) var(--mesa);
+  font-synthesis: none;
+}
+body {
+  background: var(--mesa);
+  color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-feature-settings: "ss01" 0;
+}
+/* Papel vegetal tem fibra quase invisível. */
+body::after {
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+}
+::selection {
+  background: var(--grafite);
+  color: var(--papel);
+}
+::-webkit-scrollbar-track {
+  background: var(--mesa);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cota);
+  border-color: var(--mesa);
+}
+input,
+textarea,
+button,
+select {
+  caret-color: var(--verde);
+}
+:focus-visible {
+  outline: 2px solid var(--grafite);
+  outline-offset: 3px;
+}
+a {
+  text-decoration-thickness: var(--traco);
+  text-underline-offset: 0.24em;
+}
+.skip {
+  background: var(--grafite);
+  color: var(--papel);
+}
+
+/* --- tipografia --------------------------------------------------------- */
+
+:where(.cover__title, .shead__t, .nf__t, .nota__t, .notas-pag__t, .notas-home__t) {
+  font-family: var(--f-display);
+  font-weight: 620;
+  font-stretch: 100%;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+:where(.step__title, .sheet__name, .model__name, .os__t, .lab__t, .annex__t, .proof__t, .clause__t, .trouble__q, .procedure__t, .bloco__t, .others__t, .ficha__t, .passos__t, .req__t) {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-stretch: 100%;
+  letter-spacing: -0.015em;
+}
+:where(.readout__v, .counter__n, .field-sum__figs dd, .plate dd, .produto__preco, .pacote__preco, .sob-medida__preco) {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.cover__title {
+  font-size: var(--fs-display);
+  line-height: 1;
+  max-width: 14.5ch;
+}
+.shead__t {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4em;
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+}
+.shead__title {
+  max-width: 18ch;
+}
+/* Marcador de detalhe da prancha: o número da seção num círculo cortado ao
+   meio, como se chama um detalhe num desenho técnico. Fica ao lado do título,
+   nunca acima dele. */
+.shead__addr {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  margin-top: 0.02em;
+  padding: 0;
+  border: var(--traco) solid var(--grafite);
+  border-radius: 50%;
+  font-family: var(--f-label);
+  font-weight: 600;
+  font-size: 0.44em;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--grafite);
+  background: linear-gradient(var(--grafite), var(--grafite)) center 82% / 70% 1px no-repeat;
+}
+.shead__lede {
+  color: var(--ink-2);
+}
+
+/* --- pranchas sobre a mesa ---------------------------------------------- */
+
+/* Cada seção é uma prancha: papel de ponta a ponta, separada da próxima por uma
+   faixa da mesa e emoldurada por um traço com régua de coordenadas. */
+.sec,
+.stage {
+  border-image: conic-gradient(var(--ground) 0 0) fill 0 // 0 100vw;
+  background-color: var(--ground);
+  color: var(--ink);
+  position: relative;
+}
+.sec {
+  margin-top: clamp(10px, 1.4vw, 18px);
+  padding-bottom: clamp(48px, 6vw, 88px);
+}
+.sec::before,
+.stage::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: var(--margem);
+  border: 1px solid color-mix(in oklab, var(--grafite), transparent 35%);
+  background:
+    var(--regua) top left / 100% 7px no-repeat,
+    var(--regua) bottom left / 100% 7px no-repeat,
+    var(--regua-y) top left / 7px 100% no-repeat;
+  z-index: 0;
+}
+.stage::before {
+  top: calc(var(--header-h) + var(--margem));
+}
+/* Espaço para a legenda de §1 ficar dentro da moldura. */
+.stage {
+  padding-bottom: clamp(48px, 6vw, 88px);
+}
+.sec > *,
+.stage > * {
+  position: relative;
+  z-index: 1;
+}
+.sec::after {
+  content: none;
+}
+
+/* Legenda da prancha: o quadro de identificação que fecha cada seção. */
+.folio {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) minmax(0, 1.4fr) minmax(0, 0.9fr);
+  gap: 0;
+  justify-content: stretch;
+  width: min(100%, 760px);
+  margin-left: auto;
+  padding: 0;
+  border: var(--traco) solid var(--grafite);
+  color: var(--ink);
+  font-family: var(--f-label);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+.folio > span {
+  padding: 8px 10px 7px;
+  border-left: 1px solid var(--grafite);
+  min-width: 0;
+}
+.folio > span:first-child {
+  border-left: 0;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+.folio__k {
+  display: block;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+.folio__n {
+  text-align: right;
+}
+
+/* --- cabeçalho corrido: a faixa de título do desenho --------------------- */
+
+.rh {
+  --ground: var(--papel);
+  background: var(--papel);
+  color: var(--ink);
+  border-bottom: var(--traco) solid var(--grafite);
+}
+.rh :is(.rh__doc, .rh__rev, .rh__page) {
+  color: var(--ink-3);
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+.rh :is(.rh__sec, .rh__name) {
+  color: var(--ink);
+}
+.rh__name {
+  font-family: var(--f-display);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.rh__addr {
+  font-family: var(--f-label);
+  color: var(--ink-3);
+}
+
+/* --- botões ------------------------------------------------------------- */
+
+.btn {
+  border-radius: 0;
+  font-family: var(--f-body);
+  font-weight: 600;
+  font-stretch: 100%;
+  letter-spacing: 0;
+  border-width: var(--traco);
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    transform 120ms var(--ease-out);
+}
+.btn--signal {
+  background: var(--verde);
+  color: var(--papel);
+  border-color: var(--verde);
+}
+.btn--ink {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--grafite);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.link-arrow {
+  font-weight: 600;
+  text-decoration-color: var(--cota);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn--signal:hover {
+    background: var(--verde-hover);
+    border-color: var(--verde-hover);
+  }
+  .btn--ink:hover {
+    background: var(--hachura);
+  }
+  .link-arrow:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* --- capa --------------------------------------------------------------- */
+
+.cover {
+  justify-content: flex-start;
+  padding-top: calc(var(--header-h) + clamp(40px, 7vh, 88px));
+  padding-left: clamp(8px, 1.6vw, 24px);
+}
+.cover__lede {
+  color: var(--ink-2);
+  max-width: 31em;
+}
+
+/* Leituras cotadas: cada número com a sua linha de cota por cima. */
+.plate {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: 34em;
+}
+.plate__rivet {
+  display: none;
+}
+.plate__head {
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  border-bottom: 0;
+  padding-bottom: 4px;
+}
+.plate__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(14px, 2vw, 28px);
+  margin: 0;
+}
+.plate__row {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+  padding: 16px 0 0;
+  border: 0;
+  position: relative;
+}
+/* A cota: linha fina com traços de chamada nas pontas. */
+.plate__row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4px;
+  height: 9px;
+  background:
+    linear-gradient(var(--cota), var(--cota)) center / 100% 1px no-repeat,
+    linear-gradient(var(--cota), var(--cota)) left center / 1px 100% no-repeat,
+    linear-gradient(var(--cota), var(--cota)) right center / 1px 100% no-repeat;
+}
+.plate dt {
+  font-family: var(--f-label);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.plate dd {
+  font-size: clamp(1.7rem, 1.3rem + 1vw, 2.3rem);
+  line-height: 1;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.plate__star {
+  color: var(--verde);
+}
+.plate__note {
+  margin: 12px 0 0;
+  font-family: var(--f-label);
+  font-weight: 500;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+/* --- Fig. 1: o Cérebro Autark em desenho técnico ------------------------ */
+
+.fig--main {
+  border-left: 0;
+  background-color: var(--ground);
+  /* Malha de desenho: quadriculado fino a cada 24px, mais forte a cada 5. */
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--grafite), transparent 93%) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--grafite), transparent 93%) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center;
+}
+.fig__mark {
+  display: none;
+}
+.fig__cap {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.fig__no {
+  font-family: var(--f-label);
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.fig[data-fig="running"] .fig__cap::before {
+  background: var(--verde);
+  border-radius: 0;
+  width: 9px;
+  height: 9px;
+  transform: none;
+}
+.fig__block {
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: var(--traco) solid var(--grafite);
+  background: var(--ground);
+}
+.fig__hint,
+.fig__meter {
+  color: var(--ink);
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.fig__meter-track {
+  height: 10px;
+  background:
+    repeating-linear-gradient(90deg, var(--grafite) 0 1px, transparent 1px calc(100% / 6)) bottom / 100% 7px no-repeat,
+    linear-gradient(var(--grafite), var(--grafite)) bottom / 100% 1px no-repeat;
+}
+.fig__meter-fill {
+  height: 4px;
+  background: var(--grafite);
+}
+.fig[data-fig="running"] .fig__meter-fill {
+  background: var(--verde);
+}
+.fig__parts li {
+  border: var(--traco) solid var(--grafite);
+  border-radius: 50%;
+  font-family: var(--f-label);
+  font-weight: 650;
+  background: var(--ground);
+  color: var(--ink);
+}
+.fig-leader {
+  stroke: var(--grafite);
+  stroke-width: 1;
+}
+.fig-balloon {
+  fill: var(--papel);
+  stroke: var(--grafite);
+  stroke-width: 1.5;
+}
+.fig-balloon-n {
+  fill: var(--grafite);
+  font: 650 12px var(--f-label);
+}
+.fig-tag {
+  fill: var(--verde);
+  stroke: none;
+}
+.fig-tag-dot {
+  fill: var(--papel);
+}
+.fig-tag-t {
+  fill: var(--papel);
+  font: 700 12px var(--f-label);
+  letter-spacing: 0.08em;
+}
+.fig__poster {
+  filter: none;
+  object-fit: contain;
+}
+
+/* --- §1 montagem: passos e lista de peças ------------------------------ */
+
+.balloon {
+  border: var(--traco) solid var(--grafite);
+  border-radius: 50%;
+  font-family: var(--f-label);
+  font-weight: 650;
+  background: var(--ground);
+  color: var(--ink);
+}
+.bom caption,
+.bom thead th {
+  font-family: var(--f-label);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+.bom thead th {
+  border-bottom: var(--traco) solid var(--grafite);
+}
+.bom tbody tr {
+  border-bottom: 1px solid var(--rule);
+}
+.bom tbody th {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-stretch: 100%;
+}
+.bom td:nth-child(3) {
+  color: var(--ink-3);
+}
+/* Peça em montagem: traçada em verde, como a revisão do desenho. */
+.bom tr[data-state="now"] {
+  background: color-mix(in oklab, var(--verde), transparent 90%);
+  color: var(--ink);
+}
+.bom tr[data-state="now"] td:nth-child(3) {
+  color: var(--ink-2);
+}
+.bom tr[data-state="now"] .balloon {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+.bom tr[data-state="ok"] .bom__st {
+  color: var(--verde);
+}
+.step__n {
+  font-family: var(--f-label);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.step[data-state="now"] .step__n {
+  color: var(--verde);
+}
+.step__proof {
+  border-left: 0;
+  background: var(--hachura);
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+}
+.step__proof-k {
+  font-family: var(--f-label);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.chiplet {
+  border: 1px solid var(--grafite);
+  border-radius: 0;
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  background: var(--ground);
+}
+
+/* --- status: etiqueta do quadro, não carimbo --------------------------- */
+
+.stamp {
+  border: var(--traco) solid var(--grafite);
+  outline: 0;
+  border-radius: 0;
+  padding: 6px 10px 5px;
+  font-size: 0.78rem;
+  font-stretch: 100%;
+  font-family: var(--f-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: var(--ground);
+  transform: none !important;
+  opacity: 1 !important;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.stamp--producao,
+.stamp--ok {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+.stamp--producao::before,
+.stamp--ok::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  background: var(--verde);
+  vertical-align: 0.05em;
+}
+.stamp--proprio {
+  color: var(--ink);
+}
+.stamp--encerrado {
+  color: var(--ink);
+  background: var(--hachura), var(--ground);
+}
+.status {
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* --- §4 fichas dos sistemas: folhas de detalhe ------------------------- */
+
+.sheet {
+  --ground: var(--papel);
+  background: var(--papel);
+  border: var(--traco) solid var(--grafite);
+  padding: clamp(18px, 2.2vw, 28px);
+  box-shadow: none;
+  color: var(--ink);
+}
+.sheet__code {
+  font-family: var(--f-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+.sheet__kind {
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.sheet__name {
+  font-size: clamp(1.7rem, 1.25rem + 1.4vw, 2.5rem);
+  line-height: 1.02;
+}
+.sheet__img {
+  border: 1px solid var(--grafite);
+  background: var(--papel-2);
+  filter: none;
+}
+.sheet__fig figcaption {
+  color: var(--ink-3);
+  font-family: var(--f-label);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.register__code,
+.apps__ref a {
+  font-family: var(--f-label);
+  font-weight: 700;
+  font-stretch: 100%;
+  letter-spacing: 0.06em;
+  color: var(--verde);
+  text-decoration-color: color-mix(in oklab, var(--verde), transparent 55%);
+}
+
+/* --- §6 dimensionamento ------------------------------------------------ */
+
+.scale__track,
+.scale input[type="range"] {
+  accent-color: var(--verde);
+}
+.scale input[type="range"]::-webkit-slider-thumb {
+  background: var(--grafite);
+  box-shadow: none;
+  border-radius: 0;
+}
+.scale input[type="range"]::-moz-range-thumb {
+  background: var(--grafite);
+  box-shadow: none;
+  border-radius: 0;
+}
+.readout {
+  --ground: var(--papel);
+  background: var(--papel);
+  border: var(--traco) solid var(--grafite);
+}
+.readout__v {
+  color: var(--ink);
+}
+
+/* --- §7 relatório de campo --------------------------------------------- */
+
+.field__row {
+  border-color: var(--rule);
+}
+.field__q {
+  font-family: var(--f-body);
+  font-weight: 450;
+  font-size: 1.1rem;
+}
+.field__row--lead .field__q {
+  font-weight: 520;
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.6rem);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+}
+.field-sum__star {
+  color: var(--verde);
+}
+
+/* --- §8 fabricante ----------------------------------------------------- */
+
+.maker__photo {
+  border: var(--traco) solid var(--grafite);
+  filter: grayscale(1) contrast(1.06);
+  mix-blend-mode: multiply;
+}
+.credential {
+  background: var(--papel);
+  border: var(--traco) solid var(--grafite);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* --- §9 e §10 ---------------------------------------------------------- */
+
+.trouble__row {
+  border-color: var(--rule);
+}
+.trouble__q {
+  font-weight: 560;
+}
+.clause__n {
+  font-family: var(--f-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.warranty {
+  box-shadow: none;
+}
+
+/* --- §11 assistência: a prancha aprovada, em verde --------------------- */
+
+.sec--signal {
+  --ground: var(--verde);
+  --ink: var(--papel);
+  --ink-2: #e2ece7;
+  --ink-3: #d4e3db;
+  --rule: color-mix(in oklab, var(--verde), var(--papel) 40%);
+  --signal: var(--papel);
+  --signal-hover: #ffffff;
+  --signal-ink: var(--verde);
+  --signal-ink-2: var(--papel);
+  color: var(--papel);
+}
+.sec--signal::before {
+  border-color: color-mix(in oklab, var(--papel), transparent 45%);
+  --regua: repeating-linear-gradient(90deg, var(--papel) 0 1px, transparent 1px 12.5%);
+}
+.sec--signal .shead__addr {
+  color: var(--papel);
+  border-color: var(--papel);
+  background: linear-gradient(var(--papel), var(--papel)) center 82% / 70% 1px no-repeat;
+}
+.sec--signal .btn--signal,
+.sec--signal .btn--ink {
+  background: var(--papel);
+  color: var(--verde);
+  border-color: var(--papel);
+}
+@media (hover: hover) and (pointer: fine) {
+  .sec--signal .btn--signal:hover,
+  .sec--signal .btn--ink:hover {
+    background: #f7f9f8;
+  }
+}
+.sec--signal .folio,
+.sec--signal .folio > span {
+  border-color: var(--papel);
+  color: var(--papel);
+}
+.sec--signal .folio__k {
+  color: var(--ink-2);
+}
+.sec--signal ::selection {
+  background: var(--papel);
+  color: var(--verde);
+}
+.sec--signal :focus-visible {
+  outline-color: var(--papel);
+}
+.assist__promises li {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-stretch: 100%;
+}
+.assist__links a {
+  text-decoration-color: color-mix(in oklab, var(--papel), transparent 50%);
+}
+
+/* A ordem de serviço é uma folha de papel presa sobre a prancha verde. */
+.os {
+  --ground: var(--papel);
+  --ink: var(--grafite);
+  --ink-2: #353c41;
+  --ink-3: #545d63;
+  --signal: var(--verde);
+  --signal-ink: var(--papel);
+  background: var(--papel);
+  color: var(--grafite);
+  border: var(--traco) solid var(--grafite);
+  transform: none;
+  box-shadow: none;
+}
+.os__t {
+  font-family: var(--f-display);
+  font-weight: 620;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  border-bottom: var(--traco) solid var(--grafite);
+}
+.os__field label {
+  font-family: var(--f-label);
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+.os .btn--signal,
+.os .btn--ink {
+  background: var(--verde);
+  color: var(--papel);
+  border-color: var(--verde);
+}
+.os input,
+.os textarea {
+  border-bottom: var(--traco) solid var(--grafite);
+  color: var(--grafite);
+}
+.os input::placeholder,
+.os textarea::placeholder {
+  color: #6a7379;
+}
+.os input:focus-visible,
+.os textarea:focus-visible {
+  outline: 2px solid var(--grafite);
+  outline-offset: 4px;
+}
+.os ::selection {
+  background: var(--grafite);
+  color: var(--papel);
+}
+.os__note {
+  color: var(--ink-3);
+}
+
+/* --- colofão: a faixa grafite do pé da prancha ------------------------- */
+
+.colophon {
+  --ground: var(--grafite);
+  border-image: conic-gradient(var(--grafite) 0 0) fill 0 // 0 100vw;
+  background-color: var(--grafite);
+  color: var(--papel);
+  --ink: var(--papel);
+  --ink-2: #c9d1cd;
+  --ink-3: #b3bcb8;
+  margin-top: clamp(10px, 1.4vw, 18px);
+}
+.colophon a,
+.colophon__text,
+.colophon__copy {
+  color: var(--papel);
+}
+.colophon__dim {
+  color: #b3bcb8;
+  opacity: 1;
+}
+.colophon__brand {
+  font-family: var(--f-display);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+/* --- índice ------------------------------------------------------------ */
+
+.toc {
+  --ground: var(--papel);
+  background: var(--papel);
+  color: var(--grafite);
+  border: var(--traco) solid var(--grafite);
+  box-shadow: none;
+}
+.toc__addr,
+.toc__pg {
+  font-family: var(--f-label);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+/* --- páginas de leitura ------------------------------------------------ */
+
+html:has(main:is(.notas-pag, .nota-pag, .sis, .juridico, .nf)),
+body:has(main:is(.notas-pag, .nota-pag, .sis, .juridico, .nf)) {
+  background: var(--papel);
+}
+:is(.notas-pag, .nota-pag, .sis, .juridico, .nf) {
+  --ground: var(--papel);
+}
+.nota__texto,
+.notas-pag__lede,
+.nota__lede {
+  color: var(--ink-2);
+}
+.nota__cta,
+.nota-pag .nota__cta {
+  --ground: var(--verde);
+  --ink: var(--papel);
+  --ink-2: #e2ece7;
+  --ink-3: #d4e3db;
+  background: var(--verde);
+  color: var(--papel);
+  border: 0;
+}
+.nota__cta .btn {
+  background: var(--papel);
+  color: var(--verde);
+  border-color: var(--papel);
+}
+/* Data e assunto vão abaixo do título, como a linha de identificação da prancha;
+   nunca acima dele. */
+.nota__cab {
+  display: flex;
+  flex-direction: column;
+}
+.nota__cab > .nota__t {
+  order: 1;
+}
+.nota__cab > .nota__kicker {
+  order: 2;
+  margin: 16px 0 0;
+  font-family: var(--f-label);
+  font-weight: 600;
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.nota__cab > :not(.nota__t, .nota__kicker) {
+  order: 3;
+}
+.nota__lede {
+  padding-left: 0;
+  border-left: 0;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:active {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Celular: a figura da capa fica direto no papel, com a malha de desenho. */
+.fig--inline {
+  border: 1px solid var(--rule);
+  background-color: var(--ground);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--grafite), transparent 93%) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--grafite), transparent 93%) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.fig__parts {
+  z-index: 3;
+  transition: opacity 300ms ease-out;
+}
+.fig[data-fig="running"] .fig__parts {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .rh__name {
+    display: inline;
+  }
+  .rh__sec {
+    display: none;
+  }
+  .rh__index {
+    margin-left: auto;
+  }
+  .folio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .folio > span:nth-child(3) {
+    border-left: 0;
+  }
+  .folio > span:nth-child(n + 3) {
+    border-top: 1px solid var(--grafite);
+  }
+  .plate dd {
+    font-size: 1.55rem;
+  }
+}
+
+/* --- /pacotes/ --------------------------------------------------------- */
+
+.pacotes-pag {
+  max-width: 1180px;
+}
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+}
+.produto,
+.pacote,
+.sob-medida,
+.briefing {
+  position: relative;
+  border: var(--traco) solid var(--grafite);
+  background: var(--papel);
+  color: var(--ink);
+  padding: clamp(18px, 2.4vw, 28px);
+  min-width: 0;
+  box-shadow: none;
+}
+.produto__code,
+.pacote__code {
+  margin: 0 0 6px;
+  font-family: var(--f-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+.produto__nome,
+.pacote__nome,
+.sob-medida__t {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.produto__para,
+.pacote__para {
+  margin: 6px 0 14px;
+  font-weight: 560;
+  color: var(--ink-2);
+}
+.produto__o {
+  margin: 0 0 16px;
+}
+.produto__preco,
+.pacote__preco,
+.sob-medida__preco {
+  margin: 0;
+  font-size: clamp(2rem, 1.4rem + 1.6vw, 2.75rem);
+  line-height: 1;
+}
+.pacote__sufixo {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--f-body);
+  font-weight: 560;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+.produto__detalhe {
+  margin: 8px 0 18px;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+.produto__acoes,
+.pacote__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+.tabela {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+  align-items: stretch;
+}
+.pacote {
+  display: flex;
+  flex-direction: column;
+}
+/* O pacote do meio (o atendente) é o recomendado: a faixa grafite do topo diz isso
+   sem selo nem cartão mais alto. */
+.pacote:nth-child(2) {
+  border-top: 6px solid var(--grafite);
+}
+.pacote__prazo {
+  margin: 8px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: var(--traco) solid var(--grafite);
+  font-family: var(--f-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+.pacote__inclui {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.pacote__inclui li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: start;
+  line-height: 1.4;
+}
+.pacote__inclui svg {
+  margin-top: 3px;
+  color: var(--verde);
+}
+.pacote__fora {
+  margin: 0 0 18px;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+.pacote__acoes {
+  margin-top: auto;
+}
+.sob-medida {
+  margin-top: clamp(24px, 3.4vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 32px;
+  background: var(--hachura), var(--papel);
+}
+.sob-medida > div {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+.sob-medida__preco {
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  margin: 6px 0 10px;
+}
+.sob-medida p {
+  margin: 0;
+}
+.briefing {
+  max-width: 640px;
+}
+.briefing__t {
+  margin: 0 0 16px;
+  font-family: var(--f-display);
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  line-height: 1.05;
+}
+.briefing input[type="text"],
+.briefing textarea,
+.briefing select {
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: var(--traco) solid var(--grafite);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 450 1rem var(--f-body);
+}
+.briefing select {
+  cursor: pointer;
+}
+.briefing input:focus-visible,
+.briefing textarea:focus-visible,
+.briefing select:focus-visible {
+  outline: 2px solid var(--grafite);
+  outline-offset: 4px;
+}
+.briefing .os__field label {
+  color: var(--ink-3);
+}
+.briefing input::placeholder,
+.briefing textarea::placeholder {
+  color: #6a7379;
+  opacity: 1;
+}
+.briefing__pago {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 18px;
+  font-weight: 560;
+}
+.briefing__pago input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--verde);
+}
+.briefing .os__note {
+  margin: 12px 0 0;
+  color: var(--ink-3);
+}
+.models__precos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: clamp(28px, 4vw, 44px) 0 0;
+  font-weight: 560;
+}
+
+/* O pôster ocupa a mesma área interna que a cena usa (data-pad do slot), para
+   o 3D cair exatamente por cima dele. */
+.fig--main .fig__poster {
+  top: 84px;
+  bottom: 128px;
+  height: calc(100% - 212px);
+}
+.fig--inline .fig__poster {
+  top: 10px;
+  bottom: 72px;
+  height: calc(100% - 82px);
+}
+@media (max-width: 960px) {
+  .fig--main .fig__poster {
+    top: 62px;
+    bottom: 64px;
+    height: calc(100% - 126px);
+  }
+}
+
+/* Títulos de bloco com o peso da prancha, não de cartaz. */
+.model:first-child .model__name {
+  font-size: clamp(1.9rem, 1.35rem + 1.7vw, 2.9rem);
+  line-height: 1.04;
+}
+.model__name {
+  font-weight: 600;
+  font-size: clamp(1.4rem, 1.1rem + 0.9vw, 1.9rem);
+}
+.maker__text .maker__title {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-stretch: 100%;
+  letter-spacing: -0.025em;
+  font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.6rem);
+  line-height: 1.06;
+}
+
+/* Nada de rótulo acima do título: o bloco verde já diz o que é. */
+.nota__cta-k {
+  display: none;
+}
+/* O status do sistema é uma etiqueta só, sem moldura extra em volta. */
+.sis__carimbo {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+
+/* ==========================================================================
+   Rodada de correções da revisão final (26/11)
+   ========================================================================== */
+
+/* Código, número de passo e rótulo não ficam acima nem ao lado do título:
+   continuam para leitor de tela, somem da tela. */
+.step__n,
+.model__code,
+.sheet__code,
+.annex__code {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Coordenadas da margem da prancha. */
+.sec > .regua,
+.stage > .regua {
+  position: absolute;
+  inset: var(--margem);
+  z-index: 0;
+  pointer-events: none;
+}
+.stage > .regua {
+  top: calc(var(--header-h) + var(--margem));
+}
+.regua__x {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.regua__y {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  display: grid;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  align-items: center;
+}
+.regua span span {
+  font-family: var(--f-label);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--ink-3);
+}
+.regua__x span {
+  padding-left: 6px;
+}
+.sec--signal .regua span span {
+  color: var(--ink-2);
+}
+.sec--signal::before {
+  --regua-y: repeating-linear-gradient(180deg, var(--papel) 0 1px, transparent 1px calc(100% / 6));
+}
+@media (max-width: 760px) {
+  .regua {
+    display: none;
+  }
+}
+
+/* Quadro da prancha 01/12 no canto inferior direito da figura da capa. */
+.fig--main .fig__block {
+  top: auto;
+  left: auto;
+  right: 44px;
+  bottom: 36px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0;
+  padding: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+}
+.fig--main .fig__block > span {
+  padding: 6px 9px 5px;
+  border-left: 1px solid var(--grafite);
+  white-space: nowrap;
+}
+.fig--main .fig__block > span:first-child {
+  border-left: 0;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  align-self: center;
+}
+.fig__block .folio__k {
+  display: block;
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+/* A legenda da figura e a régua de montagem vão para a esquerda, empilhadas;
+   os balões das peças sobem para o alto. */
+.fig--main .fig__cap {
+  bottom: 70px;
+}
+.fig--main .fig__meter {
+  left: 44px;
+  right: auto;
+  bottom: 40px;
+}
+.fig--main .fig__parts {
+  bottom: auto;
+  top: 44px;
+}
+/* O quadro da capa leva só marca, responsável e prancha: a legenda e a régua de
+   montagem ocupam o canto esquerdo. */
+.fig--main .fig__block > span:nth-child(2) {
+  display: none;
+}
+
+/* Verde só para ação e "operando". Código, numeração e rótulo voltam ao grafite. */
+.register__code,
+.apps__ref a {
+  color: var(--ink);
+  text-decoration-color: var(--cota);
+}
+.toc__list a[aria-current] .toc__addr,
+.trouble__n,
+.nf__code,
+.nota__pilar,
+.ficha__n,
+.passos__n,
+.req__t {
+  color: var(--ink-3);
+}
+.req {
+  border: var(--traco) solid var(--grafite);
+}
+.plate__star,
+.field-sum__star,
+.pacote__inclui svg {
+  color: var(--ink);
+}
+
+/* Destaque por hachura, nunca por fundo de cor. */
+.bom tr[data-state="now"] {
+  background: var(--hachura);
+}
+.sizing,
+.warranty,
+.lab {
+  background: transparent;
+  border: var(--traco) solid var(--grafite);
+  outline: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lab:hover {
+    background: var(--hachura);
+  }
+}
+
+/* Rótulo acima do número vira legenda embaixo dele. */
+.plate__head {
+  display: none;
+}
+.readout {
+  display: flex;
+  flex-direction: column;
+}
+.readout > .readout__v {
+  order: 1;
+}
+.readout > .readout__k {
+  order: 2;
+  margin-top: 6px;
+}
+.readout > :not(.readout__v, .readout__k) {
+  order: 3;
+}
+/* Nas listas de notas, assunto e data vão abaixo do título. */
+.notas__corpo {
+  display: flex;
+  flex-direction: column;
+}
+.notas__corpo > .notas__t {
+  order: 1;
+}
+.notas__corpo > .notas__meta {
+  order: 2;
+  margin: 8px 0 0;
+}
+.notas__corpo > :not(.notas__t, .notas__meta) {
+  order: 3;
+}
+
+/* Símbolo do sistema na mesma grade: no registro, na ficha e na página do sistema. */
+.simbolo {
+  flex: none;
+  color: var(--ink);
+}
+.register__nome {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.sheet__name {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.nota__t .nota__simbolo {
+  display: inline-block;
+  vertical-align: -0.05em;
+  margin-right: 0.28em;
+  width: 0.72em;
+  height: 0.72em;
+}
+
+/* Fichas numa grade fixa: imagem sempre na mesma coluna e na mesma largura. */
+.sheet--feature .sheet__fig,
+.sheet--feature[data-flip="1"] .sheet__fig,
+.sheet--compact .sheet__fig,
+.sheet--compact[data-flip="1"] .sheet__fig {
+  grid-column: 1 / 6;
+}
+.sheet--feature .sheet__text,
+.sheet--feature[data-flip="1"] .sheet__text,
+.sheet--compact .sheet__text,
+.sheet--compact[data-flip="1"] .sheet__text {
+  grid-column: 6 / -1;
+}
+@media (max-width: 960px) {
+  .sheet--feature .sheet__fig,
+  .sheet--feature[data-flip="1"] .sheet__fig,
+  .sheet--compact .sheet__fig,
+  .sheet--compact[data-flip="1"] .sheet__fig,
+  .sheet--feature .sheet__text,
+  .sheet--feature[data-flip="1"] .sheet__text,
+  .sheet--compact .sheet__text,
+  .sheet--compact[data-flip="1"] .sheet__text {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Legenda de §1: em duas linhas na coluna estreita, sem quebrar a revisão. */
+.assembly > .folio {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.assembly > .folio > span:nth-child(3) {
+  border-left: 0;
+}
+.assembly > .folio > span:nth-child(n + 3) {
+  border-top: 1px solid var(--grafite);
+}
+
+/* Páginas avulsas: a mesma moldura com régua e a legenda de folha avulsa. */
+main:is(.nota-pag, .notas-pag, .sis, .juridico) {
+  position: relative;
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+main:is(.nota-pag, .notas-pag, .sis, .juridico)::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: calc(var(--header-h) + var(--margem)) var(--margem) var(--margem);
+  border: 1px solid color-mix(in oklab, var(--grafite), transparent 35%);
+  background:
+    var(--regua) top left / 100% 7px no-repeat,
+    var(--regua) bottom left / 100% 7px no-repeat,
+    var(--regua-y) top left / 7px 100% no-repeat;
+}
+main:is(.nota-pag, .notas-pag, .sis, .juridico) > .regua {
+  position: absolute;
+  inset: calc(var(--header-h) + var(--margem)) var(--margem) var(--margem);
+  pointer-events: none;
+}
+.folio--avulsa {
+  margin-top: clamp(48px, 6vw, 80px);
+}
+
+/* Letras da régua lateral na faixa da margem, por fora do traço da moldura,
+   nunca na coluna de conteúdo. Onde a margem é estreita demais, ficam só os
+   números de cima. */
+.regua__y {
+  left: auto;
+  right: 100%;
+  padding-right: 3px;
+}
+.regua__y span {
+  text-align: right;
+}
+@media (max-width: 1100px) {
+  .regua__y {
+    display: none;
+  }
+}
+
+/* Celular: a legenda vira AUTARK | PRANCHA em cima e o desenho e o responsável
+   em linhas inteiras, para a revisão nunca partir no meio. */
+@media (max-width: 600px) {
+  .folio,
+  .assembly > .folio {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .folio > span,
+  .assembly > .folio > span {
+    border-left: 0;
+    border-top: 0;
+  }
+  .folio > span:nth-child(1) {
+    order: 1;
+  }
+  .folio > span:nth-child(4) {
+    order: 2;
+    border-left: 1px solid var(--grafite);
+  }
+  .folio > span:nth-child(2) {
+    order: 3;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--grafite);
+  }
+  .folio > span:nth-child(3) {
+    order: 4;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--grafite);
+  }
+}
+@media (max-width: 600px) {
+  .assembly > .folio > span:nth-child(4) {
+    border-top: 0;
+  }
+}
+
+/* Fora da grade da seção: com grid-column herdado, o absoluto tomava a área
+   das colunas 3 a 12 como referência e a régua caía no meio do conteúdo. */
+.sec > .regua,
+.stage > .regua,
+main > .regua {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+/* §1 mora dentro do palco, que já tem a sua régua: a da legenda de §1 sairia
+   repetida, por dentro da moldura. */
+.assembly > .regua {
+  display: none;
+}

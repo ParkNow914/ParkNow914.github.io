@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NotasHeader, NotaArtigo } from "@/components/Notas";
 import { Compartilhar } from "@/components/Compartilhar";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { nota, notas, textoPuro } from "@/lib/notas";
 import { SITE_URL } from "@/content/site";
@@ -91,6 +92,7 @@ export default async function NotaPage({ params }: Props) {
           <p>Conhece alguém que perde tempo com isso?</p>
           <Compartilhar titulo={n.titulo} url={url} />
         </div>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

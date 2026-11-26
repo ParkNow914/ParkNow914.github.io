@@ -1,183 +1,162 @@
 /* Estilo comum das landings de anúncio, no mesmo mundo da home
-   (autarktech.com.br): o folheto da oficina de xilogravura. Tinta preta de rolo
-   sobre papel de capa de cordel, uma cor de papel por landing (data-papel no
-   <body>), wood type pesado nos títulos e carimbo só para o que é selo. Quem
-   clica no anúncio e depois vai para a home não troca de marca no caminho.
+   (autarktech.com.br): a prancha técnica. Papel vegetal frio, traço grafite
+   firme, uma única tinta verde de aprovação para a ação e Geologica com a letra
+   técnica condensada nos rótulos. Quem clica no anúncio e depois vai para a home
+   não troca de marca no caminho.
 
    Arquivo separado, e não inline: são quatro páginas irmãs. Mesma origem, então
    a CSP não muda.
 
    Os nomes --text e --muted continuam existindo de propósito: o HTML das quatro
-   páginas usa os dois em style inline. */
+   páginas usa os dois em style inline. O data-papel do <body> ficou sem efeito:
+   as quatro landings dividem o mesmo papel, como as pranchas de um projeto. */
 
 /* Fontes do site (as mesmas de site/src/fonts), com as licenças em assets/fonts/.
-   Alfa e Archivo vêm com preload no HTML e usam "block": o texto espera a fonte
-   por um instante em vez de aparecer em Arial e pular quando ela chega. */
-@font-face { font-family: "Alfa Slab One"; src: url("/assets/fonts/alfa.woff2") format("woff2");
-  font-weight: 400; font-display: block; }
-@font-face { font-family: "Archivo"; src: url("/assets/fonts/archivo.woff2") format("woff2");
-  font-weight: 400 800; font-display: block; }
-@font-face { font-family: "Special Elite"; src: url("/assets/fonts/elite.woff2") format("woff2");
-  font-weight: 400; font-display: swap; }
-/* Fallback com as métricas da fonte real (as mesmas que o next/font gera para o
-   site): enquanto a fonte não chega, o Arial ocupa o mesmo espaço. */
-@font-face { font-family: "Alfa Fallback"; src: local("Arial");
-  ascent-override: 85.41%; descent-override: 27.45%; line-gap-override: 0%; size-adjust: 121.3%; }
-@font-face { font-family: "Archivo Fallback"; src: local("Arial");
-  ascent-override: 85.41%; descent-override: 20.43%; line-gap-override: 0%; size-adjust: 102.8%; }
-@font-face { font-family: "Elite Fallback"; src: local("Arial");
-  ascent-override: 60.23%; descent-override: 25.43%; line-gap-override: 0%; size-adjust: 116.74%; }
+   A Geologica vem com preload no HTML e usa "block": o texto espera a fonte por
+   um instante em vez de aparecer em Arial e pular quando ela chega. */
+@font-face { font-family: "Geologica"; src: url("/assets/fonts/geologica.woff2") format("woff2");
+  font-weight: 100 900; font-display: block; }
+@font-face { font-family: "Sofia Sans Condensed"; src: url("/assets/fonts/sofia-condensed.woff2") format("woff2");
+  font-weight: 100 900; font-display: swap; }
+/* Fallback com métricas próximas: enquanto a fonte não chega, o Arial ocupa o mesmo espaço. */
+@font-face { font-family: "Geologica Fallback"; src: local("Arial");
+  ascent-override: 91%; descent-override: 23%; line-gap-override: 0%; size-adjust: 104%; }
 
 :root {
-  /* Papéis de capa de cordel: o amarelo é o padrão; cada landing troca o seu. */
-  --ground: #f2c12e;
-  --jornal: #dadad3;
-  --papel-2: #f2789f;
-  --ink: #17130f;
-  --ink-2: #2a221b;
-  --stamp: #c8261d;
+  --ground: #edf0ef;
+  --papel-2: #e4e8e6;
+  --mesa: #d3d9d6;
+  --ink: #1b1f22;
+  --ink-2: #353c41;
+  --ink-3: #545d63;
+  --verde: #0d7050;
+  --verde-hover: #0a5c41;
+  --cota: #7c868c;
   --text: var(--ink);
   --muted: var(--ink-2);
-  --display: "Alfa Slab One", "Alfa Fallback", Rockwell, serif;
-  --corpo: "Archivo", "Archivo Fallback", system-ui, sans-serif;
-  --carimbo: "Special Elite", "Elite Fallback", "Courier New", monospace;
+  --display: "Geologica", "Geologica Fallback", "Segoe UI", system-ui, sans-serif;
+  --corpo: "Geologica", "Geologica Fallback", "Segoe UI", system-ui, sans-serif;
+  --rotulo: "Sofia Sans Condensed", "Arial Narrow", sans-serif;
+  --traco: 1.5px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
 }
-/* --papel-2 é a segunda matriz de cor: a folha deslocada atrás de cada destaque.
-   É a única "profundidade" das landings; nada de sombra preta. */
-body[data-papel="rosa"] { --ground: #f2789f; --papel-2: #f2c12e; }
-body[data-papel="azul"] { --ground: #93c6e4; --papel-2: #f2789f; }
-body[data-papel="verde"] { --ground: #86c681; --papel-2: #f2c12e; }
-body[data-papel="laranja"] { --ground: #f2914a; --papel-2: #93c6e4; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--mesa); }
 body {
   background-color: var(--ground);
   color: var(--text); font-family: var(--corpo); font-synthesis: none;
   line-height: 1.6; -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-/* Fibra do papel: ruído fixo, multiplicado sobre a cor. Uma camada só, sem
-   imagem extra para baixar. */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  opacity: 0.16; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.06' numOctaves='3' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 0 0 0 1.4 -.35'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url%28%23f%29'/%3E%3C/svg%3E");
-}
+::selection { background: var(--ink); color: var(--ground); }
 .fx { display: none; }
 
 /* padding-inline, e não o atalho "padding: 0 20px": toda seção é também
    .container, e o atalho zerava o padding-block dela. */
 .container { width: 100%; max-width: 980px; margin: 0 auto; padding-inline: 20px; }
 
-/* Cabeçalho: faixa de tinta sólida, como a do folheto. */
-header { padding-block: 16px; background: var(--ink); color: var(--ground); }
-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-/* Para quem é a página, como carimbo no cabeçalho (e não como kicker acima do título). */
+/* Cabeçalho: a faixa de título do desenho. */
+header { padding-block: 14px; background: var(--ground); color: var(--ink); border-bottom: var(--traco) solid var(--ink); }
+header .container { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap; }
+/* Para quem é a página, como etiqueta do quadro no cabeçalho (e não como kicker acima do título). */
 .publico {
-  font-family: var(--carimbo); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em;
-  color: var(--ground); padding: 5px 10px 3px; border: 4px double var(--stamp); transform: rotate(-2deg);
+  font-family: var(--rotulo); font-weight: 650; font-size: 0.86rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--ink); padding: 5px 10px 4px; border: var(--traco) solid var(--ink);
 }
 .marca { display: flex; align-items: center; gap: 10px;
-  color: var(--ground); text-decoration: none; width: max-content; }
-.marca svg { width: 26px; height: 26px; display: block; }
+  color: var(--ink); text-decoration: none; width: max-content; }
+.marca svg { width: 24px; height: 24px; display: block; }
 .marca svg path { fill: currentColor; }
 .marca span {
-  font-family: var(--display); font-weight: 400;
-  font-size: 1.4rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1;
+  font-family: var(--display); font-weight: 650;
+  font-size: 1.25rem; letter-spacing: -0.01em; line-height: 1;
 }
-.marca:focus-visible { outline: 3px solid var(--ground); outline-offset: 4px; }
+.marca:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
-.hero { padding-block: clamp(48px, 8vw, 96px) clamp(48px, 7vw, 80px); }
+.hero { padding-block: clamp(44px, 7vw, 88px) clamp(44px, 6vw, 72px); }
 h1 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(2.35rem, 7.4vw, 4.4rem); line-height: 1.14;
-  letter-spacing: -0.005em; text-wrap: balance; margin-bottom: 26px;
-  max-width: 18ch;
+  font-family: var(--display); font-weight: 620;
+  font-size: clamp(2.2rem, 6.4vw, 3.9rem); line-height: 1.04;
+  letter-spacing: -0.03em; text-wrap: balance; margin-bottom: 24px;
+  max-width: 19ch;
 }
-/* A ênfase é um bloco entalhado ao contrário: papel sobre tinta. */
-h1 em {
-  font-style: normal; color: var(--ground);
-  /* O bloco começa um pouco abaixo do topo da linha: sem isso, quando a ênfase
-     quebra de linha, a borda de cima do bloco risca a linha anterior. */
-  background: linear-gradient(to bottom, transparent 12%, var(--ink) 12%);
-  padding: 0 0.14em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
+/* A ênfase é uma hachura sob a palavra, como o trecho marcado de um desenho; sem cor nova. */
+h1 em { font-style: normal; color: inherit; background: repeating-linear-gradient(135deg, rgba(27,31,34,.32) 0 1.5px, transparent 1.5px 7px) left bottom / 100% .34em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .sub {
-  font-size: clamp(1.08rem, 2.6vw, 1.3rem); color: var(--muted); line-height: 1.55;
-  max-width: 620px; text-wrap: pretty; margin-bottom: 34px; font-weight: 500;
+  font-size: clamp(1.06rem, 2.4vw, 1.25rem); color: var(--muted); line-height: 1.55;
+  max-width: 620px; text-wrap: pretty; margin-bottom: 32px; font-weight: 400;
 }
-.sub strong { color: var(--text); font-weight: 750; }
+.sub strong { color: var(--text); font-weight: 650; }
 
-/* O botão é um bloco de tinta sólida que inverte para papel ao pressionar. */
 .cta {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--ink); color: var(--ground);
-  font-weight: 750; font-size: 1.08rem; font-family: var(--corpo);
-  padding: 17px 28px; border: 3px solid var(--ink); border-radius: 0; text-decoration: none;
+  background: var(--verde); color: var(--ground);
+  font-weight: 600; font-size: 1.06rem; font-family: var(--corpo);
+  padding: 16px 26px; border: var(--traco) solid var(--verde); border-radius: 0; text-decoration: none;
   cursor: pointer;
-  transition: background-color 120ms ease, color 120ms ease;
+  transition: background-color 140ms var(--ease), transform 120ms var(--ease);
 }
-.cta::after { content: "→"; font-weight: 800; transition: transform 160ms var(--ease); }
+.cta::after { content: "→"; font-weight: 600; transition: transform 160ms var(--ease); }
+.cta:hover { background: var(--verde-hover); border-color: var(--verde-hover); }
 .cta:hover::after { transform: translateX(4px); }
-/* Pressionar inverte a tinta: o bloco vira papel. A segunda cor fica só nas folhas. */
-.cta:active { background: var(--ground); color: var(--ink); }
-.cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
-.cta-nota { font-size: 0.92rem; color: var(--muted); margin-top: 16px; font-weight: 500; }
+.cta:active { transform: translateY(1px); }
+.cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.cta-nota { font-size: 0.92rem; color: var(--ink-3); margin-top: 14px; }
 
-section { padding-block: clamp(56px, 8vw, 88px); border-top: 4px solid var(--ink); }
+section { padding-block: clamp(52px, 7vw, 84px); border-top: var(--traco) solid var(--ink); }
 h2 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(1.9rem, 5vw, 2.9rem); line-height: 1.04;
-  letter-spacing: 0; margin-bottom: 16px; text-wrap: balance;
+  font-family: var(--display); font-weight: 620;
+  font-size: clamp(1.75rem, 4.4vw, 2.6rem); line-height: 1.06;
+  letter-spacing: -0.025em; margin-bottom: 14px; text-wrap: balance;
 }
-.secao-sub { color: var(--muted); margin-bottom: 32px; max-width: 620px; font-weight: 500; }
+.secao-sub { color: var(--muted); margin-bottom: 30px; max-width: 620px; }
 
+/* As vantagens: uma folha de detalhe só, dividida por fios, sem cartões soltos. */
 .folha-lista {
-  background: var(--jornal); border: 3px solid var(--ink); padding: 6px 26px;
-  box-shadow: 12px 12px 0 -3px var(--papel-2); max-width: 760px;
+  background: var(--ground); border: var(--traco) solid var(--ink); padding: 4px 24px;
+  max-width: 760px;
 }
-.folha-lista .item { padding: 22px 0 24px; min-width: 0; }
-.folha-lista .item + .item { border-top: 3px solid var(--ink); }
+.folha-lista .item { padding: 20px 0 22px; min-width: 0; }
+.folha-lista .item + .item { border-top: 1px solid var(--cota); }
 .folha-lista h3 {
-  font-family: var(--display); font-weight: 400;
-  font-size: 1.45rem; line-height: 1.1; margin-bottom: 8px;
+  font-family: var(--display); font-weight: 600; letter-spacing: -0.015em;
+  font-size: 1.3rem; line-height: 1.15; margin-bottom: 6px;
 }
 .folha-lista p { color: var(--ink-2); font-size: 1rem; }
 
 ul.lista { list-style: none; display: grid; gap: 14px; }
-ul.lista li { padding-left: 30px; position: relative; color: var(--muted); font-weight: 500; }
+ul.lista li { padding-left: 26px; position: relative; color: var(--muted); }
 ul.lista li::before {
-  content: ""; position: absolute; left: 2px; top: 0.5em;
-  width: 13px; height: 13px; background: var(--ink); transform: rotate(45deg);
+  content: ""; position: absolute; left: 2px; top: 0.55em;
+  width: 9px; height: 9px; background: var(--verde);
 }
-ul.lista li strong { color: var(--text); font-weight: 750; }
+ul.lista li strong { color: var(--text); font-weight: 650; }
 
 details {
-  border: 3px solid var(--ink); padding: 16px 20px; margin-bottom: 12px;
-  background: var(--jornal);
+  border: 1px solid var(--ink); padding: 16px 20px; margin-bottom: 10px;
+  background: var(--ground);
 }
-summary { cursor: pointer; font-weight: 750; color: var(--text); }
-summary::marker { color: var(--ink); }
-summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
-details[open] { box-shadow: 8px 8px 0 -2px var(--papel-2); }
+summary { cursor: pointer; font-weight: 600; color: var(--text); }
+summary::marker { color: var(--verde); }
+summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+details[open] { border-width: var(--traco); }
 details p { color: var(--ink-2); margin-top: 12px; }
 
 .quem { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
-.quem img { border: 3px solid var(--ink); box-shadow: 8px 8px 0 -2px var(--papel-2); filter: grayscale(1) contrast(1.15); }
+.quem img { border: var(--traco) solid var(--ink); filter: grayscale(1) contrast(1.06); }
 .quem div { flex: 1 1 300px; min-width: 0; }
 
 footer { padding-block: 40px 56px; background: var(--ink); color: var(--ground); font-size: 0.95rem; }
-footer a { color: var(--ground); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-footer a:hover { text-decoration-style: wavy; }
-footer a:focus-visible { outline: 3px solid var(--ground); outline-offset: 3px; }
+footer a { color: var(--ground); text-decoration-thickness: var(--traco); text-underline-offset: 3px; }
+footer a:hover { text-decoration-color: var(--cota); }
+footer a:focus-visible { outline: 2px solid var(--ground); outline-offset: 3px; }
 
 /* Banner de consentimento. Só aparece quando existir um Pixel configurado. */
 #consentimento {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
-  background: var(--ink); color: var(--ground); border-top: 4px solid var(--ground);
+  background: var(--ink); color: var(--ground); border-top: var(--traco) solid var(--ground);
   padding: 16px 20px; display: none;
 }
 #consentimento.visivel { display: block; }
@@ -189,18 +168,18 @@ footer a:focus-visible { outline: 3px solid var(--ground); outline-offset: 3px; 
 .consent-caixa a { color: var(--ground); }
 .consent-botoes { display: flex; gap: 10px; }
 .btn-menor {
-  font-family: var(--corpo); font-size: 0.94rem; font-weight: 700;
-  padding: 10px 18px; border-radius: 0; cursor: pointer; border: 3px solid var(--ground);
+  font-family: var(--corpo); font-size: 0.94rem; font-weight: 600;
+  padding: 10px 18px; border-radius: 0; cursor: pointer; border: var(--traco) solid var(--ground);
   background: transparent; color: var(--ground);
 }
 .btn-menor.sim { background: var(--ground); color: var(--ink); }
-.btn-menor:active { transform: translate(1px, 1px); }
-.btn-menor:focus-visible { outline: 3px solid var(--ground); outline-offset: 2px; }
+.btn-menor:active { transform: translateY(1px); }
+.btn-menor:focus-visible { outline: 2px solid var(--ground); outline-offset: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .cta, .cta::after { transition: none; }
 }
 
-.cta-nota a { color: var(--ink); font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.cta-nota a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.cta-nota a { color: var(--ink); font-weight: 600; text-decoration-color: var(--cota); text-decoration-thickness: var(--traco); text-underline-offset: 3px; }
+.cta-nota a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }

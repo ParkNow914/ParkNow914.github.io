@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Chamada, Trilha, frases } from "@/components/Paginas";
@@ -52,7 +53,7 @@ export default function SistemasPage() {
     <>
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="notas-pag">
-        <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas" }]} />
+        <Trilha itens={[{ label: "Início", href: "/" }, { label: "Sistemas" }]} />
         <header className="notas-pag__cab">
           <p className="nota__kicker">
             <span className="nota__pilar">§4</span>
@@ -85,6 +86,7 @@ export default function SistemasPage() {
           texto="Me escreva sobre o que precisa. Envio exemplos e materiais que possam ser compartilhados, preservando os dados dos clientes."
           mensagem="Olá Alisson! Vi a lista de sistemas no site e quero ver um funcionando."
         />
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

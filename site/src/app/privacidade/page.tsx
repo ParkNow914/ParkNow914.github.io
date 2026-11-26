@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Bloco, Trilha } from "@/components/Paginas";
 import { EMAIL, SITE_URL, wa } from "@/content/site";
@@ -44,7 +45,7 @@ export default function PrivacidadePage() {
       <NotasHeader secao={{ label: "Privacidade", href: "/privacidade/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota juridico">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Privacidade" }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: "Privacidade" }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">LGPD</span>
@@ -165,6 +166,7 @@ export default function PrivacidadePage() {
             </div>
           </Bloco>
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

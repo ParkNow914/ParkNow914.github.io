@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Bloco, Chamada, Trilha } from "@/components/Paginas";
@@ -104,7 +105,7 @@ export default function ValePage() {
       <NotasHeader secao={{ label: "Vale do Paraíba", href: "/vale-do-paraiba/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Vale do Paraíba" }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: "Vale do Paraíba" }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">Atendimento remoto</span>
@@ -208,6 +209,7 @@ export default function ValePage() {
             mensagem="Olá Alisson! Tenho um negócio no Vale do Paraíba e quero conversar sobre automação."
           />
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />
