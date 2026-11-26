@@ -1,0 +1,5 @@
+Contact: mailto:contato@autarktech.com.br
+Contact: https://wa.me/5512991743827
+Expires: 2027-11-26T00:00:00.000Z
+Preferred-Languages: pt, en
+Canonical: https://autarktech.com.br/.well-known/security.txt

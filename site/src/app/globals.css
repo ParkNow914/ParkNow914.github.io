@@ -1075,40 +1075,6 @@ button {
   margin-right: 0.7em;
   color: var(--signal);
 }
-.counters {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin: 26px 0 0;
-  max-width: 34em;
-}
-.counter {
-  padding-top: 10px;
-  border-top: 1px solid var(--rule-strong);
-}
-.counter dt {
-  font-family: var(--f-body);
-  font-weight: 650;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.counter dd {
-  margin: 4px 0 0;
-  font-size: 0.82rem;
-  color: var(--ink-3);
-}
-.counter__n {
-  display: block;
-  font-family: var(--f-display);
-  font-weight: 800;
-  font-stretch: 75%;
-  font-size: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
-  line-height: 1;
-  color: var(--run);
-  font-variant-numeric: tabular-nums;
-}
 
 .stage .folio {
   margin-top: 40px;
@@ -1684,24 +1650,7 @@ button {
   color: var(--ink-2);
   font-size: 0.97rem;
 }
-.lab__figs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  font: 500 0.75rem var(--f-mono);
-  color: var(--ink-3);
-  letter-spacing: 0.02em;
-}
-.lab__fig b {
-  display: block;
-  font-family: var(--f-display);
-  font-weight: 800;
-  font-stretch: 78%;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--ink);
-  letter-spacing: 0;
-}
+
 .lab__go {
   display: inline-flex;
   align-items: center;
@@ -1722,9 +1671,7 @@ button {
   background: var(--ink);
   color: var(--ground);
 }
-.lab:active .lab__body,
-.lab:active .lab__figs,
-.lab:active .lab__fig b {
+.lab:active .lab__body {
   color: var(--ground);
 }
 
@@ -2345,7 +2292,6 @@ button {
   padding-bottom: 18px;
 }
 
-.btn--dark,
 .sec--signal .btn--ink {
   background: var(--signal-ink);
   color: var(--ink);
@@ -2820,10 +2766,7 @@ button {
   .plate__row {
     grid-template-columns: 8em 1fr;
   }
-  .counters {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-  }
+  
   .trouble__row summary {
     grid-template-columns: 2.6em minmax(0, 1fr) 20px;
     gap: 10px;

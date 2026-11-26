@@ -52,6 +52,9 @@ ALLOWED_ORPHANS = {
     "assets/jurisia.webp",
     "assets/realcredmais.webp",
     "assets/tratto.webp",
+    # Retrato original em 760 px. As landings usam as versões de 240 e 360 px;
+    # este fica para links e posts antigos que apontam para ele.
+    "assets/foto-square.webp",
     # Exigido pela SIL OFL 1.1: redistribuir os .woff2 obriga a licenca a
     # acompanhar. Ninguem linka do HTML, e nao deve mesmo.
     "assets/fonts/LICENSE.txt",
