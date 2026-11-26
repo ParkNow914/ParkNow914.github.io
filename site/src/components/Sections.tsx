@@ -24,6 +24,7 @@ import {
 } from "@/content/site";
 import { Icon, LogoMark } from "./Icon";
 import { Folio, LegacyAnchors, SectionHead } from "./Manual";
+import { Simbolo } from "./Simbolo";
 
 function refHref(ref: string) {
   if (ref.startsWith("SYS-")) return `#${ref.toLowerCase()}`;
@@ -123,6 +124,7 @@ function Sheet({ s, i }: { s: System; i: number }) {
     <article className={`sheet ${s.feature ? "sheet--feature" : "sheet--compact"}`} id={id} data-flip={i % 2} aria-labelledby={`${id}-t`}>
       <header className="sheet__head">
         <h3 className="sheet__name" id={`${id}-t`}>
+          <Simbolo code={s.code} size={30} className="simbolo sheet__simbolo" />
           <span className="sheet__code">{s.code}</span>
           {s.name}
         </h3>
@@ -218,7 +220,12 @@ export function Systems() {
                   {s.code}
                 </a>
               </td>
-              <th scope="row">{s.name}</th>
+              <th scope="row">
+                <span className="register__nome">
+                  <Simbolo code={s.code} size={20} />
+                  {s.name}
+                </span>
+              </th>
               <td className="register__kind">{s.kind}</td>
               <td>
                 <span className={`status status--${s.status}`}>{STATUS_LABEL[s.status]}</span>

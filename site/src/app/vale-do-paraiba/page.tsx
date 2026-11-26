@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Bloco, Chamada, Trilha } from "@/components/Paginas";
@@ -208,6 +209,7 @@ export default function ValePage() {
             mensagem="Olá Alisson! Tenho um negócio no Vale do Paraíba e quero conversar sobre automação."
           />
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

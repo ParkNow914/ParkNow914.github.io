@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader, ListaNotas } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { notas } from "@/lib/notas";
@@ -67,6 +68,7 @@ export default function NotasPage() {
           </a>
         </header>
         <ListaNotas lista={lista} />
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

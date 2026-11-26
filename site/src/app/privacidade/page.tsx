@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NotasHeader } from "@/components/Notas";
 import { Colophon } from "@/components/Sections";
+import { LegendaAvulsa } from "@/components/Manual";
 import { Enhance } from "@/components/Enhance";
 import { Bloco, Trilha } from "@/components/Paginas";
 import { EMAIL, SITE_URL, wa } from "@/content/site";
@@ -165,6 +166,7 @@ export default function PrivacidadePage() {
             </div>
           </Bloco>
         </article>
+        <LegendaAvulsa />
       </main>
       <Colophon capa="/#capa" />
       <Enhance />

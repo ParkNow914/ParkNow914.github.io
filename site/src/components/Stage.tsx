@@ -1,6 +1,6 @@
 import { ASSEMBLY, ASSEMBLY_INTRO, COVER, PARTS, REVISION, WA_DEFAULT } from "@/content/site";
 import { Balloon, Icon } from "./Icon";
-import { Folio, LegacyAnchors, SectionHead } from "./Manual";
+import { Folio, LegacyAnchors, Regua, SectionHead, pageOf } from "./Manual";
 import { StageDriver } from "./StageDriver";
 import { MotionToggle } from "./MotionToggle";
 
@@ -33,9 +33,17 @@ function FigFrame({ inline }: { inline?: boolean }) {
       </figcaption>
       {inline ? null : (
         <p className="fig__block" aria-hidden="true">
-          <span>Desenho AT-01</span>
-          <span>Escala 1:1</span>
-          <span>{REVISION}</span>
+          <span>Autark</span>
+          <span>
+            <span className="folio__k">Desenho AT-01 · Escala 1:1</span>Cérebro Autark · {REVISION}
+          </span>
+          <span>
+            <span className="folio__k">Responsável técnico</span>Alisson Santos
+          </span>
+          <span>
+            <span className="folio__k">Prancha</span>
+            {pageOf("capa").n}/{pageOf("capa").total}
+          </span>
         </p>
       )}
       {inline ? null : (
@@ -69,6 +77,7 @@ function FigFrame({ inline }: { inline?: boolean }) {
 export function Stage() {
   return (
     <div className="stage" id="stage">
+      <Regua />
       <div className="stage__fig">
         <FigFrame />
       </div>

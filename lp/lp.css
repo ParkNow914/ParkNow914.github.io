@@ -115,7 +115,7 @@ h2 {
 
 /* As vantagens: uma folha de detalhe só, dividida por fios, sem cartões soltos. */
 .folha-lista {
-  background: var(--papel-2); border: var(--traco) solid var(--ink); padding: 4px 24px;
+  background: var(--ground); border: var(--traco) solid var(--ink); padding: 4px 24px;
   max-width: 760px;
 }
 .folha-lista .item { padding: 20px 0 22px; min-width: 0; }
@@ -141,7 +141,7 @@ details {
 summary { cursor: pointer; font-weight: 600; color: var(--text); }
 summary::marker { color: var(--verde); }
 summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-details[open] { background: var(--papel-2); }
+details[open] { border-width: var(--traco); }
 details p { color: var(--ink-2); margin-top: 12px; }
 
 .quem { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
