@@ -38,8 +38,11 @@ ALLOWED_ORPHANS = {
     "assets/apple-touch-icon.png",
     "assets/icon-192.png",
     "assets/icon-512.png",
-    # Consumidos pelo README de github.com/ParkNow914/ParkNow914, que aponta
-    # para as versões publicadas aqui. Não são referenciados pelo site.
+    # O README de github.com/ParkNow914/ParkNow914 mostra este print direto
+    # daqui (os outros ele guarda em assets/ do próprio repositório).
+    "assets/realcredmais.webp",
+    # Banner e prints de versões antigas do README do perfil, que hoje usa
+    # cópias próprias. Ficam porque links e posts antigos apontam para eles.
     "assets/banner.svg",
     "assets/agendazap.webp",
     "assets/bia.webp",
@@ -50,7 +53,6 @@ ALLOWED_ORPHANS = {
     # em mensagens e posts antigos; o site novo usa as cópias em site/public/.
     "assets/acerto.webp",
     "assets/jurisia.webp",
-    "assets/realcredmais.webp",
     "assets/tratto.webp",
     # Retrato original em 760 px. As landings usam as versões de 240 e 360 px;
     # este fica para links e posts antigos que apontam para ele.
