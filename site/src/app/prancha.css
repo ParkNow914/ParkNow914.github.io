@@ -1579,3 +1579,65 @@ main:is(.nota-pag, .notas-pag, .sis, .juridico) > .regua {
 .folio--avulsa {
   margin-top: clamp(48px, 6vw, 80px);
 }
+
+/* Letras da régua lateral na faixa da margem, por fora do traço da moldura,
+   nunca na coluna de conteúdo. Onde a margem é estreita demais, ficam só os
+   números de cima. */
+.regua__y {
+  left: auto;
+  right: 100%;
+  padding-right: 3px;
+}
+.regua__y span {
+  text-align: right;
+}
+@media (max-width: 1100px) {
+  .regua__y {
+    display: none;
+  }
+}
+
+/* Celular: a legenda vira AUTARK | PRANCHA em cima e o desenho e o responsável
+   em linhas inteiras, para a revisão nunca partir no meio. */
+@media (max-width: 600px) {
+  .folio,
+  .assembly > .folio {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .folio > span,
+  .assembly > .folio > span {
+    border-left: 0;
+    border-top: 0;
+  }
+  .folio > span:nth-child(1) {
+    order: 1;
+  }
+  .folio > span:nth-child(4) {
+    order: 2;
+    border-left: 1px solid var(--grafite);
+  }
+  .folio > span:nth-child(2) {
+    order: 3;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--grafite);
+  }
+  .folio > span:nth-child(3) {
+    order: 4;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--grafite);
+  }
+}
+@media (max-width: 600px) {
+  .assembly > .folio > span:nth-child(4) {
+    border-top: 0;
+  }
+}
+
+/* Fora da grade da seção: com grid-column herdado, o absoluto tomava a área
+   das colunas 3 a 12 como referência e a régua caía no meio do conteúdo. */
+.sec > .regua,
+.stage > .regua,
+main > .regua {
+  grid-column: auto;
+  grid-row: auto;
+}
