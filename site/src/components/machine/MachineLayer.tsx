@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Machine, type OverlayRefs } from "./Matriz";
+import { Machine, type OverlayRefs } from "./Montagem";
 import { machine } from "./store";
 import { PARTS } from "@/content/site";
 import { reducedMotion } from "@/lib/motion";
@@ -56,11 +56,13 @@ export default function MachineLayer() {
         eventSource={undefined}
         frameloop={active ? "always" : "never"}
         dpr={lite ? [1, 1.25] : [1, 1.75]}
-        camera={{ fov: 30, position: [0, 0, 14], near: 0.1, far: 60 }}
+        // Ortográfica com zoom 1: uma unidade do mundo é um pixel da tela, então a
+        // figura cabe na moldura do DOM sem conta de perspectiva.
+        orthographic
+        camera={{ position: [0, 0, 500], zoom: 1, near: 1, far: 2000 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
-          gl.toneMapping = THREE.NeutralToneMapping;
-          gl.toneMappingExposure = 1.0;
+          gl.toneMapping = THREE.NoToneMapping;
           machine.live = true;
           requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("fig-ready")));
         }}

@@ -1,36 +1,28 @@
 import localFont from "next/font/local";
 
-// Três fontes self-hosted (SIL OFL 1.1, licenças em /licencas). Carregar do
+// Duas fontes self-hosted (SIL OFL 1.1, licenças em /licencas). Carregar do
 // Google Fonts mandaria o IP do visitante para terceiros sem consentimento.
 //
-// Os arquivos em src/fonts saem do @fontsource (recorte latim):
-//   alfa.woff2     Alfa Slab One: letra de madeira de cartaz, só nos títulos
-//   archivo.woff2  Archivo variável (400 a 800): todo o texto corrido
-//   elite.woff2    Special Elite: carimbo e numeração de folheto, nada mais
+// Os arquivos em src/fonts saem do @fontsource (recorte latim, que cobre o
+// português inteiro):
+//   geologica.woff2        Geologica variável (100 a 900): títulos e texto corrido
+//   sofia-condensed.woff2  Sofia Sans Condensed variável: a letra técnica da
+//                          prancha (cotas, legendas, balões, quadros e rótulos)
 
-export const alfa = localFont({
-  src: "../fonts/alfa.woff2",
-  weight: "400",
-  style: "normal",
-  display: "swap",
-  variable: "--font-display",
-  preload: true,
-});
-
-export const archivo = localFont({
-  src: "../fonts/archivo.woff2",
-  weight: "400 800",
+export const geologica = localFont({
+  src: "../fonts/geologica.woff2",
+  weight: "100 900",
   style: "normal",
   display: "swap",
   variable: "--font-text",
   preload: true,
 });
 
-export const elite = localFont({
-  src: "../fonts/elite.woff2",
-  weight: "400",
+export const sofia = localFont({
+  src: "../fonts/sofia-condensed.woff2",
+  weight: "100 900",
   style: "normal",
   display: "swap",
-  variable: "--font-stamp",
-  preload: false,
+  variable: "--font-label",
+  preload: true,
 });

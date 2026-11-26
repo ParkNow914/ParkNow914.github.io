@@ -68,10 +68,10 @@ export default function PacotesPage() {
       <NotasHeader secao={{ label: titulo, href: "/pacotes/" }} />
       <main id="conteudo" className="nota-pag pacotes-pag">
         <article className="nota nota--larga">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: titulo }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: titulo }]} />
           <header className="nota__cab">
             <p className="nota__kicker">
-              <span className="nota__pilar">Tabela da oficina</span>
+              <span className="nota__pilar">Tabela de preços</span>
               <span>Preço fechado · tudo por mensagem</span>
             </p>
             <h1 className="nota__t">{titulo}</h1>

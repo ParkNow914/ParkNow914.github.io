@@ -5,7 +5,7 @@ export function pageOf(id: SectionId) {
   return { n: String(i + 1).padStart(2, "0"), total: String(SECTIONS.length).padStart(2, "0") };
 }
 
-/** Título de seção: o endereço do manual faz parte do título, não é rótulo solto. */
+/** Título de seção: o número da prancha vai num marcador de detalhe ao lado do título, nunca acima. */
 export function SectionHead({
   id,
   address,
@@ -28,14 +28,21 @@ export function SectionHead({
   );
 }
 
-/** Rodapé de página do manual: marca o fim de cada seção como uma folha impressa. */
+/** Legenda da prancha: o quadro de identificação que fecha cada seção. */
 export function Folio({ id }: { id: SectionId }) {
   const p = pageOf(id);
   return (
     <p className="folio" aria-hidden="true">
-      <span>Autark · Folheto da Oficina · {REVISION}</span>
+      <span>Autark</span>
+      <span>
+        <span className="folio__k">Desenho</span>Projeto executivo · {REVISION}
+      </span>
+      <span>
+        <span className="folio__k">Responsável técnico</span>Alisson Santos
+      </span>
       <span className="folio__n">
-        Pág. {p.n}/{p.total}
+        <span className="folio__k">Prancha</span>
+        {p.n}/{p.total}
       </span>
     </p>
   );

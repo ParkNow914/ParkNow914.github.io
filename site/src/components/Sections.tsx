@@ -512,11 +512,11 @@ export function Colophon({ capa = "#capa" }: { capa?: string } = {}) {
         <span>Autark</span>
       </div>
       <p className="colophon__text">
-        Folheto da Oficina, {REVISION}. Escrito, entalhado e construído à mão por Alisson Santos, sem template.
+        Projeto executivo, {REVISION}. Escrito, desenhado e construído à mão por Alisson Santos, sem template.
       </p>
       <p className="colophon__text colophon__dim">
-        Este site não usa cookies nem rastreadores, e as fontes são servidas daqui mesmo. Fontes Alfa Slab One, Archivo
-        e Special Elite sob licença SIL OFL 1.1 (Special Elite: Apache 2.0). Gravuras entalhadas a partir de arte gerada no Recraft e montadas à mão.
+        Este site não usa cookies nem rastreadores, e as fontes são servidas daqui mesmo. Fontes Geologica e Sofia Sans
+        Condensed sob licença SIL OFL 1.1. O Cérebro Autark é desenhado em 3D no próprio navegador, sem modelo baixado.
       </p>
       <nav className="colophon__nav" aria-label="Links do rodapé">
         <a href={GITHUB} target="_blank" rel="noopener">

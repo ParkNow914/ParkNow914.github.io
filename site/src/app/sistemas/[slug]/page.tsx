@@ -89,7 +89,7 @@ export default async function SistemaPage({ params }: Props) {
       <NotasHeader secao={{ label: "Sistemas", href: "/sistemas/" }} />
       <main id="conteudo" className="nota-pag">
         <article className="nota sis">
-          <Trilha itens={[{ label: "Folheto", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
+          <Trilha itens={[{ label: "Início", href: "/" }, { label: "Sistemas", href: "/sistemas/" }, { label: s.code }]} />
           <header className="nota__cab sis__cab">
             <p className="nota__kicker">
               <span className="nota__pilar">{s.code}</span>

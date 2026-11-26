@@ -55,15 +55,14 @@ ALLOWED_ORPHANS = {
     # Exigido pela SIL OFL 1.1: redistribuir os .woff2 obriga a licenca a
     # acompanhar. Ninguem linka do HTML, e nao deve mesmo.
     "assets/fonts/LICENSE.txt",
-    # Fontes da versão anterior: as landings passaram para o folheto de
-    # xilogravura, mas o laboratório (github.com/ParkNow914/lab, servido em
+    # Fontes de uma versão antiga: as landings usam a Geologica da prancha
+    # técnica, mas o laboratório (github.com/ParkNow914/lab, servido em
     # /lab/) ainda carrega este CSS e os .woff2 que ele cita.
     "assets/fonts/fonts.css",
-    # Licenças das fontes das landings (Alfa Slab One e Archivo: SIL OFL 1.1;
-    # Special Elite: Apache 2.0). Acompanham os .woff2, ninguém linka.
-    "assets/fonts/alfa-slab-one-OFL.txt",
-    "assets/fonts/archivo-OFL.txt",
-    "assets/fonts/special-elite-Apache-2.0.txt",
+    # Licenças das fontes das landings (Geologica e Sofia Sans Condensed, ambas
+    # SIL OFL 1.1). Acompanham os .woff2, ninguém linka.
+    "assets/fonts/geologica-OFL.txt",
+    "assets/fonts/sofia-sans-condensed-OFL.txt",
 }
 
 REF = re.compile(r'(?:src|href)\s*=\s*["\']([^"\']+)["\']|url\(\s*["\']?([^"\')]+)["\']?\s*\)')

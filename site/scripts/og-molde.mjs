@@ -1,4 +1,4 @@
-// Molde das imagens de compartilhamento (1200x630): uma folha de cordel impressa na oficina.
+// Molde das imagens de compartilhamento (1200x630): uma prancha do projeto executivo.
 // Serve às notas (og-notas.mjs) e às páginas avulsas e landings (og-paginas.mjs).
 import { writeFileSync, rmSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -11,49 +11,47 @@ const url = (arquivo) => pathToFileURL(path.isAbsolute(arquivo) ? arquivo : path
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /**
- * Folha de cordel 1200x630: papel colorido, tinta preta de rolo, carimbo vermelho.
- * `fig` é a gravura da direita: por padrão a folha impressa da Matriz 1; com
- * `print: true` vira a tela real de um sistema, colada como recorte.
- * `papel` troca a cor da folha (as mesmas do site).
+ * Prancha 1200x630: papel vegetal frio, traço grafite, verde só na ação.
+ * `fig` é o desenho da direita: por padrão o Cérebro Autark em vista explodida;
+ * com `print: true` vira a tela real de um sistema, em moldura de traço.
+ * `papel` fica aceito por compatibilidade e é ignorado: toda prancha usa o mesmo papel.
  */
-export function pagina({ kicker, titulo, lede, rodape, secao = "Notas de campo", fig = "public/matriz/tinta.webp", print = false, papel = "#f2c12e" }) {
-  const tamanho = titulo.length > 46 ? 58 : titulo.length > 30 ? 68 : 80;
-  const figW = print ? 470 : 330;
-  const mainW = print ? 600 : 690;
-  // Segunda matriz de cor: a folha deslocada atrás da gravura, sempre outro papel.
-  const segunda = papel === "#f2789f" ? "#f2c12e" : "#f2789f";
+export function pagina({ kicker, titulo, lede, rodape, secao = "Notas de campo", fig = "public/figs/cerebro-explodido.svg", print = false }) {
+  const tamanho = titulo.length > 46 ? 54 : titulo.length > 30 ? 62 : 72;
+  const figW = print ? 470 : 380;
+  const mainW = print ? 590 : 650;
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>
-@font-face{font-family:Alfa;src:url(${url("src/fonts/alfa.woff2")}) format("woff2")}
-@font-face{font-family:Archivo;src:url(${url("src/fonts/archivo.woff2")}) format("woff2");font-weight:400 800}
-@font-face{font-family:Elite;src:url(${url("src/fonts/elite.woff2")}) format("woff2")}
+@font-face{font-family:Geologica;src:url(${url("src/fonts/geologica.woff2")}) format("woff2");font-weight:100 900}
+@font-face{font-family:Sofia;src:url(${url("src/fonts/sofia-condensed.woff2")}) format("woff2");font-weight:100 900}
 *{box-sizing:border-box;margin:0}
 html,body{width:1200px;height:630px}
-body{position:relative;overflow:hidden;background:${papel};color:#17130f;font-family:Archivo,sans-serif;font-synthesis:none}
-.fibra{position:absolute;inset:0;opacity:.16;mix-blend-mode:multiply}
-.moldura{position:absolute;inset:0}
-.head{position:absolute;left:66px;right:66px;top:56px;display:flex;align-items:center;gap:18px}
-.brand{font-family:Alfa;font-size:30px;letter-spacing:.02em}
-.doc{padding-left:18px;border-left:3px solid #17130f;font-weight:650;font-size:17px}
-.kicker{margin-left:auto;font-family:Elite;font-size:19px;color:#6b130c;text-transform:uppercase;letter-spacing:.04em;
-  padding:6px 12px;border:4px double #c8261d;transform:rotate(-3deg)}
-.fig{position:absolute;right:70px;top:118px;width:${figW}px;height:408px;display:flex;align-items:center;justify-content:center}
-.fig img{max-width:100%;max-height:100%;border:3px solid #17130f;box-shadow:14px 14px 0 -3px ${segunda};transform:rotate(${print ? "-1.6" : "2.4"}deg);background:#dadad3}
-.main{position:absolute;left:66px;top:112px;bottom:104px;width:${mainW}px;display:flex;flex-direction:column;justify-content:center}
-h1{font-family:Alfa;font-weight:400;font-size:${tamanho}px;line-height:.98;letter-spacing:-.005em;text-wrap:balance;filter:url(#entalhe)}
-.lede{margin-top:26px;font-size:25px;font-weight:700;line-height:1.3;max-width:${mainW - 50}px}
-.foot{position:absolute;left:66px;right:66px;bottom:54px;display:flex;justify-content:space-between;align-items:center}
-.foot span{font-family:Elite;font-size:18px}
-.foot b{font-family:Archivo;font-weight:800;font-size:19px;background:#17130f;color:${papel};padding:8px 16px;letter-spacing:.01em}
+body{position:relative;overflow:hidden;background:#edf0ef;color:#1b1f22;font-family:Geologica,sans-serif;font-synthesis:none}
+.malha{position:absolute;right:40px;top:40px;width:${figW + 60}px;bottom:40px;
+  background-image:linear-gradient(rgba(27,31,34,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(27,31,34,.07) 1px,transparent 1px);background-size:24px 24px;border-left:1px solid rgba(27,31,34,.45)}
+.moldura{position:absolute;inset:24px;border:1.5px solid #1b1f22;
+  background:repeating-linear-gradient(90deg,#1b1f22 0 1px,transparent 1px 12.5%) top left/100% 8px no-repeat,repeating-linear-gradient(90deg,#1b1f22 0 1px,transparent 1px 12.5%) bottom left/100% 8px no-repeat}
+.head{position:absolute;left:62px;right:62px;top:54px;display:flex;align-items:center;gap:16px}
+.brand{font-weight:650;font-size:28px;letter-spacing:-.01em}
+.doc{padding-left:16px;border-left:1.5px solid #1b1f22;font-family:Sofia;font-weight:650;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:#545d63}
+.kicker{margin-left:auto;font-family:Sofia;font-weight:700;font-size:17px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px 5px;border:1.5px solid #1b1f22;background:#edf0ef}
+.fig{position:absolute;right:70px;top:120px;width:${figW}px;height:370px;display:flex;align-items:center;justify-content:center}
+.fig img{max-width:100%;max-height:100%}
+.fig.print img{border:1.5px solid #1b1f22;background:#e4e8e6}
+.main{position:absolute;left:62px;top:112px;bottom:118px;width:${mainW}px;display:flex;flex-direction:column;justify-content:center}
+h1{font-weight:620;font-size:${tamanho}px;line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+.lede{margin-top:22px;font-size:24px;font-weight:400;line-height:1.35;color:#353c41;max-width:${mainW - 40}px}
+.foot{position:absolute;left:62px;right:62px;bottom:52px;display:flex;justify-content:space-between;align-items:stretch}
+.legenda{display:flex;border:1.5px solid #1b1f22;font-family:Sofia;font-weight:650;font-size:16px;letter-spacing:.05em;text-transform:uppercase;background:#edf0ef}
+.legenda span{padding:8px 14px;border-left:1px solid #1b1f22}
+.legenda span:first-child{border-left:0;letter-spacing:.12em}
+.dom{font-weight:600;font-size:19px;background:#0d7050;color:#edf0ef;padding:9px 18px;display:flex;align-items:center}
 </style></head><body>
-<svg class="fibra" width="1200" height="630" aria-hidden="true"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.9 0.06" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .15  0 0 0 0 .1  0 0 0 1.4 -.35"/></filter><rect width="1200" height="630" filter="url(#f)"/></svg>
-<svg class="moldura" width="1200" height="630" aria-hidden="true"><defs>
-<filter id="goiva"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="7"/></filter>
-<filter id="entalhe"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs>
-<g filter="url(#goiva)" fill="none" stroke="#17130f"><rect x="22" y="22" width="1156" height="586" stroke-width="12"/><rect x="40" y="38" width="1120" height="554" stroke-width="3"/></g></svg>
-<div class="head"><span class="brand">AUTARK</span><span class="doc">Folheto da Oficina · ${esc(secao)}</span><span class="kicker">${esc(kicker)}</span></div>
+<div class="moldura"></div>
+<div class="malha"></div>
+<div class="head"><span class="brand">Autark</span><span class="doc">Projeto executivo · ${esc(secao)}</span><span class="kicker">${esc(kicker)}</span></div>
 <div class="fig${print ? " print" : ""}"><img src="${url(fig)}" alt=""></div>
 <div class="main"><h1>${esc(titulo)}</h1>${lede ? `<p class="lede">${esc(lede)}</p>` : ""}</div>
-<div class="foot"><span>${esc(rodape)}</span><b>autarktech.com.br</b></div>
+<div class="foot"><div class="legenda"><span>Autark</span><span>${esc(rodape)}</span></div><span class="dom">autarktech.com.br</span></div>
 </body></html>`;
 }
 
