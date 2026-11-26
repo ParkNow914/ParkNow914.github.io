@@ -12,6 +12,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+// --montado <arquivo.svg>: a peça montada e ligada (lâmpada verde), sem balões,
+// para material de divulgação. Não mexe no pôster nem nos limites da cena.
+const iMontado = process.argv.indexOf("--montado");
+const MONTADO = iMontado > -1 ? process.argv[iMontado + 1] : null;
+const off = (v) => (MONTADO ? [0, 0, 0] : v);
 const modelo = JSON.parse(readFileSync(join(root, "src/components/machine/modelo.json"), "utf8"));
 
 const INK = "#1b1f22";
@@ -102,11 +107,11 @@ function tone(n) {
 // Vista explodida: toda peça no deslocamento total.
 const meshes = [];
 for (const part of modelo.parts) {
-  for (const sh of part.shapes) meshes.push({ n: part.n, m: meshOf(sh, part.explode) });
+  for (const sh of part.shapes) meshes.push({ n: part.n, m: meshOf(sh, off(part.explode)) });
 }
-for (const sh of modelo.screws.shapes) meshes.push({ n: 9, m: meshOf(sh, modelo.screws.explode) });
+for (const sh of modelo.screws.shapes) meshes.push({ n: 9, m: meshOf(sh, off(modelo.screws.explode)) });
 const lid = modelo.parts.find((p) => p.n === 9);
-meshes.push({ n: 9, m: meshOf(modelo.lamp, lid.explode), lamp: true });
+meshes.push({ n: 9, m: meshOf(modelo.lamp, off(lid.explode)), lamp: true });
 
 const all = [];
 let minX = Infinity;
@@ -139,7 +144,7 @@ for (const part of modelo.parts) {
 }
 const cx0 = (minX + maxX) / 2;
 const cy0 = (minY + maxY) / 2;
-const balloons = Object.entries(anchors).map(([n, a]) => {
+const balloons = (MONTADO ? [] : Object.entries(anchors)).map(([n, a]) => {
   let dx = a[0] - cx0;
   let dy = a[1] - cy0;
   const l = Math.hypot(dx, dy) || 1;
@@ -191,7 +196,7 @@ for (const item of all) {
   const { pv, faces } = item;
   const vis = faces.filter((f) => f.visible).sort((a, b) => a.depth - b.depth);
   for (const f of vis) {
-    const fill = item.lamp ? "#eef2f0" : tone(f.wn);
+    const fill = item.lamp ? (MONTADO ? "#0d7050" : "#eef2f0") : tone(f.wn);
     body += `<path d="M${f.face.map((i) => `${X(pv[i][0])} ${Y(pv[i][1])}`).join("L")}Z" fill="${fill}"/>`;
   }
   // Arestas: silhueta (uma face visível, a outra não) e quinas vivas entre faces visíveis.
@@ -230,6 +235,11 @@ for (const b of balloons) {
 }
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" width="${W.toFixed(0)}" height="${H.toFixed(0)}" role="img" aria-label="Cérebro Autark em vista explodida isométrica, com as nove peças numeradas.">${body}${notes}</svg>\n`;
+if (MONTADO) {
+  writeFileSync(MONTADO, svg);
+  console.log(`peça montada ${W.toFixed(0)}x${H.toFixed(0)} em ${MONTADO}`);
+  process.exit(0);
+}
 mkdirSync(join(root, "public/figs"), { recursive: true });
 writeFileSync(join(root, "public/figs/cerebro-explodido.svg"), svg);
 writeFileSync(
