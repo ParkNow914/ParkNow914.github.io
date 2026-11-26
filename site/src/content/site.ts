@@ -259,6 +259,12 @@ export type System = {
   feature?: boolean;
 };
 
+/** Cada tela tem uma cópia de 640 px (`nome-640.webp`) para o celular e para a
+ *  ficha da home, que nunca passa de 516 px no desktop. */
+export function telaSrcset(s: Pick<System, "image" | "imageW">) {
+  return `${s.image.replace(/\.webp$/, "-640.webp")} 640w, ${s.image} ${s.imageW}w`;
+}
+
 export const SYSTEMS_INTRO =
   "Entregas para clientes, produtos próprios e demonstrações, com o contexto de cada projeto. As fichas mostram recursos, tecnologia e código ou demo quando disponíveis. Sistemas de clientes são apresentados com materiais que preservam seus dados e acessos.";
 

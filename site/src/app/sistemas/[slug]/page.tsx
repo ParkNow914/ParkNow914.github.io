@@ -8,7 +8,7 @@ import { Simbolo } from "@/components/Simbolo";
 import { Enhance } from "@/components/Enhance";
 import { Icon } from "@/components/Icon";
 import { Bloco, Chamada, Trilha, frases, resumir } from "@/components/Paginas";
-import { SITE_URL, STATUS_LABEL, SYSTEMS } from "@/content/site";
+import { SITE_URL, STATUS_LABEL, SYSTEMS, telaSrcset } from "@/content/site";
 import { AUTHOR, PUBLISHER } from "@/content/jsonld";
 import { aplicacoes, notasDoSistema, sistema } from "@/lib/sistemas";
 
@@ -109,7 +109,15 @@ export default async function SistemaPage({ params }: Props) {
 
           <figure className="sis__fig">
             <div className="sheet__img">
-              <img src={s.image} width={s.imageW} height={s.imageH} alt={`Tela real: ${s.name}.`} decoding="async" />
+              <img
+                src={s.image}
+                srcSet={telaSrcset(s)}
+                sizes="(max-width: 960px) calc(100vw - 34px), 910px"
+                width={s.imageW}
+                height={s.imageH}
+                alt={`Tela real: ${s.name}.`}
+                decoding="async"
+              />
             </div>
             <figcaption>{s.imageNote ?? `${s.name}, tela real.`}</figcaption>
           </figure>

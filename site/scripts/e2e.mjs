@@ -60,6 +60,8 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   const types = parsed.map((x) => x["@type"]).sort().join(",");
   check("JSON-LD com Person, ProfessionalService, WebSite e FAQPage", types === "FAQPage,Person,ProfessionalService,WebSite", types);
   check("sem aggregateRating no JSON-LD", !JSON.stringify(parsed).includes("aggregateRating"));
+  const icones = await page.$$eval('link[rel="icon"]', (els) => els.map((e) => e.getAttribute("href").split("?")[0]));
+  check("favicon .ico e SVG declarados no <head>", icones.includes("/favicon.ico") && icones.includes("/icon.svg"), icones.join(", "));
   check("12 seções endereçadas", (await page.locator("[data-section]").count()) === 12);
   check("10 fichas de sistema", (await page.locator("article.sheet").count()) === 10);
   check("6 depoimentos", (await page.locator(".field__row").count()) === 6);

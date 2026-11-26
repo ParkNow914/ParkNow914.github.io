@@ -1,8 +1,8 @@
 // Gera os ícones do site a partir do "A" da marca (o mesmo de LogoMark):
 // traço papel sobre quadro grafite, cantos retos, como o resto da prancha.
 //   node scripts/icones.mjs
-// Saídas: src/app/icon.svg, public/marca/{favicon-48,apple-touch-icon,icon-192,icon-512,icon-maskable-512}.png
-// e src/app/favicon.ico (16, 32 e 48 px; o Next liga sozinho os dois no <head>). O .ico é montado em Node, sem dependência.
+// Saídas: public/icon.svg, public/marca/logo-mark.svg, public/marca/{favicon-48,apple-touch-icon,icon-192,icon-512,icon-maskable-512}.png
+// e public/favicon.ico (16, 32 e 48 px; os dois entram no <head> pelo icons do layout.tsx). O .ico é montado em Node, sem dependência.
 // Também regrava os ícones da raiz do repositório (../assets/), que servem às
 // landings em /lp/ e a quem guardou os endereços antigos.
 import { writeFileSync, mkdirSync, rmSync } from "node:fs";
@@ -96,8 +96,13 @@ const normal = svg(58);
 const pequeno = svg(26, 26);
 // Maskable: o Android recorta até 20% de cada lado, então o "A" fica no miolo seguro.
 const maskable = svg(150);
-writeFileSync(path.join(RAIZ, "src/app/icon.svg"), `${pequeno}\n`);
+writeFileSync(path.join(RAIZ, "public/icon.svg"), `${pequeno}\n`);
 writeFileSync(path.join(RAIZ, "../assets/logo-mark.svg"), `${pequeno}\n`);
+// A marca solta, para quem usa o logo fora do site: só o "A" em grafite, sem fundo.
+writeFileSync(
+  path.join(RAIZ, "public/marca/logo-mark.svg"),
+  `<svg xmlns="http://www.w3.org/2000/svg" aria-label="Autark" viewBox="0 0 359 350"><path fill="${GRAFITE}" fill-rule="evenodd" d="${A}"/></svg>\n`,
+);
 
 const alvos = [
   ["public/marca/favicon-48.png", 48, pequeno],
@@ -153,5 +158,5 @@ tamanhos.forEach((t, i) => {
   cab.writeUInt32LE(deslocamento, o + 12);
   deslocamento += dado.length;
 });
-writeFileSync(path.join(RAIZ, "src/app/favicon.ico"), Buffer.concat([cab, ...tamanhos.map((t) => pngs[t])]));
-console.log("ok  src/app/favicon.ico");
+writeFileSync(path.join(RAIZ, "public/favicon.ico"), Buffer.concat([cab, ...tamanhos.map((t) => pngs[t])]));
+console.log("ok  public/favicon.ico");
