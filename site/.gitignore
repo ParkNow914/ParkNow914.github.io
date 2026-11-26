@@ -10,6 +10,4 @@ next-env.d.ts
 src/generated/
 
 # Estado local do servidor de decisão do impeccable
-.impeccable/questions/*.log
-.impeccable/questions/*.state.json
-.impeccable/questions/*.next.json
+.impeccable/questions/

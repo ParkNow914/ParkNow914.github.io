@@ -12,15 +12,22 @@
    as quatro landings dividem o mesmo papel, como as pranchas de um projeto. */
 
 /* Fontes do site (as mesmas de site/src/fonts), com as licenças em assets/fonts/.
-   A Geologica vem com preload no HTML e usa "block": o texto espera a fonte por
-   um instante em vez de aparecer em Arial e pular quando ela chega. */
+   As duas vêm com preload no HTML. A Geologica usa "block": o texto espera a fonte
+   por um instante em vez de aparecer em Arial e pular quando ela chega. */
 @font-face { font-family: "Geologica"; src: url("/assets/fonts/geologica.woff2") format("woff2");
   font-weight: 100 900; font-display: block; }
 @font-face { font-family: "Sofia Sans Condensed"; src: url("/assets/fonts/sofia-condensed.woff2") format("woff2");
   font-weight: 100 900; font-display: swap; }
-/* Fallback com métricas próximas: enquanto a fonte não chega, o Arial ocupa o mesmo espaço. */
-@font-face { font-family: "Geologica Fallback"; src: local("Arial");
-  ascent-override: 91%; descent-override: 23%; line-gap-override: 0%; size-adjust: 104%; }
+/* Fallbacks com as métricas medidas nos próprios .woff2 (fontTools: hhea e largura
+   média dos glifos contra a Arial). Enquanto a fonte não chega, o Arial ocupa o
+   mesmo espaço e nada pula quando ela entra.
+   A Sofia é medida em caixa-alta, porque só aparece em rótulo maiúsculo: sem isso
+   o Arial (uns 55% mais largo) quebrava a etiqueta do cabeçalho em duas linhas no
+   celular e o conteúdo inteiro descia, o CLS de 0,19 nas landings. */
+@font-face { font-family: "Geologica Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans");
+  ascent-override: 93.41%; descent-override: 26.35%; line-gap-override: 0%; size-adjust: 104.38%; }
+@font-face { font-family: "Sofia Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans");
+  ascent-override: 139.5%; descent-override: 46.5%; line-gap-override: 0%; size-adjust: 64.5%; }
 
 :root {
   --ground: #edf0ef;
@@ -36,7 +43,7 @@
   --muted: var(--ink-2);
   --display: "Geologica", "Geologica Fallback", "Segoe UI", system-ui, sans-serif;
   --corpo: "Geologica", "Geologica Fallback", "Segoe UI", system-ui, sans-serif;
-  --rotulo: "Sofia Sans Condensed", "Arial Narrow", sans-serif;
+  --rotulo: "Sofia Sans Condensed", "Sofia Fallback", "Arial Narrow", sans-serif;
   --traco: 1.5px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;

@@ -177,7 +177,7 @@ const browser = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=sw
   const home = await page.locator('a[href="/"]').count();
   check("endereço inexistente responde 404 com caminho de volta", res.status() === 404 && home > 0, `status ${res.status()}`);
   if (LANDINGS) {
-    const paths = ["lp/agenda/", "lp/atendimento/", "lp/juridico/", "lp/delivery/", "lp/lp.css", "assets/logo-mark.svg", "assets/fonts/fonts.css", "sw.js"];
+    const paths = ["lp/agenda/", "lp/atendimento/", "lp/juridico/", "lp/delivery/", "lp/lp.css", "assets/logo-mark.svg", "assets/foto-240.webp", "assets/fonts/fonts.css", "sw.js", ".well-known/security.txt"];
     const bad = [];
     for (const p of paths) {
       const r = await page.request.get(new globalThis.URL(p, URL).href);

@@ -55,7 +55,7 @@ A Autark é o estúdio de automação com IA de Alisson Santos. Ela instala sist
 ## Brand Commitments
 
 - Nome **Autark**, domínio `autarktech.com.br`, Instagram `@autark.tech`, pessoal `@sntsz.alisson`.
-- Logo: o "A" vetorial em `assets/logo-mark.svg`, com gradiente #34d399 → #22d3ee. Desenho original, sem licença de terceiro.
+- Logo: o "A" vetorial (o traço de `LogoMark`), em grafite #1b1f22 no texto e papel #edf0ef sobre quadro grafite nos ícones (`site/scripts/icones.mjs` gera favicon, ícones do app e `assets/logo-mark.svg`). Desenho original, sem licença de terceiro. O gradiente verde-ciano antigo saiu de tudo; só o banner do README do perfil no GitHub ainda o usa.
 - Frase-âncora: "Sistemas que trabalham sozinhos enquanto você cresce."
 - Voz: direta, técnica sem jargão para o dono do negócio, sempre com o número concreto, contraste com o jeito comum de fazer e humildade factual (conta o que deu errado). Português do Brasil coloquial-profissional ("pra", "você").
 - Assinatura: "construído à mão, sem template."
