@@ -9,7 +9,72 @@ import { writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { inflateSync, deflateSync } from "node:zlib";
 import { chromium } from "playwright";
+
+// O Chromium grava PNG opaco como RGB, e o Next recusa .ico com PNG que não
+// seja RGBA ("The PNG is not in RGBA format"). Reescreve o PNG com canal alfa.
+const CRC = Array.from({ length: 256 }, (_, n) => {
+  let c = n;
+  for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+  return c >>> 0;
+});
+function crc32(buf) {
+  let c = 0xffffffff;
+  for (const b of buf) c = CRC[(c ^ b) & 0xff] ^ (c >>> 8);
+  return (c ^ 0xffffffff) >>> 0;
+}
+function bloco(tipo, dado) {
+  const cab = Buffer.alloc(8);
+  cab.writeUInt32BE(dado.length, 0);
+  cab.write(tipo, 4, "ascii");
+  const crc = Buffer.alloc(4);
+  crc.writeUInt32BE(crc32(Buffer.concat([cab.subarray(4), dado])));
+  return Buffer.concat([cab, dado, crc]);
+}
+function paraRGBA(png) {
+  let i = 8;
+  let w = 0, h = 0, tipo = 0;
+  const idat = [];
+  while (i < png.length) {
+    const len = png.readUInt32BE(i);
+    const nome = png.toString("ascii", i + 4, i + 8);
+    const dado = png.subarray(i + 8, i + 8 + len);
+    if (nome === "IHDR") { w = dado.readUInt32BE(0); h = dado.readUInt32BE(4); tipo = dado[9]; }
+    if (nome === "IDAT") idat.push(dado);
+    i += 12 + len;
+  }
+  if (tipo === 6) return png;
+  if (tipo !== 2) throw new Error(`PNG tipo ${tipo} não previsto`);
+  const cru = inflateSync(Buffer.concat(idat));
+  const bpp = 3, linha = w * bpp;
+  const saida = Buffer.alloc(h * (1 + w * 4));
+  let ant = Buffer.alloc(linha);
+  for (let y = 0; y < h; y++) {
+    const f = cru[y * (linha + 1)];
+    const lin = Buffer.from(cru.subarray(y * (linha + 1) + 1, (y + 1) * (linha + 1)));
+    for (let x = 0; x < linha; x++) {
+      const a = x >= bpp ? lin[x - bpp] : 0, b = ant[x], c = x >= bpp ? ant[x - bpp] : 0;
+      const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
+      const pred = f === 1 ? a : f === 2 ? b : f === 3 ? (a + b) >> 1 : f === 4 ? (pa <= pb && pa <= pc ? a : pb <= pc ? b : c) : 0;
+      lin[x] = (lin[x] + pred) & 0xff;
+    }
+    const o = y * (1 + w * 4);
+    for (let x = 0; x < w; x++) {
+      saida[o + 1 + x * 4] = lin[x * 3];
+      saida[o + 2 + x * 4] = lin[x * 3 + 1];
+      saida[o + 3 + x * 4] = lin[x * 3 + 2];
+      saida[o + 4 + x * 4] = 255;
+    }
+    ant = lin;
+  }
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(w, 0);
+  ihdr.writeUInt32BE(h, 4);
+  ihdr[8] = 8;
+  ihdr[9] = 6;
+  return Buffer.concat([png.subarray(0, 8), bloco("IHDR", ihdr), bloco("IDAT", deflateSync(saida, { level: 9 })), bloco("IEND", Buffer.alloc(0))]);
+}
 
 const RAIZ = process.cwd();
 const GRAFITE = "#1b1f22";
@@ -56,7 +121,7 @@ for (const [destino, px, fonte] of alvos) {
   const tmp = path.join(tmpdir(), `icone-${process.pid}.html`);
   writeFileSync(tmp, `<!doctype html><html><body style="margin:0">${fonte.replace("<svg ", `<svg width="${px}" height="${px}" `)}</body></html>`);
   await p.goto(pathToFileURL(tmp).href);
-  const buf = await p.screenshot({ type: "png", omitBackground: false });
+  const buf = paraRGBA(await p.screenshot({ type: "png" }));
   rmSync(tmp);
   await p.close();
   if (destino.startsWith("ico-")) pngs[px] = buf;

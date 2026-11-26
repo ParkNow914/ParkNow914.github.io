@@ -69,6 +69,8 @@ ALLOWED_ORPHANS = {
 }
 
 REF = re.compile(r'(?:src|href)\s*=\s*["\']([^"\']+)["\']|url\(\s*["\']?([^"\')]+)["\']?\s*\)')
+# srcset lista vários arquivos, cada um seguido do descritor ("240w", "2x").
+SRCSET = re.compile(r'srcset\s*=\s*["\']([^"\']+)["\']')
 
 
 def is_local(path: str) -> bool:
@@ -89,6 +91,8 @@ def main() -> int:
         text = open(full, encoding="utf-8").read()
 
         raw = [a or b for a, b in REF.findall(text)]
+        for lista in SRCSET.findall(text):
+            raw += [item.strip().split()[0] for item in lista.split(",") if item.strip()]
 
         for ref in raw:
             if not is_local(ref):
